@@ -1,0 +1,11 @@
+Parent=MainPage
+
+Name=Phone
+Name-logical-id=qtn_sett_main_phone
+
+Icon=icon-m-bluetooth-device-root
+
+Aliases=qtn_sett_main_battery
+
+Order=10
+

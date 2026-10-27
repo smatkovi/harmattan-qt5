@@ -1,0 +1,7 @@
+<aegis>
+   <request>
+      <credential name="TrackerReadAccess" />
+      <for path="/usr/lib/libcontentaction-tests/servicetest" />
+      <for path="/usr/share/libcontentaction-tests/test-info" />
+   </request>
+</aegis>

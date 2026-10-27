@@ -1,0 +1,11 @@
+MBasicListItemInsertionAnimationStyle {
+    insert-delay: 200;
+    insert-duration: 200;
+    insert-opacity: 0.0;
+    insert-scale: 0.0;
+    insert-curve: outexpo;
+
+    move-delay: 0;
+    move-duration: 300;
+    move-curve: outexpo;
+}

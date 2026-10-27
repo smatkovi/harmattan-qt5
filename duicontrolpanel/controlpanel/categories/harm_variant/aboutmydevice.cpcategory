@@ -1,0 +1,13 @@
+Parent=MainPage
+
+Name="About this product"
+Name-logical-id=qtn_sett_main_aboutmy
+
+Icon=icon-m-settings-description
+
+AutoStartApplet=1
+
+Aliases="About,About my device,About my NXX"
+
+Order=100
+

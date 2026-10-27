@@ -1,0 +1,21 @@
+[Desktop Entry]
+Type=Application
+Name=Example External Application
+Icon=
+
+# If this property is declared, and the applet is not loaded using the 
+# X-DUIApplet-Applet property, the command will be executed when the 
+# user activates the plugin in the control panel.
+# This has to be specified in order that the .desktop file can also be
+# used as an action (for example for search to know how to
+# open the "applet")
+Exec=widgetsgallery
+
+X-logical-id=controlpanel_example_applet
+X-translation-catalog=catalog1
+
+[DCP]
+Category=Examples
+Order=3
+WidgetType=Label
+

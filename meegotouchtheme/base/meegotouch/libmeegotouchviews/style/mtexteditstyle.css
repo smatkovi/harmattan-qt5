@@ -1,0 +1,67 @@
+/* MTextEditStyle : MWidgetStyle */
+MTextEditStyle {
+    background-image: meegotouch-textedit-background $CORNER_MARGINS;
+
+    font: $FONT_FAMILY_LIGHT 24px;
+    text-color: $COLOR_FOREGROUND;
+    selection-text-color: $COLOR_INVERTED_FOREGROUND;
+    selection-background-color: $COLOR_SELECT;
+    selection-threshold: 15.0;
+    allow-view-reposition: true;
+    disable-magnifier: false;
+    mask-string: "\u2022"; /* bullet */
+    prompt-font: $FONT_FAMILY_LIGHT 24px;
+    prompt-color: #A6A8AB;
+    paste-failed-icon: "icon-m-framework-close";
+    paste-failed-duration: 3000;
+    masking-delay: 1000;
+    cursor-width: 2;
+    focused-prompt-opacity: 0.6;
+    unfocused-prompt-opacity: 1.0;
+    focus-transition-duration: 150;
+    hide-show-prompt-duration: 100;
+    prompt-transition-delay: 60;
+    disable-toolbar: false;
+
+    text-clipping-top: 6px;
+    text-clipping-bottom: 6px;
+    text-clipping-left: 18px;
+    text-clipping-right: 18px;
+
+    /* inherited from MWidgetStyle */
+    minimum-size: -1 52px;
+    preferred-size: 400px -1; /* We need a fixed prefered width.   Make this any reasonable default */
+    maximum-size: -1 -1;
+
+    press-word-feedback: ;
+    release-word-feedback: ;
+    press-boundary-feedback: ;
+    release-boundary-feedback: ;
+    change-selection-feedback: priority2_move;
+    magnifier-cursor-move-feedback: priority2_move;
+    minimum-feedback-interval: 70;
+    feedback-speed-limit: 20;
+
+    padding-top: 9px;
+    padding-bottom: 7px;
+    padding-left: 18px;
+    padding-right: 18px;
+
+    toolbar-style-name: "";
+
+    selection-delay: 70;
+    selection-speed-threshold: 1.0; /* pixels per millisecond*/
+    scroll-cursor-margin-top: 40;
+    scroll-cursor-margin-bottom: 20;
+
+    toolbar-speed-limit: 0.015;
+    toolbar-show-delay: 250;
+}
+
+MTextEditStyle:selected {
+    background-image: meegotouch-textedit-background-selected $CORNER_MARGINS;
+}
+
+MTextEditStyle:error {
+    background-image: meegotouch-textedit-background-error $CORNER_MARGINS;
+}

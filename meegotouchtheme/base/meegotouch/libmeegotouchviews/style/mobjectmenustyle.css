@@ -1,0 +1,163 @@
+/* MObjectMenuStyle : MSceneWindowStyle */
+
+MObjectMenuStyle {
+
+    /* inherited from MWidgetStyle */
+    minimum-size: 42.7mm 80%;
+    preferred-size: 42.7mm 100%;
+    maximum-size: 42.7mm 100%;
+
+    vertical-align: top;
+    horizontal-align: right;
+
+    button-style-name: "ObjectMenuButton";
+    title-style-name: "CommonPanel";
+    title-icon-style-name: "CommonMainIcon";
+    title-label-style-name: "CommonSingleTitle";
+    title-separator-style-name: "ObjectMenuTitleSeparator";
+
+    margin-left: 42.7mm;
+
+    background-image: meegotouch-menu-background;
+
+    top-shadow-image: none;
+    left-shadow-image: meegotouch-menu-shadow-left 5px 5px 15px 15px;
+    bottom-shadow-image: none;
+    right-shadow-image: none;
+
+    appear-feedback: priority2_popup;
+}
+
+MObjectMenuStyle#Inverted {
+    background-image: meegotouch-menu-background-inverted 0 0 124px 2px;
+
+    button-style-name: "ObjectMenuButtonInverted";
+    title-label-style-name: "CommonSingleTitleInverted";
+}
+
+MObjectMenuStyle.Portrait {
+    vertical-align: bottom;
+    horizontal-align: center;
+
+    minimum-size: 100% -1;
+    preferred-size: 100% -1;
+    maximum-size: 100% 59.5mm;
+
+    margin-left: 0;
+
+    top-shadow-image: meegotouch-menu-shadow-top 15px 15px 5px 5px;
+}
+
+MButtonStyle#ObjectMenuButton {
+    background-tiles: meegotouch-list-background $CORNER_MARGINS;
+
+    preferred-size: -1 $SIZE_LIST;
+    minimum-size: -1 $SIZE_LIST;
+    maximum-size: -1 $SIZE_LIST;
+
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    text-margin-left: 0;
+    text-margin-right: 0;
+    text-margin-top: 0;
+    text-margin-bottom: 0;
+
+    padding-left: $PADDING_XXLARGE;
+    padding-right: $PADDING_XXLARGE;
+
+    horizontal-text-align: left;
+    font: $FONT_FAMILY bold 26px;
+
+    background-image: none;
+    background-color: none;
+
+    text-color:$COLOR_FOREGROUND;
+}
+MButtonStyle#ObjectMenuButton:pressed {
+    background-tiles: meegotouch-list-background-pressed $CORNER_MARGINS;
+    text-color: #797979;
+}
+MButtonStyle#ObjectMenuButton:selected {
+    background-tiles: meegotouch-list-background-selected $CORNER_MARGINS;
+    text-color: $COLOR_INVERTED_FOREGROUND;
+}
+MButtonStyle#ObjectMenuButton:disabled {
+    text-color: #797979;
+}
+MButtonStyle#ObjectMenuButton:disabled-selected {
+    background-tiles: meegotouch-list-background-selected $CORNER_MARGINS;
+    text-color: #797979;
+}
+
+MButtonStyle#ObjectMenuButtonInverted {
+    background-tiles: meegotouch-list-inverted-background $CORNER_MARGINS;
+
+    preferred-size: -1 $SIZE_LIST;
+    minimum-size: -1 $SIZE_LIST;
+    maximum-size: -1 $SIZE_LIST;
+
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    text-margin-left: 0;
+    text-margin-right: 0;
+    text-margin-top: 0;
+    text-margin-bottom: 0;
+
+    padding-left: $PADDING_XXLARGE;
+    padding-right: $PADDING_XXLARGE;
+
+    horizontal-text-align: left;
+    font: $FONT_FAMILY bold 26px;
+
+    background-image: none;
+    background-color: none;
+
+    text-color:$COLOR_INVERTED_FOREGROUND;
+}
+MButtonStyle#ObjectMenuButtonInverted:pressed {
+    background-tiles: meegotouch-list-inverted-background-pressed $CORNER_MARGINS;
+    text-color: #797979;
+}
+MButtonStyle#ObjectMenuButtonInverted:selected {
+    background-tiles: meegotouch-list-inverted-background-selected $CORNER_MARGINS;
+    text-color: $COLOR_INVERTED_FOREGROUND;
+}
+MButtonStyle#ObjectMenuButtonInverted:disabled {
+    text-color: #797979;
+}
+MButtonStyle#ObjectMenuButtonInverted:disabled-selected {
+    background-tiles: meegotouch-list-inverted-background-selected $CORNER_MARGINS;
+    text-color: #797979;
+}
+
+#ObjectMenuActionHolder {
+    margin-left: $MARGIN_XLARGE;
+    margin-top: $MARGIN_XLARGE;
+    margin-right: $MARGIN_XLARGE;
+    margin-bottom: $MARGIN_XLARGE;
+}
+
+#ObjectMenuActionHolderWithTitle {
+    margin-left: $MARGIN_XLARGE;
+    margin-top: 0;
+    margin-right: $MARGIN_XLARGE;
+    margin-bottom: $MARGIN_XLARGE;
+}
+
+MObjectMenu MPannableWidgetStyle {
+    minimum-size: -1 -1;
+    preferred-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+#ObjectMenuTitleSeparator {
+    background-image: none;
+    maximum-size:  -1 0;
+}
+

@@ -1,0 +1,50 @@
+/* MSheetStyle : MSceneWindowStyle */
+MSheetStyle {
+    minimum-size: 100% 80%;
+    preferred-size: 100% 100%;
+    maximum-size: 100% 100%;
+
+    vertical-align: bottom;
+    horizontal-align: left;
+
+    offset: 0 0;
+
+    header-slot-style-name: "CommonSheetHeaderPanel";
+    central-slot-style-name: "SheetCentralSlot";
+    central-slot-position-indicator-style-name: ;
+    header-animation: "MWidgetSlideAnimation";
+    background-color: $COLOR_BACKGROUND;
+}
+
+MSheetStyle#Inverted {
+    header-slot-style-name: "CommonSheetHeaderPanelInverted";
+    central-slot-style-name: "SheetCentralSlotIverted";
+    central-slot-position-indicator-style-name: "CommonPositionIndicatorInverted";
+    background-color: $COLOR_INVERTED_BACKGROUND;
+}
+
+MSheetStyle#Overlay {
+    header-slot-style-name: "CommonOverlaySheetHeaderPanel";
+    central-slot-style-name: "SheetCentralSlotIverted";
+    central-slot-position-indicator-style-name: "CommonPositionIndicatorInverted";
+    background-color: $COLOR_INVERTED_BACKGROUND;
+}
+
+#SheetCentralSlot
+{
+    background-image: none;
+    background-tiles: none;
+    background-color: $COLOR_BACKGROUND;
+}
+
+#SheetCentralSlotIverted
+{
+    background-image: none;
+    background-tiles: none;
+    background-color: $COLOR_INVERTED_BACKGROUND;
+}
+
+MPannableWidgetStyle#MSheetCentralSlotPannableViewport {
+    /* preferred size must come from the widget it contains */
+    preferred-size: -1 -1;
+}

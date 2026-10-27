@@ -1,0 +1,10 @@
+Parent=MainPage
+
+Name=Accessories
+Name-logical-id=qtn_sett_main_accessories
+
+Icon=icon-m-settings-accessories
+
+
+Order=90
+

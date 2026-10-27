@@ -1,0 +1,11 @@
+Parent=MainPage
+
+Name="Notifications & Events"
+Name-logical-id=qtn_sett_main_notifications
+
+Icon=icon-m-settings-notification
+
+Order=60
+
+HasSeparatorLine=0
+

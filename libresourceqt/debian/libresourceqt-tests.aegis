@@ -1,0 +1,7 @@
+<aegis>
+  <request>
+    # telephony
+    <credential name="Cellular"/>
+    <for path="/usr/lib/libresourceqt-tests/test-security-with-aegis-token"/>
+  </request>
+</aegis>

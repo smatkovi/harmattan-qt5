@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<testdefinition version="0.1">
+  <suite name="libcontextprovider-tests" domain="Data Management" level="Component" type="Functional">
+    <set name="libcontextprovider-suite" description="libcontextprovider tests" feature="Provider library">
+      <pre_steps>
+        <step expected_result="0">/usr/share/libcontextprovider-tests/waitforsilence</step>
+      </pre_steps>
+      <case name="c-api" description="C API of libcontextprovider" requirement="" timeout="50">
+        <step expected_result="0">. /tmp/session_bus_address.user;export PATH=$PATH:.;cd /usr/lib/libcontextprovider-tests/;./cprovidertests</step>
+      </case>
+      <case name="subscription" description="Clients subscribing to properties" requirement="" timeout="50">
+        <step expected_result="0">. /tmp/session_bus_address.user;export PATH=$PATH:.;cd /usr/lib/libcontextprovider-tests/;./subscriptiontests</step>
+      </case>
+      <case name="types" description="Properties of different types" requirement="" timeout="50">
+        <step expected_result="0">. /tmp/session_bus_address.user;export PATH=$PATH:.;cd /usr/lib/libcontextprovider-tests/;./typestests</step>
+      </case>
+      <case name="typeschange" description="Type change should be enough to emit a valuechanged" requirement="" timeout="50">
+        <step expected_result="0">. /tmp/session_bus_address.user;export PATH=$PATH:/usr/lib/libcontextprovider-tests:.;cd /usr/share/libcontextprovider-tests/multiprovider;python2.5 /usr/share/libcontextprovider-tests/types/types.py</step>
+      </case>
+      <case name="valuechanges" description="Clients getting value change notifications" requirement="" timeout="50">
+        <step expected_result="0">. /tmp/session_bus_address.user;export PATH=$PATH:.;cd /usr/lib/libcontextprovider-tests/;./valuechangestests</step>
+      </case>
+      <case name="service" description="Operations on the Service class" requirement="" timeout="50">
+        <step expected_result="0">. /tmp/session_bus_address.user;export PATH=$PATH:.;cd /usr/lib/libcontextprovider-tests/;./servicetest</step>
+      </case>
+      <case name="multiprovider1" description="Scenarios involving many providers">
+        <step expected_result="0">. /tmp/session_bus_address.user;export PATH=$PATH:/usr/lib/libcontextprovider-tests:.;cd /usr/share/libcontextprovider-tests/multiprovider;python2.5 /usr/share/libcontextprovider-tests/multiprovider/multiprovider.py MultiProvider.testPingPong</step>
+      </case>
+      <case name="multiprovider2" description="Scenarios involving many providers">
+        <step expected_result="0">. /tmp/session_bus_address.user;export PATH=$PATH:/usr/lib/libcontextprovider-tests:.;cd /usr/share/libcontextprovider-tests/multiprovider;python2.5 /usr/share/libcontextprovider-tests/multiprovider/multiprovider.py MultiProvider.testOverheardValues</step>
+      </case>
+      <case name="multiprovider3" description="Scenarios involving many providers">
+        <step expected_result="0">. /tmp/session_bus_address.user;export PATH=$PATH:/usr/lib/libcontextprovider-tests:.;cd /usr/share/libcontextprovider-tests/multiprovider;python2.5 /usr/share/libcontextprovider-tests/multiprovider/multiprovider.py MultiProvider.testBothProvidersSameValue</step>
+      </case>
+      <environments>
+        <scratchbox>false</scratchbox>
+        <hardware>true</hardware>
+      </environments>
+      <get>
+        <file>/tmp/xyzzy.log</file>
+      </get>
+    </set>
+  </suite>
+</testdefinition>

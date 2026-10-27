@@ -1,0 +1,25 @@
+/* MLabelStyle : MWidgetStyle */
+MLabelStyle {
+
+    margin-left: $MARGIN_MEDIUM;
+    margin-right: $MARGIN_MEDIUM;
+    margin-top: $MARGIN_MEDIUM;
+    margin-bottom: $MARGIN_MEDIUM;
+    
+    reactive-margin-top: $MARGIN_LARGE;
+    reactive-margin-bottom: $MARGIN_LARGE;
+
+    color: $COLOR_FOREGROUND;
+    font: $FONT_DEFAULT;
+    highlight-color: $COLOR_LINK;
+    active-highlight-color: $COLOR_LINK_ACTIVE; 
+
+    horizontal-alignment: left;
+    vertical-alignment: vcenter;
+    preferred-line-count: -1;
+    preferred-line-count-behavior: "set";
+
+    text-opacity: 1.0;
+
+    paint-offset: 0 0;
+}

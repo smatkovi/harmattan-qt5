@@ -1,0 +1,54 @@
+libmocs.a
+libmock.a
+*.o
+*.la
+*.a
+moc_*.cpp
+mock_*.cpp
+mocmock_*.cpp
+mocs.cpp
+
+Makefile
+
+# Auto-generated
+contextsubscriber-1.0.pc
+contextsubscriber-1.0-uninstalled.pc
+
+# Ignore resource forks
+._*
+
+# Ignore TextMate projects
+*.tmproj
+
+# Tests
+/unit-tests/contextregistryinfo-xml-static/contextregistryinfounittest-xml-static
+/unit-tests/contextregistryinfo-cdb-static/contextregistryinfounittest-cdb-static
+/unit-tests/contextregistryinfo-xml-dynamic/contextregistryinfounittest-xml-dynamic
+/unit-tests/contextregistryinfo-cdb-dynamic/contextregistryinfounittest-cdb-dynamic
+/unit-tests/contextpropertyinfo-xml-static/contextpropertyinfounittest-xml-static
+/unit-tests/contextpropertyinfo-cdb-static/contextpropertyinfounittest-cdb-static
+/unit-tests/contextpropertyinfo-xml-dynamic/contextpropertyinfounittest-xml-dynamic
+/unit-tests/contextpropertyinfo-cdb-dynamic/contextpropertyinfounittest-cdb-dynamic
+/unit-tests/cdb/cdbunittest
+/unit-tests/provider/provider-unit-tests
+/unit-tests/propertyhandle/propertyhandle-unit-tests
+/unit-tests/handlesignalrouter/handlesignalrouter-unit-tests
+/unit-tests/contextregistryinfo-xml-dynamic/providers.context
+/unit-tests/*/*.moc
+coverage/
+
+/customer-tests/testplugins/contextsubscribertime1.so
+/customer-tests/testplugins/contextsubscribertime2.so
+/customer-tests/waitforsubs/waitforsubscriptiontests
+/customer-tests/regression/regressiontests
+/customer-tests/coverage-build/Makefile.coverage
+
+# Other binaries
+/cli/context-listen
+/cls/context-ls
+/update-tool/update-tool
+/update-contextkit-providers/update-contextkit-providers
+
+# Docs
+doc/html
+doc/doxygen.log

@@ -1,0 +1,164 @@
+/*! \page applethowto Creating a control panel applet
+
+\section whatis Introduction
+
+In control panel, applets provides interface for the user to modify some
+configurations of the device.
+
+All applets have:
+\li
+A launch button, which is a button in an applet list
+\li
+Several pages which contain widgets that enable the user to change preferences.
+
+You can create three types of control panel applets:
+
+\li
+Binary applet: An applet that is implemented as a shared object and loaded by
+duicontrolpanel. Select this applet type to
+achieve maximum flexibility. For more information, see
+<a href="#binaryapplet">Binary applets</a>.
+
+\li
+Declarative applet: An applet that is implemented as a UI description in an
+XML file based on the MeeGo Touch declarative language.
+For more information, see
+<a href="#declarativeapplet">Declarative applets</a>.
+
+\li
+Qml declarative applet: An applet that is implemented in Qt's declarative
+language. They have the benefit of declarative applets that
+they still can be easily created, but they still have equal possibilities
+as the binary applets, because they can be extended through
+shared objects written in C++.
+For more information, see
+<a href="#qmlapplet">Qml applets</a>.
+
+\li
+External applet: An applet that is implemented as a separate application.
+When the user taps your applet's launch button, the control panel starts
+your application. This applet is not recommended, since the user experience
+is not consistent. For more information, see
+<a href="#externalapplet">External applets</a>.
+
+To declare applets and add applets to Dcp, create a .desktop file. For instructions,
+see <a href="desktopformat.html">desktop file format of applets</a>.
+
+\section applettypes Creating applets
+
+\note
+You can find examples/skeletons from each applet type under controlpanel's
+gitorious repository or by checking the source package of
+duicontrolpanel-skeletonapplet.
+
+\subsection binaryapplet Binary applet
+
+The following example shows how to create a simple binary applet called
+'skeleton applet'. You need the following files:
+
+\include binaryapplet/itemlike/dcpskeletonapplet.h
+dcpskeletonapplet.h
+\n
+\n
+
+\include binaryapplet/itemlike/dcpskeletonapplet.cpp
+dcpskeletonapplet.cpp
+\n
+\n
+
+\include binaryapplet/itemlike/dcpskeletonbrief.h
+dcpskeletonbrief.h
+\n
+\n
+
+\include binaryapplet/itemlike/dcpskeletonbrief.cpp
+dcpskeletonbrief.cpp
+\n
+\n
+
+\include binaryapplet/itemlike/dcpskeletonwidget.h
+dcpskeletonwidget.h
+\n
+\n
+
+\include binaryapplet/itemlike/dcpskeletonwidget.cpp
+dcpskeletonwidget.cpp
+\n
+\n
+
+\include binaryapplet/itemlike/skeleton.desktop
+skeleton.desktop
+\n
+\n
+
+\code
+TEMPLATE      = lib
+CONFIG       += plugin gui meegotouch duicontrolpanel silent debug
+
+HEADERS       = dcpskeletonapplet.h \
+                dcpskeletonwidget.h \
+                dcpskeletonbrief.h
+
+SOURCES       = dcpskeletonapplet.cpp \
+                dcpskeletonwidget.cpp \
+                dcpskeletonbrief.cpp
+
+DESTDIR       = ./lib
+TARGET        = $$qtLibraryTarget(dcpskeletonapplet)
+desktop.files += *.desktop
+desktop.path = /usr/share/duicontrolpanel/desktops
+target.path += /usr/lib/duicontrolpanel/applets
+
+INSTALLS += target \
+            desktop
+
+\endcode skeleton.pro
+\n
+\n
+\n
+After unpacking them you can build, compile, and install
+\code
+qmake skeleton.pro
+make
+make install
+\endcode
+After that you can start it from control panel.
+You can find it under "Applications" category
+
+
+See also <a href="binaryplugins.html">binary applets</a> section for details.
+
+\subsection declarativeapplet Declarative applet
+
+The following example illustrates how to create a declarative applet.
+
+\include declarativeapplet/simple/example1.xml
+
+This is the easiest way of creating an applet, but it is less flexible (currently):
+    <ul>
+        <li>You cannot create a custom launch button. The launch button of your applet only contains the applet's title. 
+        <li>You can only use predefined widgets that are supported by the declarative language.
+        <li>You can only store your preferences in GConf.
+    </ul>
+
+See <a href="declarativeplugins.html">declarative applets</a> section for details.
+
+\subsection qmlapplet Qml applet
+
+The following example illustrates how to create a Qml applet.
+
+\include qmlapplet/pagestackwindow/main.qml
+
+See <a href="qmlplugins.html">Qml applets</a> section for details.
+
+\subsection externalapplet External applet
+
+The following example illustrates how to create an external applet.
+
+\include externalapplet/externalapp.desktop
+
+See <a href="externalplugins.html">external applets</a> section for details.
+
+
+*/
+

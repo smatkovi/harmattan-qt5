@@ -1,0 +1,123 @@
+/*! \page statusindicatormenu Status Indicator Menu
+
+This page documents various aspects about the Status Indicator Menu.
+
+The status indicator menu loads a predefined set of plugins implemented using
+application extensions. The set is defined in Direct UI – Status Indicator
+System UI Specification (H00405111-EN). The permanent plugins are displayed on one row
+next to each other. The plugins will be loaded in the below specified order from left to right
+and loaded from the following application extension .desktop files:
+
+<table>
+<tr>
+<th>Order</th>
+<th>Plugin</th>
+<th>Application extension .desktop file name</th>
+</tr>
+<tr>
+<td>1</td>
+<td>Alarms</td>
+<td>statusindicatormenu-alarms.desktop</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Internet Connection</td>
+<td>statusindicatormenu-internetconnection.desktop</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Presence</td>
+<td>statusindicatormenu-presence.desktop</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Profile</td>
+<td>statusindicatormenu-profile.desktop</td>
+</tr>
+</table>
+
+Temporary plug-ins (whole screen wide items) are placed under the top row vertically, in the below specified order and
+loaded from the following application extension .desktop files:
+
+<table>
+<tr>
+<th>Order</th>
+<th>Plugin</th>
+<th>Application extension .desktop file name</th>
+</tr>
+<tr>
+<td>1</td>
+<td>Ongoing/incoming call</td>
+<td>statusindicatormenu-call.desktop</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Transfers</td>
+<td>statusindicatormenu-transfer.desktop</td>
+</tr>
+</table>
+
+Each plugin is written as an application extension that implements
+MStatusIndicatorMenuExtensionInterface as follows:
+
+<pre>
+class MyExtension : public QObject, public MStatusIndicatorMenuExtensionInterface
+{
+    Q_OBJECT
+    Q_INTERFACES(MStatusIndicatorMenuExtensionInterface MApplicationExtensionInterface)
+
+public:
+    MyExtension(QObject *parent);
+    virtual ~MyExtension();
+
+    // Methods derived from MApplicationExtensionInterface
+    virtual bool initialize(const QString &interface);
+    virtual QGraphicsWidget *widget();
+    virtual void setStatusIndicatorMenuInterface(MStatusIndicatorMenuInterface &menuInterface);
+
+private:
+    QGraphicsWidget *myWidget;
+};
+
+MyExtension::MyExtension(QObject *parent) : QObject(parent)
+{
+}
+
+MyExtension::~MyExtension()
+{
+    delete myWidget;
+}
+
+bool MyExtension::initialize(const QString &)
+{
+    myWidget = new MyWidget;
+    return true;
+}
+
+QGraphicsWidget *MyExtension::widget()
+{
+    return myWidget;
+}
+
+void setStatusIndicatorMenuInterface(MStatusIndicatorMenuInterface &menuInterface)
+{
+    // ...
+}
+</pre>
+
+initialize(const QString &interface) should initialize the plugin.
+
+widget() should return a pointer to a GraphicsWidget for the plugin.
+This QGraphicsWidget is then inserted into the status indicator menu
+layout by the status indicator menu.
+
+setStatusIndicatorMenuInterface(MStatusIndicatorMenuInterface &menuInterface)
+lets the plugin know about an interface to the status indicator menu which
+allows the plugin to show and hide the status indicator menu using
+showStatusIndicatorMenu() and hideStatusIndicatorMenu().
+
+More information about application extension development is available
+in the libmeegotouch documentation. An example plugin is available in
+the system-ui source package.
+
+*/

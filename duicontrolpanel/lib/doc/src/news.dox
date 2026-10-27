@@ -1,0 +1,126 @@
+/*! \page news What's New in DuiControlPanel
+
+\section v0CA 0.12.10
+\subsection new New features
+Help can be specified for a category page, see the HelpId key in the category
+documentation.
+
+\section v0C9 0.12.9
+\subsection new New features
+Applet .desktop files can also be under /usr/share/duicontrolpanel/desktops
+
+\section v0B8 0.11.8
+\subsection new New features
+Applet auto starting if a category contains one applet only can
+    be customized via AutoStartApplet key
+\subsection changes Changes
+Category names have changed for non-meego targets, applets
+    have to recheck their categories
+
+\section v0B7 0.11.7
+\subsection new New features
+- New briefview type "Slider". To use it, an applet has to reimplement
+  DcpBrief::setValue(), DcpBrief::value() etc., and specify "Slider" as its
+  type in the .desktop file.
+- Support for briefviews with horizontal layouted value line. To use it, the
+  applet has to specify "TextOrientation=Horizontal" in the [DCP] section of
+  its .desktop file.
+
+\section v0B6 0.11.6
+\subsection new New features
+- It is now configurable if the category icons are above or
+  below the applet icons using the ComponentOrder key in the
+  .cpcategory files
+
+\section v0B5 0.11.5
+\subsection new New features
+- the applet can specify in its .desktop file if it has a
+  mainview through DCP/HasMainView key
+
+\section v0B0 0.11.0
+\subsection new New features
+- New applet categories can be added through ini files, see
+  <a href="categories.html"> this for details</a>.
+
+\section v0A0 0.10.0
+\subsection new New features
+- Applets can be run out of process with specifying -outprocess option to
+  duicontrolpanel. This is also the default when user starts control panel
+  from the application grid or through servicefw.
+
+\section v080 0.8.0
+\subsection new New features
+- New signal #DcpWidget::setProgressIndicatorVisible for accessing the progress
+  indicator of the page.
+\subsection rem Removed
+- Removed the already deprecated DcpBriefWidget, DcpButton, DcpButtonAlign,
+  DcpButtonToggle, DcpButtonImage
+
+\section v0719 0.7.19
+
+\subsection deprec Deprecated
+
+- DcpAppletIf::title() is deprecated to better support applets with multiple
+  pages. Use DcpWidget::title() and DcpBrief::titleText() instead.
+
+
+\section v0717 0.7.17
+
+\subsection deprec Deprecated
+
+- DcpButton, DcpButtonImage, DcpButtonToggle, DcpButtonAlign became deprecated,
+  use MContentItem instead from libmeegotouch.
+
+- DcpBriefWidget also became deprecated, replaced by DcpContentItem which has
+  nearly identical API but is based on MContentItem.
+
+- DuiControlPanel no longer supports the toggle type of briefwidget due to
+  simplifications in design brief.
+
+- Just a notice, page back handling is handled by meegotouch, applet developers
+  should no longer care about it, with referers and such.
+
+
+\section v064 0.6.4
+
+\subsection deprec Deprecated
+
+- The widget type ids became deprecated (used in DcpBrief::widgetTypeID()):
+    DCPLABEL,
+    DCPLABEL2,
+    DCPLABELBUTTON,
+    DCPLABEL2BUTTON,
+    DCPLABEL2IMAGE,
+    DCPLABEL2TOGGLE.
+    Use the followings instead:
+    DcpWidgetType::Label,
+    DcpWidgetType::Toggle,
+    DcpWidgetType::Image
+
+- The following widget type strings became deprecated (used in .desktop file):
+    "DcpLabel",
+    "DcpLabel2",
+    "DcpLabelButton",
+    "DcpLabel2Button",
+    "DcpLabel2Image",
+    "DcpLabel2Toggle".
+    Use the followings instead:
+    "Label",
+    "Toggle",
+    "Image"
+
+\section v061 0.6.1
+
+\subsection new New
+- duicontrolpanel now detects and prohibits wrong applets, see <a href="supervisor.html">Applet supervisor</a>
+- support for starting external applications, see <a href="externalplugins.html">External applets</a>
+- you can request a plugin from another, see DcpWidget::activatePluginByName
+
+\subsection deprec Deprecated
+- None
+
+\subsection bugsfixed Bugs fixed
+- Applet brief did not get the new toggle state
+
+*/
+

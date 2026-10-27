@@ -1,0 +1,1697 @@
+meegotouchtheme (0.24.13-1+0m7) unstable; urgency=low
+
+  * This entry has been added by BIFH queue processor
+    version has been changed to 0.24.13-1+0m7
+
+ -- BIFH Bot <sysint@maemo.research.nokia.com>  Tue, 27 Dec 2011 15:44:46 +0200
+
+meegotouchtheme (0.24.13-1) unstable; urgency=low
+
+  * Changes: additional styles for NB#291505
+  * Fixes: NB#295855
+
+ -- Daniel d'Andrada <daniel.dandrada@nokia.com>  Tue, 27 Dec 2011 15:44:45 +0200
+
+meegotouchtheme (0.24.12-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#287342 - Camera: The string §qtn_cam_color_filter_black_and_white§ and it's icon are overlapped.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 22 Nov 2011 15:15:25 +0200
+
+meegotouchtheme (0.24.11-1) unstable; urgency=low
+
+  * New version
+  * Changes: editor toolbar avoids given region
+  * Fixes: NB#290014, Text selection handles are hidden or shown behind Cut/Copy/Paste/etc pop-up
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Fri, 11 Nov 2011 13:11:27 +0200
+
+meegotouchtheme (0.24.10-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#286974 - Visual pressed down feedback of status area is not shown always
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 08 Nov 2011 16:27:18 +0200
+
+meegotouchtheme (0.24.9-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#288771 - The color of the text where the letters are connected is different from the rest of the text.
+  * Fixes: NB#287568 - Language Settings - truncation of §qtn_lang_usb_reboot_fail§ in EU French
+  * Changes: Give enough width for completer's button
+  * New: Updated feedback for text selection and cursor moving while magnified
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 03 Nov 2011 15:10:06 +0200
+
+meegotouchtheme (0.24.8-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#285976 - [TASK] The 'close all' sound is too big for its purpose
+  * Fixes: NB#286644 - priority2_move sound is slightly too loud
+  * Fixes: NB#285111 - New launcher specific "popup" feedback needed
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Fri, 28 Oct 2011 13:39:10 +0300
+
+meegotouchtheme (0.24.7-1) unstable; urgency=low
+
+  * New version
+  * Changes: introduce cusror margins for automatic vertical scrolling
+  * Changes: add new properties for MTextEdit
+  * Changes: styling for text selection handle
+  * Changes: Fix header label alignments for inverted and landscape states.
+  * Changes: Update common header margins for new font.
+  * Changes: Fix alignment of dialog header for new font.
+  * Changes: Fix common group header top margin for new font.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 24 Oct 2011 11:33:43 +0300
+
+meegotouchtheme (0.24.6-1) unstable; urgency=low
+
+  * New version
+  * Changes: CommonEmptyState* has new font size: 5.8mm
+  * Fixes: NB#286671 - MBanner's layouts require adaption to the new typography
+  * Changes: adjustments for typography matters -3-
+  * Fixes: NB#285790 MTextEditView - Give it a fixed preferred width
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 17 Oct 2011 17:04:44 +0300
+
+meegotouchtheme (0.24.5-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#285932 - Info banner displays under the status bar
+  * Changes: Adjust seeker label position for new font.
+  * Changes: adjustments for typography matters -2-
+  * Changes: Add MSheetStyle#Overlay.
+  * Changes: Explicitly disable feedbacks for CommonStatusBarNoMenu.
+  * Changes: The return of #CommonInboxRightThumbnail.
+  * Changes: Updates for new font metrics.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 12 Oct 2011 15:16:27 +0300
+
+meegotouchtheme (0.24.4-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#284512 - Layout broken in PR1.1.1 unreleased in Number editor for device lock and PIN entry
+  * Changes: adjustments for typography matters
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 04 Oct 2011 10:18:28 +0200
+
+meegotouchtheme (0.24.3-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#283241 - [TASK] Increase visibility time of the scroll indicator.
+  * Changes: MLabelStyle - new property paint-offset default values as 0,0
+  * Changes: Add press and release feedbacks to statusbar.
+  * Fixes: NB#269058 - [TASK] Missing sounds/haptics from object menu
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 28 Sep 2011 13:47:25 +0200
+
+meegotouchtheme (0.24.2-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#268477, [TASK] some new feedbacks needed for PR1.2
+  * New: MContainerHeaderStyle - press-timeout and max-distance-for-click
+  * Changes: Initialise messagebox style name properties.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 20 Sep 2011 09:58:52 +0200
+
+meegotouchtheme (0.24.1-1) unstable; urgency=low
+
+  * New version
+  * New: MSliderStyle - handle animation easing curve and duration
+  * Changes: Better default text colours in bubbleitemstyle.
+  * Changes: Fix switch styling.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 12 Sep 2011 15:47:58 +0200
+
+meegotouchtheme (0.24.0-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#263357 - Icons fade to black on a "pressed down state".
+  * Fixes: NB#266363 - The default startup-fill-color does not match the default window bg color.
+  * Fixes: NB#278819, Press and release feedbacks need to be updated along with new vibra daemon
+  * Fixes: NB#278819, Press and release feedbacks need to be updated along with new vibra daemon
+  * Fixes: NB#257861 - [TASK] Version of Action and Object Menus for Black applications.
+  * Fixes: NB#278338 - uninted base MApplicationWindowStyle attributes.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 31 Aug 2011 14:27:19 +0300
+
+meegotouchtheme (0.23.6-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#220014 - base theme provides common SVG images.
+  * Changes: Depend on meegotouchtheme-graphics.
+  * Fixes: NB#275742 - Done button is seen as if it has focus on it even if it is disabled.
+  * Changes: MLabel - set the default preferred line count behavior to "set".
+  * Fixes: NB#266339 - Subscribe to feed URL text field is missing white space on the left side.
+  * Changes: Fix maximum dialog height in landscape.
+  * Changes: Updating parameters of navigation bar fade animation
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 15 Aug 2011 12:30:20 +0300
+
+meegotouchtheme (0.23.5-1) unstable; urgency=low
+
+  * New version
+  * Fixes: BMC#18617 - [CE] Highlighting text causes UI corruptions
+  * Fixes: BMC#20984 - [CE] m-toolbar needs proper background and bordering
+  * New: Styles for list item insertion animation.
+  * Changes: MLabelStyle - Initialize preferred-line-count to -1
+  * Fixes: BMC#20984 - [CE] m-toolbar needs proper background and borderin
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 26 Jul 2011 14:06:26 +0300
+
+meegotouchtheme (0.23.4-1) unstable; urgency=low
+
+  * New version
+  * Changes: MSheetStyle: let internal viewport grow according to its panned widget size hints
+  * Changes: enabling the press state in MBanner.
+  * Fixes: BMC#20186 - [CE] An appropriate background for checkbox enabled is missing
+  * Fixes: NB#269373 - Gallery toolbar buttons are wrong size/misaligned in landscape orientation
+  * Fixes: NB#261166 - Black line is flashed when changing the orientation in create event view
+  * Fixes: NB#256301 - slider with disabled state looks the same as an enabled one.
+  * Fixes: NB#271175 - OfficeTools - not able to see the text "delete" on button.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 20 Jul 2011 14:56:37 +0300
+
+meegotouchtheme (0.23.3-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#271725 - Sheet disabled button style label color is off
+  * Fixes: NB#271360 - SystemBanner has a different size compared with InformationBanner
+  * Changes: complementary style property for NB#246264
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 11 Jul 2011 13:00:59 +0300
+
+meegotouchtheme (0.23.2-1) unstable; urgency=low
+
+  * New version
+  * Changes: mdialogstyle.css preferred-size: 100% 100%;
+  * Fixes: NB#258981 - Long dialogs with buttonbox are shifted outside the screen border.
+  * Changes: Version 0.23.2~1
+  * New: MListItemStyle - max-distance-for-click
+  * New: MButtonStyle - max-distance-for-click
+  * Changes: Fix size of separators.
+  * Fixes: NB#266666 - Information banner not correctly aligned to screen
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 04 Jul 2011 15:03:09 +0300
+
+meegotouchtheme (0.23.1-1) unstable; urgency=low
+
+  * New version
+  * New: MStatusBarSlideAnimationStyle
+  * Changes: part of fix forNB#263844 - Scroll and Fastscroll indicators appear and disappear with incorrect animation parameters
+  * Changes: Update switchbutton to intended dimensions.
+  * Fixes: NB#268335, [TASK] Press and release feedbacks need to be updated
+  * Fixes: BMC#19272 - No application start-up indicator.
+  * Fixes:NB#261608 - broken icon-id references in base theme
+  * Changes: Update page switch timings according to latest specs
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 28 Jun 2011 14:37:07 +0300
+
+meegotouchtheme (0.23.0-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#265902 - Pressed state in comboboxes is transparent and
+    background application shows through
+  * Changes: Physics properties for better flick/pan behavior.
+  * Changes: new update intervals for the progress indicator
+  * Changes: added default value for new MTextEdit attribute disabling
+    copy/paste popup
+
+ -- Daniel Borgmann <ext-daniel.borgmann@nokia.com>  Wed, 22 Jun 2011 14:55:16 +0300
+
+meegotouchtheme (0.21.11-1) unstable; urgency=low
+
+  * New version
+  * Changes: Add $FONT_FAMILY_LIGHT constant.
+  * Changes: Add $WIDTH_HOMEBUTTON_OFFSET constant and offset sheet buttons.
+  * Fixes: NB#263145 - MCompleter's access button is shown improperly
+  * Changes: paramters of MCompleter's button
+  * Fixes: NB#265322 - [TASK] MTextEdit should use 'real' light font
+
+ -- Daniel Borgmann <ext-daniel.borgmann@nokia.com>  Tue, 14 Jun 2011 10:52:01 +0300
+
+meegotouchtheme (0.21.10-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#264593 - [TASK] Change all light common label styles to use
+    'real' light font
+  * Changes: Tap down effect on the active tab
+  * Changes: Limit dialog viewport size to 100%.
+
+ -- Daniel Borgmann <ext-daniel.borgmann@nokia.com>  Mon, 13 Jun 2011 11:45:25 +0300
+
+meegotouchtheme (0.21.9-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#245625 - Letters are not fully visible inside text message bubble
+  * Fixes: NB#263724 - [TASK] reduce size of sheetbar in landscape sheet.
+  * Fixes: NB#231574 - Poor visuals when an object menu item is not reactive.
+  * Fixes: NB#261870 - VKB Caps Lock key's image is missing under base theme.
+  * Fixes: NB#259570 - [TASK] Attachment-icon size is too small
+
+ -- Natalia Dobrovolskaya <natalia.dobrovolskaya@nokia.com>  Thu, 09 Jun 2011 16:02:15 +0300
+
+meegotouchtheme (0.21.8-1) unstable; urgency=low
+
+  * New version
+  * Changes: some tweaks for MBanner private style
+  * Fixes: NB#260210 - Object/Context Menu transition parameters are slightly off
+  * Changes: Add some more missing icons.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 07 Jun 2011 15:32:34 +0300
+
+meegotouchtheme (0.21.7-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#260974 - [TASK] Change notification visibility time
+  * Fixes: NB#258997 - Tooltip message "Add Contacs" next to “To” in the recipient editor is too high.
+  * Fixes: NB#248034 - [REG] People picker button is sticked to the end of the To field
+  * Changes: small cleanup in mcompleterstyle.css
+  * Changes: fix positioning of completer's label
+  * Fixes: NB#260025 - New settings icons are missing in base theme.
+  * Fixes: NB#243914 - [TASK] Base theme is missing pictures referenced from css styles.
+  * Changes: Fixing an asset ID typo.
+  * Fixes: NB#260349 - [TASK] Expander button needs to be centered
+  * Fixes: NB#258997 - Tooltip message "Add Contacs" next to “To” in the recipient editor is too high.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 01 Jun 2011 16:24:09 +0300
+
+meegotouchtheme (0.21.6-1) unstable; urgency=low
+
+  * New version
+  * Changes: Add override for progress bars in CommonAdvancedListItemInverted.
+  * Changes: update MCompleter style
+  * Fixes: NB#231642 - Completer's "scale with content" functionality doesn't work
+  * Changes: "Documented" application window styles.
+  * Changes: Update versions
+  * Fixes: NB#259090 - Custom Navigation Bar's button is out of bar under base theme
+  * Fixes: NB#252084, copy paste widget breaks when language is set to german
+  * Fixes: NB#258412, Unused feedback files and references to them in .css should be removed from meegotouchtheme package
+  * Changes: New vibration feedbacks
+  * New: MPannableWidgetStyle - maximum-velocity-for-press
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 26 May 2011 15:55:41 +0300
+
+meegotouchtheme (0.21.5-1) unstable; urgency=low
+
+  * New version
+  * Changes: bump version number
+  * New: Put relocation animation parameters to CSS file.
+  * Fixes: NB#255484 - User is unable to see all tokens in To Field in case of many recipients
+  * Changes: introduce styled clipping for MTextEdit text content
+  * Changes: fix syntax error in mcompleterstyle.css
+  * Changes: Some colour tweaks and simplifications.
+  * Changes: Add missing combobox indicator assets.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 23 May 2011 15:48:22 +0300
+
+meegotouchtheme (0.21.4-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#229143 - [TASK] Combobox/thumbler -button needs arrows for pressed and disabled state.
+  * Fixes: NB#245312 - Inconsistent symbols for "hidden input" (aka password field).
+  * Changes: Fix list item corner margins.
+  * Changes: Fixed system and information banner animation.
+  * Fixes: NB#256225 - Service icon in presence dialog not aligned properly.
+  * Changes: New back button icon required new settings
+  * Fixes: NB#256383 - Query dialogs with icon are not displaying properly in landscape mode.
+  * Changes: Use a constant for dialog header color.
+  * Changes: updating some parameters for MBanner in private mode.
+  * Changes: Minor application menu style cleanups.
+  * Fixes: NB#256252 - gallery application menu options, when selected the button should be in disabled state
+  * Changes: MBasicLayoutAnimationStyle - add properties for scale support, disabled by default
+  * Fixes: NB#254126 - [TASK] Dialog color change.
+  * Changes: Also adjust corner margins of inverted position indicator.
+  * Fixes: NB#255649 - Single character index placement in the group headers is offset compared with fast scroll rail
+  * Changes: Additional style for bug NB#249855 - Groupheaders' grey color tone hard to read
+  * Changes: Styles needed for bug NB#254126 - [TASK] Dialog color change
+  * Fixes: NB#249855 - Groupheaders' grey color tone hard to read
+  * Fixes: NB#252593 - [TASK] System Information Banner transitions are a little off
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 18 May 2011 16:26:56 +0300
+
+meegotouchtheme (0.21.3-1) natty; urgency=low
+
+  * New version
+  * Fixes: NB#250534 - Red square button is displaying for Style settings icon in rich text toolbar.
+  * Changes: smaller margins for the postion indicator
+  * Fixes: part of NB#255284 - MColorList contains wrong colors
+  * Changes: New styling for the view and object menus
+  * Changes: putting back some missing ID's delete by error
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Fri, 13 May 2011 17:26:33 +0300
+
+meegotouchtheme (0.21.2-1) natty; urgency=low
+
+  * New version
+  * Changes: required change for bugfix 254760
+  * Fixes: NB#246503 - Toggle from text formatting to copy / paste is not in line with layout guide
+  * Fixes: NB#254760 - [TASK] Move Live filtering styles to Common styles
+  * Fixes: NB#248022 - MCompleter's layout is not in line with latest layout guide
+  * Fixes: NB#248488 - Sheets: Buttons are too small to show proper labels
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 11 May 2011 16:19:36 +0300
+
+meegotouchtheme (0.21.1-1) natty; urgency=low
+
+  * New version
+  * Changes: removing more duplicates ID's
+  * Changes: removing duplicate ID's
+  * Fixes: NB#252960
+  * Changes: Add missing icon that is referenced but probably unused.
+  * Changes: Add radiobuttons and some other missing assets.
+  * Changes: Add checkbox-radiobutton SVG.
+  * Fixes: BMC#16859 - Missing pixmap for checkbox background in n900de theme
+  * Changes: Fixed dialog button styling with new button sizes.
+  * Fixes: NB#253349 - CommonQueryActionButton states overwriting CommonQueryButton
+  * Fixes: NB#252391 - Save number dialog - spacer missing between dialog lower separator and buttons.
+  * Fixes: NB#252655 - Dialog buttons are aligned outside dialog in base theme.
+  * Fixes: NB#252593 - [TASK] System Information Banner transitions are a little of
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 09 May 2011 15:23:43 +0300
+
+meegotouchtheme (0.20.99-1) natty; urgency=low
+
+  * New version
+  * Changes: Updating changelog
+  * Fixes: NB#252105 - Common expand button needs to have more free space around it
+  * Changes: Tweaking values of tap state machine
+  * Changes: Whitespace fixes.
+  * Fixes: NB#245878 - icon-m-common-dialog-close not according toolkit 1.5.9.
+  * Changes: Add #CommonSmallMainIcon.
+  * Fixes: BMC#16987 - Remove meegotouch/svg/meegotouch-virtual-keyboard.svg from meegotouchtheme
+  * Changes: updates for MBanner.
+  * Fixes: NB#194523 - The reaction time for tapping on list item is above the target
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 05 May 2011 16:02:19 +0300
+
+meegotouchtheme (0.20.98-1) unstable; urgency=low
+
+  * New version
+  * Changes: Set position-indicator-style-name.
+  * Fixes: NB#251252 - Typo in CommonEditorInputFieldLabelInverted
+  * Fixes: NB#231340 - Style #CommonStatusBarNoMenu has additional effect - status area becomes black.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 02 May 2011 15:31:57 +0300
+
+meegotouchtheme (0.20.97-1) unstable; urgency=low
+
+  * New version
+  * Changes: removing press-down state style at MBanner
+  * Changes: Updated design of the list index.
+  * Fixes: NB#246915 - Multiline MTextEdit is not resized when text exceeds visible area when QSizePolicy::Preferred is used.
+  * Fixes: NB#249333 - Dialog buttons are not respecting size setting from styles.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 28 Apr 2011 14:56:28 +0300
+
+meegotouchtheme (0.20.96-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#246508 - Rich text editor css needs an update
+  * New: MSheetStyle::central-slot-position-indicator-style-name
+  * Fixes: NB#249834 - CommonCountBubbleInverted has wrong label color
+  * Fixes: NB#249760 - [TASK] Add 64px spinner variant for list-items
+  * Fixes: NB#249711 - CommonEditorNoteArea prompt font size undefined
+  * Fixes: NB#246845 - Body text margins
+  * Fixes: NB#249512 - Common Small Frame Panels have wrong height
+  * Fixes: NB#248469 - [TASK] Update query button asset id according to toolkit 1.5.9
+  * Fixes: NB#249340 - [TASK] Update CommonItemInfo size according to TK159
+  * Fixes: NB#243136 - [TASK] Add CommonHeader portrait style according to toolkit 1.5.9
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 26 Apr 2011 18:00:41 +0300
+
+meegotouchtheme (0.20.95-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#248449 - mprogressindicatorstyle has wrong height.
+  * Fixes: NB#231574 - Poor visuals when an object menu item is not reactive.
+  * Fixes: NB#245540 - [REG] Notifications placed too close to left edge of screen
+  * Changes: Updated graphical assets for fast scroll
+  * Changes: updating private style for MBanner
+  * Fixes: NB#248425 - [TASK] Update CommonFieldLabel color according toolkit 1.5.9
+  * Fixes: NB248274 - [TASK] add inverted editor styles
+  * Fixes: NB#248197 - Selected states are missing for inbox label styles
+  * Changes: update style for MTextEdit
+  * Changes: adding spinner graphics 64px
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 20 Apr 2011 14:23:40 +0300
+
+meegotouchtheme (0.20.94-1) unstable; urgency=low
+
+  * New version
+  * Changes: Added styling for short event banner animation.
+  * Fixes: NB#237815 - From & Priority combo box values are NOT aligned properly in Composer view.
+  * Fixes: NB#243111 - Common(Left/Right)Switch styles are missing disabled states.
+  * Changes: Add inverted toolbar styles.
+  * Changes: Add inverted style.
+  * Changes: Update dialog style.
+  * Changes: Update separator style.
+  * Changes: Tweak progress indicator bar.
+  * Changes: Tweak object menu style.
+  * Changes: Update delete animation style.
+  * Changes: Clean-up statusbar style.
+  * Changes: Cleanup statusbar style.
+  * Changes: Clean-up dockwidget style.
+  * Changes: Clean-up popuplist style.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 14 Apr 2011 16:43:26 +0300
+
+meegotouchtheme (0.20.93-1) unstable; urgency=low
+
+  * New version
+  * Changes: new style for MBanner(lockscreen)
+  * Fixes: NB#243914 - Base theme is missing pictures referenced from css styles
+  * Changes: Animation related attributes added to MTextMagnifier style.
+  * Fixes: NB#245954 - CommonHeaderIcon size not according toolkit 1.5.9
+  * Changes: adding missing style for timestamp at MBanner
+  * Fixes: NB#244770 - Tabs activate on tap down
+  * Fixes: NB#243929 - Base theme settings icons color.
+  * Fixes: NB#244806 - Provide CommonSeekerLabel.
+  * Fixes: NB#242891 - Create account checkbox graphics changes to "unchecked" when user confirms creation of new account.
+  * Changes: Initialize separator-style-name in MListHeader.
+  * Fixes: NB#242792 - Separators in music list views are not according to layout specification
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 13 Apr 2011 11:10:39 +0300
+
+meegotouchtheme (0.20.92-1) unstable; urgency=low
+
+  * New version
+  * Changes: Supplementary changes for libmeegotouch MR #1698
+  * Changes: adding lock screen event banner style
+  * Fixes: NB#244148 - Change icons in base theme.
+  * Changes: Add label color hack to base theme.
+  * Fixes:NB#226128 - Close button in font size and color is not properly visible in both landscape and portrait orientation.
+  * Fixes: NB#236360 - MComboBox styling cleanup.
+  * Changes: Cleanup listitemindex style.
+  * Changes: theming side of NB#221658 fix - Rich text editing options not available.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 07 Apr 2011 11:14:41 +0200
+
+meegotouchtheme (0.20.91-1) unstable; urgency=low
+
+  * New version
+  * Changes: Updated static press audio feedback
+  * Changes: MApplicationPageStyle - reduced minimum size
+  * Changes: updating PrivateEventBanner style
+  * Fixes: 243140 - CommonItemInfo style is missing selected state (color)
+  * Fixes: NB#241852 - x11-startup-pixmap in MWindowStyle does not seem to match the default background.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 05 Apr 2011 11:50:35 +0200
+
+meegotouchtheme (0.20.90-1) unstable; urgency=low
+
+  * New version
+  * Changes: some tweaks on MBanner style
+  * Changes: physics parameters updated to improve panning feeling
+  * Fixes: The style part of bug #233653 - widgets created with declarative settings language renders incorrectly
+  * Fixes: NB#241959 - CommonCountBubble not according to toolkit 1.5.9
+  * Changes: Update container header styling. Related to NB#241306.
+  * Changes: List styles cleanup and minor margin fix.
+  * Changes: Cleanup container style.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Fri, 01 Apr 2011 13:37:56 +0300
+
+meegotouchtheme (0.20.89-1) unstable; urgency=low
+
+  * New version
+  * Changes: Title in the application menu button starting from the left edge of the button
+  * Changes: Remove reference to obsolete image asset from MContainerStyle.
+  * Changes: addition to bugfix NB#240752 updating also query button
+  * Fixes: NB#240752 - [TASK] Update query style according to toolkit 1.5.9
+  * Fixes: NB#240729 - [TASK] Update Group Header Panel style according to toolkit 1.5.9
+  * Fixes: NB#240698 - [TASK] Add new search field style according to toolkit 1.5.9
+  * Fixes: NB#235366 - [TASK] Navigationbar/toolbar uses wrong animation effect
+  * Changes: changed animation style for navigationbar/toolbar (duration and
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 30 Mar 2011 13:53:27 +0300
+
+meegotouchtheme (0.20.88-1) unstable; urgency=low
+
+  * New version
+  * Changes: Minor cleanups.
+  * Changes: Update dialog paddings to match design toolkit and asset.
+  * Changes: Fix typos in dialog style.
+  * Fixes: NB#238945 - MCheckBox activation area is again too small.
+  * Fixes: NB#239426 - Update header divider styles according to toolkit 1.5.9
+  * Fixes: NB#240215 - [TASK] Update composer styles according to toolkit 1.5.9
+  * Fixes: NB#240310 - CommonItemInfo has wrong color
+  * Fixes: NB#239583 - [TASK] Overlay Sheet style missing
+  * Fixes: NB#238600 - [TASK] Theming missing values for styling.
+  * Fixes: NB#239757 - [TASK] update common input field margins according toolkit 1.5.9
+  * Changes: Use constants for background images.
+  * Fixes: NB#234195 - background of feed item turns white after pressed.
+  * Fixes: NB#239438 - [TASK] Update view header styles according to toolkit 1.5.9
+  * Fixes: NB#238106 - MTextEdit with stylename CommonSingleInputFieldLabeled ignores error state.
+  * Fixes: NB#228492 - Disabled state missing from common list-item label-styles
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Fri, 25 Mar 2011 16:10:41 +0200
+
+meegotouchtheme (0.20.87-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#213057 - [TASK] Camera; §qtn_cam_whitebalance_fluorescent§ med. translation is truncated.
+  * Changes: adding missing icons for MeeGo
+  * Changes: Tabs according to the latest UI design.
+  * Fixes: NB#229505 - No visual indication between disabled and enabled MAction's in MApplicationMenu.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 22 Mar 2011 19:18:28 +0200
+
+meegotouchtheme (0.20.86-1) unstable; urgency=low
+
+  * New version
+  * Changes: Set background-color in application page.
+  * Changes: Sheetstyle cleanups.
+  * Changes: Use inverted assets for #CommonSwitchInverted style.
+  * Changes: Set groove-margin back to 2.7mm.
+  * Fixes: NB#237135 - [REG] White viewfinder.
+  * Changes: Also change tool-bar-style-name in inverted application window styles.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 21 Mar 2011 12:14:56 +0200
+
+meegotouchtheme (0.20.85-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#235366 - [TASK] Navigationbar/toolbar uses wrong animation effect
+  * Changes: changed animation style for navigationbar/toolbar
+  * Fixes: NB#231537 - Font used in the combox box in main view to not all be capitalized.
+  * Changes: increasing FullEventBanner icon size to 6.4mm
+  * Fixes: NB#236898 - Common styles for application windows.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 16 Mar 2011 17:20:14 +0200
+
+meegotouchtheme (0.20.84-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#234935 - There's a hatch pattern in the background of white apps.
+  * Changes: View header panel styles reassigned to new ids
+  * Fixes: NB#233725 - [TASK] Query dialog buttons should be changed to vertical
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 15 Mar 2011 16:23:44 +0200
+
+meegotouchtheme (0.20.83-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#234732 - All input fields appear to be the wrong size and shape.
+  * Changes: addition to bugfix 235386 to prevent breaking layouts
+  * Fixes: NB#235386 - CommonInboxRightThumbail has typo
+  * Fixes: NB#234703 - [TASK] Separate MLabel style needed for editor tooltip (prompt)
+  * Fixes: NB#234573 - progress bar used in backup main var 2 is not correct.
+  * Fixes: NB#234708 - Extra padding in CommonEditorInputFieldPanel style
+  * Fixes: NB#234755 - Text margins in query dialog are too small.
+  * Fixes: NB#234917 - CommonSmallPanel not according to design toolkit
+  * Changes: temporarily fixes a typo issue with drilldown icons until we decide
+  * Changes: adding missing files for MeeGo
+  * Fixes: NB#234198 - [REG] White elements in Text input settings.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 10 Mar 2011 16:37:02 +0200
+
+meegotouchtheme (0.20.82-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#234002 - CommonFramePanelLeftIcon - missing margin on Top
+  * Fixes: NB#229952 - [REG] Dimming layer is almost opaque
+  * Changes: opacity changed to make items behind dialogs more visible.
+  * Fixes: NB#232870 - Missing initialisation in style's default constructors.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 08 Mar 2011 16:12:49 +0200
+
+meegotouchtheme (0.20.81-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#232402 - [REG] Application menu look changes in given scenario
+  * New: Style for editor toolbar
+  * Changes: New release feedback for static and pannable areas
+  * Changes: Add a new common editor input field multiline style.
+  * New: MBorderDecorationRoundedCornersStyle
+  * Changes: Get rid of some warning messages about undefined properties
+  * Changes: Make MStatusBar use reactive margins
+  * Changes: Remove unnecessary style properties, see NB#231340.
+  * Changes: Remove usage of transparent assets.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 07 Mar 2011 16:33:40 +0200
+
+meegotouchtheme (0.20.80-1) unstable; urgency=low
+
+  * New version
+  * New: Inverted style for MContentItem with labels.
+  * Changes: Remove extra margins and fix button box in message box style.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 03 Mar 2011 14:01:44 +0200
+
+meegotouchtheme (0.20.79-1) unstable; urgency=low
+
+  * New version
+  * New: MBasicSheetHeaderStyle
+  * New: MSheetStyle and MSheet-related changes
+  * Changes: New feedback effects
+  * Changes: Add additional style to help fix NB#225405.
+  * Changes: Udpated inbox and countbubble styles according to toolkit
+  * Fixes: NB#230262 - [TASK] Rotation duration should be 500ms instead of 800ms
+  * Changes: Also set background-color to blank where background is transparent.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 28 Feb 2011 15:40:13 +0200
+
+meegotouchtheme (0.20.78-1) unstable; urgency=low
+
+  * New version
+  * Changes: Added tooltip font attribute to mtexeditstyle.css for bug 229699
+  * Fixes: NB#210199 - Specification doesn't specify if conversation threads and message bubbles should be highlighted after tapping on them
+  * Changes: Use blank backgrounds instead of totally transparent assets.
+  * Changes: Added disabled states to later replace existing Disabled styles
+  * Fixes: NB#229586 - CommonLargeViewHeader and CommonLargeViewHeaderInverted not in sync
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 24 Feb 2011 16:00:43 +0200
+
+meegotouchtheme (0.20.77-1) unstable; urgency=low
+
+  * Nee version
+  * Fixes: NB#221447 - error messages disappear after very short period of time
+  * Changes: new icon size for event banner
+  * Changes: needed for NB#213541 - Application menu updates its contents during disappearance animation.
+  * Fixes: NB#229209 - CommonEditorInputField styles have too large left margin. (excluding label)
+  * Changes: set MButton's default transition
+  * Changes: modifying margin of groove@MSlider
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 22 Feb 2011 13:42:51 +0200
+
+meegotouchtheme (0.20.76-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#228527 - #CommonToolbarButtonInverted points to wrong assets.
+  * Changes: removing limits in height in MBanner
+  * Changes: Updated release vibration feedback
+  * Fixes: NB#227635 - Strings in Full event banner are in wrong order
+  * Changes: Fixed misspelled style name in commonbuttonstyle.css
+  * Changes: Updated vibra feedback effects
+  * Fixes: NB#223558 - Tool bar is displayed on top of the animation when changing from page without the toolbar to a page with toolbar
+  * Changes: Also reset background colours for common panels.
+  * Changes: Fix empty panel background constant.
+  * New: adding style sheet for MTapStateMachine class
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 17 Feb 2011 17:32:34 +0200
+
+meegotouchtheme (0.20.75-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#225576 - [TASK] Unable to disable checkbox style buttons
+  * Changes: fixing red background in CommonPanel
+  * Changes: Don't use (transparent) panel background asset.
+  * Changes: Fix a typo in IDs.
+  * Changes: Add some missing IDs.
+  * Changes: Add common style to disable status indicator menu.
+  * Changes: Added fixed size for CommonInboxSubtitleIcon and CommonInboxRightThumbnail.
+  * Changes: Add error style for MTextEdit.
+  * Changes: Addition to bugfix 226607 adding border values for editor panel
+  * Fixes: NB#226607 - Style attributes in Commonsheetstyle not according to Design
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 15 Feb 2011 15:20:28 +0200
+
+meegotouchtheme (0.20.74-1) unstable; urgency=low
+
+  * New version
+  * Changes: fixing typo at commonlayoutstyle.css
+  * Changes: Add appropiate images for horizontal orientation to MPositionIndicator's css
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 10 Feb 2011 14:12:34 +0200
+
+meegotouchtheme (0.20.73-1) unstable; urgency=low
+
+  * New version
+  * Changes: enabling opacity for MBanner
+  * Fixes: NB#212966 - Full event banner visuals do not match the layout guide
+  * Fixes: NB#225313 - Fast scroll indicator for black background should be white, not black.
+  * Changes: adding extra patch for NB#212951
+  * Fixes: NB#225196 - Asset id missing from inverted switch styles.
+  * Fixes: NB#224694 - Switch button graphics do not look right.
+  * Changes: Added new commonsheetstyle.css.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 08 Feb 2011 15:12:14 +0200
+
+meegotouchtheme (0.20.72-1) unstable; urgency=low
+
+  * New version
+  * Changes: part ot fix for NB#216504 - CSS property "content-opacity" for MButton does not affect icon
+  * Fixes: Issues from previous commit.
+  * Fixes: NB#218896
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Fri, 04 Feb 2011 13:25:42 +0200
+
+meegotouchtheme (0.20.71-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#222221 - "This Device" button selection is not shown in blue color after selecting in settings view in portrait mode.
+  * New: SWP#DUI-4677 Possibility to disable opening of status menu from a given window
+  * Fixes: NB#220832 - Combo-box arrows are loaded at wrong size.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 02 Feb 2011 13:51:06 +0200
+
+meegotouchtheme (0.20.70-1) unstable; urgency=low
+
+  * New version
+  * Changes: Modified slider feedback parameter
+  * Changes: Added speed limit to filter slider input feedback
+  * New: List item deletion animation.
+  * Fixes: NB#212959 - [TASK] Short event banner is missing pressed-down state
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 01 Feb 2011 12:49:24 +0200
+
+meegotouchtheme (0.20.69-1) unstable; urgency=low
+
+  * New version
+  * Changes: Fixed typos in bugfix number 221695
+  * Changes: Fix border values as requested by Otso.
+  * Fixes: NB#221695 - Common styles are missing for inbox views
+  * Fixes: NB#216190 - Inverted styles do not work in button groups.
+  * Fixes: NB#212951 - Short event banner visuals do not match the layout guide
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 31 Jan 2011 16:02:32 +0200
+
+meegotouchtheme (0.20.68-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#216596 - Missing navigationbar assets in development theme.
+  * Changes: Add convenience styles for fullscreen dialogs and default stylenames.
+  * Changes: Added navigation-bar-animation to MSceneManagerStyle
+  * Changes: Add press dimming factor to MStatusBarStyle
+  * Fixes: NB#218550 - navigation bar animates to the wrong direction when drilling down.
+  * Changes: new constant for color font for keyboard
+  * Changes: Added attribute for system banner animations to MSceneManagerStyle.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 18 Jan 2011 15:53:33 +0200
+
+meegotouchtheme (0.20.67-1) unstable; urgency=low
+
+  * New version
+  * Changes: Remove duplicated position indicator style.
+  * Changes: MDialogStyle - Force the dialog size to be 100% again
+  * Changes: Set the preferred size of the pannable widget to -1 -1 instead of 1 1
+  * Fixes: NB#217214 - #CommonLeftCheckBoxInverted is broken and causes abort in libmeegotouch
+  * Changes: added styling for MTextEdit cursorWidth
+  * New: MApplicationMenuAnimationStyle.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 13 Jan 2011 13:42:21 +0200
+
+meegotouchtheme (0.20.66-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#216194 -Base theme missing constants
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 04 Jan 2011 09:55:52 +0100
+
+meegotouchtheme (0.20.65-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#214475 - Panning continues slowly for too long
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 23 Dec 2010 09:50:54 +0100
+
+meegotouchtheme (0.20.64-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#211844 - Camera-ui icons in meegotouchtheme-nokia are not found by the application
+  * Fixes: NB#210462 - Unable to style MMessageBox.
+  * Fixes: NB#209116: Slider/seeker style updates.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 21 Dec 2010 14:44:34 +0100
+
+meegotouchtheme (0.20.63-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#210518 - Mail is sent from Google account with incorrect font.
+  * Fixes: NB#210823 - Full event banners (MBannerStyle#FullEventBanner) defines width only for portrait
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 13 Dec 2010 17:54:58 +0200
+
+meegotouchtheme (0.20.62-1) unstable; urgency=low
+
+  * New version   
+  * Changes: added CommonItemInfoInverted to commonlabelstyle.css
+  * Fixes: NB#208992 - Check boxes are not available for shuffle and repeat in view menu [..].
+  * Changes: Make buttons in tabbar use MButtonTabView
+  * Changes: missing styles for objectmenu
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 08 Dec 2010 15:39:24 +0200
+
+meegotouchtheme (0.20.61-1) unstable; urgency=low
+
+  * New version
+  * Changes: use black as default color for mpreedit underline-color
+  * Changes: Set text colour for inverted list buttons.
+  * Fixes: NB#208894 - CommonFramePanel style has wrongly defined style properties.
+  * Changes: renamed some assets.
+  * Changes: Add some missing IDs.
+  * Changes: Get rid of warnings regarding uninitialized attributes
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Fri, 03 Dec 2010 17:49:39 +0000
+
+meegotouchtheme (0.20.60-1) unstable; urgency=low
+
+  * New version
+  * Changes: opacity increase to 0.98 at MSceneLayerEffectStyle
+  * Changes: new styles for MButtonIconView
+  * Changes: Refactor icon-opacity style property to content-opacity.
+  * Changes: Added graphical assets for application window corners
+  * Changes: Updated virtual keyboard assets. Buttons have now 2px of invisible margin on left and right side
+  * Changes: Default list header widget styles.
+  * New: MTextMagnifier style
+  * Changes: Updated virtual keyboard assets. Shadow is part of magnifier. Added mask for magnifier
+  * Changes: A few more spinner tweaks.
+  * Changes: Delete old assets.
+  * New: Label text alignment from style default settings.
+  * Changes: adding assets in PNG for spinner
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 30 Nov 2010 17:27:58 +0000
+
+meegotouchtheme (0.20.59-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#204307 - Progress spinner is not moving and not looks good
+  * Changes: Add CommonApplicationPageInverted style.
+  * Changes: Added Button Group Header style for empty states to commonlabelstyle.css
+  * Changes: Added Empty state label styles to commonlabestyle.css
+  * Changes: new version for integration
+  * New: MWindowStyle
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Fri, 26 Nov 2010 18:14:56 +0000
+
+meegotouchtheme (0.20.58-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#207125 - Navi bar back icon not dimmed when app menu accessed.
+  * Changes: Updated separator styles.
+  * Changes: new layouts for MBanner
+  * Changes: Added styling for pannable widget inside the application menu.
+  * Changes: adding opacity for MBanner timestamp(label)
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 25 Nov 2010 15:35:47 +0000
+
+meegotouchtheme (0.20.57-1) unstable; urgency=low
+
+  * New version
+  * Changes: Use minimum size for 1px separators as span doesn't work.
+  * Changes: Get rid of some unneeded constants.
+  * Changes: Updated position indicator graphical assets. Added graphical assets for horizontal position indicator. Committing again because on last commit i had wrong syntax in fix message.
+  * Fixes: NB#190329 -added horizontal position indicator graphics
+  * Changes: Updated position indicator graphical assets. Added graphical assets for horizontal position indicator
+  * Fixes: NB# 190329 - added horizontal position indicator graphics
+  * New: MHomeButtonStyle#systemDialog
+  * Changes: deleting old stuff
+  * Changes: Updated vibration feedbacks
+  * Changes: Update the MSpinner's CSS to meet the new MSpinner's needs
+  * Changes: Fixed color of CommonSubTitleWithoutMargin to default
+  * Changes: Set title-style-name in container.
+  * Changes: Add new properties for MSliderStyle
+  * Changes: fixed typos in containerstyle.css
+  * Fixes: NB#205704 - No difference between read and unread posts in feeds application
+  * Changes: adding default opacity for label (text-opacity)
+  * Fixes: NB#203742 Delete button is not shown if set to potrait mode in sync settings page with long BT name
+  * Changes: Tweaked max size of the MObjectMenu pannable area from 42% to 50%.
+  * Changes: adding inverted styles for MList*
+  * Changes: Fixed margins from object menu header.
+  * Changes: adding new graphics for mspinner in PNG
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 23 Nov 2010 15:59:08 +0000
+
+meegotouchtheme (0.20.56-1) unstable; urgency=low
+
+  * Changes: List item height is now SIZE_LIST instead of SIZE_ONE
+  * New: Added commonlistitemstyle.css for testing
+  * Changes: Added temprary ComboBoxOverlay style to commonuicontrolstyle.css
+  * Changes: disabled the haptic feedback for CommonPanelNoFeedback items in commonpanelstyle.css
+  * Fixes: NB#204198 To -dos check box is shown as red box
+  * Changes: New switch button styles to match updated rendering code.
+  * Changes: Modified object menu styling to support panning.
+
+ -- Tobias Koch <tobias.koch@nokia.com>  Thu, 18 Nov 2010 16:07:05 +0200
+
+meegotouchtheme (0.20.55-1) unstable; urgency=low
+
+  * Fixes: NB#204830 CommonApplicationHeader and CommonApplicationHeaderInverted styles are broken
+  * Changes: ComboBox fixes
+  * Changes: Added maximum size for object menu header and items
+  * Changes: Changed spinner in object menu header to image
+  * Changes: Added graphical assets for switch new implementation
+  * Changes: MBasicLayoutAnimation - add option to disable opacity animation
+  * Fixes: NB#201345 - Setting MButton disabled does not change it's appearance
+  * Changes: Added CommonLargeUnreadPanel styles to commonpanelstyle.css
+  * Changes: New value for mscenelayereffectdimstyle: opacity 0.95
+  * Changes: adding prefix style to MBanner
+  * Changes: Added styling for object menu label
+  * Changes: Corrected Checkbox name typo in commonuicontrolstyle.css
+  * Changes: Corrected asset id syntax errors in commonbuttonstyle.css
+  * Changes: Corrected asset id syntax errors in commoniconstyle.css
+  * Changes: Corrected asset id syntax errors in commonlayoutstyle.css
+  * Changes: Corrected asset id syntax in commonpanelstyle.css
+  * Changes: Corrected asset id syntax errors in commonuicontrol.css
+
+ -- Tobias Koch <tobias.koch@nokia.com>  Wed, 17 Nov 2010 16:42:34 +0200
+
+meegotouchtheme (0.20.54-1) unstable; urgency=low
+
+  * New: Style for Intelligent Scrolling parameters.
+  * Changes: CommonLargeSpinner name updated
+  * Changes: Updated common button margins TK 1.5.6
+  * Changes: Updated avatar initials in commonlabelstyle.css
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 11 Nov 2010 15:01:44 +0200
+
+meegotouchtheme (0.20.53-1) unstable; urgency=low
+
+  * New version
+  * Changes: Added Accent button styles to commonstyles
+  * Fixes: NB#201466 - Uninitialized properties in MSceneManagerStyle
+  * Changes: Namechange #CommonGroupDivider to #CommonHeaderDivider
+  * Changes: Added #CommonTextFrame to commonpanelstyle.css RevBy: TrustMe
+  * Changes: Added #CommonApplicationHeader to commonlabelstyles.css RevBy: TrustMe
+  * Changes: adding style for the header at dialog
+  * Changes: fixing conflicts with CommonHeaders
+  * Changes: Set dock widget offset to 0.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 09 Nov 2010 15:18:49 +0200
+
+meegotouchtheme (0.20.52-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#200900 - "Delete all Conversations" Query is not displaying
+  * Changes: decreasing delay & duration at mgraphicshighlighteffectstyle.css
+  * Fixes: NB#197516 - R&D theme depends on nokia fonts.
+  * Fixes: NB#201889 - Positionindicator triggers warnings from MScalableImage at startup
+  * Changes: Settings for label only tool bar buttons
+  * Changes: Added CommonSmallIconButton styles
+  * Changes: Some missing sizes to commoncheckboxes added
+  * Changes: Updated common  checkboxes and radiobutton sizes
+  * Changes: Updates common styles for checkbox and radiobutton
+  * Changes: Updated #CommonCheckBox margins in commonuicontrolstyle.css
+  * Fixes: NB#200779 - Portrait mode: collection and Recommendations buttons are not equally sized
+  * Fixes: MB#201467 - Typo in commonbuttonstyle
+  * Fixes: MB#195933 - Missing icons for duicontrolpanel
+  * Changes: Updated commonuicontrolstyle.css
+  * Changes: Updated commoniconstyle.css Toolkit 1.5.5
+  * Changes: Updated commonlayoutstyle.css Toolkit 1.5.5
+  * Changes: Updated commonpanelstyle.css Toolkit 1.5.5
+  * Changes: Updated commonlabelstyle.css Toolki 1.5.5
+  * Changes: Updated commonbuttonstyle.css Toolkit 1.5.5
+  * Changes: Fix typo with -pressed and -selected states
+  * Changes: new style for mpreedit
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 04 Nov 2010 13:06:30 +0200
+
+meegotouchtheme (0.20.51-1) unstable; urgency=low
+
+  * New version
+  * Changes: Updated commonuicontrolstyle.css
+  * Changes: Updated commonbuttonstyle.css
+  * Changes: Updated commonpanelstyle.css
+  * Changes: Updated commonlayoutstyle.css
+  * Changes: Updated commoniconstyle.css
+  * Changes: Adding new buttonstyles from toolki 1.5.4 to commonbuttonstyles.css
+  * Changes: adapting dialogs to the new layouts
+  * Mbanner: new layouts
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 28 Oct 2010 12:30:56 +0300
+
+meegotouchtheme (0.20.50-1) unstable; urgency=low
+
+  * New version
+  * Changes: new CommonQueryButtion
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 25 Oct 2010 13:35:00 +0300
+
+meegotouchtheme (0.20.49-1) unstable; urgency=low
+
+  * New version
+  * Changes: adding temporal style for call-ui
+  * Changes: fixing typo at spacer
+  * Changes: Updated audio input feedback effects
+  * Changes: Clean up mtoolbartabstyle.css a litle
+  * Changes: Setting values for new tool bar properties (capacity, has-icons, has-labels, has-spaces)
+  * New: font constants for input method
+  * Changes: updated notifications graphical assets, added one new asset
+  * Changes: moving constants to mbuttonstyle
+  * Changes: updating splitbutton background
+  * Changes: fixing typo at mtexteditzoomstyle.css
+  * Changes: adding mixing id related with BMC#7538
+  * Changes: putting commonlayouts in a common place to avoid re-reading.
+  * Changes: MNavigationBar refactoring
+  * Fixes: MB#7538 - Red Blocks displayed in Settings application
+  * New: meegotouch-completer.svg
+  * Changes: Deleted unsused vkb.svg
+  * Changes: MMessageBox has no close button
+  * Changes: Removed plankton from project file
+  * Changes: Fixing file permissions
+  * Changes: Removed outdated check-duplicate-ids script
+  * Changes: Removed unused spec and yaml files, plankton directory
+  * New: MGraphicsHighlightEffectStyle
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 21 Oct 2010 13:33:03 +0300
+
+meegotouchtheme (0.20.48-1) unstable; urgency=low
+
+  * New version
+  * New: Floating list index widget view graphics and styles.
+  * New: object-menu-animation in MSceneManagerStyle
+  * New: MWidgetRectangularClipAnimationStyle
+  * Fixes: Avoiding canceling of swipe gesture when touch screen jitter is visible
+  * Changes: Define MStatusBarStyle in mstatusbarstyle.css as MStatusBarStyle, not MSceneWindowStyle#statusBar
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 12 Oct 2010 11:57:32 +0300
+
+meegotouchtheme (0.20.47-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#181838 - Localization files and CSS style are read multiple times at startup
+  * Fixes: NB#195974 - Navigation bar text gets shorter and shorter in Clock app
+  * Fixes: NB#195159 - MContentItem expands vertically
+  * Changes: Added avatar placeholder image assets and changed logical Id to commonlayouts.css
+  * Changes: Updated some vibra feedbacks
+  * Changes: removed redundant call button styles from commonlayouts
+  * Changes: removed old split buttonstyles and fixed new ones in commonlayouts
+  * Changes: fixing encoding at svg
+  * Fixes: adding missings ids to ids.txt
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 07 Oct 2010 14:55:55 +0300
+
+meegotouchtheme (0.20.46-1) unstable; urgency=low
+
+  * New version
+  * Changes: Adding slider handle arrows to meegotouch-slider.svg
+  * Changes: adding press-timeout property, 140ms
+  * New: MNavigationBarStyle - has-title
+  * Changes: Maximum velocity property for the pannable viewport.
+  * Changes: adding refresh-rate (fps)
+  * Changes: updated settings icon size to 6.4mm
+  * New: hasCloseButton for MEscapeButtonPanelStyle
+  * Fixes: NB#191045 - #CommonSubText font very small
+  * Changes: bigger font size for CommonSubText in commonlayouts.css
+  * Changes: subicon size adjusted in commonlayouts.css
+  * Changes: fixing typo at MBanner
+  * Changes: Status bar style default for "open status menu by swiping" behavior
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Fri, 01 Oct 2010 11:14:29 +0300
+
+meegotouchtheme (0.20.45-1) unstable; urgency=low
+
+  * New version
+  * Changes: updated icon shapes a bit to match RD theme style
+  * Changes: updated style to match the rest of icon set
+  * Changes: Removed duplicate icon (icon-l-email is the currently used one)
+  * New: MApplicationWindowStyle - floatable-tool-bar and floatable-tab-bar
+  * Fixes: NB#192581 - Default buttons in MMessageBox doesnt look like they are sized or positioned correctly.
+  * Changes: Renamed 'move-slider' feedback to 'move'
+  * Changes: Added transparent style to MApplicationPageStyle for plain Qt
+  * Changes: added icon button placeholder to commonlayouts.css
+  * Changes: Added pressed states to inverted buttons in commonlayouts.css
+  * Changes: added inverted button styles to commonlayouts.css
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 23 Sep 2010 15:08:33 +0300
+
+meegotouchtheme (0.20.44-1) unstable; urgency=low
+
+  * New version
+  * Changes: Deleting duplicated lines from mprogressindicatorstyle.css
+  * Changes: Adding MWidgetView as the default view of MWidgetController
+  * Changes: MBanner with default color to avoid white over white
+  * Fixes: NB#182584 feedreader: font size of read and unread post in feed view is different
+  * Changes: Added CommonCountBubble styles to commonlayouts.css
+  * Changes: Adding refresh rate attribute to spinner
+  * New: MDialogStyle - has-title-bar and has-close-button
+  * New: hasTitleLabel in MApplicationPageStyle
+  * Changes: fixing typo at mdialogstyle.css
+  * Fixes: NB#188294 -  spinner position in dialog is incorrect
+  * Fixes: NB#182490 -  Tapping on bottom tool bar is selecting a next post from the list in feed view [only portrait mode]
+  * Fixes: NB#183084 - (text_..._tabs) MToolBar: "Text" shown in tab view when using ... theme.
+  * Changes: Fixes haptic feedback for checkbox
+  * Changes: Fixes haptic feedback for MButtonSwitch
+  * Changes: Offset for MDockWidget, to make it display correct when affected by status bar show/hide animation.
+  * Changes: Added feedbacks for bubble item
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 16 Sep 2010 11:22:16 +0300
+
+meegotouchtheme (0.20.43-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#191271 -  MCompleter has wrong size.
+  * Fixes: NB#190068 -  Banner background is transparent so it it makes the Banner text very hard to see
+  * New: List index bar auto visibility animation parameters.
+  * Changes: Added avatar placeholder styles to commonstyles.css
+  * Changes: There should not be cancel feedback by default
+  * Changes: Updated vibration feedbacks
+  * Changes: modifying temporal color at MPopupList->CommonSingleTitle
+  * Changes: Updated CommonIconButton in commonlayouts.css
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Fri, 10 Sep 2010 16:03:58 +0300
+
+meegotouchtheme (0.20.42-1) unstable; urgency=low
+
+  * Fixes: NB#187100 - List items are using wrong backgrounds in many applications.
+
+ -- Daniel d'Andrada <daniel.dandrada@nokia.com>  Mon, 06 Sep 2010 12:07:38 +0300
+
+meegotouchtheme (0.20.41-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#188294, spinner position in dialog is incorrect
+  * Fixes:NB#182763 -  '>10' button in auto completion dialog is cut
+  * New: mbuttonstyle.css - icon-id and toggled-icon-Id
+  * Changes: Styles and view configuration for the popuplist overlay display mode.
+  * Changes: Remove invalid semicolon from mscenemanagerstyle.
+  * Changes: new styles for MBanner
+  * Changes: Added CommonLargeHeaderPanel to commonlayouts.css
+  * Changes: updated and renamed pin query custom graphics
+  * Changes: removed obsoled graphics for list
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 01 Sep 2010 14:26:11 +0300
+
+meegotouchtheme (0.20.40-1) unstable; urgency=low
+
+  * New version
+  * New: styling of the pan, tap&hold and swipe recognizers
+  * Changes: Removing unused attribute from mscenewindowstyle.css
+  * Changes: checkbox is now more small + different sizes
+  * New: Scene manager support for theme defined transition animations.
+  * Changes: Fixes MImageWidget should not have any background.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 30 Aug 2010 16:40:46 +0300
+
+meegotouchtheme (0.20.39-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#187716 -  Invalid attribute in mimagewidgetstyle.css leads to app core dump
+  * Changes: New switch button graphics and style update.
+  * Changes: Updated items in commonlayouts.css
+  * New: Group dividers support for lists.
+  * Changes: updating MDialogStyle
+  * Changes: updating MButtonStyle.css
+  * Changes: updating commonlayouts.
+  * Changes: Updated gestures assets. Gesture indicator was green, now it is RD blue
+  * Changes: Updated view menu buttons back to blue RD style
+  * Changes: Updated position indicator assets and css file
+  * Changes: Updated object menu assets for RD
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Fri, 27 Aug 2010 18:25:44 +0300
+
+meegotouchtheme (0.20.38-1) unstable; urgency=low
+
+  * New version
+  * Changes: Faded "background" (scene) is set to less transparent.
+  * Changes: new font constants & styles
+  * Changes: updated progress indicator graphic assets for meegotouchtheme
+  * Changes: Overlay no longer has an offset by default
+  * Changes: Faded "background" (scene) is set to less transparent
+  * Changes: Application menu items has now white font color as the background
+  * Changes: updated panel graphics and removed duplicate asset for messaging
+  * Changes: updated graphical assets for meegotouch-theme
+  * Changes: css and svg for new slider design
+  * Changes: Updates slider css file
+  * Changes: Updated slider graphics
+  * Changes: updated view menu graphical assets
+  * Fixes: NB#180797 - Do not hard code in the width of the toolbar
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 26 Aug 2010 14:22:47 +0300
+
+meegotouchtheme (0.20.37-1) unstable; urgency=low
+
+  * New version
+  * Changes: Refactored MDialogView
+  * Fixes: NB#186002  Notes application exits when trying to edit calendar in Manage calendars view
+  * Changes: MBanner has now 5 seconds of timeout
+  * Changes: updating debhelper compatibility level to 5 (4 is deprecated)
+  * Changes: new icon set W32
+  * Changes: Added custom images for camera ui
+  * Changes: Added images for transfer ui
+  * Changes: MComboBox uses bar-like progress indicator instead of spinner-like.
+  * Changes: Meego OBS build: added yaml file and updated/synchronized .spec file according Meego OBS build
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 19 Aug 2010 10:07:49 +0300
+
+meegotouchtheme (0.20.36-1) unstable; urgency=low
+
+  * New version
+  * Changes: Added gestures SVG file
+  * Changes: more icon updates W31
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 11 Aug 2010 15:28:04 +0300
+
+meegotouchtheme (0.20.35-1) unstable; urgency=low
+
+  * New version
+  * Changes: fixes in buttons at commonlayouts
+  * Changes: No background for button icon style
+  * Fixes: NB#182763 -  '>10' button in auto completion dialog is cut
+  * Changes: fixes for MProgressindicator
+  * Fixes: NB#183450 - added hollow versions for progress spinner in base theme
+  * Changes: new icons for launcher from Steffen
+  * Changes: new icon set W31
+  * Changes: deleting/adding new icons
+  * Changes: Added images for status menu
+  * Changes: MBasicLayoutAnimationStyle - remove long-time deprecated attributes
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 09 Aug 2010 09:57:29 +0300
+
+meegotouchtheme (0.20.34-1) unstable; urgency=low
+
+  * New version
+  * Changes: Spinner is fast again
+  * Changes: fixed arrow sizes on navigationbar
+  * Changes: added background image for messaging contact card.
+  * Changes: remove script to generate .ids files
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 02 Aug 2010 16:19:21 +0300
+
+meegotouchtheme (0.20.33-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#179997 Gallery no-content images missing
+  * Changes: Updated MMS logical ids to ids.txt
+  * Changes: Added images for MMS
+  * Changes: pattern for filling the bar, mask for the shape, filling can be tiled or stretched
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 28 Jul 2010 15:03:48 +0300
+
+meegotouchtheme (0.20.32-1) unstable; urgency=low
+
+  * New version
+  * Changes: new icon set W29
+  * Changes: Spinner stylesheet pixmap sizes changed to symbolic constants
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Fri, 23 Jul 2010 15:36:05 +0300
+
+meegotouchtheme (0.20.31-1) unstable; urgency=low
+
+  * New version
+  * Changes: adding a missing data-picker graphic for base
+  * Changes: Refactoring spinner stylesheet and svg
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 19 Jul 2010 15:39:32 +0300
+
+meegotouchtheme (0.20.30-1) unstable; urgency=low
+
+  * New version
+  * New: swipe threshold for opening status indicator menu themable
+  * Fixes: NB#176700  Labels are not visible in QtStyle Dialog Test and QtStyle Example apps until button is tapped
+  * Changes: Remove margins from list index shortcut labels.
+  * Changes: Added margin around new progress indicator
+  * Changes: removing duplicated m-common-4G icon
+  * Changes: new theme name and folder structure
+  * Changes: Base icon set complete pack w27
+  * Changes: fixed toolbar graphic in portrait mode so round bottomleft and bottomright corners work
+  * Changes: navigationbar had wrong icon size defined
+  * Changes: changed the experimental spinner graphics and ids.txt accordingly
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 14 Jul 2010 13:11:31 +0300
+
+meegotouchtheme (0.20.29-1) unstable; urgency=low
+
+  * New version
+  * Changes: Added MDialogStyle properties: TitleCapitalization and TitleBarAlignment.
+  * Changes: Added feedbacks for list item
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 05 Jul 2010 15:12:46 +0300
+
+meegotouchtheme (0.20.28-1) unstable; urgency=low
+
+  * New version
+  * Change: Added CommonApplicationView to commonlayouts.css
+  * Change: Margin adjustment for #CommonSubIconGroup in commonlayouts.css
+  * Changes: replacing meegotouch-applicationpage-portrait-background to jpeg format due performance requirements
+  * Changes: replacing meegotouch-applicationpage-background to jpeg format due performance requirements
+  * Change: Added CommonApplicationView to commonlayouts.css
+  * Changes: added default wallpaper images for portrait and landscape
+  * Changes: Updated vibra haptic feedbacks to support multiple strengths
+  * Fixes: NB#176268 NB#174551 NB#175084 + new icons
+  * Changes: replaicing old images for new one for mprogresindicatorstyle.css
+  * Changes: MComboBox's appearance enhancements
+  * Changes: Toolbar missing shade
+  * Changes: Use small shadow graphics in mnavigationbar
+  * Change: Added input field styles to commonlayouts.css
+  * Change: Fixed split buttons and added alternatives to commonlayouts.css
+   
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Sat, 03 Jul 2010 14:00:33 +0300
+
+meegotouchtheme (0.20.27-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#176352 - Sometimes navigation bar is not fully hidden/shown when requested
+  * Changes: updated size to use SIZE_LIST
+  * Changes: Add application menu background-tiles for menuitems, fix text color
+  * Change: Fixed margins for new button styles in commonlayouts.css
+  * Change: Fixed syntax error in commonlayouts.css
+  * Changes: updated text label styles so they work with black menus on blanco
+  * Changes: new icons for R&D
+  * Changes: MApplicationMenu new style
+  * Changes: Updated experimental spinner graphics for RD
+  * Changes: added startup experience background images
+  * Change: Added separator styles to commonlayouts.css
+  * Change: Added sizes to CommonSwitchIcon in commonlayouts.css
+  * Changes: added id meegotouch-navigationbar-portrait-shadow to ids.txt
+  * Changes: added portrait mode shadow for navigationbar
+  * Change: Added button styles to commonlayout.css
+  * Changes: Added feedbacks for checkbox
+  * Changes: MComboBox doesn't use MContentItem.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 29 Jun 2010 12:21:55 +0300
+
+meegotouchtheme (0.20.26-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#176498 meegotouch-camera-capture -mode-switcher-background png has typo in filename
+  * Fixes: NB#167393 add support for an install prefix to duitheme
+  * Changes: updated icons for services
+  * Changes: use correct graphics and margins for progressbar
+  * Changes: some px > mm fixes, and color de-hardcoding
+  * Changes: Adapted to slider code changes
+  * Chagnes: Added images for music and video player
+  * Changes: Updated progressbar graphics
+  * Changes: Added feedbacks for object menu
+  * Changes: Added appear feedback for scene window
+  * Changes: Added feedbacks for switch
+  * Changes: added image for combobox indicator. Indicator logical ids are updated to ids.txt
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 23 Jun 2010 19:31:02 +0300
+
+meegotouchtheme (0.20.25-1) unstable; urgency=low
+
+  * New version
+  * Changes: added theme preview thumbnails for theme switcher
+  * Fixes: NB#175944 - MList - the maximum size of the contentItems is limited
+  * Changes: Fixed a typo in an ID name
+  * Changes: Updated ids.txt about black "media" styled navigationbar logical ids
+  * Changes: Putting back "merge request #40: don't hard code installation path"
+  * Changes: Added drop-shadow attribute for MNavigationBarStyle
+
+ -- Tuomas Kuosmanen <tuomas.kuosmanen@nokia.com>  Tue, 22 Jun 2010 14:23:48 +0300
+
+meegotouchtheme (0.20.24-1) unstable; urgency=low
+
+  * New version
+  * Changes: updated / new icons.
+  * Changes: added launcher spinner id's to ids.txt
+  * Changes: removing mnotificationstyle.cssfrom libmeegotouchviews.css
+  * Fixes: removing duicontainer references
+  * Changes: Updated generic spinner and added new graphics for launcher specific spinner
+  * Changes: iconbutton has no background, so normal text color should be used here.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 21 Jun 2010 13:08:53 +0300
+
+meegotouchtheme (0.20.23-1) unstable; urgency=low
+
+  * New version
+  * Changes: Object menu size fixes, constants.ini tweaks
+  * Changes: removed tabs and made them four spaces
+  * Changes: removed 3 duplicates
+  * Changes: fixed typo in logical id
+  * Changes: updated experimental spinner graphics.
+  * Changes: fixed some naming of list graphics
+  * Change: added size to CommonSmallThumbnail in commonlayouts.css
+  * Change: fixed syntax for split buttons in commonlayouts.css
+  * Change: fixed syntax dor call buttons in commonlayouts.css
+  * Changes: Don't hard code installation path
+  * Changes: Updated list graphics. the meegotouch-list-old will be removed after
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Fri, 18 Jun 2010 13:14:58 +0300
+
+meegotouchtheme (0.20.22-1) unstable; urgency=low
+
+  * New version
+  * Changes: Updated list item logical names to match the background tiling name policy.
+  * Changes: updated tab graphics. Now there is a vertical line in tabs both sides
+  * Changes: Fix bad background-image syntax for list index style.
+  * Changes: Added feedbacks for label
+  * Changes: MBanner portrait style added
+  * Changes: fixed formatting
+  * Changes: reordered the file a bit, cleaned up and added COMMON_ITEM_HEIGHT
+  * Changes: added grouped buttons for normal button graphics.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 17 Jun 2010 13:04:03 +0300
+
+meegotouchtheme (0.20.21-1) unstable; urgency=low
+
+  * New version
+  * Changes: Use custom margins for list index bg tiling
+  * Change: Added call button styles to commonlayout.css
+  * Change: Minor fixes to temporary label styles in commonlayouts.css
+  * Fixes: MBanner style
+  * Change: Fixed non UTF-8 characters in commonlayouts.css
+  * Changes: Added background images for dialog and query dialog button area background.
+  * Changes: Use the same glow color in button icon view as home buttons have
+  * Changes: Fixed and improved speech bubble styling.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 16 Jun 2010 13:09:43 +0300
+
+meegotouchtheme (0.20.20-1) unstable; urgency=low
+
+  * New version
+  * Changes: updated background image for view menu
+  * Changes: added the DUI-metatheme cruft back since controlpanel is still broken.
+  * Changes: icon changes
+  * Changes: fixed typo in textfield-button-combo graphics and updated the logical names in ids.txt
+  * Changes: new icon to the theme, removed the old dui-metatheme section from index.theme
+  * Fixes: missing icon-l-meegotouch-devel.svg in duitheme.pro
+  * Changes: Updated all common graphics.
+  * Changes: use correct gfx ids
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 15 Jun 2010 13:40:33 +0300
+
+meegotouchtheme (0.20.19-1) unstable; urgency=low
+
+  * New version
+  * Changes: Added feedbacks for slider
+  * Changes: Updated custom graphical assets for camera in RD theme
+  * Changes: Updated ids.txt
+  * Changes: Added split buttons to commonlayouts.css
+  * Changes: MBanner fixes
+  * Changes: updated view menu command buttons logical IDs. IDs are also updated to ids.txt
+  * Changes: added new viewconf/style for thew new MBanner
+  * Changes: added images for  experimental progress spinner
+  * Changes: added CommonSingleTitleInverted to commonlayouts.css
+  * Changes: Added states to Common Panels in commonlayouts.css
+  * Changes: Added new label variants to commonlayouts.css
+  * Changes: Defined reactive margin for mswitchbuttonstyle to make it more consistently on device.
+  * Changes: updated view menu button images
+  * Changes: Added quicklaunchbar graphics with new names.
+  * Changes: Updated quick launch bar graphics
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Mon, 14 Jun 2010 12:55:57 +0300
+
+meegotouchtheme (0.20.18-1) unstable; urgency=low
+
+  * New version
+  * Changes:  new icons added
+  * Changes: added generic green and red button graphics. Changed group order in textfieldbuttoncomb
+  * Changes: updated lockscreen.svg
+  * Changes: added app background image for portrait and landscape views
+  * Changes: added items for banner to commonlayouts.css
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 10 Jun 2010 11:48:56 +0300
+
+meegotouchtheme (0.20.17-1) unstable; urgency=low
+
+  * New version
+  * Changes: Changed CommonSingleTitle, subtitles, added side top icon and side bottom icon.
+
+ -- Tuomas Kuosmanen <tuomas.kuosmanen@nokia.com>  Wed, 09 Jun 2010 11:44:30 +0300
+
+meegotouchtheme (0.20.16-1) unstable; urgency=low
+
+  * New version
+  * Changes: made default margins to zero for button, checkbox and textedit, since common styles are settings margins.
+  * Changes: Added items to commonlayouts.css
+  * Changes: removed unwanted files
+  * Changes: Added items to commonlayouts.css
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Tue, 08 Jun 2010 11:43:34 +0300
+
+meegotouchtheme (0.20.15-1) unstable; urgency=low
+
+  * New version
+  * Changes: slider margin changes and some minor tweaks
+
+ -- Tuomas Kuosmanen <tigert@ubuntu>  Mon, 07 Jun 2010 09:25:09 +0300
+
+meegotouchtheme (0.20.14-1) unstable; urgency=low
+
+  * New version
+  * Changes: made "devel" invisible in theme switcher as it is deprecated
+  * Changes: Updated icon versions.
+  * Changes: Added INDENT_DEFAULT for common styling use.
+  * Changes: Updated default application background and added default background for portrait view.
+  * Changes: Updated video now playing icons (and removed the wrongly spelled one of toolbar-trim).
+  * Changes: Corrected typos in filenames.
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Thu, 03 Jun 2010 16:42:05 +0300
+
+meegotouchtheme (0.20.13-1) unstable; urgency=low
+
+  * New version
+  * Changes: refactoring base to convert it in default theme + new icon set.
+  * Fixes: NB#160997 - DuiComboBox wrong size after language change
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 02 Jun 2010 15:46:09 +0300
+
+meegotouchtheme (0.20.12-1) unstable; urgency=low
+
+  * New version
+
+ -- Jorgen Scheibengruber <jorgen.scheibengruber@nokia.com>  Mon, 31 May 2010 13:10:40 +0300
+
+meegotouchtheme (0.20.11-2) unstable; urgency=low
+
+  * New version
+  * Changes: new R&D icons added
+
+ -- Adrian Yanes <ext-adrian.yanes@nokia.com>  Wed, 26 May 2010 15:08:51 +0300
+
+meegotouchtheme (0.20.11-1) unstable; urgency=low
+
+  * New version
+  * Fixes: NB#170676 Syntax error in commonlayout.css - CORNER_MARGINS (line 231)
+
+ -- Jorgen Scheibengruber <jorgen.scheibengruber@nokia.com>  Wed, 26 May 2010 14:35:56 +0300
+
+meegotouchtheme (0.20.10-2) unstable; urgency=low
+
+  * New version, corrected distro name to "unstable"
+
+ -- Tuomas Kuosmanen <tuomas.kuosmanen@nokia.com>  Wed, 19 May 2010 15:44:53 +0300
+
+meegotouchtheme (0.20.10-1) unstable; urgency=low
+
+  * New version
+
+ -- Tuomas Kuosmanen <tuomas.kuosmanen@nokia.com>  Wed, 19 May 2010 15:31:49 +0300
+
+meegotouchtheme (0.20.9-1) unstable; urgency=low
+
+  * New version
+
+ -- Tuomas Kuosmanen <tuomas.kuosmanen@nokia.com>  Tue, 18 May 2010 13:21:22 +0300
+
+meegotouchtheme (0.20.8-1) unstable; urgency=low
+
+  * New version
+
+ -- Jorgen Scheibengruber <jorgen.scheibengruber@nokia.com>  Fri, 07 May 2010 15:08:11 +0300
+
+meegotouchtheme (0.20.7-1) unstable; urgency=low
+
+  * Fixes: NB#166157 - Broken/missing .ids generator script
+
+ -- Jorgen Scheibengruber <jorgen.scheibengruber@nokia.com>  Thu, 06 May 2010 16:13:32 +0300
+
+meegotouchtheme (0.20.6-1) unstable; urgency=low
+
+  * New version
+
+ -- Daniel d'Andrada <daniel.dandrada@nokia.com>  Thu, 06 May 2010 11:06:05 +0300
+
+meegotouchtheme (0.20.5-1) unstable; urgency=low
+
+  * New version
+
+ -- Daniel d'Andrada <daniel.dandrada@nokia.com>  Tue, 04 May 2010 16:43:44 +0300
+
+meegotouchtheme (0.20.4-1) unstable; urgency=low
+
+  * New version
+
+ -- Daniel d'Andrada <daniel.dandrada@nokia.com>  Mon, 03 May 2010 14:38:59 +0300
+
+meegotouchtheme (0.20.2-1) unstable; urgency=low
+
+  * New version
+
+ -- Daniel d'Andrada <daniel.dandrada@nokia.com>  Fri, 23 Apr 2010 12:04:02 +0300
+
+meegotouchtheme (0.20.1-1) unstable; urgency=low
+
+  * New version.
+
+ -- Tuomas Kuosmanen <tuomas.kuosmanen@nokia.com>  Thu, 15 Apr 2010 16:49:58 +0300
+
+meegotouchtheme (0.20.0~5) unstable; urgency=low
+
+  * New version [UNRELEASED]
+  * Fixes: NB#161352 - In Portrait mode - The command area at bottom is getting displayed with pink color
+
+ -- Tomas Junnonen <tomas.junnonen@nokia.com>  Mon, 12 Apr 2010 15:36:00 +0200
+
+duitheme (0.19.7-1) unstable; urgency=low
+
+  * New version
+
+ -- Jorgen Scheibengruber <jorgen.scheibengruber@nokia.com>  Wed, 24 Mar 2010 13:03:07 +0200
+
+duitheme (0.19.6-1) unstable; urgency=low
+
+  * New version
+
+ -- Daniel d'Andrada <daniel.dandrada@nokia.com>  Tue, 16 Mar 2010 11:10:41 +0200
+
+duitheme (0.19.5-1) unstable; urgency=low
+
+  * New version
+
+ -- Daniel d'Andrada <daniel.dandrada@nokia.com>  Tue, 09 Mar 2010 15:51:56 +0200
+
+duitheme (0.19.4-1) unstable; urgency=low
+
+  * New version
+
+ -- Tomas Junnonen <tomas.junnonen@nokia.com>  Mon, 08 Mar 2010 09:41:00 +0200
+
+duitheme (0.19.3-1) unstable; urgency=low
+
+  * New version
+
+ -- Tomas Junnonen <tomas.junnonen@nokia.com>  Wed, 24 Feb 2010 13:05:00 +0200
+
+duitheme (0.19.1-1) unstable; urgency=low
+
+  * New version
+
+ -- Tomas Junnonen <tomas.junnonen@nokia.com>  Mon, 22 Feb 2010 14:21:00 +0200
+
+duitheme (0.19.0-1) unstable; urgency=low
+
+  * Change license to LGPL
+
+ -- Tomas Junnonen <tomas.junnonen@nokia.com>  Mon, 15 Feb 2010 13:51:00 +0200
+
+duitheme (0.18.7-1) unstable; urgency=low
+
+  * Fixes: NB#154907 - The background of tapped DuiContentItem in Single mode looks foggy
+  * Fixes: NB#154240 - List has visual artifacts when run with Pineapple profile
+
+ -- Tomas Junnonen <tomas.junnonen@nokia.com>  Tue, 02 Feb 2010 10:22:00 +0200
+
+duitheme (0.18.6-1) unstable; urgency=low
+
+  * New version
+
+ -- Tomas Junnonen <tomas.junnonen@nokia.com>  Fri, 29 Jan 2010 17:57:00 +0200
+
+duitheme (0.18.4-1) unstable; urgency=low
+
+  * Fixes: NB#113828, Documentation for DUI theme is out of date
+
+ -- Tomas Junnonen <tomas.junnonen@nokia.com>  Mon, 25 Jan 2010 12:07:00 +0200
+
+duitheme (0.18.3-1) unstable; urgency=low
+
+  * New release
+
+ -- Tomas Junnonen <tomas.junnonen@nokia.com>  Thu, 21 Jan 2010 17:03:00 +0200
+
+duitheme (0.18.1-1) unstable; urgency=low
+
+  * New release
+
+ -- Tomas Junnonen <tomas.junnonen@nokia.com>  Tue, 19 Jan 2010 09:54:00 +0200
+
+duitheme (0.18.0-1) unstable; urgency=low
+
+  * New release
+
+ -- Tomas Junnonen <tomas.junnonen@nokia.com>  Sun, 17 Jan 2010 18:09:00 +0200

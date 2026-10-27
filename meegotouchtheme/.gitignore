@@ -1,0 +1,7 @@
+*/Makefile
+Makefile
+math
+build-stamp
+configure-stamp
+*~
+*.ids

@@ -1,0 +1,18 @@
+/* MTextSelectionHandleStyle : MWidgetStyle */
+MTextSelectionHandleStyle {
+    background-image: "meegotouch-text-selection-handle";
+    visual-offset: 12;
+
+    show-hide-easing-curve: inoutquad;
+    show-hide-duration: 300;
+
+    disable-duration: 300;
+    disable-opacity: 0.5;
+
+    movement-sensitivity: 3;
+
+    preferred-size: 66 108;
+
+    region-padding: 5mm;
+}
+

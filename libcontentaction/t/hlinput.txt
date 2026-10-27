@@ -1,0 +1,100 @@
+now this is an email@address.here
+but you should rather call +44 433 2236
+or 911
+ooaoa+foo@motherland.ru
+normal uri http://foo.bar.ru
+special url http://example.com/quux/323
+
+These should be valid phone numbers:
+number 1234567 is here
+number (303)499-7111 is here
+number +13034997111 is here
+number 303-499-7111 is here
+number +1(303)499-7111 is here
+number 303.499.7111, is here
+number (3034997111) is here
+number +48 123.12-3 123 is here
+number +481234p12345 is here
+number +481234#12345 is here
+number +358 (9) 123 456 is here
+uris: callto:100000, tel:100000, sms:100000
+suspicious uris: callto:+100 000 001 tel:+100 (000) 001
+sip uris: sip:thisissip@sip.com sip:8071870pp20326#pp12397#
+
+These should be valid web addresses:
+http://us.m.yahoo.com
+http://www.google.com/m
+www.google.com/m
+<http://us.m.yahoo.com>
+http://maps.google.com/maps?f=d&source=s_d&saddr=Nieznana+droga&daddr=krak%C3%B3w&hl&geocode=Fa5h9wIdlq87Aq%3BFQrt-wIdFFYwASnRGE41wEQWRzG_ikd2tbZrtA&mra=ls&sll=49.915862,20.323334&sspn=0.505808,1.234589&ie=UTF8&t=h&z=10
+http://host-with-dash.com/path?%:@&=+$,-!~*'with(special)chars
+http://www.foo.com/page#fragment
+feed://browsefeed.com/page#fragment
+ftp://browseftp.com/page#fragment
+
+Skipping dots and parentheses next to web addresses:
+
+xxx (see also: http://mydomain00.com) ending ) should not be included
+xxx (see also: http://mydomain01.com/) ending ) should not be included
+xxx (see also: http://mydomain02.com/file) ending ) should not be included
+xxx (see also: http://mydomain03.com/file/) ending ) should not be included
+xxx (see also: http://mydomain04.com). note, dot should not be included
+xxx (see also: http://mydomain05.com/). ending ) should not be included
+xxx (see also: http://mydomain06.com/file). ending ) should not be included
+xxx (see also: http://mydomain07.com/file/). xxx
+
+xxx see also: http://mydomain08.com. dot should not be included
+xxx see also: http://mydomain09.com/. dot should not be included
+xxx see also: http://mydomain10.com/file. dot should not be included
+xxx see also: http://mydomain11.com/file/. dot should not be included
+
+xxxx See also: http://paren.com/something_(one_%26_two) parens included in the address...
+xxxx See also: http://paren.com/something_(three_%26_four). ... but dot is not
+
+xxxx (See also: http://paren.com/something_(five_%26_six)) this might be tricky
+testing also www.foo.com/(bar)baz(bar)bar.
+
+And other browsable urls:
+feed://browsefeed.com
+feed:browsefeed.com
+ftp://browseftp.com
+
+These should be valid e-mail addresses:
+Address with an extra dot: john.doe@att.com.
+<mailto:john_doe2@att.com>
+
+These are suspicious phone numbers:
+sometextbefore333222111444sometextafter (grr, they want this to be recognized as a phone number)
++(((((
++358+7777
+i bought 13 bananas
+too short phone number: 14
+too long phone number: 151515151515151515151
+but these are ok: 141 and 14141414141414141414
+
+These are suspicious e-mail addresses:
+double@atsign@bar.com
+onlyuser@andhostname
+onlyuser2@andhostname2.
+USERNAME@ALLUPPERCASE.COM
+
+These are suspicious web addresses:
+http://http://double.http.com
+
+These are some previous error cases:
+this is an url www.myurl.com/foo/bar and e-mail first@home.com
+1112223338;email@domain.org;4445556668;email2@domain.org
+Http://www.capital.com
+hTTp://www.capital.com
+Www.capitalwww.com
+
+xxx http://ct.nokia.com?761435127&FK20R the slash after the hostname is optional.
+xxx http://maps.ovi.com/#|50.060185|19.9328789|11|0|0|normal.day and bars are ok, too.
+
+xxx www.10010.com四川专区特惠活动进行中 xxx
+
+xxx http://music.ovi.com xxx
+xxx http://music.ovi.mobi xxx
+xxx http://music.ovi.com.cn xxx
+xxx http://music.ovi.com/cn/zh/pc xxx
+xxx http://music.ovi.mobi/fi/fi/pc xxx

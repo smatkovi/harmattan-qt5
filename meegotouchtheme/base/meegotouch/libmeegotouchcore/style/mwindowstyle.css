@@ -1,0 +1,4 @@
+MWindowStyle {
+    x11-startup-pixmap: none;
+    startup-fill-color: $COLOR_INVERTED_BACKGROUND;
+}

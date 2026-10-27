@@ -1,0 +1,44 @@
+MWidgetScaleFadeAnimationStyle#In {
+    opacity-animation-duration: 400;
+    opacity-animation-easing-curve: overshotbezier;
+    
+    scale-animation-duration: 400;
+    scale-animation-easing-curve: overshotbezier;
+
+    scale: 0.50;
+    opacity: 1;
+}
+
+MWidgetScaleFadeAnimationStyle#Out {
+    opacity-animation-duration: 150;
+    opacity-animation-easing-curve: inexpo;
+    
+    scale-animation-duration: 150;
+    scale-animation-easing-curve: inexpo;
+
+    scale: 0.0;
+    opacity: 1;
+}
+
+MBanner#SystemBanner MWidgetScaleFadeAnimationStyle#In {
+    opacity-animation-duration: 400;
+    opacity-animation-easing-curve: overshotbezier;
+    
+    scale-animation-duration: 400;
+    scale-animation-easing-curve: overshotbezier;
+
+    scale: 0.50;
+    opacity: 1;
+}
+
+MBanner#SystemBanner MWidgetScaleFadeAnimationStyle#Out {
+
+    opacity-animation-duration: 150;
+    opacity-animation-easing-curve: inexpo;
+    
+    scale-animation-duration: 150;
+    scale-animation-easing-curve: inexpo;
+
+    scale: 0.0;
+    opacity: 1;
+}

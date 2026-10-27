@@ -1,0 +1,180 @@
+<schema targetNamespace="http://contextkit.freedesktop.org/Provider"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:provider="http://contextkit.freedesktop.org/Provider">
+  <annotation>
+    <documentation>
+      Documentation for ContextKit Provider schema.
+      Copyright 2009 Nokia Corporation.
+    </documentation>
+  </annotation>
+
+  <annotation>
+    <documentation>
+      This schema is free software; you can redistribute it and/or
+      modify it under the terms of the GNU Lesser General Public License
+      as published by the Free Software Foundation; either version 2.1 of
+      the License, or (at your option) any later version.
+    </documentation>
+  </annotation>
+
+  <annotation>
+    <documentation>
+      This schema is distributed in the hope that it will be useful, but
+      WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+      Lesser General Public License for more details.
+    </documentation>
+  </annotation>
+
+  <annotation>
+    <documentation>
+      You should have received a copy of the GNU Lesser General Public
+      License along with this library; if not, write to the Free Software
+      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+      02110-1301 USA
+    </documentation>
+  </annotation>
+
+  <simpleType name="dbusBusType">
+    <annotation><documentation>
+      Represents a standard D-Bus bus type.
+    </documentation></annotation>
+    <restriction base="string">
+      <enumeration value="system"/>
+      <enumeration value="session"/>
+    </restriction>
+  </simpleType>
+
+  <group name="propertyElement">
+    <choice>
+      <element ref="provider:doc"/>
+      <element ref="provider:key"/>
+    </choice>
+  </group>
+
+  <complexType name="propertyList">
+    <sequence>
+      <group minOccurs="0" maxOccurs="unbounded" ref="provider:propertyElement"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="providerDefn">
+    <complexContent>
+      <extension base="provider:propertyList">
+	<attribute name="plugin" type="string">
+	  <annotation><documentation>
+	      Which libcontextsubscriber plugin can communicate with the provider. For the ContextKit D-Bus protocol, use contextkit-dbus.
+	  </documentation></annotation>
+	</attribute>
+	<attribute name="constructionString" type="string">
+	  <annotation><documentation>
+              The parameter given to the plugin communicating with the provider. For the ContextKit D-Bus protocol, use dbustype:dbusservicename.
+	  </documentation></annotation>
+	</attribute>
+	<attribute name="bus" type="provider:dbusBusType">
+	  <annotation><documentation>
+	      Which standard D-Bus bus this service can be activated on (To be deprecated: use the plugin and constructionString attributes instead.)
+	  </documentation></annotation>
+	</attribute>
+	<attribute name="service" type="NCName">
+	  <annotation><documentation>
+	    The bus name of the service that will provide these keys.
+	    This service must be activatable on the bus specified in "bus". (To be deprecated: use the plugin and constructionString attributes instead.)
+	  </documentation></annotation>
+	</attribute>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <element name="provider" type="provider:providerDefn">
+    <annotation>
+      <documentation>
+	A top-level declaration of a context-providing service using the
+	ContextKit framework.
+      </documentation>
+    </annotation>
+  </element>
+
+  <element name="properties" type="provider:propertyList">
+    <annotation>
+      <documentation>
+	A top-level definition of property names and meaning, divorced from a
+	specific context providing service.
+      </documentation>
+    </annotation>
+  </element>
+
+  <element name="doc" type="normalizedString">
+    <annotation><documentation>
+	Documentation about a key or node.
+    </documentation></annotation>
+  </element>
+
+  <element name="key">
+    <complexType>
+      <all>
+	<element minOccurs="0" ref="provider:doc"/>
+	<element minOccurs="0" ref="provider:type"/>
+	<element minOccurs="0" ref="provider:typedoc"/>
+	<element minOccurs="0" ref="provider:deprecated"/>
+      </all>
+      <attribute name="name" use="required" type="token">
+	<annotation><documentation>
+	  The name of this key.
+	</documentation></annotation>
+      </attribute>
+      <attribute name="type" use="optional" type="token">
+	<annotation><documentation>
+	  The type of this key, if it is a simple string.
+	</documentation></annotation>
+      </attribute>
+      <attribute name="typedoc" use="optional" type="token">
+	<annotation><documentation>
+	  The type of this key, if it is a simple string.
+	</documentation></annotation>
+      </attribute>
+      <attribute name="deprecated" use="optional" type="token">
+	<annotation><documentation>
+	  Whether or not the key is dperecated.
+	</documentation></annotation>
+      </attribute>
+    </complexType>
+  </element>
+
+  <element name="type">
+    <annotation><documentation>
+      The type of this key.
+    </documentation></annotation>
+    <!-- XXX - not very strict -->
+    <complexType mixed="true">
+      <sequence>
+        <any minOccurs="0" processContents="lax"/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name="typedoc">
+    <annotation><documentation>
+      The type of this key.
+    </documentation></annotation>
+    <!-- XXX - not very strict -->
+    <complexType mixed="true">
+      <sequence>
+        <any minOccurs="0" processContents="lax"/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name="deprecated">
+    <annotation><documentation>
+        Whether or not the key is dperecated.
+    </documentation></annotation>
+    <!-- XXX - not very strict -->
+    <complexType mixed="true">
+      <sequence>
+        <any minOccurs="0" processContents="lax"/>
+      </sequence>
+    </complexType>
+  </element>
+
+</schema>

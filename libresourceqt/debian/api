@@ -1,0 +1,11 @@
+# subsystem: Resource Policy
+# src-pkg: libresourceqt
+interface: libresourceqt
+type: library
+libs-pkg: libresourceqt1
+dev-pkg: libresourceqt-dev
+state: stable
+scope: Nokia MeeGo
+doc-type: doxygen
+doxygen-conf: libresourceqt/Doxyfile
+

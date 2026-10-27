@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Policy Player
+Icon=icon-l-music
+Exec=/usr/lib/libresourceqt-demo/player
+OnlyShowIn=X-MeeGo;
+

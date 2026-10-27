@@ -1,0 +1,11 @@
+Parent=MainPage
+
+Name="Time & Language"
+Name-logical-id=qtn_sett_main_timelanguage
+
+Icon=icon-m-settings-time-date
+
+Aliases="qtn_sett_main_timedate,Time & Date"
+
+Order=50
+

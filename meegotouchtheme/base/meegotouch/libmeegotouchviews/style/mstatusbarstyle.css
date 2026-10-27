@@ -1,0 +1,20 @@
+MStatusBarStyle
+{
+    minimum-size: 100% $HEIGHT_STATUSBAR;
+    preferred-size: 100% $HEIGHT_STATUSBAR;
+    maximum-size: 100% $HEIGHT_STATUSBAR;
+    background-color: none;
+    reactive-margin-bottom: 1.5mm;
+    use-swipe-gesture: false;
+    swipe-threshold: 30;
+    press-dim-factor: 0.6;
+    enable-status-indicator-menu: true;
+    press-feedback: priority2_static_press;
+    release-feedback: priority2_static_release;
+    minimum-tap-feedback-duration: 150;
+}
+
+MStatusBarStyle#NoReactiveMargins
+{
+    reactive-margin-bottom: 0;
+}

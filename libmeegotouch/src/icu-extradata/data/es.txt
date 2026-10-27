@@ -1,0 +1,24 @@
+es{
+    NumberElements{
+        ",",
+        ".",
+        ";",
+        "%",
+        "0",
+        "#",
+        "-",
+        "E",
+        "‰",
+        "∞",
+        "NaN",
+        "+",
+    }
+    calendar{
+        gregorian{
+             AmPmMarkers{
+                 "AM",
+                 "PM",
+             }
+        }
+    }
+}

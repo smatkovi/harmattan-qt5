@@ -1,0 +1,11 @@
+Parent=MainPage
+
+Name="Sync & Backup"
+Name-logical-id=qtn_sett_main_syncbackup
+
+Icon=icon-m-transfer-sync
+
+Aliases=qtn_sett_main_backup
+
+Order=80
+

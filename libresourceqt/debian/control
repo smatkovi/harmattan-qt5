@@ -1,0 +1,107 @@
+Source: libresourceqt
+Priority: extra
+Maintainer: Resource Policy Team <resource-policy@projects.maemo.org>
+Build-Depends: debhelper (>= 5), libqt4-dev (>> 4.6.0), libdbus-1-dev, libresource-dev, libmeegotouch-dev, aegis-builder, cdbs, doxygen
+Standards-Version: 3.9.1
+Section: libs
+
+Package: libdbus-qeventloop1
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: libdbus-qeventloop library
+ Contains library files for the application that use libdbus-qeventloop
+
+Package: libresourceqt1
+Section: libs
+Architecture: any
+Depends: libdbus-qeventloop1 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: libresourceqt library
+ Contains library files for the application that use libresourceqt
+
+Package: libmediaoverridesqt1
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: A Qt library to use Resource Policy Media Overrides
+ Contains library files for the application that use libresource-overridesqt
+
+Package: libresourceqt-dev
+Section: libdevel
+Architecture: any
+Depends: libresourceqt1 (= ${binary:Version}), libresource-dev, libdbus-1-dev, libdbus-qeventloop-dev, libqt4-dev
+Description: Development package for libresourceqt
+ Includes development files for libresourceqt.
+
+Package: libmediaoverridesqt-dev
+Section: libdevel
+Architecture: any
+Depends: libmediaoverridesqt1 (= ${binary:Version}), libqt4-dev
+Description: Development package for libmediaoverridesqt
+ Includes development files for libmediaoverridesqt.
+
+Package: libdbus-qeventloop-dev
+Section: libdevel
+Architecture: any
+Depends: libdbus-qeventloop1 (= ${binary:Version}), libdbus-1-dev, libqt4-dev
+Description: Development package for libdbus-qeventloop
+ Includes development files for libdbus-qeventloop.
+
+Package: libresourceqt-doc
+Section: doc
+Architecture: any
+Depends:
+Description: Development documentation for libresourceqt
+ Includes development documentation files for libresourceqt.
+
+Package: libmediaoverridesqt-doc
+Section: doc
+Architecture: any
+Depends:
+Description: Development documentation for libmediaoverridesqt
+ Includes development documentation files for libmediaoverridesqt.
+
+Package: libdbus-qeventloop-doc
+Section: doc
+Architecture: any
+Depends:
+Description: Development documentation for libdbus-qeventloop
+ Includes development documentation files for libdbus-qeventloop.
+
+Package: resourceqt-client
+Section: utils
+Architecture: any
+Depends: libresourceqt1 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: Maemo Qt resource aware client test example
+ Resource management for Mamemo
+ This is a simple test tool to play with resource management.
+
+Package: mediaoverrider
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Meego touch Qt test application for Respuirce Policy Media overrides
+ This is a simple test tool to play with Resource Policy media overrides.
+
+Package: libresourceqt-tests
+Section: misc
+Depends: ci-testing, libdbus-qeventloop1, libresourceqt1, ${shlibs:Depends}
+XB-Maemo-CI-Packages: libdbus-qeventloop1, libresourceqt1
+XB-Maemo-CI-Stage: fast, staging, acceptance, validation
+Architecture: any
+Description: libresourceqt1 and libdbus-qeventloop test package
+ This package contains tests which can be used in CI environment
+
+Package: libresourceqt1-dbg
+Section: debug
+Architecture: any
+Depends: libresourceqt1 (= ${binary:Version})
+Description: libresourceqt library with debug symbols
+ Contains debug symbols for libresourceqt
+
+Package: libdbus-qeventloop1-dbg
+Section: debug
+Architecture: any
+Depends: libdbus-qeventloop1 (= ${binary:Version})
+Description: libdbus-qeventloop library  with debug symbols
+ Contains debug symbols libdbus-qeventloop

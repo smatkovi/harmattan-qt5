@@ -1,0 +1,19 @@
+This is ContextKit, a framework for collecting contextual
+information from the bowels of the system, cleaning them up
+and offering them through a simple API.
+
+The ContextKit consists of:
+
+- libcontextprovider, a convenience library to export 
+  contextual properties to the rest of the system.
+
+- libcontextsubscriber, a library implementing 
+  the simple API for accessing the contextual information.
+
+- user documentation including a list of standard context properties
+
+By itself, the ContextKit does not implement any of the standard
+properties.  You need some real providers or subscriber plugins for
+that.  The contextkit-maemo repository has a number of them for Maemo:
+
+    http://maemo.gitorious.org/maemo-af/contextkit-maemo

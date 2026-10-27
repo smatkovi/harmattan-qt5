@@ -1,0 +1,13 @@
+Context Framework
+=================
+
+The Context Framework provides a uniform, high level API to numerous
+context properties of the device.
+
+Please follow the links for more details:
+
+- link:../../libcontextsubscriber-doc/html/index.html[Documentation of the high level API for clients]
+- link:../../libcontextprovider-doc/html/index.html[Documentation of the high level API for providers]
+- link:context-properties.html[Documentation of context properties]
+- link:context-providers.html[Documentation for providers of context properties]
+- link:context-arch.html[Architecture description]

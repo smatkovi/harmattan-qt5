@@ -1,0 +1,736 @@
+StatusAreaStyle {
+    minimum-size: 100% 7.2mm;
+    preferred-size: 100% 7.2mm;
+    maximum-size: 100% 7.2mm;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+MWidgetStyle#StatusBarLandscapeWidget {
+    background-color: #000000;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+MWidgetStyle#StatusBarPortraitWidget {
+    background-color: #000000;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+MWidgetStyle#StatusBarLandscapeWidgetCall {
+    background-color: #000000;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+MWidgetStyle#StatusBarPortraitWidgetCall {
+    background-color: #000000;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+ClockStyle {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    time-format: "%R";
+    short-remove-am-pm-indicator: false;
+    horizontal-align: left;
+}
+ClockStyle:twelve-hour {
+    time-format: "%r";
+    short-remove-am-pm-indicator: true;
+}
+MLabelStyle#StatusAreaLandscapeClockLabel {
+    font: $FONT_SMALL;
+    color: #FFFFFF;
+    margin-left: 0.6mm;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+MLabelStyle#StatusAreaPortraitClockLabel {
+    font: $FONT_SMALL;
+    color: #FFFFFF;
+    margin-left: 0.6mm;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+StatusIndicatorIconStyle {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "";
+}
+
+StatusIndicatorAnimationStyle {
+    /* This style is used when there is no icon ID defined (width is 0) */
+    margin-top: 0.1mm;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+    /* The number of milliseconds in which the images in imageList are animated */
+    animation-duration: 3000;
+    use-icon-size: true;
+}
+
+StatusIndicatorAnimationStyle:icon {
+    /* This style is used when there is an icon ID defined */
+    margin-left: 0.4mm;
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorAnimationStyle#InputMethodStatusIndicator {
+    margin-left: 0.4mm;
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorAnimationStyle#InputMethodStatusIndicatorDisabled {
+    margin-left: 0;
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+}
+
+StatusIndicatorLabelStyle {
+    margin-left: 0.6mm;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    minimum-size: 0 -1;
+    text-elide: true;
+    word-wrap: false;
+}
+
+MLabelStyle#StatusIndicatorLabel {
+    font: $FONT_SMALL;
+    color: #FFFFFF;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    minimum-size: 0 -1;
+    maximum-size: 30.0mm -1;
+}
+
+MLabelStyle#StatusIndicatorLabelLandscape {
+    font: $FONT_SMALL;
+    color: #FFFFFF;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    minimum-size: 0 -1;
+    maximum-size: 55.0mm -1;
+}
+
+MLabelStyle#StatusIndicatorLabelPortrait {
+    font: $FONT_SMALL;
+    color: #FFFFFF;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    minimum-size: 0 -1;
+    maximum-size: 30.0mm -1;
+}
+
+MLabelStyle#StatusIndicatorLabelLimitedService {
+    font: $FONT_FAMILY normal 1.4mm;
+    color: #FFFFFF;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0.3mm;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    maximum-size: 30.0mm -1;
+}
+
+MLabelStyle#StatusIndicatorLabelLandscapeLimitedService {
+    font: $FONT_FAMILY normal 1.4mm;
+    color: #FFFFFF;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0.3mm;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    maximum-size: 55.0mm -1;
+}
+
+MLabelStyle#StatusIndicatorLabelPortraitLimitedService {
+    font: $FONT_FAMILY normal 1.4mm;
+    color: #FFFFFF;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0.3mm;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    maximum-size: 30.0mm -1;
+}
+
+StatusIndicatorLabelStyle#PhoneNetworkStatusIndicatorDisabled {
+    margin-left: 0;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkSignalStrengthStatusIndicator {
+    /* The list of IDs of the images to be shown in the status indicator when signal strength is available, separated by spaces */
+    image-list: "icon-s-status-network0 icon-s-status-network1 icon-s-status-network2 icon-s-status-network3 icon-s-status-network4 icon-s-status-network5";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkSignalStrengthStatusIndicatorNoSIM {
+    image-list: "icon-s-status-no-simcard";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkSignalStrengthStatusIndicatorNoNetwork {
+    image-list: "icon-s-status-no-gsm-connection";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkSignalStrengthStatusIndicatorOffline {
+    image-list: "icon-s-status-offline";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicator {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "";
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicator2G {
+    image-list: "icon-s-status-gsm";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicator25G {
+    image-list: "icon-s-status-25g";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicator3G {
+    image-list: "icon-s-status-3g";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicator35G {
+    image-list: "icon-s-status-35g";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicator2GActive {
+    image-list: "icon-s-status-gsm-active";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicator25GActive {
+    image-list: "icon-s-status-25g-active";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicator3GActive {
+    image-list: "icon-s-status-3g-active";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicator35GActive {
+    image-list: "icon-s-status-35g-active";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicator2GConnecting {
+    image-list: "icon-s-status-gsm icon-s-status-gsm-active";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicator25GConnecting {
+    image-list: "icon-s-status-25g icon-s-status-25g-active";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicator3GConnecting {
+    image-list: "icon-s-status-3g icon-s-status-3g-active";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicator35GConnecting {
+    image-list: "icon-s-status-35g icon-s-status-35g-active";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLAN2GActive {
+    image-list: "icon-s-status-gsm-active icon-s-status-wlan";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLAN25GActive {
+    image-list: "icon-s-status-25g-active icon-s-status-wlan";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLAN3GActive {
+    image-list: "icon-s-status-3g-active icon-s-status-wlan";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLAN35GActive {
+    image-list: "icon-s-status-35g-active icon-s-status-wlan";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLAN {
+    image-list: "icon-s-status-wlan";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLANActive {
+    image-list: "icon-s-status-wlan-active";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLANConnecting {
+    image-list: "icon-s-status-wlan icon-s-status-wlan-active";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLANAdhoc2GActive {
+    image-list: "icon-s-status-gsm-active icon-s-status-adhoc-wlan";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLANAdhoc25GActive {
+    image-list: "icon-s-status-25g-active icon-s-status-adhoc-wlan";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLANAdhoc3GActive {
+    image-list: "icon-s-status-3g-active icon-s-status-adhoc-wlan";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLANAdhoc35GActive {
+    image-list: "icon-s-status-35g-active icon-s-status-adhoc-wlan";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLANAdhoc {
+    image-list: "icon-s-status-adhoc-wlan";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLANAdhocActive {
+    image-list: "icon-s-status-adhoc-wlan-active";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PhoneNetworkTypeStatusIndicatorWLANAdhocConnecting {
+    image-list: "icon-s-status-adhoc-wlan icon-s-status-adhoc-wlan-active";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#BatteryStatusIndicatorLevel {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-battery-verylow icon-s-status-battery-low icon-s-status-battery1 icon-s-status-battery2 icon-s-status-battery3 icon-s-status-battery4 icon-s-status-battery5 icon-s-status-battery6 icon-s-status-battery7 icon-s-status-battery8";
+    margin-left: 0;
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#BatteryStatusIndicatorCharging {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-battery-verylow icon-s-status-battery-low icon-s-status-battery1 icon-s-status-battery2 icon-s-status-battery3 icon-s-status-battery4 icon-s-status-battery5 icon-s-status-battery6 icon-s-status-battery7 icon-s-status-battery8";
+    margin-left: 0;
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+    animation-duration: 10000;
+}
+
+StatusIndicatorIconStyle#BatteryStatusIndicatorPowerSave {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-powersave-verylow icon-s-status-powersave-low icon-s-status-powersave1 icon-s-status-powersave2 icon-s-status-powersave3 icon-s-status-powersave4 icon-s-status-powersave5 icon-s-status-powersave6 icon-s-status-powersave7 icon-s-status-powersave8";
+    margin-left: 0;
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#BatteryStatusIndicatorPowerSaveCharging {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-powersave-verylow icon-s-status-powersave-low icon-s-status-powersave1 icon-s-status-powersave2 icon-s-status-powersave3 icon-s-status-powersave4 icon-s-status-powersave5 icon-s-status-powersave6 icon-s-status-powersave7 icon-s-status-powersave8";
+    margin-left: 0;
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+    animation-duration: 10000;
+}
+
+StatusIndicatorIconStyle#AlarmStatusIndicator {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "";
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+}
+
+StatusIndicatorIconStyle#AlarmStatusIndicatorSet {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-alarm";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#ShortDistanceNetworkStatusIndicator {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "";
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+}
+
+StatusIndicatorIconStyle#ShortDistanceNetworkStatusIndicatorBluetoothOn {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-bluetooth";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#ShortDistanceNetworkStatusIndicatorBluetoothActive {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-bluetooth-active";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#ShortDistanceNetworkStatusIndicatorNfcActive {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-nfc";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#CallStatusIndicator {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "";
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+}
+
+StatusIndicatorIconStyle#CallStatusIndicatorRinging {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-cellular icon-s-status-call-initiating1";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#CallStatusIndicatorOngoing {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-cellular icon-s-status-ongoing-muted";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#TetheringStatusIndicator {
+    image-list: "";
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+}
+
+StatusIndicatorIconStyle#TetheringStatusIndicatorSet {
+    image-list: "icon-s-status-tethering";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#ProfileStatusIndicator {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "";
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+}
+
+StatusIndicatorIconStyle#ProfileStatusIndicatorSilent {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-silent";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+/* "Offline" presence, no indicator */
+StatusIndicatorIconStyle#PresenceStatusIndicator {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "";
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+}
+
+StatusIndicatorIconStyle#PresenceStatusIndicatorAvailable {
+    image-list: "icon-s-status-presence-online";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PresenceStatusIndicatorBusy {
+    image-list: "icon-s-status-presence-busy";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#PresenceStatusIndicatorConnecting {
+    image-list: "icon-s-status-presence-online icon-s-status-presence-offline";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#GPSStatusIndicator {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "";
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+}
+
+StatusIndicatorIconStyle#GPSStatusIndicatorOn  {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-gps-on";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#GPSStatusIndicatorSearch  {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-gps-searching icon-s-status-gps-on";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#NotificationStatusIndicator {
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#NotificationStatusIndicatorDisabled {
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+}
+
+StatusIndicatorIconStyle#TransferStatusIndicator {
+    image-list: "";
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+}
+
+StatusIndicatorIconStyle#TransferStatusIndicatorLive {
+    image-list: "icon-s-status-transfer-content";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#TransferStatusIndicatorFail {
+    image-list: "icon-s-status-transfer-error";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#TransferStatusIndicatorPending {
+    image-list: "icon-s-status-transfer-pending";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#CallForwardingStatusIndicator {
+    image-list: "";
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+}
+
+StatusIndicatorIconStyle#CallForwardingStatusIndicatorSet {
+    image-list: "icon-s-status-call-diverted";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}
+
+StatusIndicatorIconStyle#DLNAStatusIndicator {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "";
+    preferred-size: 0 -1;
+    minimum-size: 0 -1;
+    maximum-size: 0 -1;
+}
+
+StatusIndicatorIconStyle#DLNAStatusIndicatorSet {
+    /* The list of IDs of the images to be shown in the status indicator separated by spaces */
+    image-list: "icon-s-status-dlna-server";
+    preferred-size: -1 -1;
+    minimum-size: -1 -1;
+    maximum-size: -1 -1;
+}

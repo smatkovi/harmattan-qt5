@@ -1,0 +1,163 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+# export DH_VERBOSE=1
+
+# this makes us compatible with also the deb options which are
+# separated by commas instead of spaces
+comma=,
+nothing=
+space=$(nothing) $(nothing)
+TMP_BUILD_OPTS=$(subst $(comma),$(space),$(DEB_BUILD_OPTIONS))
+
+CFLAGS = -Wall -g
+
+ifneq (,$(filter noopt,$(TMP_BUILD_OPTS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+ifneq (,$(filter nodocs,$(TMP_BUILD_OPTS)))
+    QMAKE_ARG += CONFIG+=NODOC
+    EXCLUDE += -Nlibduicontrolpanel-doc
+endif
+
+ifneq (,$(filter nocheck,$(TMP_BUILD_OPTS)))
+    QMAKE_ARG += CONFIG+=NOTESTS
+    EXCLUDE += -Nduicontrolpanel-tests
+endif
+
+ifneq (,$(filter minimal,$(TMP_BUILD_OPTS)))
+    QMAKE_ARG += CONFIG+=minimal
+    EXCLUDE += -Nlibduicontrolpanel-doc
+    EXCLUDE += -Nduicontrolpanel-tests
+    EXCLUDE += -Nduicontrolpanel-l10n-engineering-english
+endif
+
+ifneq (,$(filter debug,$(TMP_BUILD_OPTS)))
+    QMAKE_ARG += DEFINES+=DEBUG
+endif
+
+ifneq (,$(filter nolauncher,$(TMP_BUILD_OPTS)))
+    QMAKE_ARG += CONFIG+=DISABLE_LAUNCHER
+endif
+
+ifneq (,$(filter software,$(TMP_BUILD_OPTS)))
+    QMAKE_ARG += CONFIG+=SOFTWARE
+endif
+
+ifneq (,$(filter mostused,$(TMP_BUILD_OPTS)))
+    QMAKE_ARG += CONFIG+=MOSTUSED
+endif
+
+ifneq (,$(filter perfmeasurement,$(TMP_BUILD_OPTS)))
+    QMAKE_ARG += CONFIG+=PERF_MEASUREMENT
+endif
+
+ifneq (,$(filter parallel=%,$(TMP_BUILD_OPTS)))
+    NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(TMP_BUILD_OPTS)))
+    PARALLEL_MAKEFLAGS += -j$(NUMJOBS)
+endif
+
+
+QMAKE_ARG += QMAKE_CXXFLAGS+="$(CFLAGS)"
+QMAKE_ARG += QMAKE_LFLAGS="-Wl,--as-needed"
+
+# this specifies that in case of debian build dcp should appear
+# in the application launcher menu
+QMAKE_ARG += CONFIG+=APPEAR_IN_MENU
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	touch configure-stamp
+
+
+build: build-stamp
+
+build-stamp: configure-stamp 
+	dh_testdir
+
+	DEBIAN_DESTDIR=$(CURDIR)/debian/tmp qmake $(QMAKE_ARG)
+	DEBIAN_DESTDIR=$(CURDIR)/debian/tmp $(MAKE) $(PARALLEL_MAKEFLAGS)
+	touch $@
+
+clean:
+	dh_testdir
+	dh_testroot
+
+	rm -f build-stamp configure-stamp
+
+	# we only distclean if there is a makefile,
+	# this saves the time of distcleaning the clean sources
+	test -f "Makefile" && \
+	$(MAKE) $(PARALLEL_MAKEFLAGS) distclean \
+	|| true
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs
+
+	(cd lib;make  $(PARALLEL_MAKEFLAGS) doc; cd ..)
+	INSTALL_ROOT=$(CURDIR)/debian/tmp $(MAKE) install
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs 
+	dh_installdocs
+	dh_installexamples
+
+	dh_install --sourcedir=debian/tmp -v $(EXCLUDE)
+
+#	dh_installmenu
+#	dh_installdebconf	
+#	dh_installlogrotate
+#	dh_installemacsen
+#	dh_installpam
+#	dh_installmime
+#	dh_python
+#	dh_installinit
+#	dh_installcron
+#	dh_installinfo
+	dh_installman
+	dh_link
+	dh_strip --dbg-package=duicontrolpanel-dbg
+	dh_compress $(EXCLUDE)
+	dh_fixperms
+#	dh_perl
+	dh_makeshlibs
+	dh_installdeb $(EXCLUDE)
+
+	# create some symbolic links
+	{ cd debian/duicontrolpanel/usr/lib/duicontrolpanel/applets/; ln -s libqml.so qml; ln -s libdeclarative.so declarative; cd -; }
+
+	dh_shlibdeps
+	dh_gencontrol $(EXCLUDE)
+	dh_md5sums $(EXCLUDE)
+	
+	dh_builddeb $(EXCLUDE)
+
+	# for the security framework
+	aegis-deb-add -control debian/duicontrolpanel/DEBIAN/control .. debian/duicontrolpanel.aegis=_aegis
+	aegis-deb-add -control debian/duicontrolpanel-skeletonapplet/DEBIAN/control .. debian/duicontrolpanel-skeletonapplet.aegis=_aegis
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure
+

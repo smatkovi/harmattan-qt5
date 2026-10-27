@@ -1,0 +1,7 @@
+propertyunittest
+property.cpp
+propertyprivate.cpp
+sconnect.h
+logging.h
+logging.cpp
+loggingfeatures.h

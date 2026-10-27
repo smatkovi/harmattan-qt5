@@ -1,0 +1,19 @@
+/* MStatusAreaSlidedeAnimationStyle : MAbstractWidgetAnimationStyle */
+
+MStatusAreaSlideAnimationStyle {
+    status-bar-slide-delay: 200;
+    status-bar-slide-easing-curve: inexpo;
+    status-bar-slide-duration: 250;
+    widget-slide-delay: 200;
+    widget-slide-easing-curve: outexpo;
+    widget-slide-duration: 250;
+}
+
+
+MStatusAreaSlideAnimationStyle#In {
+}
+
+MStatusAreaSlideAnimationStyle#Out {
+    status-bar-slide-easing-curve: outexpo;
+    widget-slide-easing-curve: inexpo;
+}

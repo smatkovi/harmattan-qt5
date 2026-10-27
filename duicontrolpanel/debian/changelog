@@ -1,0 +1,1514 @@
+duicontrolpanel (0.14.7.1+0m7) unstable; urgency=low
+
+  * This entry has been added by BIFH queue processor
+    version has been changed to 0.14.7.1+0m7
+
+ -- BIFH Bot <sysint@maemo.research.nokia.com>  Wed, 07 Dec 2011 11:26:54 +0200
+
+duicontrolpanel (0.14.7.1) unstable; urgency=low
+
+  [ Viktor Nagy ]
+  * 284251 - COREWEB: /usr/bin/duicontrolpanel.launch -servicefw
+    -outprocess QGraphicsWidget::event QApplicationPrivate::notify_helper
+    QApplication::notify MApplication::notify QCoreApplication::notifyInternal
+
+  [ Robert Manner ]
+  * Fixes: NB#293910 - crash if an applet is using MDialog::exec()
+  * 289899 - Multiple taps on language item results in opening
+    the the language list for 'n' number of times
+  * 291087 - "Tap to Select " is displayed for a while for the
+    Automatic updates option
+  * 292482 - "Internet connection" UI flashes back to
+    "Settings" UI when it has been open again from "settings".
+  * 292898 - Item title "Show notifications for:" is displayed
+    in the wrong place when opening Notifications from Search
+    application.
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 07 Dec 2011 10:26:53 +0100
+
+duicontrolpanel (0.14.6) unstable; urgency=low
+
+  * Fixes: NB#290007 - _MEEGOTOUCH_WM_INVOKED_BY/WM_TRANSIENT_FOR are
+    not always set properly
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Fri, 11 Nov 2011 10:40:39 +0100
+
+duicontrolpanel (0.14.5) unstable; urgency=low
+
+  [ Peter Csaszar ]
+  * Fixes: NB#268142 - duicontrolpanel spamming syslog at startup
+
+  [ Robert Manner ]
+  * Fixes: NB#287787 - Sounds and vibration does not open, if tapped
+    immediately after opening Settings view
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 26 Oct 2011 14:07:42 +0200
+
+duicontrolpanel (0.14.4) unstable; urgency=low
+
+  * Fixes: NB#281450 - Launcher view is shown for a while before
+    bluetooth settings gets opened
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 20 Oct 2011 09:20:17 +0200
+
+duicontrolpanel (0.14.3.1) unstable; urgency=low
+
+  [ Viktor Nagy ]
+  * Added performance measuring build option.
+
+  [ Robert Manner ]
+  * Fixes: NB#284645 - brightness applet from search has a mainpage icon
+
+  [ Sandor Pinter ]
+  * Fixes: NB#286775 - China variant:Tapping on "Installed apps" option
+    is not opening Applications screen for PR003 variant.
+
+ -- Sandor Pinter <sandor.pinter@blumsoft.eu>  Wed, 19 Oct 2011 09:59:53 +0200
+
+duicontrolpanel (0.14.2.2) unstable; urgency=low
+
+  * Fixes: NB#283817 - [TASK] support for adding combobox-plugin into a
+    settings category page
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 28 Sep 2011 11:38:54 +0200
+
+duicontrolpanel (0.14.1) unstable; urgency=low
+
+  [ Viktor Nagy ]
+  * Fixes: NB#266453 - [Performance] Response time open settings
+    application is above target
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Mon, 26 Sep 2011 16:33:54 +0200
+
+duicontrolpanel (0.14.0.1) unstable; urgency=low
+
+  * supports applets written in qml
+  * Fixes: NB#281433 - [FEA] qml based applets for control panel
+  * Fixes: NB#267545 - [TASK] Brigthness slider needs info about power
+    save mode (styling improvement)
+  * Fixes: NB#282673 - [TASK] Manage applications should appear as
+    button instead of drilldown
+  * Fixes: NB#282669 - [TASK] Sync & Backup subview should use buttons
+    instead of drilldowns
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Mon, 19 Sep 2011 09:45:18 +0200
+
+duicontrolpanel (0.13.4) unstable; urgency=low
+
+  * Fixes: NB#280032 - Settings: Wrong alignment in settings view
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 31 Aug 2011 11:36:25 +0200
+
+duicontrolpanel (0.13.2.2) unstable; urgency=low
+
+  * Fixes: NB#279039 - regressions about reopening control panel
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 23 Aug 2011 17:34:54 +0200
+
+duicontrolpanel (0.13.2.1) unstable; urgency=low
+
+  * Fixes: NB#265196
+    Changes fix for NB#265196 to use common group header instead of
+    putting the separator and the label under each other
+  * Fixes: sheet does not follow dcp orientation
+  * fixed 273261 - China variant:Suggest to remove Feed on home screen
+    option in Notifications setting from PRC image
+  * fixed 267658 - Opening Bluetooth from Status menu is very slow and
+    shows bad transition
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 28 Jul 2011 15:08:47 +0200
+
+duicontrolpanel (0.13.1.1) unstable; urgency=low
+
+  * Fixes: NB#265196 - "Privacy mode" plug-in on Notifications settings page
+    should be visually separated from rest of the plug-ins
+  * Fixes: NB#268370 - [TASK] Brigthness slider needs info about power
+    save mode
+  * Fixes: NB#269545 - Notification: §qtn_noti_settings_subheader§ [Show
+    notifications for:] is missing
+  * fixed 243414 - [TASK] page->dismiss only works for 2 history stack
+  * Fixes: NB#271925 - Declarative settings applet names have a "!!"
+    prefix on the Applications page of the Settings application
+  * Fixes: NB#268757 - Notification; String §qtn_noti_settings_private_mode§
+    is truncated in Russian;
+  * fixed 255760 - [TASK] API: Function to disable toggle type dcpbrief
+  * Fixes: NB#264064 - Control panel grants full set of credentials for
+    3rd party libraries
+  * fixed 272868 - Settings main view is showing before opening the
+    applet in the given scenario
+  * fixed 273726 - some times applet views flashes twice in settings
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Fri, 22 Jul 2011 15:23:00 +0200
+
+duicontrolpanel (0.12.22) unstable; urgency=low
+
+  * Fixes: NB#270097 - there is only one applet in about category
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 15 Jun 2011 11:24:42 +0200
+
+duicontrolpanel (0.12.21) unstable; urgency=low
+
+  * Fixes: NB#260681 - 'Show events from:'
+    §qtn_home_events_settings_subheader§ subheader should be shown in
+    Notifications -> Events feed
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 02 Jun 2011 15:45:48 +0200
+
+duicontrolpanel (0.12.20) unstable; urgency=low
+
+  * Fixes: NB#260186 - Please remove the help icon from the reset
+    category header...
+  * Fixes: NB#259996 - When opening settings, all the content comes with
+    a flicker
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Fri, 27 May 2011 15:23:43 +0200
+
+duicontrolpanel (0.12.19) unstable; urgency=low
+
+  * Fixes: NB#258212 - On reopening the settings , the settings app is
+    getting minimized
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 25 May 2011 10:42:10 +0200
+
+duicontrolpanel (0.12.18) unstable; urgency=low
+
+  * Fixes: NB#255312 - Error seen at 'QDBusConnection: session D-Bus
+    connection created before QCoreApplication. Application may
+    misbehave'
+  * Fixes: NB#256581 - Updated to style for horizontal separators
+  * Fixes: NB#256331 - [TASK] Closing transition is not proper while
+    closing the windows
+  * Fixes: NB#253644 - Settings; String §qtn_locfw_positioning§ is
+    clipped in Russian language
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Mon, 23 May 2011 15:56:03 +0200
+
+duicontrolpanel (0.12.17) unstable; urgency=low
+
+  * Fixes: NB#255261 - Brightness slider missing when accessed from a
+    deep link
+  * Fixes: NB#255038 - Settings; while searching for the string
+    Brigtnees will be shown as Display in Settings view
+  * Fixes: NB#254883 - Settings main page layout jumps when opened
+  * Fixes: NB#255158 - controlpanel does not support MSheet as the main view
+    of an applet
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 11 May 2011 15:58:49 +0200
+
+duicontrolpanel (0.12.16) unstable; urgency=low
+
+  * Fixes: NB#247927 - [TASK] clicking settings from events object view
+    opens view with no toolbar
+  * Fixes: NB#250358 - Info icon incorrect for flight mode
+  * Fixes: NB#250359 - Info icon incorrect for reset settings header
+  * Fixes: NB#252136 - Settings notifications has an unnecessary line
+  * Fixes: NB#251900 - [SSU]:Error seen at 'MSplashScreen couldn't load
+    ...splash...
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 04 May 2011 15:40:32 +0200
+
+duicontrolpanel (0.12.15) unstable; urgency=low
+
+  * Doc & Example about how to localize a Declarative applet
+  * Fixes: closing controlpanel could result in starting userguide
+  * Fixes: NB#248758 - Duicontrolpanel searches for declarative settings
+    XML files from /usr/share/duicontrolpanel/uidescriptions but the
+    documentation says /usr/lib/duicontrolpanel/uidescriptions
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Fri, 29 Apr 2011 11:12:05 +0200
+
+duicontrolpanel (0.12.14) unstable; urgency=low
+
+  * some layout fixes
+  * Fixes: NB#247999 - Looks as if multiple taps on a applet opens the
+    applet multiple times
+  * Fixes: "Special" briefview can not request page close (for reset applet)
+  * Fixes: NB#250458 - not possible to disable the slider after it got some
+    value
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 26 Apr 2011 15:34:03 +0200
+
+duicontrolpanel (0.12.13) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Fixes: NB#247927 - clicking settings from events object view opens
+    view with no toolbar
+  * Fixes: NB#244666 - [TASK] Control panel shall implement splash
+    screen
+
+  [ Sandor Pinter ]
+  * Fixes: NB#247954 - The device shows previously opened screen when
+    Settings application is opened
+
+ -- Sandor Pinter <sandor.pinter@blumsoft.eu>  Wed, 20 Apr 2011 11:16:02 +0200
+
+duicontrolpanel (0.12.12) unstable; urgency=low
+
+  [ Sandor Pinter ]
+  * Fixes: NB#246239 - Settings application re-opens slowly, if swiped
+    to background few times in a row
+  * Fixes: NB#243609 - ResetApplet: Missing info icon in header
+
+  [ Robert Manner ]
+  * Fixes: NB#241369 - Some brightness indicator is not visible
+  * Fixes: NB#246257 - COREWEB: duicontrolpanel-briefsupplier '_dl_fixup
+    _dl_runtime_resolve
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Fri, 15 Apr 2011 15:00:45 +0200
+
+duicontrolpanel (0.12.11) unstable; urgency=low
+
+  [ Viktor Nagy ]
+  * Speed improvements for shorter startup time
+
+  [ Robert Manner ]
+  * Fixes: NB#244769 - Stop using .launch suffix
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 13 Apr 2011 11:46:42 +0200
+
+duicontrolpanel (0.12.10) unstable; urgency=low
+
+  * Fixes: NB#235703 - COREWEB
+  * Fixes: NB#243609 - ResetApplet: Missing info icon in header
+  * New: HelpId can be specified for a category, see doc for details
+  * Fixes: NB#242796 - com.nokia.DuiControlPanelIf.appletPage does not
+    work for declarative applets
+  * Fixes: NB#244960 - Events heading is different when opened from
+    settings and from events view
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Fri, 08 Apr 2011 12:47:17 +0200
+
+duicontrolpanel (0.12.9) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Fixes: emitting DcpWidget::closePage on first page of the applet
+    leads to a window without pages
+  * Fixes: DcpWidget::back() can not prevent closing the first page of
+    the applet
+  * New: example applet for multiple page situation
+  * Updates according to the layout guide
+  * Support for an additional .desktop file directory under /usr/share
+  * Updates the declarative example to have group titles
+
+  [ Sandor Pinter ]
+  * Fixes: NB#239966 - Bluetooth icon in settings
+  * Fixes: NB#239969 - Device icon in Settings is incorrect
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 31 Mar 2011 16:18:41 +0200
+
+duicontrolpanel (0.12.8.1) unstable; urgency=low
+
+  * Fixes: NB#231725 - Help view is shown on relaunching the settings
+    application, it doesn't switch back
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 24 Mar 2011 16:57:01 +0100
+
+duicontrolpanel (0.12.7.2) unstable; urgency=low
+
+  [ Sandor Pinter ]
+  * Fixes: NB#238601 - Notifications and Events feed settings are not
+    implemented according to the UI specs
+
+  [ Robert Manner ]
+  * Workaround for NB#239045 - Settings application shows toolbar
+    background in white color
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 23 Mar 2011 12:14:15 +0100
+
+duicontrolpanel (0.12.6) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Fixes: NB#237302 - Brightness control level
+
+  [ Sandor Pinter ]
+  * Fixes: NB#238276 - Settings; 'Flight mode' toggle button layout is
+    not align with the label
+  * Fixes: NB#238251 - Settings; layout of Arrows are inconsistent;
+    supposed to be vertical center with label option
+  * Fixes: NB#230172 - Connectivity, internet connections view, labels
+    are not aligned correctly when in offline mode and also after
+    deactivating offline mode.
+
+ -- Sandor Pinter <sandor.pinter@blumsoft.eu>  Tue, 22 Mar 2011 09:00:51 +0100
+
+duicontrolpanel (0.12.5) unstable; urgency=low
+
+  [ Sandor Pinter ]
+  * Fixes: NB#235033 - Settings: Indonesian translation of
+    qtn_sett_main_notifications (Pemberitahuan
+
+  [ Robert Manner ]
+  * Fixes: help icon on applet briefview is not inverted
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 16 Mar 2011 16:43:11 +0100
+
+duicontrolpanel (0.12.4) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Fixes: NB#234151 - White screen is shown on startup
+  * Removes linking to unnecessery libraries
+  * Fixes: NB#235605 - Reset settings should have buttons centered
+  * Fixes: NB#235602 - Extra step to Sound settings needs to be removed
+  * Fixes: NB#235762 - overriding back() in DcpWidget does not help
+  * Fixes: NB#236209 - segfault from DcpContentItem::ensureWidgetsAreLayouted
+  * Fixes: NB#223777 - segfault from DcpAppletWidget::back
+
+  [ Sandor Pinter ]
+  * Fixes: NB#234383 - duicontrolpanel startup triggers gconf update
+    that results in 402 bytes written to flash
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 15 Mar 2011 19:35:05 +0100
+
+duicontrolpanel (0.12.3) unstable; urgency=low
+
+  * Fixes: NB#234416 - Controlpanel provides no way to force running an applet
+    brief inprocess
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 08 Mar 2011 16:49:51 +0100
+
+duicontrolpanel (0.12.2) unstable; urgency=low
+
+  [ Sandor Pinter ]
+  * Fixing iconIds
+  * Adding Applications/Installations, and Applications/Manage applications categories
+
+  [ Robert Manner ]
+  * Fixes: NB#225161 - Incorrect title on dialog when Settings does not
+    respond anymore
+  * Fixes: NB#228255 - When reopening the settings application from
+    launcher, the previous subview is shown
+  * Fixes: NB#220633 - T-coil hearing aid is mentioned in settings main
+    menu
+  * Fixes: NB#223592 - COREWEB: /usr/bin/duicontrolpanel
+    'qt_call_post_routines QApplication::~QApplication
+    MApplication::~MApplication cleanup'
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Mon, 07 Mar 2011 12:04:04 +0100
+
+duicontrolpanel (0.12.1) unstable; urgency=low
+
+  * New: static (localized) value line (second line) can be specified for the
+    applet icon from .desktop file
+  * Fixes: translation id appears on category button instead of engineering
+    translation in case there is no translation available (ex: meego)
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 02 Mar 2011 14:32:44 +0100
+
+duicontrolpanel (0.12.0) unstable; urgency=low
+
+  [ Sandor Pinter ]
+  * Using default loadHints for loading a plugin
+
+  [ Robert Manner ]
+  * Fixes: category for "Security" and "Tactile feedback"
+  * Fixes: NB#230474 - Order of Settings categories in Settings main
+    view needs to be updated
+  * Fixes: NB#230505 - 2nd row labels should be removed from Settings
+    main view
+  * Fixes: NB#230541 - on staging images from week 8 onward, using D-Bus
+    call to go directly to applets makes it behave erratically
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Fri, 25 Feb 2011 11:09:16 +0100
+
+duicontrolpanel (0.11.8) unstable; urgency=low
+
+  * Fixes: NB#227727 - Applications list in Settings is not sorted
+    alphabetic (now it is sorted by translated title and not engineering
+    translation)
+  * Fixes: NB#228764 - Settings categories implementation not according
+    to new requirements
+  * New: applet auto starting if a category contains one applet only can
+    be customized via AutoStartApplet key
+  * Changes: category names have changed for non-meego targets, applets
+    have to recheck their categories
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Mon, 21 Feb 2011 14:33:37 +0100
+
+duicontrolpanel (0.11.7.1) unstable; urgency=low
+
+  * Fixes that the outprocess was disabled by mistake
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 17 Feb 2011 11:02:53 +0100
+
+duicontrolpanel (0.11.7) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Changes: new briefview type - Slider
+  * Changes: Support for briefviews with horizontal layouted value line
+
+  [ Sandor Pinter ]
+  * Fixes: NB#227727 - Applications list in Settings is not sorted
+    alphabetic
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 15 Feb 2011 16:57:31 +0100
+
+duicontrolpanel (0.11.6.3) unstable; urgency=low
+
+  * disables ft_dcpappletobject temporarily
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 10 Feb 2011 12:19:21 +0100
+
+duicontrolpanel (0.11.6.2) unstable; urgency=low
+
+  * Fixes the flashing before the appletpage openings
+  * Changes: Fixed portrait orientation
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 10 Feb 2011 12:05:19 +0100
+
+duicontrolpanel (0.11.6.1) unstable; urgency=low
+
+  [ Sandor Pinter ]
+  * Fixes: NB#224500 - Highlight shown when pressing a static label in
+    Notification settings
+
+  [ Robert Manner ]
+  * Fixes: NB#225161 - Incorrect title on dialog when Settings does not
+    respond anymore
+  * Fixes: NB#225295 - [TASK] On relaunching the settings app, the view
+    is still showing the bottom list of categories
+  * Changes: It is now configurable if the category icons are above or
+    below the applet icons using the ComponentOrder key in the
+    .cpcategory files
+  * Changes: Makes -outprocess mode default on usual running ways
+  * Fixes: NB#225300 - duicontrol panel refers to deprecated
+    /proc/component_version
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Fri, 04 Feb 2011 13:50:17 +0100
+
+duicontrolpanel (0.11.5) unstable; urgency=low
+
+  [ Sandor Pinter ]
+  * Fixes: NB#220905 - Personalise settings menu looks different on
+    second opening
+  * Fixes: NB#220590 - Toggle button doesn't always reflect the real
+    setting value
+  * Fixes: NB#223192 - Context sensitive help icon is shown as if it is
+    inactive.
+
+  [ Robert Manner ]
+  * Fixes some little DBus API problems when running in outprocess mode
+    (on appletpage requests)
+  * New: the applet can specify in its .desktop file if it has a
+    mainview through DCP/HasMainView key
+  * Fixes flickering at applet mainview opening in outprocess mode
+  * Fixes: NB#224371 - Wrong style for scroll indicator used in Settings
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 02 Feb 2011 13:51:34 +0100
+
+duicontrolpanel (0.11.4) unstable; urgency=low
+
+  [ Sandor Pinter ]
+  * Fixes: NB#220025 - a proposal to change #CommonXLargeHeaderInverted
+    to #CommonApplicationHeaderInverted
+
+  [ Robert Manner ]
+  * Fixes: NB#220539 - toolbar at the bottom is not inverted, but
+    becomes inverted when you click on a connection or phone applet
+  * Fixes: NB#220868 - Constant memory usage inclureas memory leak could
+    be seen in duicontrolpanel
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Fri, 21 Jan 2011 12:35:15 +0100
+
+duicontrolpanel (0.11.3) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Changes: mostused build option is working again
+  * Fixes: NB#218906 - Settings app goes invisible when we tap on Feeds
+    item in the Notifications view
+  * Fixes: NB#218900 - settings UI is shown in applet view when tried to
+    relaunch in a given scenario
+  * Fixes: NB#214650 - It is not possible for an applet to disable
+    itself run-time
+
+  [ Sandor Pinter ]
+  * Fixes: NB#219212 - 'Events feeds' not aligned properly in
+    Notifications view.
+  * Fixes: NB#219608 - drilldown icon is black in the list items which
+    use the style when it should be white
+  * Fixes: NB#219156 - Activate/Deactivate Offline mode button in
+    connections is not consistent with the inverted theme.
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 18 Jan 2011 17:28:13 +0100
+
+duicontrolpanel (0.11.2.1) unstable; urgency=low
+
+  * Temporarily disables running applets outprocess by default, since it
+    still causes some problems. It can be enabled with using -outprocess
+    parameter
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 13 Jan 2011 15:27:44 +0100
+
+duicontrolpanel (0.11.2) unstable; urgency=low
+
+  [ Sandor Pinter ]
+  * Fixes: NB#194151 - <coverity> defects from libdialerui/0.0.6.30_0m6
+
+  [ Robert Manner ]
+  * documentation fixes
+  * Fixes: no exec right for duicontrolpanel on meego
+  * Changes: new category "Events feed", accessible from Notifications
+  * Fixes: translation catalog for categories is not loaded
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 12 Jan 2011 17:17:51 +0100
+
+duicontrolpanel (0.11.1) unstable; urgency=low
+
+  * Changes: one line applet brief is top aligned
+  * Changes: two new icon ids for mainpage
+  * Fixes: NB#215724 - 'duicontrolpanel' package requests non-existing
+    security token
+  * New: Building docs,tests,translations can be disabled through
+    DEB_BUILD_OPTIONS
+  * Fixes: NB#211971 - meegotestrunner will be deprecated
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 05 Jan 2011 11:23:36 +0100
+
+duicontrolpanel (0.11.0) unstable; urgency=low
+
+  * Changes: applet categories became declarative (non-hardcoded)
+  * Fixes: NB#208942 - If no settings panels open, opening the main
+    settings screen scrambles
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Mon, 20 Dec 2010 13:44:56 +0100
+
+duicontrolpanel (0.10.0) unstable; urgency=low
+
+  * Changes: runs most binary applets in separate process
+  * Changes: removes meegotestrunner dependency from unit tests
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 14 Dec 2010 10:29:45 +0100
+
+duicontrolpanel (0.9.9.1) unstable; urgency=low
+
+  * Fixes: NB#205701 - Control panel does not launch to main view when
+    started from launcher and it is already open
+  * Updates icon ids to spec 0.7
+  * New: Help button support for meego
+  * New: meegotouch-controlpanel.pc symlink into pkconfig directory
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 21 Dec 2010 10:33:26 +0100
+
+duicontrolpanel (0.9.8) unstable; urgency=low
+
+  * Fixes: NB#210162 - Wrong logical ID & Icon on Sync & Backup on
+    control panel maintranslations.cpp
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 07 Dec 2010 16:21:29 +0100
+
+duicontrolpanel (0.9.7) unstable; urgency=low
+
+  * Fixes: NB#203963 - duicontrolpanel calls MTheme::loadCSS()
+  * Added new interface for creating stylable applets
+  * Fixes: NB#208452 - Category view is still down the page on reopening
+    it
+  * Fixes: NB#206199 - Controlpanel constructs the brief, even if not
+    needed
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 01 Dec 2010 11:43:09 +0100
+
+duicontrolpanel (0.9.6) unstable; urgency=low
+
+  * Changes: adds DBus method "appletName (QStringList)" so that search
+    becomes able to pop up the applets
+  * Changes: adds credential for devicelock::DeviceLockControl
+  * Changes: Added parameter "-nobriefs" which disables using dynamic
+    value lines on applet icons
+  * Fixes: NB#208104 - Reset and clear device buttons are not seen in
+    settings main view
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Mon, 29 Nov 2010 16:09:11 +0100
+
+duicontrolpanel (0.9.5) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Fixes lintian errors
+  * Restores protection for segfaulting briefs: helper process gets
+    restarted and does not try to reload the bad applet
+  * Fixes: background theme id
+
+  [ Sandor Pinter ]
+  * Fixing layout, change logical ids
+  * Fixes: NB#205767
+
+ -- Sandor Pinter <sandor.pinter@blumsoft.eu>  Fri, 19 Nov 2010 13:51:52 +0100
+
+duicontrolpanel (0.9.4) unstable; urgency=low
+
+  * Changes: new type of briefview: special
+  * Changes: a logical MainPage category to add applet icons to the
+    mainpage
+  * Changes: by default disables skipping the category page if it has
+    one applet in the list only
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 10 Nov 2010 16:58:22 +0100
+
+duicontrolpanel (0.9.3.1) unstable; urgency=low
+
+  * Reverts adding a title on applet pages
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 10 Nov 2010 11:30:41 +0100
+
+duicontrolpanel (0.9.3) unstable; urgency=low
+
+  * Fixes: BMC#7195 - App is shown on the tray and in the launcher
+  * Fixes: NB#199641 - Settings app view switches back from applet view
+    to main view when we try to open the settings app once again from
+    launcher
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 09 Nov 2010 17:28:40 +0100
+
+duicontrolpanel (0.9.2) unstable; urgency=low
+
+  * Fixes: applet icon value texts are not appearing sometimes
+  * Changes: controlpanel turns black (uses inverted theme)
+  * Fixes: NB#202583 - duicontrolpanel: built without optimizations
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 03 Nov 2010 12:04:17 +0100
+
+duicontrolpanel (0.9.1) unstable; urgency=low
+
+  * Fixes: NB#200458 - Returning false from DcpWidget::back() doesn't
+    prevent page closing
+  * Fixes: NB#200663 - SECURITY - duicontrolpanel should depend on
+    clean-device
+  * Fixes: NB#201666 - mcp can't be compiled on meego
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 02 Nov 2010 15:04:17 +0100
+
+duicontrolpanel (0.9.0) unstable; urgency=low
+
+  [ Sandor Pinter ]
+  * Fixes: applet debugs/warnings were not coming from brief supplier
+    process, even with -output-level
+  * Drilldown menus, new categories
+
+  [ Robert Manner ]
+  * Fixes: NB#199886 - Startup time of dcp increased a bit
+  * Fixes: NB#199006 - The Accounts entry has to be removed from the
+    controlpanel
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Mon, 25 Oct 2010 18:22:26 +0200
+
+duicontrolpanel (0.8.18) unstable; urgency=low
+
+  [ Tamas Balogh ]
+  * Documentation improvements
+
+  [ Robert Manner ]
+  * Changes: handles the applet briefs in separate process so that
+    controlpanel does not stop responding while appelts are loading
+  * Fixes: NB#197904 - Plug-ins view background is shown in black color
+    for some time
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 20 Oct 2010 17:29:19 +0200
+
+duicontrolpanel (0.8.17.1) unstable; urgency=low
+
+  * Little fix for helpid
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Fri, 15 Oct 2010 12:59:50 +0200
+
+duicontrolpanel (0.8.17) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Changes: help content can be specified for the icon of a plugin
+    through .desktop file or DcpBrief
+  * Adds credential for dsme usage
+  * Fixes: applet does not get the new toggle state in case of button
+    type applet
+
+ -- Viktor Nagy <viktor.nagy@blumsoft.eu>  Thu, 14 Oct 2010 15:30:11 +0200
+
+duicontrolpanel (0.8.16) unstable; urgency=low
+
+  * Little compile fix for meego 1.1
+  * Fixes: NB#195911 - controlpanel crashing if its called via servicefw
+    with invalid parameter
+  * Adds support for popping up categorypage through servicefw
+  * Fixes: Popping up a button type applet through servicefw, moves to
+    the categorypage (the applet has no view)
+  * Changes: Additional requirements of the .desktop format for
+    libcontentaction support
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 05 Oct 2010 14:32:40 +0200
+
+duicontrolpanel (0.8.15.1) unstable; urgency=low
+
+  * Little compile fix for new Qt
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 29 Sep 2010 11:44:42 +0200
+
+duicontrolpanel (0.8.15) unstable; urgency=low
+
+  * disables Most Used Category at compile time by default (DUI-3920)
+  * Fixes: NB#194199 -  modification of libmeegocontrolpanel-doc
+    installation method
+  * Fixes: NB#193715 -  duicontrolpanel-soundsettingsapplet has no aegis
+    manifest
+  * Fixes: NB#193806 -  Not able to set Date and time zone for device
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 28 Sep 2010 13:27:34 +0200
+
+duicontrolpanel (0.8.14) unstable; urgency=low
+
+  * Fixes: NB#192485 - Settings app view switches back from applet view
+    to main view when we try to open the settings app once again
+  * Fixes: NB#192478 - Activate Offline mode button is shown in all views of
+    control panel applets in a given scenario
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 21 Sep 2010 10:24:07 +0200
+
+duicontrolpanel (0.8.13) unstable; urgency=low
+
+  * Changes: delayed widget creation at applet list makes it possible to create long
+    applet lists
+  * Fixes: DcpContentItem could not be clicked until the applet got loaded
+  * Fixes: NB#189265 - Tapping Settings button in status menu does not
+    open settings view
+  * Changes: Adds tracker::TrackerReadAccess credential
+  * Fixes: NB#191373 -  Source package 'duicontrolpanel' interfaces not
+    frozen in 0.2010.36-5
+  * Workarounds: 188565 -  Offline mode button is left aligned...
+  * Fixes: NB#192086 - Glitch in applet name when returning from an
+    applet
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 15 Sep 2010 13:16:27 +0200
+
+duicontrolpanel (0.8.12.1) unstable; urgency=low
+
+  * Fixes: NB#184916 - Back button closes the controlpanel in this
+    scenario
+  * Fixes: NB#188215 -  Look and feel settings uses wrong object names
+  * Fixes: NB#188203 -  System Settings main view uses wrong object
+    names
+  * Adds icons to category menus (updated ui to spec 1.5)
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Mon, 06 Sep 2010 16:51:14 +0200
+
+duicontrolpanel (0.8.11) unstable; urgency=low
+
+  * Fixes: declarative applet could not modify gconf keys
+  * Adds credential for Cellular usage, and for datetime applet
+  * Theme loading support for the binary applets
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 01 Sep 2010 10:16:43 +0200
+
+duicontrolpanel (0.8.10) unstable; urgency=low
+
+  * Fixes: Avoid showing the briefview in two step in case the applet is
+    already loaded
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 31 Aug 2010 16:25:57 +0200
+
+duicontrolpanel (0.8.9) unstable; urgency=low
+
+  * Optimization: filter out unnecessery languageChange events
+  * Implements two-step applet loading: static content gets shown until
+    the applet is not yet loaded
+  * Fixes: NB#183938 - UI freeze when connectivity opened for the first
+    time after device flash
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 24 Aug 2010 17:49:54 +0200
+
+duicontrolpanel (0.8.8) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Example update: Itemlike binaryplugin shows an example about how to load
+    stylesheet for its widget
+
+  [ Viktor Nagy ]
+  * Fixes: NB#186249 - duicontrolpanel navigation within settings menus lower than the initial depth crashes MATTI
+
+ -- Viktor Nagy <viktor.nagy@blumsoft.eu>  Thu, 19 Aug 2010 16:30:45 +0200
+
+duicontrolpanel (0.8.7) unstable; urgency=low
+
+  * Fixes: NB#183023 - Settings page is displaying !! as prefix of Service
+    accounts
+  * Fixes: NB#178164 - The using AP is displayed inconsistently on
+    Settings page
+  * Implements support for the new applet briefwidget (switch type)
+  * Fixes: if invoked by dbus, mainPage was shown for a sec
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 10 Aug 2010 15:27:20 +0200
+
+duicontrolpanel (0.8.6) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Fixes: NB#182605 - multiple instances of DCP can be opened at the
+    same time
+
+  [ Viktor Nagy ]
+  * Redirect standard io channels of applications launched by
+    control panel to /dev/null
+    Fixes: NB#182372 - The script "/usr/share/csd-call/csd-call-backup" fails while taking backup
+
+ -- Viktor Nagy <viktor.nagy@blumsoft.eu>  Thu, 05 Aug 2010 15:59:40 +0200
+
+duicontrolpanel (0.8.5) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Fixes: height of contentitems are non constant
+  * Fixes: NB#178814 -  Icon is not shown in the applet's brief
+  * Fixes: NB#173756 - The order of the items in recently used list is
+    not same after the device reboot
+  * Fixes: NB#180202 - Default value for DcpBrief is deprecated
+  * Fixes: NB#180332 - Control panel applets: Way to load multiple
+    catalogs needed
+
+  [ Viktor Nagy ]
+  * Fixes: NB#180791 - Invalid libs-pkg in duicontrolpanel API file
+  [ Laszlo Gal]
+  * most used does not count button type applets like offline applet
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Thu, 22 Jul 2010 17:33:19 +0200
+
+duicontrolpanel (0.8.4) unstable; urgency=low
+
+  * Some margin fixes
+  * Fixes: NB#170026 - Emitting valuesChanged signal doesn't update
+    valueText displayed in Brief (removes the workaround, because bug got fixed)
+  * Fixes: NB#176941 -  duicontrolpanel crash blocks systemui-applets-ui-tests
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Mon, 28 Jun 2010 13:33:01 +0200
+
+duicontrolpanel (0.8.3) unstable; urgency=low
+
+  [ Laszlo Gal]
+  * Added api file to debian directory
+
+  [ Robert Manner ]
+  * Fixed compilation warnings
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Mon, 21 Jun 2010 12:10:33 +0200
+
+duicontrolpanel (0.8.2) unstable; urgency=low
+
+  * new version
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Mon, 20 Jun 2010 10:32:00 +0200
+
+duicontrolpanel (0.8.2~unreleased) unstable; urgency=low
+
+  * new version
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 10 Jun 2010 18:50:33 +0200
+
+duicontrolpanel (0.8.1) unstable; urgency=low
+
+  [ Sandor Pinter ]
+  * Enable booster usage, and remove the forking for this
+
+  [ Robert Manner ]
+  * Fixes: NB#172559 - Time and Language UI display some hard coded
+    button (Display language and Keyboard languages)
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 10 Jun 2010 18:01:22 +0200
+
+duicontrolpanel (0.8.0) unstable; urgency=low
+
+  [ Sandor Pinter ]
+  * Fixing Coverity issues
+
+  [ Robert Manner ]
+  * Fixes: NB#171520 - The View Menu should not be available on Region
+    format setting view
+  * Adds API for accessing the progress indicator of the page from
+    DcpWidget
+  * Removes the deprecated classes DcpButton* and DcpBriefWidget
+  * 'Applications' category is sorted by applet titles instead of the Order
+    specified in the desktop file (like other categories)
+  * Fixes: NB#169944 - Recently Used list in DCP is sorted improperly
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 02 Jun 2010 17:36:26 +0200
+
+duicontrolpanel (0.7.20) unstable; urgency=low
+
+  * changelog
+  * Workaround for NB#170026 - Emitting valuesChanged signal doesnt update
+    valueText displayed in Brief (temporary workaround for NB#170105 -
+    showhideEvent of MContentItem does not get called)
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 25 May 2010 10:04:05 +0200
+
+duicontrolpanel (0.7.19-1) unstable; urgency=low
+
+  * Fixes endless recursion when there is no dbus available
+  * Fixes: NB#166112 - DuiControlPanel should apply to swap itself to
+    be the toplevel window when DuiControlPanelIf::appletPage
+  * Fixes: NB#165815 - Duicontrolpanel calls title function for an
+    applet wrongly
+  * Fixes: NB#143519 - localization of duicontrolpanel is very outdated
+    (Translation catalog name and dependency)
+  * Fixes: NB#169767 - Synchronization application is not available in
+    system settings
+  * Fixes: an applet can not request pages if started through servicefw
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 20 May 2010 16:20:05 +0200
+
+duicontrolpanel (0.7.18) unstable; urgency=low
+
+  * unittest fixes
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Fri, 07 May 2010 10:16:34 +0200
+
+duicontrolpanel (0.7.17) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Fixes servicefw api regression
+  * Deprecated classes: DcpButton*, DcpBriefWidget. MContentItem and
+    MContentItem based DcpContentItem replaces them
+  * Fixes: false return at DcpWidget::back() was not taken into account (the
+    page got destroyed either ways)
+  * Adds API for closing the appletpage from DcpWidget
+  * Some visual updates according to the ui spec: no space and separator
+    between contentitems, one column lists
+
+  [ Sandor Pinter ]
+  * Using clean-device-dev package to get the RFS script dir
+
+ -- Sandor Pinter <sandor.pinter@blumsoft.eu>  Thu, 06 May 2010 11:53:38 +0200
+
+duicontrolpanel (0.7.16) unstable; urgency=low
+
+  * fixes compilation issue
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 20 Apr 2010 17:29:36 +0200
+
+duicontrolpanel (0.7.15) unstable; urgency=low
+
+  * Fixes: 162708 - The most recent used container is smaller than the other
+    categories container
+  * Fixes a compilation issue for duicontrolpanel tests
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 20 Apr 2010 16:45:52 +0200
+
+duicontrolpanel (0.7.14) unstable; urgency=low
+
+  * Fixes localization problem at startup
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 20 Apr 2010 10:33:28 +0200
+
+duicontrolpanel (0.7.13) unstable; urgency=low
+
+  * Fixes: problems with external and declarative plugins
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Mon, 19 Apr 2010 16:01:28 +0200
+
+duicontrolpanel (0.7.12) unstable; urgency=low
+
+  * Fixes: NB#164568 -  Setting the image for DcpBrief from a file is not possible
+  * bump up
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 15 Apr 2010 14:54:57 +0200
+
+duicontrolpanel (0.7.11) unstable; urgency=low
+
+  * Compatible with libmeegotouch
+  * Fixes: NB#156748 - could not define first line value for brief in
+    applet for dcp
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 13 Apr 2010 10:37:44 +0200
+
+duicontrolpanel (0.7.10) unstable; urgency=low
+
+  * marked some dependencies
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 07 Apr 2010 10:53:19 +0200
+
+duicontrolpanel (0.7.9) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Release for dui 0.20
+  * Optimized applet translation catalog loading for faster startup time
+
+  [ Laszlo Pere ]
+  * Fixes: NB#162454 - Wrong icon displayed in application launcher
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Tue, 30 Mar 2010 11:08:21 +0200
+
+duicontrolpanel (0.7.8) unstable; urgency=low
+
+  [ Gabor Juhasz ]
+  * dummy release to test CITA 
+
+  [ Laszlo Pere ]
+  * Fixes: NB#162019 - Duicontrolpanel creates already existing widgets
+  * Fixes: NB#161543 - WEP key- and Other settings are not preserved in 
+    advanced internet settings
+  * Fixes: NB#161616 - Duicontrolpanel creates two main widgets
+  * Fixes: NB#161942 - Navigation from BT settings view does not work after 
+    removing pairing
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 24 Mar 2010 11:10:00 +0100
+
+duicontrolpanel (0.7.7) unstable; urgency=low
+
+  [ David Kedves ]
+  * Increased version number
+  * Fixes: NB#161540 -  System-settings application is crashing after tapping 
+    on "Language & Region"
+
+  [ Robert Manner ]
+  * Fixes: NB#161937 - datetime applet settings are not working in dcp
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 24 Mar 2010 10:22:51 +0100
+
+duicontrolpanel (0.7.6) unstable; urgency=low
+
+  * Fixes: NB#161217 - Two instance launches when tapped in quick
+    succession...
+  * Fixes: NB#148951 - Back button has missleading behaviour
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Fri, 19 Mar 2010 16:36:33 +0100
+
+duicontrolpanel (0.7.5) unstable; urgency=low
+
+  * Fixes NB#160780 - Signal connection error in duicontrolpanel
+  * Fixes 161074 - Duicontrolpanel applet translations loaded twice
+  * Fixes: NB#160864 - Unable to access contents within System Settings
+  * Fixes: NB#159646 - Debug messages shall be disabled by default
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Fri, 19 Mar 2010 13:54:26 +0100
+
+duicontrolpanel (0.7.4) unstable; urgency=low
+
+  * most used reload
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue, 16 Mar 2010 17:43:40 +0100
+
+duicontrolpanel (0.7.3) unstable; urgency=low
+
+  * Fixes: NB#156027 DcpAppletIf leaks memory
+
+ -- Viktor Nagy <viktor.nagy@blumsoft.eu>  Fri, 12 Mar 2010 10:55:10 +0100
+
+duicontrolpanel (0.7.2) unstable; urgency=low
+
+  * Fixes NB#159307 - DuiControlpanel page animation is not right
+  * updated ui according to spec changes (category buttons on main page, etc)
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 10 Mar 2010 13:00:27 +0100
+
+duicontrolpanel (0.7.1) unstable; urgency=low
+
+  [ David Kedves ]
+  * Fix for debian/control
+
+  [ Robert Manner ]
+  * Fixes NB#156748: could not define first line value for brief in
+    applet for dcp
+
+  [ Laszlo Pere ]
+  * Fixes NB#159299: Duicontrolpanel does not pop-up on a dbus signal
+  * Fixes NB#149492: Phone network settings view cannot be opened from Status 
+    indicator menu
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Wed, 03 Mar 2010 11:37:25 +0100
+
+duicontrolpanel (0.7.0) unstable; urgency=low
+
+  [ Robert Manner ]
+  * Fixes: NB#154090 Localization of the applet loaded too late
+  * Fixes: NB#154094 Duicontrolpanel has many help menu items
+  * Fixes: NB#138717 System Settings takes too long to launch
+  * Implements pausing the loading on mainpage while user is scrolling
+    (experimental)
+
+  [ Viktor Nagy ]
+  * Fixes: NB#156262 duicontrolpanel's D-Bus service is not installed 
+    with duicontrolpanel but with libduicontrolpanel-dev
+
+  [ Laszlo Pere ]
+  * Fixes: NB#156790 Dcp fully disables an applet when its crashes
+  * Fixes: NB#156882 "Most recently used" text doesn't appear.
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Mon, 15 Feb 2010 11:42:56 +0100
+
+duicontrolpanel (0.6.5) unstable; urgency=low
+
+  [ Laszlo Gal ]
+  * Fixes NB#149661 - Private class members in public headers
+  * Fixes NB#148951 - Back button has missleading behaviour
+  
+ -- Viktor Nagy <viktor.nagy@blumsoft.eu>  Fri, 22 Jan 2010 15:16:57 +0100
+
+duicontrolpanel (0.6.4) unstable; urgency=low
+
+  [ Viktor Nagy ]
+  * Fixes: NB#149663 Class member names are not consistent
+  * Fixes: NB#149659 The identation is not consistent 
+  * Updated category containers
+
+  [ Robert Manner ]
+  * Fixes: NB#150929 The applets should be re-enabled when the
+    controlpanel is re-installed
+  * Implements: support for using applet translations
+
+ -- Viktor Nagy <viktor.nagy@blumsoft.eu>  Thu, 14 Jan 2010 15:52:38 +0100
+
+duicontrolpanel (0.6.3) unstable; urgency=low
+
+  * Fixes: DuiControlPanel crash
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Mon, 11 Jan 2010 13:50:25 +0100
+
+duicontrolpanel (0.6.2) unstable; urgency=low
+
+  * Cleanup, bugfixes, following libdui 0.17 changes 
+
+ -- Viktor Nagy <viktor.nagy@blumsoft.eu>  Thu, 07 Jan 2010 14:40:55 +0100
+
+duicontrolpanel (0.6.1) unstable; urgency=low
+
+  * bump up
+  * Fixes: applet brief does not get the new toggle state
+  * Implements: localization with qtTrid instead of DuiLocale
+  * Implements: detect and prohibit wrong applets
+  * Implements: starting external applications instead of loading a
+    plugin
+  * Implements: inter plugin activation
+
+ -- Manner Robert <robert.manner@blumsoft.eu>  Mon, 14 Dec 2009 16:10:04 +0100
+
+duicontrolpanel (0.6.0) unstable; urgency=low
+
+  * fixes: missing libduicontrolpanel-dev dependency on libdui-dev
+
+ -- Manner Robert <robert.manner@blumsoft.eu>  Fri, 04 Dec 2009 11:37:48 +0100
+
+duicontrolpanel (0.5.10) unstable; urgency=low
+
+  * supports libdui 0.16.0-1
+  * removes deprecated classes: DcpButton2 and descendants, and
+    DcpCommonDialog
+
+ -- Manner Robert <robert.manner@blumsoft.eu>  Thu, 03 Dec 2009 13:45:04 +0100
+
+duicontrolpanel (0.5.9) unstable; urgency=low
+
+  * bumping up: add minimum libdui0 dependency
+
+ -- Manner Robert <robert.manner@blumsoft.eu>  Wed, 02 Dec 2009 14:47:48 +0100
+
+duicontrolpanel (0.5.8) unstable; urgency=low
+
+  * tag 0.5.8
+
+ -- Manner Robert <robert.manner@blumsoft.eu>  Wed, 02 Dec 2009 12:46:34 +0100
+
+duicontrolpanel (0.5.7) unstable; urgency=low
+
+  * bump up
+
+ -- Manner Robert <robert.manner@blumsoft.eu>  Wed, 02 Dec 2009 12:39:39 +0100
+
+duicontrolpanel (0.5.6) unstable; urgency=low
+
+  * new tag
+  * Supports dui 0.16
+  * Implements the ability to write declarative applets
+  * Fixes orientation change regression on main page
+
+ -- Manner Robert <robert.manner@blumsoft.eu>  Thu, 26 Nov 2009 17:32:12 +0100
+
+duicontrolpanel (0.5.5) unstable; urgency=low
+
+  * retag
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Thu, 19 Nov 2009 13:58:20 +0100
+
+duicontrolpanel (0.5.4) unstable; urgency=low
+
+  * tag 0.5.4
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue, 10 Nov 2009 15:02:38 +0100
+
+duicontrolpanel (0.5.3) unstable; urgency=low
+
+  * tag 0.5.3
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Mon, 09 Nov 2009 16:18:57 +0100
+
+duicontrolpanel (0.5.2) unstable; urgency=low
+
+  * re-add check target to projects.pro
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue,  3 Nov 2009 10:14:42 +0100
+
+duicontrolpanel (0.5.1) unstable; urgency=low
+
+  * tag 0.5.1
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Fri, 30 Oct 2009 14:58:25 +0100
+
+duicontrolpanel (0.4.9) unstable; urgency=low
+
+  * tag 0.4.9
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Thu, 29 Oct 2009 17:47:42 +0100
+
+duicontrolpanel (0.4.8) unstable; urgency=low
+
+  * using common css constants
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Wed, 28 Oct 2009 10:04:39 +0100
+
+duicontrolpanel (0.4.7) unstable; urgency=low
+
+  * removing duicontrolpanel-applets metapackage from here
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue, 27 Oct 2009 08:23:56 +0100
+
+duicontrolpanel (0.4.6) unstable; urgency=low
+
+  * New tag
+  * Added: Changing language on the fly
+  * Deprecation: DcpCommonDialog, use DuiDialog instead
+  * Implements: support for applets without page (eg. only dialog)
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Mon, 26 Oct 2009 11:56:57 +0100
+
+duicontrolpanel (0.4.5) unstable; urgency=low
+
+  * tag 0.4.5
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Wed, 21 Oct 2009 16:30:53 +0200
+
+duicontrolpanel (0.4.4) unstable; urgency=low
+
+  * removing datetime applet from here
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue, 20 Oct 2009 15:12:57 +0200
+
+duicontrolpanel (0.4.3) unstable; urgency=low
+
+  * tag 0.4.3
+  * resolves NB#142865: no fake desktop files are installed from now
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Fri, 16 Oct 2009 08:50:08 +0200
+
+duicontrolpanel (0.4.2) unstable; urgency=low
+
+  * new tag
+  * Implements timezone guessing from sim network (untested,
+    experimental)
+  * Fixes bug with duistartup applets were not loaded
+  * Follows dui 0.12 changes in button background styling
+  * Datetime applet is able to change language on the fly
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Thu, 15 Oct 2009 18:01:02 +0200
+
+duicontrolpanel (0.4.1) unstable; urgency=low
+
+  * applet db addFile fix
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Fri,  9 Oct 2009 08:18:02 +0200
+
+duicontrolpanel (0.4.0) unstable; urgency=low
+
+  * tag 0.4.0 - w41 release
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Thu,  8 Oct 2009 15:03:40 +0200
+
+duicontrolpanel (0.3.9) unstable; urgency=low
+
+  * fixed crash bug #141488
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Mon,  5 Oct 2009 15:20:57 +0200
+
+duicontrolpanel (0.3.8) unstable; urgency=low
+
+  * Bugfix release
+  * Fixes bug: if two applets had the same name, only one of them were
+    added
+  * Added matti tests
+  * Replaces the role of displayapplet to serve just as an example
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Wed, 30 Sep 2009 14:59:33 +0200
+
+duicontrolpanel (0.3.7) unstable; urgency=low
+
+  * initial service framework api for controlpanel
+  * fake DatePicker was replaced with the original in datetime applet
+  * following libdui 0.11 changes
+  * fixes disappearing items on main page
+  * fake desktop files for the mainpage to look like in spec
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Wed, 23 Sep 2009 09:39:16 +0200
+
+duicontrolpanel (0.3.6) unstable; urgency=low
+
+  * libcontrolpanel-dev now contains libduicontrolpanel.pri to include
+    for client apps
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue, 15 Sep 2009 11:13:29 +0200
+
+duicontrolpanel (0.3.5) unstable; urgency=low
+
+  * new structure of src
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue,  8 Sep 2009 15:54:05 +0200
+
+duicontrolpanel (0.3.4) unstable; urgency=low
+
+  * dui-like headers in dist/
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Mon, 31 Aug 2009 12:42:37 +0200
+
+duicontrolpanel (0.3.3) unstable; urgency=low
+
+  * Tag for 0.3.3
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue, 25 Aug 2009 16:54:25 +0200
+
+duicontrolpanel (0.3.2) unstable; urgency=low
+
+  * tag 0.3.2
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Fri, 14 Aug 2009 15:05:39 +0200
+
+duicontrolpanel (0.3.1) unstable; urgency=low
+
+  * tag 0.3.1
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue,  4 Aug 2009 17:38:14 +0200
+
+duicontrolpanel (0.3.0) unstable; urgency=low
+
+  * tag 0.3.0
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue,  4 Aug 2009 17:25:51 +0200
+
+duicontrolpanel (0.2.9) unstable; urgency=low
+
+  * tag 0.2.9
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue, 28 Jul 2009 14:35:03 +0200
+
+duicontrolpanel (0.2.8-1) unstable; urgency=low
+
+  * Fixes: applets disappear after second run (Disables desktop entry
+    save)
+  * Simplifications in svg files for faster boot time
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Fri, 24 Jul 2009 11:33:18 +0200
+
+duicontrolpanel (0.2.7) unstable; urgency=low
+
+  * Fixes NB#125325 Phone goes out of memory on launching two
+    applications
+  * Replaced DuiLayout with QGraphicsLayout where possible
+  * Usability and performance improvements on timezone page of
+    DateTimeApplet
+  * Made pages reload themselves instead of destroy and recreate them
+  * Fixes issue with clicking fast on backButton
+  * Fixes segfault when displayapplet loaded
+  * Fixes rotation issues with language applet
+  * Updates to modified design
+  * Temporary clock for datetime applet
+  * Removed explicit dependency on libicu40 from control file
+
+ -- Tobias Koch <ext-tobias.koch@nokia.com>  Thu, 16 Jul 2009 10:58:00 +0300
+
+duicontrolpanel (0.2.6-1) unstable; urgency=low
+
+  * Fixes deprecated libduivaluespace dependency
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Wed,  8 Jul 2009 13:24:29 +0200
+
+duicontrolpanel (0.2.6) unstable; urgency=low
+
+  * Fixes NB#110534, Missing desktop file in Settings
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Wed,  8 Jul 2009 13:24:04 +0200
+
+duicontrolpanel (0.2.5) unstable; urgency=low
+
+  * tag 0.2.5
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Fri, 26 Jun 2009 13:25:42 +0200
+
+duicontrolpanel (0.2.4) unstable; urgency=low
+
+  * tag 0.2.4 for libdui 0.7.5-1
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue, 23 Jun 2009 14:29:26 +0200
+
+duicontrolpanel (0.2.3) unstable; urgency=low
+
+  * tag 0.2.3 for libdui 0.7.5
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue,  9 Jun 2009 16:34:31 +0200
+
+duicontrolpanel (0.2.2) unstable; urgency=low
+
+  * tag 0.2.2
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Wed,  3 Jun 2009 10:37:59 +0200
+
+duicontrolpanel (0.2.1) unstable; urgency=low
+
+  * tag 0.2.1
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue,  2 Jun 2009 13:08:50 +0200
+
+duicontrolpanel (0.2.0) unstable; urgency=low
+
+  * tag 0.2.0
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Fri, 29 May 2009 15:44:27 +0200
+
+duicontrolpanel (0.1.9) unstable; urgency=low
+
+  * tag 0.1.9
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Fri, 15 May 2009 12:01:43 +0200
+
+duicontrolpanel (0.1.8) unstable; urgency=low
+
+  * tag 0.1.8
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Thu,  7 May 2009 12:11:47 +0200
+
+duicontrolpanel (0.1.7) unstable; urgency=low
+
+  * tag 0.1.7
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue, 28 Apr 2009 16:33:40 +0200
+
+duicontrolpanel (0.1.6) unstable; urgency=low
+
+  * tag 0.1.6
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Tue, 28 Apr 2009 16:18:58 +0200
+
+duicontrolpanel (0.1.5) unstable; urgency=low
+
+  * tag 0.1.5
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Wed, 22 Apr 2009 17:05:33 +0200
+
+duicontrolpanel (0.1.4) unstable; urgency=low
+
+  * tag 0.1.4
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Wed, 22 Apr 2009 17:05:28 +0200
+
+duicontrolpanel (0.1.3) unstable; urgency=low
+
+  * tag 0.1.3
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Wed,  8 Apr 2009 14:39:21 +0200
+
+duicontrolpanel (0.1.2) unstable; urgency=low
+
+  * tag 0.1.2
+
+ -- Laszlo Gal <laszlo.gal@blumsoft.eu>  Fri,  3 Apr 2009 13:36:00 +0200
+
+duicontrolpanel (0.1.1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Robert Manner <robert.manner@blumsoft.eu>  Thu, 12 Feb 2009 16:30:11 +0100

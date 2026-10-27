@@ -1,0 +1,75 @@
+Context Cron Architecture Study
+===============================
+
+The Context Framework allows clients a view into the current state of
+the system.  Clients can watch that state and react to it
+appropriately.  Doing this, however, requires a running process
+somewhere.
+
+The Context Cron is a component that can be programmed to watch the
+system on behalf of other components.  Conceptually, the Context Cron
+constantly evaluates a set of expressions, and if the value of a
+expression changes, the actions associated with that expression are
+executed.
+
+Input to the expression can come from various sources:
+
+  - context properties,
+
+  - settings,
+
+  - content queries,
+
+  - and the current time.
+
+Expressions are written in a language that is a simple extension of
+SPARQL.  The extensions are as follows:
+
+  - additional functions that give access to ContextKit properties,
+    GConf settings, and time.
+
+  - a additonal "VALUE" query that just computes the value of an
+    expression.
+
+  - some syntactic sugar might be added to make common functions
+    easier to write.
+
+The Context Cron has its own interpretor for this extended version of
+SPARQL that is designed to allow efficient life queries.  The
+interpreter conceptually walks an evaluation graph for an expression
+and caches the most recently computed values in each node.  When the
+graph is evaluated from the leafs towards the root, evaluation only
+continues when the new value differs from the old.  Some nodes
+corresponding to special functions may have more magical behavior,
+such as only passing on the evaluation once every minute.
+
+[ Initially, this evaluation graph will be contstructed explicitly in
+  C++ and/or maybe Python.  A parser will only be implemented once
+  enough experience has been gathered, if ever.
+]
+
+When ever the result of a expression changes, Context Cron triggers
+the associated actions.  Actions can be:
+
+  - execution of a shell command,
+
+  - sending of a D-Bus message or signal,
+
+  - changing the value of a context property.
+
+The D-Bus message or signal can include the old and/or new value of
+the expression.  Shell commands can read a representation of the
+values from stdin, in a number of formats.
+
+Actions are specified in a ad-hoc syntax, maybe XML.
+
+Queries can be 'armed' or 'unarmed'.  An action only triggers when it
+is armed, and triggering an action unarms it.  You need to explicitly
+arm it again once the action is done, or more generally, once you are
+ready for the next trigger.
+
+Actions that drive a ContextKit property are only armed when someone
+is subscribed to that property, naturally.
+
+Queries can be added to Context Cron by dropping files into a
+well-known location, or via a D-Bus interface.

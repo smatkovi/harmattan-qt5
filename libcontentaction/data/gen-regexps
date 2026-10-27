@@ -1,0 +1,283 @@
+#! /usr/bin/python
+# coding=UTF-8
+
+# This program generates the complicated regular expressions used in
+# highlight1.xml, with the goal to dcoument them clearly and make
+# maintenance easier.
+#
+# Also, this program contains a number of test cases to run against the
+# created regular expressions.
+#
+# Executing this program results in a sed script that will substitute
+# the created regular expressions into whatever templates.
+
+import sys
+import re
+from regextest2 import rx_test, rx_test_setup, rx_run
+
+## Generators
+
+def rx_p (rx):
+    return "(" + rx + ")"
+
+def rx_ci (str):
+    res = ""
+    for c in str:
+        if c.upper() != c:
+            res = res + "[" + c + c.upper() + "]"
+        else:
+            res = res + c
+    return res
+
+def rx_or (*args):
+    return "|".join (map (rx_p, args))
+
+def rx_seq (*args):
+    return "".join (map (rx_p, args))
+
+def rx_repeat (rx, min=0, max=-1):
+    if min == 0 and max == -1:
+        return rx_p (rx) + "*"
+    elif min == 1 and max == -1:
+        return rx_p (rx) + "+"
+    elif min == 0 and max == 1:
+        return rx_p (rx) + "?"
+    else:
+        return rx_p (rx) + "{%d,%d}" % (min, max)
+
+def rx_opt (rx):
+    return rx_repeat (rx, 0, 1)
+
+def rx_output (rx, name):
+    print "s/@%s@/%s/g\n" % (name,
+                             rx.replace('\\', '\\\\').replace('/', '\\/').replace('"', '\&quot;').replace('&', '\&amp;'))
+
+## Phone numbers
+
+ph_url_prefix = rx_or (rx_ci ("callto:"),
+                       rx_ci ("sms:"),
+                       rx_ci ("tel:"))
+
+ph_plus_prefix = "[+#*] ?"
+
+ph_paren_group = "\(\d+\) ?"
+
+ph_digit_plus_suffix = "\d[-pwxPWX#* ]*"
+
+ph_digits_plus_dot = "\d\d\d+[.]"
+
+ph_end_digit = "[0-9-#*]"
+
+phonenumber = rx_seq (rx_opt (ph_url_prefix),
+                      rx_opt (ph_plus_prefix),
+                      rx_repeat (rx_or (ph_digits_plus_dot,
+                                        ph_paren_group,
+                                        ph_digit_plus_suffix),
+                                 2, 19),
+                      ph_end_digit,
+                      "(?!\d)")
+
+rx_output (phonenumber, "PHONENUMBER");
+
+rx_test_setup (phonenumber, "caller")
+
+rx_test ("call |12345| now")
+rx_test ("call |12345| or |23456| now")
+rx_test ("call |+44 433 2236| now")
+rx_test ("call |112| now")
+rx_test ("call 12 now")
+
+rx_test ("call |(303)499-7111| now")
+rx_test ("call |303-499-7111| now")
+rx_test ("call |1(303)499-7111| now")
+rx_test ("call |303.499.7111| now")
+rx_test ("call |3034997111| now")
+rx_test ("call |+48 123.12-3 123| now")
+rx_test ("call |+481234#12345| now")
+rx_test ("call |+358 (9) 123 456| now")
+
+rx_test ("call |callto:100000| now")
+rx_test ("call |tel:100000| now")
+rx_test ("call |sms:100000| now")
+
+rx_test ("call |CALLTO:100000| now")
+rx_test ("call |CallTo:100000| now")
+rx_test ("call |CaLlTo:100000| now")
+
+rx_test ("call |callto:+100 000 001| now")
+rx_test ("call |tel:+100 (000) 001| now")
+
+rx_test ("call |(555) 123456| now")
+rx_test ("call (|555|) now")
+rx_test ("call |(555) 22| now")
+
+rx_test ("call |555.12346| now")
+rx_test ("call |555-12346| now")
+rx_test ("let's meet on 12.08 on 13:00. this year")
+
+rx_test ("|+358 (50) 12345675|")
+rx_test ("call |+358 (50) 12345675| please")
+rx_test ("call |+358 (50) 12345675| whenever")
+
+rx_test ("sometextbefore|333222111444|sometextafter")
+rx_test ("+(((((")
+rx_test ("|+358||+7777|")
+
+# We still catch the last 20 digits of a this number.
+rx_test ("too long phone number: 111112222233333444445555566666|77777888889999900000|")
+
+rx_test ("xxx www.foo.com")
+
+# Http urls
+
+hu_cred_char       = "[a-zA-Z0-9_]"
+hu_dns_char        = "[a-zA-Z0-9_\\-]"
+hu_suffix_char     = "[a-zA-Z0-9_/?%:;@&=+$,\\-.!~*'#|]"
+hu_suffix_end_char = "[a-zA-Z0-9_/?%:;@&=+$\\-!~*'#|]"
+
+hu_schema_prefix = rx_or (rx_ci ("https?://"),
+                          rx_ci ("www\\."))
+
+hu_creds = rx_seq (rx_repeat (hu_cred_char, 1),
+                   rx_opt (rx_seq (":", rx_repeat (hu_cred_char, 1))),
+                   "@")
+
+hu_dns_part = rx_repeat (hu_dns_char, 1)
+
+hu_hostname = rx_seq (rx_repeat (rx_seq (hu_dns_part,
+                                         "\\."),
+                                 1),
+                      hu_dns_part)
+
+hu_port_suffix = ":\\d+"
+
+hu_suffix = rx_repeat (rx_or (rx_seq (rx_repeat (hu_suffix_char),
+                                      hu_suffix_end_char),
+                              rx_seq ("\\(",
+                                      rx_repeat (hu_suffix_char),
+                                      "\\)")))
+
+httpurl = rx_seq (hu_schema_prefix,
+                  rx_opt (hu_creds),
+                  hu_hostname,
+                  rx_opt (hu_port_suffix),
+                  rx_opt ("/"),
+                  rx_opt (hu_suffix))
+
+rx_output (httpurl, "HTTPURL")
+
+rx_test_setup (httpurl, "browser")
+
+# Regular URLs
+
+rx_test ("|http://us.m.yahoo.com|")
+rx_test ("|http://www.google.com/m|")
+rx_test ("|www.google.com/m|")
+rx_test ("<|http://us.m.yahoo.com|>")
+rx_test ("|http://maps.google.com/maps?f=d&source=s_d&saddr=Nieznana+droga&daddr=krak%C3%B3w&hl&geocode=Fa5h9wIdlq87Aq%3BFQrt-wIdFFYwASnRGE41wEQWRzG_ikd2tbZrtA&mra=ls&sll=49.915862,20.323334&sspn=0.505808,1.234589&ie=UTF8&t=h&z=10|")
+rx_test ("|http://host-with-dash.com/path?%:@&=+$,-!~*'with(special)chars|")
+rx_test ("|http://www.foo.com/page#fragment|")
+rx_test ("|https://www.foo.com/page#fragment|")
+rx_test ("feed://browsefeed.com/page#fragment")
+rx_test ("ftp://browseftp.com/page#fragment")
+
+# Skipping dots and parentheses next to web addresses:
+
+rx_test ("xxx (see also: |http://mydomain00.com|) ending ) should not be included")
+rx_test ("xxx (see also: |http://mydomain01.com/|) ending ) should not be included")
+rx_test ("xxx (see also: |http://mydomain02.com/file|) ending ) should not be included")
+rx_test ("xxx (see also: |http://mydomain03.com/file/|) ending ) should not be included")
+rx_test ("xxx (see also: |http://mydomain04.com|). note, dot should not be included")
+rx_test ("xxx (see also: |http://mydomain05.com/|). ending ) should not be included")
+rx_test ("xxx (see also: |http://mydomain06.com/file|). ending ) should not be included")
+rx_test ("xxx (see also: |http://mydomain07.com/file/|). xxx")
+
+rx_test ("xxx see also: |http://mydomain08.com|. dot should not be included")
+rx_test ("xxx see also: |http://mydomain09.com/|. dot should not be included")
+rx_test ("xxx see also: |http://mydomain10.com/file|. dot should not be included")
+rx_test ("xxx see also: |http://mydomain11.com/file/|. dot should not be included")
+
+rx_test ("xxx see also: |http://mydomain08.com|, comma should not be included")
+rx_test ("xxx see also: |http://mydomain09.com/|, comma should not be included")
+rx_test ("xxx see also: |http://mydomain10.com/file|, comma should not be included")
+rx_test ("xxx see also: |http://mydomain11.com/file/|, comma should not be included")
+
+rx_test ("xxxx See also: |http://paren.com/something_(one_%26_two)| parens included in the address...")
+rx_test ("xxxx See also: |http://paren.com/something_(three_%26_four)|. ... but dot is not")
+rx_test ("xxxx See also: |http://paren.com/something_(three_%26_four)|, ... but comma is not")
+
+rx_test ("xxxx (See also: |http://paren.com/something_(five_%26_six)|) this might be tricky")
+rx_test ("testing also |www.foo.com/(bar)baz(bar)bar|.")
+rx_test ("testing also |www.foo.com/(bar)baz(bar)bar|, period.")
+
+# And other browsable urls:
+
+rx_test ("feed://browsefeed.com")
+rx_test ("feed:browsefeed.com")
+rx_test ("ftp://browseftp.com")
+
+# Suspicious URL
+rx_test ("http://|http://double.http.com|")
+
+# Previous bugs
+rx_test ("this is an url |www.myurl.com/foo/bar| and e-mail first@home.com")
+rx_test ("1112223338;email@domain.org;4445556668;email2@domain.org")
+rx_test ("|Http://www.capital.com|")
+rx_test ("|hTTp://www.capital.com|")
+rx_test ("|Www.capitalwww.com|")
+
+rx_test ("xxx |http://ct.nokia.com?761435127&FK20R| the slash after the hostname is optional.")
+rx_test ("xxx ~http://maps.ovi.com/#|50.060185|19.9328789|11|0|0|normal.day~ and bars are ok, too.", "~")
+
+# Foreign letters are not part of a URL.
+rx_test ("xxx |www.10010.com|四川专区特惠活动进行中 xxx")
+
+# OVI Music URL
+
+ovimusicurl = rx_seq (rx_opt (rx_ci ("https?://")),
+                      "music\\.",
+                      rx_or (rx_seq (rx_ci ("ovi\\."),
+                                     rx_or (rx_ci ("mobi"), rx_ci ("com")),
+                                     rx_opt (rx_ci ("\\.cn"))),
+                             rx_seq (rx_opt (rx_ci ("mobi\\.")), rx_ci ("ovi\\.com\\.cn"))),
+                      rx_opt ("/"),
+                      rx_opt (hu_suffix))
+
+rx_output (ovimusicurl, "OVIMUSICURL")
+
+rx_test_setup (ovimusicurl, "ovimusic")
+
+rx_test ("xxx |http://music.ovi.com| xxx")
+rx_test ("xxx |http://music.ovi.mobi| xxx")
+rx_test ("xxx |http://music.ovi.com.cn| xxx")
+rx_test ("xxx |http://music.ovi.com/cn/zh/pc| xxx")
+rx_test ("xxx |http://music.ovi.mobi/fi/fi/pc| xxx")
+
+rx_test ("xxx (see also: |http://music.ovi.com|) ending ) should not be included")
+rx_test ("xxx (see also: |http://music.ovi.com/|) ending ) should not be included")
+rx_test ("xxx (see also: |http://music.ovi.com/file|) ending ) should not be included")
+rx_test ("xxx (see also: |http://music.ovi.com/file/|) ending ) should not be included")
+rx_test ("xxx (see also: |http://music.ovi.com|). note, dot should not be included")
+rx_test ("xxx (see also: |http://music.ovi.com/|). ending ) should not be included")
+rx_test ("xxx (see also: |http://music.ovi.com/file|). ending ) should not be included")
+rx_test ("xxx (see also: |http://music.ovi.com/file/|). xxx")
+
+rx_test ("xxx see also: |http://music.ovi.com|. dot should not be included")
+rx_test ("xxx see also: |http://music.ovi.com/|. dot should not be included")
+rx_test ("xxx see also: |http://music.ovi.com/file|. dot should not be included")
+rx_test ("xxx see also: |http://music.ovi.com/file/|. dot should not be included")
+
+rx_test ("xxx see also: |http://music.ovi.com|, comma should not be included")
+rx_test ("xxx see also: |http://music.ovi.com/|, comma should not be included")
+rx_test ("xxx see also: |http://music.ovi.com/file|, comma should not be included")
+rx_test ("xxx see also: |http://music.ovi.com/file/|, comma should not be included")
+
+rx_test ("xxxx See also: |http://music.ovi.com/something_(one_%26_two)| parenss included in the address...")
+rx_test ("xxxx See also: |http://music.ovi.com/something_(three_%26_four)|. ... but dot is not")
+rx_test ("xxxx See also: |http://music.ovi.com/something_(three_%26_four)|, ... but comma is not")
+
+rx_test ("xxxx (See also: |http://music.ovi.com/something_(five_%26_six)|) this might be tricky")
+rx_test ("testing also |music.ovi.com/(bar)baz(bar)bar|.")
+rx_test ("testing also |music.ovi.com/(bar)baz(bar)bar|, period.")
+
+rx_run ()

@@ -1,0 +1,28 @@
+/* MProgressIndicatorStyle : MWidgetStyle */
+MProgressIndicatorStyle {
+    /* These are deprecated and don't have any effect anymore. */
+    active-element-count: 0;
+    element-distance: 0;
+
+    speed: 20;
+
+    minimum-size: $SIZE_BUTTON 10px;
+    preferred-size: -1 10px;
+    maximum-size: 100% 10px;
+}
+
+MProgressIndicatorStyle[bar] {
+    progress-bar-background: "meegotouch-progressindicator-bar-background" 4px 4px 4px 4px;
+    progress-bar-mask: "meegotouch-progressindicator-bar-mask" 4px 4px 4px 4px;
+
+    unknown-bar-texture: "meegotouch-progressindicator-bar-unknown-texture";
+    unknown-bar-texture-tiled: true;
+    unknown-bar-size: 100% 100%;
+
+    known-bar-texture: "meegotouch-progressindicator-bar-known-texture";
+    known-bar-texture-tiled: true;
+    element-size: 10px;
+
+    speed: 20;
+    refresh-rate: 5;
+}

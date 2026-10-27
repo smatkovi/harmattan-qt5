@@ -1,0 +1,53 @@
+Installation instructions for the ContextKit
+--------------------------------------------
+
+A ContextKit release can usually be compiled with the following
+popular recipe:
+
+    $ ./configure
+    $ make
+    $ make install
+
+If you want to modify the sources or if you have checked out the
+sources from a development branch, please read the following little
+survival guide:
+
+In general, recompiling ContextKit after touching a source file might
+require some tools that are not needed when just compiling a freshly
+unpacked release.  Those tools might or might not be available (yet)
+in your distribution of choice.
+
+Specifically, many tools are not available in Maemo.  Thus, the
+recommended way to work on the sources is to hack outside of Maemo,
+make a release there, and compile that release inside Maemo.
+
+The following procedure should work quite nicely.
+
+Bootstrap the buildsystem after checking out a source tree from Git.
+Do this outside of Maemo, in Debian or Ubuntu.
+
+   $ ./autogen.sh
+
+This will check for all the maintainer tools that are needed.  Install
+them until ./autogen.sh is happy.
+
+   $ ./configure --enable-gtk-doc
+   $ make
+   $ make dist
+
+These steps build the source tree and get it into a shape where a
+release can be made.
+
+Now switch to Maemo and chdir back into the same source tree.
+
+   $ make distclean
+   $ ./configure --prefix /usr
+   $ make
+   $ make install
+
+This will recompile the target specific parts but will not regenerate
+files that are normally in a release tarball.
+
+Of course, you can stay inside Maemo until you make a change that
+causes make to run some unavailable tool.  At that point, switch back
+to outside of Maemo and run "make dist" there.

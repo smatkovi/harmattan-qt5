@@ -1,0 +1,15 @@
+Source: meegotouchtheme
+Section: x11
+Priority: extra
+Maintainer: Adrian Yanes <ext-adrian.yanes@nokia.com>
+Build-Depends: debhelper (>= 5), libqt4-dev
+Standards-Version: 3.7.2
+
+Package: meegotouchtheme
+Architecture: all
+Depends: meegotouchtheme-graphics
+Conflicts: fmbe-pulse-data
+Replaces: fmbe-pulse-data, duitheme
+Description: Themes required by any MeeGo Touch library based application.
+ Contains the base theme files and two alternative themes with different look.
+

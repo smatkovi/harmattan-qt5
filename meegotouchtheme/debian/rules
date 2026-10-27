@@ -1,0 +1,63 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+
+DEBDIR = ..
+
+version=0.1
+major=0
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	qmake 
+	touch configure-stamp
+
+
+build: build-stamp
+build-stamp: configure-stamp 
+	dh_testdir
+	make  
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+
+	rm -f build-stamp configure-stamp
+
+	make  $(PARALLEL_MAKEFLAGS) distclean || true
+	dh_clean 
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs
+
+	INSTALL_ROOT=$(CURDIR)/debian/tmp make install
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+binary-arch: build install
+
+# Build architecture-dependent files here.
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_install --sourcedir=debian/tmp -v 
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb --destdir=$(DEBDIR)
+
+# Build architecture-dependent files here.
+binary-arch: build install
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure

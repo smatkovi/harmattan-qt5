@@ -1,0 +1,12 @@
+Parent=MainPage
+
+Name=Wallpaper
+Name-logical-id=qtn_sett_main_wallpaper
+
+Icon=icon-m-settings-wallpaper
+
+
+AutoStartApplet=1
+
+Order=40
+

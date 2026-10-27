@@ -1,0 +1,130 @@
+/*! \page categories Applet categories
+
+\section description Description
+
+Applets are organized in a menu hierarchy, which is formed from applet
+categories. Applet categories are stored in ini format files under
+
+\code
+    /usr/share/duicontrolpanel/categories/*.cpcategory
+\endcode
+
+\section catapplets Categorizing applets
+
+\subsection appletCat Specifying a category for an applet
+Each applet specifies in which category it should appear. For this an applet is
+using the "Category" key in its .desktop file.
+
+A category can be referred by its name or the logical id of its name. To get all
+such ids you can use:
+\code
+    grep '^Name' /usr/share/duicontrolpanel/categories/*
+\endcode
+
+These are the categories shipping with controlpanel:
+
+\htmlinclude defaultcategories.html
+
+\subsection wrong Wrong category identifiers
+Applets specifying no or wrong category identifiers as the category they belong
+to, would just disappear.
+To avoid this, there can be categories (currently the Applications category)
+which is flagged to display all applets. To do so, the category should also have
+the special alias "Uncategorized".
+
+\section categoryformat Category description format
+
+\par Parent
+The parent of the category. The category will be displayed as a submenu of
+its parent.
+
+\par Name
+The name of the category. The category can be identified by its name, and
+additionally also suits for the engineering english translation (when no
+translation is available).
+
+\par Name-logical-id
+The translation id of the category's name. It can also be used to identify
+the category.
+
+\par Value
+A second line of text that is shown on the launch button representing the
+category. (engineering translation)
+
+\par Value-logical-id
+The translation id of Value.
+
+\par Icon
+The icon of the launch button representing the category.
+
+\par Aliases
+Other names for identifying the category. Its goal is to provide compatibility
+in case the Name changes. If "Uncategorized" appears as an alias here, the
+category will also contain applets with no / wrong category identifiers.
+
+\par Translation-catalogs
+The list of translation catalogs which are needed for the title/subtitle
+of the category.
+
+\par Order
+A number which will determine the position of the launch button in the
+category list. Lower numbers will be on upper positions (closer to top),
+higher numbers will be at the bottom.
+
+\par ComponentOrder
+The category both contains applets and other categories.
+This key defines the sequence of those in the
+list which represents the category content. If it has the value
+"AppletsFirst", the list will contain the applets above the categories.
+If it contains any other value ("CategoriesFirst", the default), the
+categories will be above the applets.
+
+\par AppletSort
+Defines the way the applets in the category are sorted.
+Its value can be "SortByTitle" or "SortByOrder" (default). First one means that
+the applets will be sorted by their translated title, second is that the
+applets themselves defines their sequence through the "Order" key in their
+.desktop file.
+
+\par AutoStartApplet
+This key can override applet autostarting.
+If it has the value "1", autostart is on, in which case the applet list will not
+be shown for the user if the category has only 1 applet, but instead, the applet
+will be opened directly. Default value is "0", by default autostarting is
+disabled.
+
+\par HelpId
+Its value can define a help id for the category. If it is present, a help button
+will appear next to the title of the page, and if the user clicks on that, the
+specified help content will be opened in the current userguide application.
+
+\par TitleStyle
+Its value can override the style name for the title in case the default is not
+acceptable.
+
+\par MainApplets
+The main applets are the first applets of a category, visually
+separated from the others. This key can contain a list of their names separated
+by commas. Default is no main applets.
+
+
+Example:
+\code
+Parent=MainPage
+
+Name=Applications
+Name-logical-id=qtn_sett_main_applications
+
+Value="Installations, Application settings"
+Value-logical-id=qtn_sett_main_applictions_label2
+
+Icon=icon-m-settings-applications
+
+Aliases=Uncategorized
+Translation-catalogs=
+
+Order=30
+\endcode
+
+*/
+

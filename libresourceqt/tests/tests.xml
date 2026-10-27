@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<testdefinition version="0.1">
+  <suite name="libresourceqt-tests" domain="Multimedia Middleware">
+    <set name="libresourceqt-tests" feature="Resource policy">
+
+      <case name="test-init-and-connect" type="Functional" level="Component" subfeature="libresource Qt API" description="Unit tests for libresourceqt" timeout="15">
+        <step expected_result="0">/usr/lib/libresourceqt-tests/test-init-and-connect</step>
+      </case>
+
+      <case name="test-resource" type="Functional" level="Component" subfeature="libresource Qt API" description="Unit tests for libresourceqt" timeout="15">
+        <step expected_result="0">/usr/lib/libresourceqt-tests/test-resource</step>
+      </case>
+
+      <case name="test-audio-resource" type="Functional" level="Component" subfeature="libresource Qt API" description="Unit tests for libresourceqt" timeout="15">
+        <step expected_result="0">/usr/lib/libresourceqt-tests/test-audio-resource</step>
+      </case>
+
+      <case name="test-resource-set" type="Functional" level="Component" subfeature="libresource Qt API" description="Unit tests for libresourceqt" timeout="15">
+        <step expected_result="0">/usr/lib/libresourceqt-tests/test-resource-set</step>
+      </case>
+
+      <case name="test-acquire" type="Functional" level="Component" subfeature="libresource Qt API" description="Unit tests for libresourceqt" timeout="15">
+        <step expected_result="0">/usr/lib/libresourceqt-tests/test-acquire</step>
+      </case>
+
+      <case name="test-update" type="Functional" level="Component" subfeature="libresource Qt API" description="Unit tests for libresourceqt" timeout="15">
+        <step expected_result="0">/usr/lib/libresourceqt-tests/test-update</step>
+      </case>
+
+      <case name="test-auto-release" type="Functional" level="Component" subfeature="libresource Qt API" description="Unit tests for libresourceqt" timeout="15">
+        <step expected_result="0">/usr/lib/libresourceqt-tests/test-auto-release</step>
+      </case>
+
+      <case name="test-video-resource" type="Functional" level="Component" subfeature="libresource Qt API" description="Unit tests for libresourceqt" timeout="15">
+        <step expected_result="0">/usr/lib/libresourceqt-tests/test-video-resource</step>
+      </case>
+
+      <case name="test-always-reply" type="Functional" level="Component" subfeature="libresource Qt API" description="Unit tests for libresourceqt" timeout="15">
+        <step expected_result="0">/usr/lib/libresourceqt-tests/test-always-reply</step>
+      </case>
+
+      <case name="test-released-by-manager" type="Functional" level="Component" subfeature="libresource Qt API" description="Unit tests for libresourceqt" timeout="15">
+        <step expected_result="0">/usr/lib/libresourceqt-tests/test-released-by-manager</step>
+      </case>
+
+      <case name="test-looping" type="Functional" level="Component" subfeature="libresource Qt API" description="Unit tests for libresourceqt" timeout="15">
+        <step expected_result="0">/usr/lib/libresourceqt-tests/test-looping</step>
+      </case>
+
+      <environments>
+        <scratchbox>false</scratchbox>
+        <hardware>true</hardware>
+      </environments>
+
+    </set>
+  </suite>
+
+  <suite name="libdbus-qeventloop-tests" domain="Multimedia Middleware">
+    <set name="libdbus-qeventloop-tests" feature="Resource policy">
+
+      <case name="DBusQEventLoop functional test" type="Functional" level="Component" subfeature="libresource Qt API" description="Functional tests for libdbus-qeventloop" timeout="25">
+        <step expected_result="0">/usr/lib/libresourceqt-tests/test-dbus-qeventloop-runner.sh</step>
+      </case>
+
+      <environments>
+        <scratchbox>false</scratchbox>
+        <hardware>true</hardware>
+      </environments>
+
+    </set>
+  </suite>
+</testdefinition>

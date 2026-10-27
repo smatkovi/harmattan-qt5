@@ -1,0 +1,26 @@
+@import "notificationarea.css";
+@import "statusarea.css";
+@import "statusindicatormenu.css";
+@import "screenlock.css";
+@import "shutdownscreen.css";
+
+MWidgetSlideAnimationStyle#In {
+    delay: 1;
+}
+
+MWindowStyle {
+    x11-startup-pixmap: ;
+    startup-fill-color: black;
+}
+
+#CommonTextFrameInverted {
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: $MARGIN_LARGE;
+    padding-bottom: $MARGIN_LARGE;
+}                     
+                                  
+#CommonSmallMainIcon {            
+    margin-top: 0;                
+    margin-bottom: 0;             
+}

@@ -1,0 +1,3 @@
+usr/include/resource/qt4/policy/*resource*.h
+usr/lib/libresourceqt*.so
+usr/lib/pkgconfig/libresourceqt1.pc

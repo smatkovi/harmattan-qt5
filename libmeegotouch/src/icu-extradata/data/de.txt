@@ -1,0 +1,10 @@
+de{
+    calendar{
+        gregorian{
+             AmPmMarkers{
+                 "AM",
+                 "PM",
+             }
+        }
+    }
+}

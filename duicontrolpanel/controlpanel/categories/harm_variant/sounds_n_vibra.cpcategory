@@ -1,0 +1,12 @@
+Parent=MainPage
+
+Name="Sounds & Vibra"
+Name-logical-id=qtn_sett_main_sounds
+
+Icon=icon-m-settings-feedback
+
+
+AutoStartApplet=1
+
+Order=30
+

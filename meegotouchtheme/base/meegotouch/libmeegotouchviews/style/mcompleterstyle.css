@@ -1,0 +1,85 @@
+@const COMPLETER_HEIGHT: 84px;
+@const COMPLETERBUTTONHEIGHT: $COMPLETER_HEIGHT;
+@const COMPLETERBUTTON_CORNER_MARGINS: 41px 25px 41px 41px;
+
+/* MCompleterStyle : MSceneWindowStyle */
+MCompleterStyle {
+    background-image: meegotouch-completer-background 16px 16px 16px 16px;
+    highlight-color: $COLOR_INVERTED_FOREGROUND;
+    highlight-decoration: "<b>%1</b>";
+    y-position-offset: 8;
+
+    margin-left: $MARGIN_MEDIUM;
+    margin-top: $INDENT_DEFAULT;
+    margin-right: $MARGIN_MEDIUM;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-top: 0;
+    padding-right: $INDENT_DEFAULT;
+    padding-bottom: 0;
+}
+
+MCompleterStyle.Portrait {
+    minimum-size: 468 $COMPLETER_HEIGHT;
+    preferred-size: 468 $COMPLETER_HEIGHT;
+    maximum-size: 468 $COMPLETER_HEIGHT;
+}
+
+
+MCompleterStyle.Landscape {
+    minimum-size: 441 $COMPLETER_HEIGHT;
+    preferred-size: 441 $COMPLETER_HEIGHT;
+    maximum-size: 441 $COMPLETER_HEIGHT;
+}
+
+
+#MCompleterTotalButton {
+    font: $FONT_FAMILY normal 2.0mm ;
+    text-color: $COLOR_INVERTED_FOREGROUND;
+    vertical-text-align: vcenter;
+    horizontal-text-align: hcenter;
+    padding-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 1mm;
+    background-image: meegotouch-completer-button $COMPLETERBUTTON_CORNER_MARGINS;
+
+    text-margin-left: 2.8mm;
+    text-margin-top: 0;
+    text-margin-right: $MARGIN_DOUBLE;
+    text-margin-bottom: 0;
+
+    minimum-size: 68 $COMPLETERBUTTONHEIGHT;
+    maximum-size: 76 $COMPLETERBUTTONHEIGHT;
+    preferred-size: -1 $COMPLETERBUTTONHEIGHT;
+}
+
+#MCompleterTotalButton:pressed {
+    background-image: meegotouch-completer-button-pressed $COMPLETERBUTTON_CORNER_MARGINS;
+}
+
+#MCompleterCandidatesLabel {
+    font: $FONT_FAMILY normal 2.6mm ;
+    color: $COLOR_SECONDARY_FOREGROUND;
+    margin-left: $MARGIN_XXLARGE;
+    margin-top: 0mm;
+    margin-right: 0;
+    margin-bottom: 1mm;
+
+    padding-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+
+    minimum-size: -1 $COMPLETER_HEIGHT;
+    preferred-size: -1 $COMPLETER_HEIGHT;
+    maximum-size: -1 $COMPLETER_HEIGHT;
+}
+
+MCompleterStyle:pressed {
+    background-image: meegotouch-completer-background-pressed $CORNER_MARGINS;
+}

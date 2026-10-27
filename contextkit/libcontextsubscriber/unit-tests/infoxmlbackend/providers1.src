@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<provider bus="session" service="org.freedesktop.ContextKit.contextd1">
+  <key name="Battery.ChargePercentage"></key>
+  <key name="Battery.LowBattery">
+    <type>TRUTH</type>
+    <doc>
+        This is true when battery is low
+    </doc>
+  </key>
+  <key name="Key.With.Attribute" type="TRUTH"/>
+  <key name="Key.With.bool" type="bool"/>
+  <key name="Key.With.integer" type="INT"/>
+  <key name="Key.With.string" type="string"/>
+  <key name="Key.With.double" type="double"/>
+  <key name="Key.With.complex">
+    <type>
+        <double min="0" max="10"/>
+    </type>
+  </key>
+  <key name="Key.Deprecated" type="string">
+    <deprecated/>
+  </key>
+</provider>

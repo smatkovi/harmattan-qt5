@@ -1,0 +1,169 @@
+Source: contextkit
+Section: misc
+Priority: optional
+Maintainer: James Thomas <james.thomas@codethink.co.uk>
+Build-Depends: debhelper (>= 5),
+               automake (>= 1:1.11),
+               autoconf (>= 2.63),
+               python,
+               python-central,
+               libqt4-dev,
+               libcdb-dev,
+               libglib2.0-dev (>= 2.12.0),
+               libdbus-1-dev,
+               libqjson-dev,
+               xsltproc (>= 1.1.19-1~),
+               doxygen (>= 1.5.9),
+               pkg-config,
+               libtool (>= 2.2.6),
+               grep (>= 2.5.3),
+               asciidoc (>= 8.2.7),
+               libxml2-utils (>= 2.6),
+               libxml-dom-perl
+XS-Python-Version: all
+Standards-Version: 3.8.0
+
+Package: contextkit-doc
+Section: doc
+Architecture: all
+Recommends: libcontextsubscriber-doc, libcontextprovider-doc
+Description: A framework for collecting contextual information
+ ContextKit is a system for providing real-time context awareness to
+ applications.
+ .
+ This package contains the documentation.
+
+Package: libcontextprovider0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libduivaluespace0 (<< 0.9)
+Description: Helper library for providers of context properties
+ The libcontextprovider library implements the provider side of the
+ org.freedesktop.ContextKit D-Bus interface.
+
+Package: libcontextprovider0-dbg
+Priority: extra
+Architecture: any
+Depends: libcontextprovider0 (= ${binary:Version})
+Description: Helper library for providers of context properties
+ The libcontextprovider library implements the provider side of the
+ org.freedesktop.ContextKit D-Bus interface.
+ .
+ This package contains the debug symbols.
+
+Package: libcontextprovider-dev
+Section: libdevel
+Architecture: any
+Depends: libcontextprovider0 (= ${binary:Version}), libdbus-1-dev, libqt4-dev
+Description: Helper library for providers of context properties
+ The libcontextprovider library implements the provider side of the
+ org.freedesktop.ContextKit D-Bus interface.
+ .
+ This package contains the development files.
+
+Package: libcontextprovider-doc
+Section: doc
+Architecture: all
+Description: Helper library for providers of context properties
+ The libcontextprovider library implements the provider side of the
+ org.freedesktop.ContextKit D-Bus interface.
+ .
+ This package contains the documentation.
+
+Package: libcontextprovider-tests
+Section: devel
+Architecture: any
+Depends: libcontextprovider0, contextkit-utils, python-contextkit, ${shlibs:Depends}, python2.5
+XB-Maemo-CI-Packages: libcontextprovider0
+XB-Maemo-CI-Stage: staging, acceptance
+Description: libcontextprovider automated customer tests
+ The libcontextprovider library implements the provider side of the
+ org.freedesktop.ContextKit D-Bus interface.
+ .
+ This package contains an automated customer testsuite of the
+ libcontextprovider library.
+
+Package: python-contextkit
+Section: python
+Architecture: any
+Provides: ${python:Provides}
+Depends: ${python:Depends}, python-gobject, libcontextprovider0
+XB-Python-Version: ${python:Versions}
+Description: Python bindings for ContextKit APIs
+ This package contains Python bindings for the libcontextprovider
+ C interface, which helps you writing providers in Python.
+ .
+ In the future it will contain the Python bindings for
+ libcontextsubscriber too, but it is not ready yet.
+ .
+ If you are interested in some quick test tools for the ContextKit,
+ please look into the package named contextkit-utils.
+
+Package: contextkit-utils
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Command line utilities for ContextKit
+ This package contains the context-provide and context-listen
+ tools. You can use context-provide to quickly provide context
+ properties from the command line, while with context-listen you can
+ watch properties for changes.
+
+Package: libcontextsubscriber0
+Architecture: any
+Conflicts: libcontextprovider0 (<< 0.1.9)
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Helper library for subscribers of context properties
+ The libcontextsubscriber library implements the subscriber side of the
+ org.freedesktop.ContextKit D-Bus interface.
+
+Package: libcontextsubscriber0-dbg
+Priority: extra
+Architecture: any
+Depends: libcontextsubscriber0 (= ${binary:Version})
+Description: Helper library for subscribers of context properties
+ The libcontextsubscriber library implements the subscribers side of the
+ org.freedesktop.ContextKit D-Bus interface.
+ .
+ This package contains the debug symbols.
+
+Package: libcontextsubscriber-dev
+Section: libdevel
+Suggests: libqjson-dev
+Architecture: any
+Depends: libcontextsubscriber0 (= ${binary:Version}), libqt4-dev
+Description: Helper library for subscribers of context properties
+ The libcontextsubscriber library implements the subscriber side of the
+ org.freedesktop.ContextKit D-Bus interface.
+ .
+ This package contains the development files.
+
+Package: libcontextsubscriber-doc
+Section: doc
+Architecture: all
+Description: Helper library for subscribers of context properties
+ The libcontextsubscriber library implements the subscriber side of the
+ org.freedesktop.ContextKit D-Bus interface.
+ .
+ This package contains the documentation.
+
+Package: libcontextsubscriber-tests
+Section: devel
+Architecture: any
+Depends: libcontextprovider0, libcontextsubscriber0, contextkit-utils, python-contextkit, ${shlibs:Depends}, python2.5, tinycdb
+XB-Maemo-CI-Packages: libcontextsubscriber0, libcontextprovider0
+XB-Maemo-CI-Stage: staging, acceptance
+Description: libcontextsubscriber automated customer tests
+ The libcontextsubscriber library implements the subscriber side of the
+ org.freedesktop.ContextKit D-Bus interface.
+ .
+ This package contains an automated customer testsuite of the
+ libcontextsubscriber library.
+
+Package: propertymonitor-tests
+Section: devel
+Architecture: any
+Depends: contextkit-utils, python2.5, python-contextkit
+XB-Maemo-CI-Stage: staging, validation
+Description: Property monitor
+ This package contains an automated test suite for monitoring which Context FW properties are provided.

@@ -1,0 +1,16 @@
+usr/lib/duicontrolpanel/applets/libdcpskeletonapplet.so
+usr/lib/duicontrolpanel/applets/libdcpskelbuttonapplet.so
+usr/lib/duicontrolpanel/applets/libdcpcomboboxapplet.so
+usr/lib/duicontrolpanel/applets/libdcpskelsliderapplet.so
+usr/lib/duicontrolpanel/applets/libdcpmultipageapplet.so
+usr/lib/duicontrolpanel/applets/libdcpsheetapplet.so
+usr/lib/duicontrolpanel/applets/libdcptoggleexampleapplet.so
+usr/lib/duicontrolpanel/skeleton.desktop
+usr/lib/duicontrolpanel/skelslider.desktop
+usr/lib/duicontrolpanel/skelbutton.desktop
+usr/lib/duicontrolpanel/*example*.desktop
+usr/share/duicontrolpanel/uidescriptions/example*.xml
+usr/share/duicontrolpanel/qml-exampl*
+usr/lib/duicontrolpanel/externalapp.desktop
+usr/share/themes/base/meegotouch/libdcpskeletonapplet/style/libdcpskeletonapplet.css
+usr/share/duicontrolpanel/categories/examples/*cpcategory usr/share/duicontrolpanel/categories

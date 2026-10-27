@@ -1,0 +1,9 @@
+include($$[QT_INSTALL_DATA]/mkspecs/dcpconfig.pri)
+
+# extending include path
+INCLUDEPATH += $$DCP_INSTALL_HEADERS
+DEPENDPATH += $$DCP_INSTALL_HEADERS
+
+#LIBS += -L$${DCP_INSTALL_LIB} -lduicontrolpanel
+LIBS += -lduicontrolpanel
+

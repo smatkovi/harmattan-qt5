@@ -1,0 +1,10 @@
+Parent=MainPage
+
+Name=Security
+Name-logical-id=qtn_sett_main_security
+
+Icon=icon-m-common-passcode
+
+
+Order=70
+

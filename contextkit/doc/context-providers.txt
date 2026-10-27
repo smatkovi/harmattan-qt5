@@ -1,0 +1,187 @@
+How to provide context properties
+=================================
+
+Any component can provide its own key/value pairs and make them appear
+as a +ContextProperty+ for C++ (and in other forms for other
+languages).
+
+As a provider of context properties, you need to drop one or more
+_property declaration_ files into +/usr/share/contextkit/providers/+
+to register your properties with the context framework.  This file
+follows a format described below and is used by +libcontextsubscriber+
+and others to find you when someone subscribes to your properties.
+The file is also used by the Context Commander to show descriptions of
+your properties and to learn about the possible values that a property
+can legally have.
+
+The property declaration files also inform the context framework how
+you want to be contacted.  Right now, you have to implement the
++org.freedesktop.ContextKit+ D-Bus interface, and register yourself on
+either the system or the session D-Bus with a suitable bus name.  The
+choice of system or session bus and your bus name go into the property
+declaration file.
+
+The only supported way right now to implement the
++org.freedesktop.ContextKit+ interface is to use the
+link:../../libcontextprovider-doc/html/index.html[+libcontextprovider+] library.
+
+The name of the property declaration file must be
+"__bus-name__++.context++".
+
+The property declaration file
+-----------------------------
+
+The property declaration file contains XML and must follow
+link:context-provider-schema.html[this XML schema].  A simple example
+for the +Example.Random+ property looks like this:
+
+[xml]
+------------------
+<?xml version="1.0"?>
+<provider bus="session"
+          service="com.example.RandomProvider">
+  <key name="com.example.Random">
+    <type>double</type>
+    <doc>
+      A random number between 0 and 1 that changes every now and then.
+    </doc>
+  </key>
+</provider>
+------------------
+
+This file declares the single property +com.example.Random+ and
+instructs the Content Framework to connect to the
++com.example.RandomProvider+ bus name on the session D-Bus.  It would
+be stored as
++/usr/share/contextkit/providers/com.example.RandomProvider.context+
+
+You need to be careful when choosing property name; see the
+"Guidelines for property providers" section for how to avoid
+conflicts.
+
+When providing properties from the link:context-properties.html[core
+list], you need to follow additional rules to make sure that your
+property declarations and the centrally maintained core list do not
+fall out of synch.  See the "Providing core properties" section for
+more about them.
+
+After installing a property declaration file into a directory +$dir+,
+you should usually execute +update-contextkit-providers+.  This will
+update the various caches that clients like the +libcontextsubscriber+
+library use.
+
+But, if a property declaration file is installed via a Debian package,
+you should not call +update-contextkit-providers+ in your maintainer
+scripts.  Triggers in the relevant packages take care of running
+update-contextkit-providers at the right time and only as often as
+necessary.
+
+The XML element tree in the property declaration file simply consists
+of a list of +key+ elements.
+
+A +key+ element in the property declaration tree can have a +doc+
+child element.  The contents of this element should be plain text
+without any additional markup.
+
+Types
+~~~~~
+
+ContextKit uses the experimental link:context-types.html[Desktop Type
+System].  A property declaration should have a +type+ element that
+conforms to the Desktop Type System.
+
+For example, a property that is a enumeration would be declared like
+this:
+
+[xml]
+------------------
+<key name="Economy">
+  <type>
+    <int-enum>
+      <up   val="1" doc="Getting better"/>
+      <down val="2" doc="Getting worse"/>
+      <even val="3" doc="Getting boring"/>
+    </int-enum>
+  </type>
+  <doc>
+    The current economic trend, as an enumerated value.
+  </doc>
+</key>
+------------------
+
+Deprecating properties
+~~~~~~~~~~~~~~~~~~~~~~
+
+You can add a +deprecated+ element to your property declaration to
+mark it as deprecated.  Run-time warnings will be emitted when
+applications connect to a deprecated property, and documentation that
+is generated from your property declarations will mark them as
+deprecated.
+
+Example:
+
+[xml]
+------------------
+<key name="SoundedLikeAGoodIdea"
+     type="string">
+  <deprecated/>
+  <doc>
+    Don't use this property, use ABetterIdeaByFar instead.
+  </doc>
+</key>
+------------------
+
+
+Guidelines for property providers
+---------------------------------
+
+Names
+~~~~~
+
+Context FW maintains a list of core properties. If you are providing a core property, you need to name it as it is described in the core property list (e.g., Screen.TopEdge).
+Only core property names are allowed to start with a capital ASCII letter ("A" to "Z").
+
+If you want to provide a non-core property, its name must be a valid name for a D-Bus object path (e.g., /com/mycompany/screen/topedge). A valid D-Bus object path starts with "/" and contains zero or more elements separated by "/" . Each element must only contain the following characters: [A-Z][a-z][0-9]_
+
+When defining a new non-core property, you need to choose a unique
+prefix.  Start with a reversed fully qualified domainname that you
+control, such as "/com/nokia/"  or "/org/gnome/".  Then, if the first
+component is "org" and the second component is not a top-level domain (e.g. fi, com),
+drop "org".  Then convert the first character of the prefix to
+lower-case if it is one of "A" to "Z".
+
+For example, the GNOME project can use "/gnome/" as their prefix, KDE
+can use "/kde/", and Nokia can use "/com/nokia/".
+
+Providing core properties
+-------------------------
+
+The Context Framework project maintains a list of _core properties_.
+These core properties are intended to cover the needs of most
+applications and be meaningful for many different devices.
+
+When you are implementing a provider for some of the core properties,
+you must of course make sure that you follow the specification of that
+property.  You can not redefine its type or description in your
+property declaration file, obviously.
+
+Thus, for core properties, you should not include any +type+ or +doc+
+elements in your key declarations, just a +name+ element.  The list of
+core properties is also known to context subcribers at run-time and
+will be used to fill in the missing details.
+
+For example, a property declaration file for core properties could
+look like this:
+
+[xml]
+------------------
+<?xml version="1.0"?>
+<provider bus="session"
+          service="com.example.RandomProvider">
+  <key name="Example.Random"/>
+</provider>
+------------------
+
+This just declares that the +Example.Random+ property can be
+subscribed to by contacting +com.example.RandomProvider+ on the
+session bus.  It's type and documentation are found elsewhere.

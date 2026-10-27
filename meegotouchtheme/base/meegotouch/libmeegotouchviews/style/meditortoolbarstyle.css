@@ -1,0 +1,149 @@
+MEditorToolbarStyle
+{
+    margin-left: 11px;
+    margin-right: 11px;
+    margin-top: 0;
+    margin-bottom: $MARGIN_SMALL;
+
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    hide-timeout: 5000;
+    hide-animation-duration: 1000;
+}
+
+MEditorToolbarStyle:editor-under-cursor
+{
+    margin-top: $MARGIN_SMALL;
+    margin-bottom: 0;
+}
+
+@const EDITOR_BUTTON_CORNERS: 24px 24px 24px 24px;
+
+MEditorToolbar MButtonStyle
+{
+    font: $FONT_FAMILY normal 22;
+    text-color: $COLOR_FOREGROUND;
+
+    minimum-size: 76px 86px;
+    preferred-size: -1 86px;
+    maximum-size: -1 -1;
+
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    text-margin-left: $MARGIN_XLARGE;
+    text-margin-right: $MARGIN_XLARGE;
+
+    vertical-text-align: center;
+
+    background-tiles: meegotouch-text-editor $EDITOR_BUTTON_CORNERS;
+}
+
+MEditorToolbar MButtonStyle:pressed
+{
+    background-tiles: meegotouch-text-editor-pressed $EDITOR_BUTTON_CORNERS;
+}
+MEditorToolbar MButtonStyle:selected
+{
+    background-tiles: meegotouch-text-editor-selected $EDITOR_BUTTON_CORNERS;
+}
+
+MEditorToolbarArrowStyle
+{
+    background-image:;
+    preferred-size: -1 -1;
+
+    margin-left: $INDENT_DEFAULT;
+    margin-right: $INDENT_DEFAULT;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+MEditorToolbarArrowStyle:up
+{
+    background-image: meegotouch-text-editor-top-tail 0 0 0 0;
+    minimum-size: 26 15;
+    preferred-size: 26 15;
+    maximum-size: 26 15;
+}
+
+MEditorToolbarArrowStyle:down
+{
+    background-image: meegotouch-text-editor-bottom-tail 0 0 0 0;
+    preferred-size: 26 15;
+    minimum-size: 26 15;
+    maximum-size: 26 15;
+}
+
+MEditorToolbar MButtonStyle#Bold
+{
+    icon-id: "icon-m-toolbar-bold";
+    icon-size: 48 48;
+
+    padding-top: 19px;
+    padding-bottom: 19px;
+    padding-right: $MARGIN_DOUBLE;
+    padding-left: $MARGIN_DOUBLE;
+}
+
+MEditorToolbar MButtonStyle#Italic
+{
+    icon-id: "icon-m-toolbar-italic";
+    icon-size: 48 48;
+
+    padding-top: 19px;
+    padding-bottom: 19px;
+    padding-right: $MARGIN_DOUBLE;
+    padding-left: $MARGIN_DOUBLE;
+}
+
+MEditorToolbar MButtonStyle#Underline
+{
+    icon-id: "icon-m-toolbar-underline";
+    icon-size: 48 48;
+
+    padding-top: 19px;
+    padding-bottom: 19px;
+    padding-right: $MARGIN_DOUBLE;
+    padding-left: 18px;
+}
+
+MEditorToolbar MButtonStyle#Format
+{
+    icon-id: "icon-m-toolbar-rich-text-view-menu";
+    icon-size: 48 48;
+
+    padding-top: 19px;
+    padding-bottom: 19px;
+    padding-right: $MARGIN_DOUBLE;
+    padding-left: $MARGIN_DOUBLE;
+}
+
+MEditorToolbar MButtonStyle#Mode
+{
+    background-tiles: meegotouch-text-editor-mode $EDITOR_BUTTON_CORNERS;
+
+    icon-id: "icon-m-toolbar-rich-text";
+    toggled-icon-id: "icon-m-toolbar-cut-paste";
+    icon-size: 48 48;
+
+    padding-top: 19px;
+    padding-bottom: 19px;
+    padding-right: 19px;
+    padding-left: $MARGIN_DOUBLE;
+}
+
+MEditorToolbar MButtonStyle#Mode:pressed
+{
+    background-tiles: meegotouch-text-editor-mode-pressed $EDITOR_BUTTON_CORNERS;
+}

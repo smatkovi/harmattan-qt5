@@ -1,0 +1,144 @@
+@const CIP_BG:          meegotouch-unread-inbox-panel-background 17px 17px 17px 17px;
+@const CIP_BG_PRESSED:  meegotouch-unread-inbox-panel-background-pressed 17px 17px 17px 17px;
+@const CIP_BG_SELECTED: meegotouch-unread-inbox-panel-background-selected 17px 17px 17px 17px;
+@const CIP_LP:          $PADDING_DOUBLE;
+
+/* for development purpose all these styles are temporarily consolidated in one file */
+
+#CommonInboxUnreadPanel {
+    minimum-size:      $SIZE_LIST $SIZE_LIST;
+    preferred-size:    -1 -1;
+    maximum-size:      -1 -1;
+    background-tiles:  ;
+    background-image:  $CIP_BG;
+    margin-top:        0;
+    margin-bottom:     4;
+    margin-left:       0;
+    margin-right:      0;
+    padding-left:      $CIP_LP;
+    padding-bottom:    0;
+}
+
+#CommonInboxUnreadPanel:pressed {
+    background-tiles:  ;
+    background-image:  $CIP_BG_PRESSED;
+}
+#CommonInboxUnreadPanel:selected {
+    background-tiles:  ;
+    background-image:  $CIP_BG_SELECTED;
+}
+
+#CommonInboxReadPanel {
+    background-tiles:  ;
+    background-image:  ;
+    background-color:  ;
+    minimum-size:      $SIZE_LIST $SIZE_LIST;
+    preferred-size:    -1 -1;
+    maximum-size:      -1 -1;
+    margin-top:        0;
+    margin-bottom:     4;
+    margin-left:       0;
+    margin-right:      0;
+    padding-left:      $CIP_LP;
+    padding-bottom:    0;
+}
+
+#CommonInboxReadPanel:pressed {
+    background-tiles:  ;
+    background-image:  meegotouch-panel-background-pressed;
+}
+#CommonInboxReadPanel:selected {
+    background-tiles:  ;
+    background-image:  meegotouch-panel-background-selected;
+}
+
+#CommonInboxTitle {
+    font:              $FONT_FAMILY bold 24;
+    margin-left:       $INDENT_DEFAULT;
+    margin-right:      $INDENT_DEFAULT;
+    margin-top:        9;
+    margin-bottom:     0;
+}
+#CommonInboxTitle:selected {
+    color: $COLOR_INVERTED_FOREGROUND;
+}
+
+#CommonInboxSubTitle {
+    font:              $FONT_FAMILY  22;
+    margin-left:       $INDENT_DEFAULT;
+    margin-right:      $INDENT_DEFAULT;
+    margin-top:        0;
+    margin-bottom:     0;
+}
+#CommonInboxSubTitle:selected {
+    color: $COLOR_INVERTED_FOREGROUND;
+}
+
+#CommonInboxSubText {
+    font:              $FONT_FAMILY_LIGHT  22;
+    color:             $COLOR_SECONDARY_FOREGROUND;
+    margin-left:       $INDENT_DEFAULT;
+    margin-right:      $INDENT_DEFAULT;
+    margin-top:        0;
+    margin-bottom:     0;
+}
+#CommonInboxSubText:selected {
+    color: $COLOR_INVERTED_FOREGROUND;
+}
+
+#CommonInboxUnreadItemInfo {
+    font:              $FONT_FAMILY_LIGHT 18;
+    color:             $COLOR_ACCENT1;
+    margin-left:       $INDENT_DEFAULT;
+    margin-right:      $INDENT_DEFAULT;
+    margin-top:        0;
+    margin-bottom:     0;
+    paint-offset: 0 -2;
+
+}
+#CommonInboxUnreadItemInfo:selected {
+    color: $COLOR_INVERTED_FOREGROUND;
+}
+
+#CommonInboxReadItemInfo {
+    font:              $FONT_FAMILY_LIGHT 18;
+    color:             $COLOR_SECONDARY_FOREGROUND;
+    margin-left:       $INDENT_DEFAULT;
+    margin-right:      $INDENT_DEFAULT;
+    margin-top:        0;
+    margin-bottom:     0;
+    paint-offset: 0 -2;
+}
+#CommonInboxReadItemInfo:selected {
+    color: $COLOR_INVERTED_FOREGROUND;
+}
+
+#CommonInboxSubTitleIcon {
+    minimum-size:      18px 18px;
+    preferred-size:    18px 18px;
+    maximum-size:      18px 18px;
+    margin-top:        0;
+    margin-bottom:     0;
+    margin-left:       $INDENT_DEFAULT;
+    margin-right:      0;
+}
+
+#CommonInboxSubIconTop {
+    margin-top:        0;
+    margin-bottom:     0;
+    margin-left:       1px;
+    margin-right:      $INDENT_DEFAULT;
+}
+
+#CommonInboxRightThumbnail {
+    minimum-size:      64px 64px;
+    preferred-size:    64px 64px;
+    maximum-size:      64px 64px;
+    margin-top:        0;
+    margin-bottom:     0;
+    margin-left:       $MARGIN_DOUBLE;
+    margin-right:      $INDENT_DEFAULT;
+
+}
+
+

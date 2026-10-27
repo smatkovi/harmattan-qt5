@@ -1,0 +1,54 @@
+/*! \page news What's New in System UI
+
+\section v0161 0.16.1
+
+\subsection New
+
+- Notification manager returns all properties of notifications instead of just their IDs when requested
+- Unlock screen notifications implemented
+- system-ui can be compiled without closed source dependencies
+
+\subsection Fixed
+
+- System-ui should use system bus for libngf
+- Input method indicators are truncated in status bar
+- Use the proper translations domains
+
+\section v0160 0.16.0
+
+\subsection New
+
+- New status indicator menu layout
+
+\subsection Fixed
+
+- Battery indicator doesn't show the battery capacity correctly
+- Enabling 'auto activate power save' does not enable automatic PSM
+- No vibration happens when pressing the power key to switch off device
+- Power save mode logic problems
+- /system/osso/dsm/energymanagement/force_power_saving turns to true at some point
+- Sysuid must implement -prestart parameter
+- No 'Disconnect charger...' banner after disconnecting the dedicated charger
+- Clock in status area showing Arabic number
+- sysuid generates xdamages in blank screen and keypad locked
+- event eater not functioning properly (symptom: display looks blanked when dimmed)
+- Lock screen and event eater windows should not be visible in the switcher
+
+\section v0156 0.15.6
+
+\subsection New
+  * USB: Use usb_moded
+  * ShutdownUI: follow UI design changes
+  * SWP#2048 Integrate notification system with non-graphical
+    feedback framework
+
+\subsection Fixed
+  * NB#165307 - UI is displayed for a while after the device is shut down by pressing the power key
+  * NB#163028 - Unlock screen is not closed after it is once displayed
+
+\section v0134 0.13.4
+
+\subsection New
+- Support for 12/24 hour clock
+
+*/

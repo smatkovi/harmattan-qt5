@@ -1,0 +1,342 @@
+libresourceqt (1.41+0m7) stable; urgency=low
+
+  * This entry has been added by BIFH queue processor
+    version has been changed to 1.41+0m7
+
+ -- BIFH Bot <sysint@maemo.research.nokia.com>  Thu, 08 Sep 2011 15:39:12 +0300
+
+libresourceqt (1.41) stable; urgency=low
+
+  * tests: update default test execution timeout up to 1 second
+  * libresourceqt: update pkg-config dependency of libresource
+
+  [ Robert Lofman ]
+  * Fixed crash in mediaoverrider
+  * Fixes: NB#288965.
+
+ -- Vladimir Zapolskiy <vladimir.zapolskiy@nokia.com>  Thu, 08 Sep 2011 15:39:11 +0300
+
+libresourceqt (1.40) stable; urgency=low
+
+  * demo player: general code cleaning
+  * demo player: removed all video related source codes and filetype enum
+  * demo player: fix orientation change bug
+  * demo player: fix mutex unlock bug
+  * debian/control fixups
+
+ -- Vladimir Zapolskiy <vladimir.zapolskiy@nokia.com>  Tue, 30 Aug 2011 13:52:58 +0300
+
+libresourceqt (1.39) stable; urgency=low
+
+  * Bumping version for change to libresource packaging
+  * Fixes: NB#256350
+  * Fixes in demo player: pause, does not start song from beginning.
+  * Release and stop after song ends.
+  * Rewind/forward with progress control indicator.
+  * Implement resourceReleasedByManager() handler (stop after headset removal and answered call)
+  * Implemented resourcesDenied handler.
+
+ -- Nippan Singam <ext-nippan.singam@nokia.com>  Tue, 16 Aug 2011 12:44:00 +0300
+
+libresourceqt (1.38) stable; urgency=low
+
+  * resource-engine: Don't set the connection to NULL if there are no users (Fixes: NB#267973).
+
+ -- Antti-Ville Jansson <antti-ville.jansson@digia.com>  Tue, 28 Jun 2011 12:44:00 +0300
+
+libresourceqt (1.37) stable; urgency=low
+
+  * Improved logging facility (Fixes: NB#260533)
+  * Added 2011 to copyright years (Fixes: NB#257932)
+  * Documentation update on connectedToManager() (Fixes: NB#257859)
+
+ -- Jussi Kinnula <ext-jussi.1.kinnula@nokia.com>  Fri, 10 Jun 2011 13:18:24 +0300
+
+libresourceqt (1.36) stable; urgency=low
+
+  * Crude table fix on Doxygen at resource-set.h.
+  * Fixes: NB261239.
+  * Fixes: NB#261358.
+
+ -- Jussi Kinnula <ext-jussi.1.kinnula@nokia.com>  Tue, 31 May 2011 09:11:52 +0300
+
+libresourceqt (1.35) stable; urgency=low
+
+  * Updated Doxygen for correct documentation.
+  * Fixed tests and updated tests.
+  * Fixes: NB#254558.
+
+ -- Nippan Singam <ext-nippan.singam@nokia.com>  Wed, 11 May 2011 16:16:02 +0300
+
+libresourceqt (1.34) stable; urgency=low
+
+  * Setting libresourceqt D-BUS connection as private.
+  * Fixes: NB#251935.
+
+ -- Jussi Kinnula <ext-jussi.1.kinnula@nokia.com>  Wed, 11 May 2011 16:16:02 +0300
+
+libresourceqt (1.33) stable; urgency=low
+
+  [ Jussi Kinnula ]
+  * Technical writer's changes for the headers
+  * Fixes: NB#235487.
+  * Fixes: NB#236280.
+  * Fixes: NB#233642.
+
+  [ Ismo Puustinen ]
+  * Fixes: NB#241577.
+
+ -- Ismo Puustinen <ismo.h.puustinen@nokia.com>  Mon, 11 Apr 2011 16:41:51 +0300
+
+libresourceqt (1.32) stable; urgency=low
+
+  * Fixes: NB#243170.
+  * Fixes: NB#221442.
+
+ -- Ismo Puustinen <ismo.h.puustinen@nokia.com>  Thu, 07 Apr 2011 11:07:24 +0300
+
+libresourceqt (1.31) stable; urgency=low
+
+  * fixing dependency to the new libresource (0.26)
+  * Fix for the crediential bug(Fixes: NB#221442)
+
+ -- Janos Kovacs <janos.f.kovacs@nokia.com>  Fri, 11 Mar 2011 21:32:11 +0200
+
+libresourceqt (1.30) stable; urgency=low
+  * acquire request works though already acquired.
+  * Fixes: NB#230327.
+  * Fixes: NB#231216.
+ -- Nippan Singam <ext-nippan.singam@nokia.com>  Wed, 02 Mar 2011 13:06:25 +0200
+
+libresourceqt (1.29) stable; urgency=low
+
+  * Exit acquire mode before the manager answers the release request.
+  * Fixes: NB#229095.
+  * Only send lostResources() signal if we are in aquireMode.
+  * Fixes: NB#229327.
+  * Added the cellular credential tag to Doxygen documentation.
+  * Fixes: NB#221442.
+  * Added libqt4-dev dependency for development packages.
+  * Fixes: NB#228915.
+  * No granted message after resource set update fix in resourceqt-client.
+  * Fixes: NB#210069.
+
+ -- Maemo Multimedia <mmf-audio-bounces@projects.maemo.org>  Fri, 25 Feb 2011 11:06:25 +0200
+
+libresourceqt (1.28) stable; urgency=low
+
+  * Fix test-resource-engine-wrapper.
+  * Set the default audio group if none is given.
+  * Removed test-resource-engine-wrapper from tests.xml
+  * Fixes: NB#207580.
+  * Fixes: NB#224130.
+
+ -- Maemo Multimedia <mmf-audio-bounces@projects.maemo.org>  Wed, 16 Feb 2011 11:55:25 +0200
+
+libresourceqt (1.27) stable; urgency=low
+
+  * Add support for new released by manager signal
+  * Removed demo player from control file and install files, because of MVideoWidget changes
+  * Fixes: NB#209016
+  * Fixes: NB#208351
+  * Implemented: SWP#Plicy-591
+
+ -- Jussi Kinnula <ext-jussi.1.kinnula@nokia.com>  Fri, 03 Dec 2010 14:50:03 +0200
+
+libresourceqt (1.26) stable; urgency=low
+
+  * Fixes: NB#199369 - Copyright tag not defined in libresourceqt
+  * Fixes: NB#201670 - Resource lost is signalled after releasing and re-requesting video resources.
+  * Fixes: NB#202170 - lostResources() signal is catched after resource was released
+
+ -- Wolf Bergenheim <ext-wolf.2.bergenheim@nokia.com>  Fri, 12 Nov 2010 11:18:14 +0200
+
+libresourceqt (1.25) stable; urgency=low
+
+  * Fixes: NB#194362 - Missing content from libresourceqt-doc package
+  * Fixes: NB#198979 - documentation doesnot have the enough description
+  * Fixes: NB#200078 - libresourceqt needs to use Q_SLOTS in dbusconnectioneventloop.h
+
+ -- Wolf Bergenheim <ext-wolf.2.bergenheim@nokia.com>  Wed, 27 Oct 2010 17:04:31 +0300
+
+libresourceqt (1.24) stable; urgency=low
+
+  * Updated documentation
+  * Fixes NB#194362
+  * Fixes NB#198979
+
+ -- Wolf Bergenheim <wolf.2.bergenheim@nokia.com>  Wed, 20 Oct 2010 14:19:49 +0300
+
+libresourceqt (1.23) stable; urgency=low
+
+  * Setting scope of API to Nokia MeeGo
+  * Fixes NB#196280
+
+ -- Wolf Bergenheim <wolf.2.bergenheim@nokia.com>  Tue, 05 Oct 2010 14:48:51 +0300
+
+libresourceqt (1.22) stable; urgency=low
+
+  * Changing the status to stable as per the change in api
+  * Fixes: NB#195568
+
+ -- Nippan Singam <ext-nippan.singam@nokia.com>  Thu, 30 Sep 2010 16:10:40 +0300
+
+libresourceqt (1.21) unstable; urgency=low
+
+  * Bumping the version due to the problem with the alsaped massacre build
+  * Fixes: NB#194797
+
+ -- Nippan Singam <ext-nippan.singam@nokia.com>  Mon, 27 Sep 2010 15:10:40 +0300
+
+libresourceqt (1.20) unstable; urgency=low
+
+  * Updated API file.
+  * Fixes: NB#191409
+  * Fixes: NB#192930
+
+ -- Wolf Bergenheim <wolf.2.bergenheim@nokia.com>  Tue, 21 Sep 2010 10:33:40 +0300
+
+libresourceqt (1.19) unstable; urgency=low
+
+  * Fixed constructor (Fixes: NB#193007)
+
+ -- Wolf Bergenheim <wolf.2.bergenheim@nokia.com>  Tue, 21 Sep 2010 08:39:26 +0300
+
+libresourceqt (1.18) unstable; urgency=low
+
+  * Added compatibility constructor (Fixes: NB#193007)
+
+ -- Wolf Bergenheim <wolf.2.bergenheim@nokia.com>  Mon, 20 Sep 2010 12:06:48 +0300
+
+libresourceqt (1.17) unstable; urgency=low
+
+  * Implemented: SWP#Plicy-462
+
+ -- Wolf Bergenheim <wolf.2.bergenheim@nokia.com>  Fri, 17 Sep 2010 10:00:00 +0300
+
+libresourceqt (1.16) unstable; urgency=low
+
+  * Added protection mechanism for the call application class via libcreds
+  * Implemented: SWP#Plicy-235
+
+ -- Vsevolod Buzinov <ext-vsevolod.buzinov@nokia.com>  Thu, 02 Sep 2010 14:53:21 +0300
+
+libresourceqt (1.15) unstable; urgency=low
+
+  * Fixes: NB#181713 - Crash when policy manager comes back
+  * Renamed resource override stuff to media override
+
+ -- Wolf Bergenheim <wolf.2.bergenheim@nokia.com>  Thu, 05 Aug 2010 13:42:18 +0300
+
+libresourceqt (1.14) unstable; urgency=low
+
+  * Added header file stdint to client.h and test-dbus-qeventloop.cpp
+  * Fixes: NB#181631 - Added header stdint.h
+
+ -- Nippan Singam <ext-nippan.singam@nokia.com>  Tue, 27 Jul 2010 13:29:10 +0300
+
+libresourceqt (1.13) unstable; urgency=low
+
+  * Added accessor for classInstance, requested by the camera team.
+  * Implemented: SWP#Plicy-408
+
+ -- Vsevolod Buzinov <ext-vsevolod.buzinov@nokia.com>  Fri, 23 Jul 2010 10:26:54 +0300
+
+libresourceqt (1.12) unstable; urgency=low
+
+  * Added dbg versions for libresourceqt and libdbus-qeventloop
+  * Implemented: SWP#Plicy-297
+  * Fixes: NB#177254 - crash in disconnectFromManager() if the resourceSet is NULL
+
+ -- Vsevolod Buzinov <ext-vsevolod.buzinov@nokia.com>  Fri, 16 Jul 2010 14:10:24 +0300
+
+libresourceqt (1.11) unstable; urgency=low
+
+  * Added libresource-overridesqt
+  * Implemented: SWP#Plicy-306
+  * Fixes: NB#178340
+
+  [Nippan Singam]
+  * Fixes: NB#174298 - Changed the api file name to api
+
+ -- Wolf Bergenheim <wolf.2.bergenheim@nokia.com>  Mon, 05 Jul 2010 14:19:15 +0300
+
+libresourceqt (1.10) unstable; urgency=low
+
+  * Added support for headset_buttons resource by adding HeadsetButtons and HeadsetButtonsType
+  * Implemented: SWP#Plicy-357.
+  * Also update audio properties when doing an update (Fixes: NB#161198)
+
+  [Nippan Singam]
+  * fix for adding api file for libresourceqt (Fixes: NB#174298)
+
+ -- Wolf Bergenheim <wolf.2.bergenheim@nokia.com>  Fri, 11 Jun 2010 14:05:03 +0300
+
+libresourceqt (1.9) unstable; urgency=low
+
+  * Fixes: NB#164531 - instead of B-Bus session bus start to use system bus to make resource management available even if the session bus were not up
+
+ -- Janos Kovacs <janos.f.kovacs@nokia.com>  Mon, 07 Jun 2010 08:19:21 +0300
+
+libresourceqt (1.8) unstable; urgency=low
+
+  * Fixes: NB#171161 - Multiple acquire and set audio properties confuse the libresourceqt library
+
+  [Martin Wolf]
+  * Removed binary package libresourceqt-performance-tests
+
+ -- Wolf Bergenheim <ext-wolf.2.bergenheim@nokia.com>  Fri, 28 May 2010 10:57:40 +0300
+
+libresourceqt (1.7) unstable; urgency=low
+
+  * Implemented SWP#Plicy-327
+
+ -- Martin Wolf <ext-martin.2.wolf@nokia.com>  Mon, 17 May 2010 15:00:00 +0300
+
+libresourceqt (1.6) unstable; urgency=low
+
+  * Implemented SWP#Plicy-296
+
+  [Martin Wolf]
+  * Fixes: NB#165755 - DBUSConnectionEventLoop crashes when dbus p2p connection closes.
+  * Fixes: NB#165710 - DBUSConnectionEventLoop causes that QTimers stops working
+
+ -- Wolf Bergenheim <ext-wolf.2.bergenheim@nokia.com>  Wed, 21 Apr 2010 14:38:49 +0300
+
+libresourceqt (1.5) unstable; urgency=low
+
+  * Implemented: SWP#Plicy-277
+
+ -- Wolf Bergenheim <ext-wolf.2.bergenheim@nokia.com>  Wed, 14 Apr 2010 12:40:35 +0300
+
+libresourceqt (1.4) unstable; urgency=low
+
+  * libdbus-qeventloop fix
+  * Fixes: NB#161198 - Unable to hear audio from any other MAFW player process except for the qmafw-dbus-wrapper
+
+ -- Martin Wolf <ext-martin.2.wolf@nokia.com>  Wed, 07 Apr 2010 13:00:00 +0200
+
+libresourceqt (1.3) unstable; urgency=low
+
+  * Also Fixes: NB#161198 - Unable to hear audio from any other MAFW player process except for the qmafw-dbus-wrapper
+
+ -- Wolf Bergenheim <ext-wolf.2.bergenheim@nokia.com>  Thu, 25 Mar 2010 13:43:48 +0200
+
+libresourceqt (1.2) unstable; urgency=low
+
+  * Added .pc files
+  * libdbus-qeventloop header is now in /usr/include
+
+ -- Wolf Bergenheim <ext-wolf.2.bergenheim@nokia.com>  Fri, 19 Mar 2010 12:28:19 +0200
+
+libresourceqt (1.1) unstable; urgency=low
+
+  * Bugfix release
+
+ -- Wolf Bergenheim <ext-wolf.2.bergenheim@nokia.com>  Fri, 26 Feb 2010 09:21:57 +0200
+
+libresourceqt (1.0) unstable; urgency=low
+
+  * First release
+
+ -- Martin Wolf <ext-martin.2.wolf@nokia.com>  Fri, 29 Jan 2010 12:00:00 +0200

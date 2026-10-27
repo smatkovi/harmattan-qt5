@@ -1,0 +1,58 @@
+/* MListIndexStyle : MWidgetStyle */
+MListIndexStyle {
+    shortcut-style-name: "whiteFont";
+
+    background-image: meegotouch-fast-scroll-rail;
+    preferred-size: 70px 100%;
+
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+
+    fade-duration: 100;
+	appear-delay: 2000;
+
+    tooltip-style-name: "";
+    position-indicator: meegotouch-fast-scroll-handle;
+}
+
+#whiteFont {
+    color: $COLOR_INVERTED_FOREGROUND;
+
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+}
+
+MListIndexStyle#Inverted {
+    tooltip-style-name: "Inverted";
+    background-image: meegotouch-fast-scroll-rail-inverted;
+    position-indicator: meegotouch-fast-scroll-handle-inverted;
+}
+
+MListIndexTooltipStyle {
+    background-image: meegotouch-fast-scroll-magnifier;
+
+    minimum-size: -1 150px;
+    preffered-size: -1 150px;
+    maximum-size: -1 150px;
+}
+
+MListIndexTooltip MLabelStyle {
+    color: $COLOR_INVERTED_FOREGROUND;
+    font: $FONT_FAMILY light 96;
+
+    horizontal-alignment: left;
+    vertical-alignment: vcenter;
+}
+
+MListIndexTooltipStyle#Inverted {
+    background-image: meegotouch-fast-scroll-magnifier-inverted;
+}
+
+MListIndexTooltip#Inverted MLabelStyle {
+    color: $COLOR_FOREGROUND;
+}
+

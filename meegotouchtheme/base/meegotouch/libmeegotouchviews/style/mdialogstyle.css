@@ -1,0 +1,253 @@
+
+/* MDialogStyle : MSceneWindowStyle */
+MDialogStyle {
+    margin-left:   0;
+    margin-top:    0;
+    margin-right:  0;
+    margin-bottom: 0;
+
+    padding-left:   0;
+    padding-right:  0;
+    padding-top:    $DIALOG_TOP_PADDING;
+    padding-bottom: 0;
+
+    vertical-align:   center;
+    horizontal-align: center;
+
+    minimum-size:   100% -1;
+    preferred-size: 100% 100%;
+    maximum-size:   100% 100%;
+
+    vertical-spacing: 0;
+    button-spacing: 0;
+
+    title-bar-height: 57px;
+    title-bar-alignment: top;
+    title-capitalization: false;
+
+    /* supports only "bottom" or "center" */
+    dialog-vertical-alignment: center;
+
+    dialog-top-margin: 0;
+    dialog-bottom-margin: 0;
+    dialog-left-margin: 0;
+    dialog-right-margin: 0;
+
+    dialog-minimum-size: 544px 137px;
+    dialog-preferred-size: 544px -1;
+    /* FIXME: This really should use the standard mbuttonstyle instead. */
+    dialog-button-fixed-width: 322px;
+    button-box-centered: false;
+
+    has-close-button: true;
+    has-title-bar: true;
+
+    button-box-orientation: horizontal;
+    button-box-centered: true;
+
+    maximum-horizontal-buttons: 3;
+
+    contents-viewport-style-name: "MDialogContentsViewport";
+    button-box-style-name:        "MDialogButtonBox";
+    title-bar-style-name:         "MDialogTitleBar";
+    title-label-style-name:       "CommonDialogHeader";
+
+    /* This is a hack to avoid the animation starting from the corner. This should become obsolete eventually. */
+    padding-left:  160px;
+    padding-right: 160px;
+}
+
+MDialogStyle.Portrait {
+    dialog-minimum-size:   448px 137px;
+    dialog-preferred-size: 448px -1;
+    maximum-horizontal-buttons: 1;
+    button-spacing: $MARGIN_DEFAULT;
+
+    /* This is a hack to avoid the animation starting from the corner. This should become obsolete eventually. */
+    padding-left:  16px;
+    padding-right: 16px;
+}
+
+#MDialogContentsViewport {
+    /* 5 * SIZE_BUTTON */
+    minimum-size:   -1 -1;
+    preferred-size: -1 -1;
+    maximum-size: -1 320px;
+
+    margin-left:    0;
+    margin-top:     0;
+    margin-right:   0;
+    margin-bottom:  0;
+
+    padding-left:   0;
+    padding-right:  0;
+    padding-top:    0;
+    padding-bottom: 4px;
+
+    background-image: none;
+    background-color: none;
+}
+
+#MDialogContentsViewport.Portrait {
+    /* 10 * SIZE_BUTTON */
+    minimum-size:   -1 -1;
+    preferred-size: -1 -1;
+    maximum-size: -1 640px;
+}
+
+MPannableWidgetStyle[titlebarless]#MDialogContentsViewport {
+    background-image: none;
+    background-color: none;
+    maximum-size: -1 100%;
+}
+
+#MDialogCloseButton {
+    icon-size: 40px 40px;
+    minimum-size: $SIZE_BUTTON  57px;
+    preferred-size: $SIZE_BUTTON  57px;
+    maximum-size: $SIZE_BUTTON 57px;
+
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 9px;
+
+    reactive-margin-left: 2mm;
+    reactive-margin-top: 2mm;
+    reactive-margin-bottom: 2mm;
+}
+
+#MDialogTitleLabel {
+    margin-left: $MARGIN_XLARGE;
+    margin-right: $MARGIN_XLARGE;
+    color: $COLOR_INVERTED_FOREGROUND;
+    font: $FONT_DEFAULT;
+}
+
+#MDialogTitleBar {
+    background-image: "meegotouch-dialog-header-background" 12px 12px 12px 12px;
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    minimum-size: -1 57px;
+    preferred-size: -1 57px;
+    maximum-size: -1 57px;
+}
+
+#MDialogButtonBox {
+    minimum-size: -1 -1;
+    preferred-size: -1 -1;
+    maximum-size: -1 -1;
+
+    background-image: none;
+    margin-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#MDialogProgressIndicator {
+    base-image-name: "spinnerinverted";
+    base-image-size: $SIZE_SPINNER_DIALOG;
+    minimum-size: $SIZE_SPINNER_DIALOG $SIZE_SPINNER_DIALOG;
+    preferred-size: $SIZE_SPINNER_DIALOG $SIZE_SPINNER_DIALOG;
+    maximum-size: $SIZE_SPINNER_DIALOG $SIZE_SPINNER_DIALOG;
+
+    margin-top: $MARGIN_LARGE;
+}
+
+/*
+  Styles for dialogs which should not be height-restricted.
+  These are provided here for convenience because styling dialogs
+  from libraries can be non-trivial.
+*/
+
+#FullsizeDialog {
+    contents-viewport-style-name: "FullsizeDialogContentsViewport";
+}
+#FullsizeDialogNoTitle {
+    has-title-bar: false;
+    contents-viewport-style-name: "FullsizeDialogContentsViewport";
+}
+
+#FullsizeDialogContentsViewport {
+    maximum-size: 100% 100%;
+}
+
+/*
+  Some dialogs should be fixed to use all available space in all cases,
+  rather than growing with the content. This style is an easy way to
+  accomplish that.
+*/
+
+#FixedHeightDialog {
+    contents-viewport-style-name: "FixedHeightDialogContentsViewport";
+}
+#FixedHeightDialogContentsViewport {
+    /* 5 * SIZE_BUTTON + 0.4mm padding */
+    minimum-size: -1 324px;
+}
+#FixedHeightDialogContentsViewport.Portrait {
+    /* 10 * SIZE_BUTTON + 0.4mm padding */
+    minimum-size: -1 644px;
+}
+
+/* Override default label colours. */
+MDialog MLabelStyle#CommonSingleTitle {
+    color: $COLOR_INVERTED_FOREGROUND;
+}
+MDialog MLabelStyle#CommonTitle {
+    color: $COLOR_INVERTED_FOREGROUND;
+}
+
+MDialog MListItemStyle:selected {
+    background-tiles: none;
+    background-image: none;
+    background-color: #3D3D3D;
+}
+
+MDialog MListItemStyle#CommonPanel:selected {
+    background-tiles: none;
+    background-image: none;
+    background-color: #3D3D3D;
+}
+
+MDialog MWidgetControllerStyle#CommonPanel:selected {
+    background-tiles: none;
+    background-image: none;
+    background-color: #3D3D3D;
+}
+
+MDialog MListItemStyle:pressed {
+    background-tiles: none;
+    background-image: none;
+    background-color: #333333;
+}
+
+MDialog MListItemStyle#CommonPanel:pressed {
+    background-tiles: none;
+    background-image: none;
+    background-color: #333333;
+}
+
+MDialog MWidgetControllerStyle#CommonPanel:pressed {
+    background-tiles: none;
+    background-image: none;
+    background-color: #333333;
+}
+
+MDialog MImageWidgetStyle#CommonTitleIcon {
+    margin-top: $MARGIN_LARGE;
+}
+

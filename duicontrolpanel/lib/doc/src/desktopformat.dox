@@ -1,0 +1,238 @@
+/*! \page desktopformat Desktop file format of a Dcp applet
+
+\section description Description
+
+Each applet should have a .desktop file. By default its location
+should be under "/usr/share/duicontrolpanel/desktops"
+(the path "/usr/lib/duicontrolpanel" is also supported for compatibility).
+(This can be changed with the control panel option
+-desktopdir.) The desktop file specifies information about the
+applet.
+
+\section format Format of the file
+
+The .desktop file is an ini format file, it has three sections:
+<ul>
+    <li>[Desktop Entry]
+    <li>[DUI]
+    <li>[DCP]
+</ul>
+
+In each section there are key-value entries, separated by an equal sign:
+\code
+Key=Value
+\endcode
+
+\section mandatorykeys Mandatory keys
+These keys are mandatory for any applet in order for the .desktop file to be
+able to function as a content action, and other applications to know how to
+pop up the applet (for example the search).
+See libcontentaction-doc if you are interested in the details, if not, just
+include the following in the .desktop file of the applet:
+
+\subsection mandatorykeyse Mandatory keys for an external applet
+\code
+[Desktop Entry]
+Type=Application
+Exec=<the command to execute>
+\endcode
+
+\subsection mandatorykeysb Mandatory keys for any other applet
+\code
+[Desktop Entry]
+Type=ControlPanelApplet
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=<the name of the applet, see Name section>
+
+\endcode
+
+\section keys The keys control panel understands
+
+\subsection desection [Desktop Entry]
+
+\par Name
+The name of the applet. Must be unique, other applets and programs will refer
+to the applet with its name, for example when they request control panel to
+pop up the applet.
+
+Also suits as the engineering english translation of the applet's title.
+
+\par X-logical-id
+The translation id for the title of the applet. (The one you would write for
+qtTrid or trid.)
+
+\par X-translation-catalog
+The translation catalog(s) for the applet. (The filename(s) of its .qm file, without
+the extension and language ids.) More catalogs should be separated with a comma.
+Example:
+\code
+X-translation-catalog=catalog1,catalog2,catalog3
+\endcode
+
+NOTE: Please provide here all the catalog(s) the applet needs,
+instead of loading the catalogs through MLocale in the DcpAppletIf::init()
+function, because
+- each MLocale::setDefault() call will cause retranslateUi() methods to be called
+for all widgets which will have a big performance overhead if most applets are
+doing that amongs the list of a category
+- if you specify it though the desktop file, control panel can act if the
+language gets changed, and load the translated catalog for your applet.
+
+
+\subsection duisection [DUI]
+
+\par X-DUIApplet-Applet
+This contains the path of the shared object. It is enough if you specify the
+file name if your applet is under the default location:
+/usr/lib/duicontrolpanel/applets
+
+For a declarative applet, you have to specify "libdeclarative.so" here.
+
+\if with_dsl
+  \par X-DUIApplet-Dslfile
+  TODO: document
+\endif
+
+\par X-DUIApplet-ApplicationCommand
+A command which gets executed when the user clicks on the applet launch button.
+If you specify a command here, then your applet will be considered an
+external applet and the shared object you optionally specified at
+X-DUIApplet-Applet will be ignored.
+
+
+\subsection dcpsection [DCP]
+
+\par Category
+The category name in which the launch button of the applet will be displayed.
+The list of categories are described in .cpcategory ini files under
+/usr/share/duicontrolpanel/categories. You can identify a category by its Name
+or Name-logical-id.
+
+\par Order
+A number which specifies the position of the launch button inside its category.
+For example if according to the design your button is at the 3rd row in
+portrait mode, and in the 2nd row 1st column in landscape mode, than you should
+specify 3 here. However if an applet is missing which would have a lower order
+value, than your applet will move upper, because control panel does not put
+holes in place of non installed applets.
+
+\par WidgetType
+The widget type of the launch button. Can be one of the following:
+<ul>
+<li>Label - Button with the applet title and optionally a value text
+<li>Image - Like Label, and an image
+<li>Toggle - Like Label with a toggle button on the right
+<li>Button - A big button with the applet title on it which can be toggled.
+<li>Slider - A slider, optionally with two icons on the left and right side without any labels
+<li>ComboBox - A combo box which offers a choice from elements through a dialog
+</ul>
+
+\par HelpId
+This can contain a help page id (see userguide's documentation) for the applet. If specified, a help button will be put on the icon / next to the icon of the applet, and if the user presses it, the requested page of the current help application gets openned.
+
+\par Text2
+Specifies the text on the second line of the launch button.
+It can be used for displaying a static value line, eg. explanation about what
+the applet is, and also with a dynamic value line, as a placeholder until the
+applet got loaded and supplies its value from the DcpBrief.
+
+\par Text2-logical-id
+Specifies the logical id for Text2 in the translation catalogs.
+
+\par Image
+Specifies the image name for the image type launch button. Preferably its value
+should be an image id, like you would do for MTheme. It also supports a direct
+path to the image but try to avoid using that if you can.
+
+\par Part
+For binary plugins, if this value contains the name of an applet part, then that part
+of the applet will be openned when the user presses the launch
+button. If you omit this, your applet will be started on its first page.
+You can freely choose the part name, but it should be implemented in
+DcpAppletIf::partID().
+Example: A part string for the clock page on the time applet can be "Clock".
+For declarative plugins this value contains the name of the xml file, which
+describes the content of their main widget.
+
+\par Unique
+Only for testing. The first applet which has a 1 here, will be alone,
+and control panel will not load the others.
+This key will most likely be removed soon.
+
+\par DoNotShowOnProduct
+It can contain a list of product names
+(see /proc/component_version | grep product), on which the applet should be
+hidden by controlpanel. An invisible applet will not be displayed in
+any of the categories.
+
+\par OnlyShowOnProduct
+It can contain a list of product names, the only ones on which the applet
+should be visible. Overrides DoNotShowOnProduct.
+
+\par HasMainView
+Through the value of this key the plugin can specify if it has a main view
+(the applet can be openned or not). If false, the controlpanel will not show
+the mainpage of the applet when the user clicks on it in the list. Default is
+true for most, except for Button and Toggle type of applets, the letters
+default to having no main view.
+
+\par SliderLeftImage, SliderRightImage
+It can define a static icon on the left and right side of a "Slider" type
+briefview. Similarly to "Image", its value can be a theme id, or a path to
+an image.
+
+\par TextOrientation
+Defines the orientation of the two text label of the icon. It can have the
+value "Vertical" (which is the default), in which case the two labels (title
+and value line) will be under each other, or it can have the value "Horizontal",
+in which case the two labels will be next to each other.
+
+\section specialities Other
+
+\subsection brief Binary plugin's overrides
+A binary plugin can override some values specified in the desktop file by
+its interface (DcpBrief, DcpAppletIf).
+
+\section desktopexample An example desktop file
+
+In case of a binary plugin for Date & Time applet,
+the desktop file can look like this:
+
+\code
+[Desktop Entry]
+# Some common things to specify:
+Type=ControlPanelApplet
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=Date & Time
+
+# Name of the applet
+Name=Date & Time
+
+# id for localization
+X-logical-id=qtn_sett_main_date_time
+
+# catalog for localization
+X-translation-catalog=settings-datetime
+
+[DUI]
+# applet binary
+X-DUIApplet-Applet=libdatetimeapplet.so
+
+[DCP]
+# The category name under which the applet will appear in Control Panel
+Category= Regional settings
+
+# The order of the applet launch button in the Category Page of Dcp.
+Order=1
+
+# Type of the widget launch button.
+WidgetType=Label
+
+\endcode
+
+*/
+

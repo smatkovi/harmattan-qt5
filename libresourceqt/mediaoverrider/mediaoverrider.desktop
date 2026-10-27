@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Policy Media Overrider
+Icon=icon-l-music
+Exec=/usr/bin/mediaoverrider
+OnlyShowIn=X-MeeGo;
+

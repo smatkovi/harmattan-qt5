@@ -1,0 +1,75 @@
+/*! \page declarativeplugins Declarative applets
+
+\warning
+This page is about the applets written in the MeeGo Touch declarative language.
+An alternative declarative way to write applets are Qml applets which provides
+more flexibility. See
+<a href="qmlplugins.html">their page</a>
+if you are searching for them.
+\endwarning
+
+\section description Description
+A declarative applet has all of its content declared in user readable file formats.
+It has a .desktop file, like all applets, and an .xml file which describes its
+main widgets content using MeeGo Touch declarative language.
+
+This is the easiest way of creating an applet, but it is less flexible (currently):
+
+    <ul>
+        <li>You can not create a custom launch button, the launch button of your applet
+will contain only the applet's title (and optionally subtitle)
+        <li>You can only use some predefined widgets, the ones which are supported by
+declarative language.
+        <li>You can only store your preferences in GConf.
+        <li>Your applet can only have one page.
+    </ul>
+
+\include declarativeapplet/simple/example1.xml
+example1.xml describing a declarative applet
+
+
+\section requirements Requirements
+
+\subsection desktopfile The .desktop file
+The plugin should have a .desktop file like any other plugin, see
+<a href="desktopformat.html">Desktop file format</a> for details.
+
+Only difference is that you have to specify the followings:
+
+\par DUI / X-DUIApplet-Applet
+This must be "libdeclarative.so" for a declarative applet.
+
+\par DCP / Part
+For declarative plugins this value contains the name of the xml file, which
+describes the content of their main widget.
+
+\include declarativeapplet/simple/declexample.desktop
+.destktop file for example1.xml
+
+\subsection mainwidget The .xml description of the main widget
+
+The .xml file which describes the main widget should be located
+under "/usr/share/duicontrolpanel/uidescriptions".
+
+For details about how you can create input widgets, check libmeegotouch-doc
+about Declarative Settings Language.
+
+All keys of the input widgets are considered as GConf paths, where the
+value of the user feedback gets stored.
+
+For an example, check duicontrolpanel-skeletonapplet package, or the
+directory examples/binaryapplet/itemlike in control panel repository.
+
+\subsection Localization
+In the ui describtion .xml file translation ids can also be used instead of
+text like at "title" key to support multiple languages. These translation ids
+can be translated as usual through Qt translation catalogs. The applet should
+specify its catalog(s) through its .desktop file with the key:
+\code
+X-translation-catalog=catalog1,catalog2
+\endcode
+You can find an example about how to do this under
+examples/declarativeapplets/localized in controlpanel source.
+
+*/
+
