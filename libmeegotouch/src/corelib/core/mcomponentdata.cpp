@@ -524,6 +524,11 @@ void MComponentDataPrivate::init(int &argc, char **argv, const QString &appIdent
 
     systemLocale.addTranslationPath(appDir.absolutePath());
 #else
+    // M_TRANSLATION_DIR, when set, is looked into too (to run with
+    // translations that are not installed)
+    const QByteArray translationDir = qgetenv("M_TRANSLATION_DIR");
+    if (!translationDir.isEmpty())
+        systemLocale.addTranslationPath(QString::fromLocal8Bit(translationDir));
     systemLocale.addTranslationPath(TRANSLATION_DIR);
 #endif
     // installs the libmeegotouch translations
