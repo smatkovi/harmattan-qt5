@@ -1,6 +1,9 @@
 include(meegotouch_common.prf)
 
 LIBS += $$mAddLibrary(meegotouchcore)
+# the views' classes (styles among them) are used directly too; today's
+# linkers no longer take libmeegotouchcore's own dependencies along
+!contains(DEFINES, BUILD_M): LIBS += $$mAddLibrary(meegotouchviews)
 !macx {
     !contains(DEFINES, BUILD_M) {
         LIBS += \

@@ -8,4 +8,4 @@ Description: MeeGo Touch UI Framework
 Version: @@M_VERSION@@
 Requires: Qt5Gui Qt5Widgets Qt5X11Extras
 Cflags: -I${includedir} -DQ_WS_X11
-Libs: -L${libdir} -lmeegotouchcore -lmeegotouchsettings -lmeegotouchextensions
+Libs: -L${libdir} -lmeegotouchcore -lmeegotouchviews -lmeegotouchsettings -lmeegotouchextensions
