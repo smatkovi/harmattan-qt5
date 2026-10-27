@@ -964,7 +964,12 @@ void PageFactory::newWin ()
     }
     if (m_Win) {
         m_LastAppletPage = 0;
+        // the window that replaces it is not shown yet, and Qt 5 quits the
+        // application when its last window is closed
+        bool quitOnLastWindowClosed = qApp->quitOnLastWindowClosed();
+        qApp->setQuitOnLastWindowClosed(false);
         m_Win->close();
+        qApp->setQuitOnLastWindowClosed(quitOnLastWindowClosed);
         m_Win = 0;
     }
 
