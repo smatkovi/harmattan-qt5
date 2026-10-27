@@ -1,0 +1,7 @@
+interface: libmeegoimenginewords
+type: library
+scope: Internal
+state: unstable
+libs-pkg: libmeegoimenginewords0
+dev-pkg: libmeegoimenginewords-dev
+

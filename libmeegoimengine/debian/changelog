@@ -1,0 +1,221 @@
+libmeegoimengine (0.4.11-1+0m7) unstable; urgency=low
+
+  * This entry has been added by BIFH queue processor
+    version has been changed to 0.4.11-1+0m7
+
+ -- BIFH Bot <sysint@maemo.research.nokia.com>  Thu, 06 Oct 2011 12:07:49 +0300
+
+libmeegoimengine (0.4.11-1) unstable; urgency=low
+
+  * Changes: Added methods insertCharacters() and removeCharacters() to interface.
+
+ -- Kai Lehtinen <kai.lehtinen@nokia.com>  Thu, 06 Oct 2011 12:07:48 +0300
+
+libmeegoimengine (0.4.10-1) unstable; urgency=low
+
+  * New release
+
+ -- huaming wang <huaming.wang@nokia.com>  Thu, 04 Aug 2011 11:43:22 +0300
+
+libmeegoimengine (0.4.9-1) unstable; urgency=low
+
+  * Fixes: NB#261859
+
+ -- Ning Chi <ext-chi.2.ning@nokia.com>  Tue, 07 Jun 2011 15:28:00 +0300
+
+libmeegoimengine (0.4.8-1) unstable; urgency=low
+
+  * Fixes: NB#257024
+
+ -- Ning Chi <ext-chi.2.ning@nokia.com>  Fri, 27 May 2011 10:57:36 +0300
+
+libmeegoimengine (0.4.7-1) unstable; urgency=low
+
+  * Fixes: NB#254479 - Input; Valid string with candidates are in red underline.
+  * Changes: Add a new API "transliterate()".
+
+ -- huaming wang <huaming@wuhan>  Fri, 13 May 2011 10:57:12 +0300
+
+libmeegoimengine (0.4.6-1) unstable; urgency=low
+
+  * New release
+
+ -- Rakesh Cherian <ext-rakesh.cherian@nokia.com>  Thu, 24 Mar 2011 12:30:37 +0200
+
+libmeegoimengine (0.4.5-1) unstable; urgency=low
+
+  * Changes: reworked qmake  build rules.
+
+ -- huaming wang <huaming.wang@nokia.com>  Wed, 23 Feb 2011 11:27:36 +0200
+
+libmeegoimengine (0.4.4-1) unstable; urgency=low
+
+  * New release
+
+ -- huaming wang <huaming.wang@nokia.com>  Tue, 04 Jan 2011 14:04:45 +0200
+
+libmeegoimengine (0.4.3-1) unstable; urgency=low
+
+  * New release
+
+ -- huaming wang <huaming.wang@nokia.com>  Thu, 09 Dec 2010 11:42:12 +0200
+
+libmeegoimengine (0.4.2-1) unstable; urgency=low
+
+  * Changes: Correct the debian/libmeegoimengine-dev.install.in
+
+ -- huaming wang <huaming.wang@nokia.com>  Thu, 09 Dec 2010 11:40:09 +0200
+
+libmeegoimengine (0.4.1-1) unstable; urgency=low
+
+  * Fixes: another wrong path in MeegoImEngine.pc.in
+
+ -- huaming wang <huaming.wang@nokia.com>  Tue, 07 Dec 2010 11:48:06 +0200
+
+libmeegoimengine (0.4.0-1) unstable; urgency=low
+
+  * New: add Handwriting Recognition Interface and counterpart Unit test code
+  * Changes: revert back pc files and correct the pathes
+
+ -- Rakesh Cherian <ext-rakesh.cherian@nokia.com>  Wed, 1 Dec 2010 12:26:45 +0200
+
+libmeegoimengine (0.3.4-1) unstable; urgency=low
+
+  * new release
+
+ -- huaming wang <huaming.wang@nokia.com>  Fri, 26 Nov 2010 12:24:23 +0200
+
+libmeegoimengine (0.3.3-1) unstable; urgency=low
+
+  * new release
+
+ -- huaming wang <huaming.wang@nokia.com>  Wed, 17 Nov 2010 13:40:20 +0200
+
+libmeegoimengine (0.3.2-1) unstable; urgency=low
+
+  * remove depleted pc files.
+
+ -- huaming wang <huaming.wang@nokia.com>  Mon, 15 Nov 2010 11:11:54 +0200
+
+libmeegoimengine (0.3.0-1) unstable; urgency=low
+
+  * API changes
+
+ -- huaming wang <huaming.wang@nokia.com>  Wed, 03 Nov 2010 14:34:24 +0200
+
+libmeegoimengine (0.2.0-2) unstable; urgency=low
+
+  * Fixes: NB#194829
+
+ -- huaming wang <huaming.wang@nokia.com>  Mon, 18 Oct 2010 17:01:37 +0300
+
+libmeegoimengine (0.2.0-1) unstable; urgency=low
+
+  * New release
+
+ -- huaming wang <huaming.wang@nokia.com>  Tue, 07 Sep 2010 14:08:19 +0300
+
+libmeegoimengine (0.1.15-1) unstable; urgency=low
+
+  * Use MImEngineWordsInterfaceFactory instead of MImEngineWords
+  * Plugin hold MImEngineWordsInterface object
+
+ -- huaming wang <huaming.wang@nokia.com>  Tue, 07 Sep 2010 11:01:36 +0300
+ 
+libmeegoimengine (0.1.14-1) unstable; urgency=low
+
+  * New release
+
+ -- huaming wang <huaming.wang@nokia.com>  Thu, 02 Sep 2010 16:00:49 +0300
+
+
+libmeegoimengine (0.1.13-1) unstable; urgency=low
+
+  * Rename dui->meego
+  * Coverity fixes
+
+ -- Pekka Vuorela <pekka.ta.vuorela@nokia.com>  Thu, 10 Jun 2010 16:15:58 +0300
+
+libduiimengine (0.1.12-1) unstable; urgency=low
+
+  * Removed unnecessary dui dependencies
+  * Cleaned up interface parameter constness
+
+ -- Pekka Vuorela <pekka.ta.vuorela@nokia.com>  Wed, 28 Apr 2010 14:57:02 +0300
+
+libduiimengine (0.1.11-1) unstable; urgency=low
+
+  * Added dummy im engine
+  * Fremantle adaptation
+
+ -- Pekka Vuorela <pekka.ta.vuorela@nokia.com>  Mon, 29 Mar 2010 15:46:40 +0300
+
+libduiimengine (0.1.10-1) unstable; urgency=low
+
+  * New release
+
+ -- Mohammad Anwari <Mohammad.Anwari@nokia.com>  Wed, 17 Feb 2010 14:49:40 +0200
+
+libduiimengine (0.1.9-1) unstable; urgency=low
+
+  * New release 
+
+ -- Mohammad Anwari <Mohammad.Anwari@nokia.com>  Tue, 04 Aug 2009 11:13:27 +0300
+
+libduiimengine (0.1.8-1) unstable; urgency=low
+
+  * Changed: minor cleanups
+
+ -- Pekka Vuorela <ext-pekka.ta.vuorela@nokia.com>  Tue, 23 Jun 2009 15:43:47 +0300
+
+libduiimengine (0.1.7-1) unstable; urgency=low
+
+  * Implemented: SWP#TINME-232 
+
+ -- Mohammad Anwari <Mohammad.Anwari@nokia.com>  Mon, 01 Jun 2009 16:11:45 +0300
+
+libduiimengine (0.1.6-1) unstable; urgency=low
+
+  * Implemented: SWP#TINME-204
+  * Fixes: NB#106198, NB#102783, NB#106302 
+
+ -- Mohammmad Anwari <Mohammad.Anwari@nokia.com>  Tue, 07 Apr 2009 14:10:13 +0300
+
+libduiimengine (0.1.5-1) unstable; urgency=low
+
+  * New release
+  * Fixes: #NB106268, NB#102780
+  * Implemented: SWP#TINME-167
+
+ -- mdamt <Mohammad.Anwari@nokia.com>  Mon, 30 Mar 2009 11:08:02 +0300
+
+libduiimengine (0.1.4-1) unstable; urgency=low
+
+  * Development release 
+
+ -- Mohammad Anwari <Mohammad.Anwari@nokia.com>  Tue, 10 Mar 2009 15:37:54 +0200
+
+libduiimengine (0.1.3-1) unstable; urgency=low
+
+  * New release 
+  * Implemented: SWP#TINME-105
+
+ -- Mohammad Anwari <mdamt@maemo.org>  Tue, 17 Feb 2009 15:08:33 +0200
+
+libduiimengine (0.1.2-1) unstable; urgency=low
+
+  * Added unit test. 
+
+ -- Mohammad Anwari <Mohammad.Anwari@nokia.com>  Wed, 11 Feb 2009 13:39:55 +0200
+
+libduiimengine (0.1.1-1) unstable; urgency=low
+
+  * New version
+
+ -- Mohammad Anwari <mdamt@maemo.org>  Tue, 16 Dec 2008 13:17:39 +0200
+
+libduiimengine (0.1.0-1) unstable; urgency=low
+
+  * First release 
+
+ -- Mohammad Anwari <mdamt@maemo.org>  Wed, 03 Dec 2008 11:18:20 +0200

@@ -1,0 +1,12 @@
+files
+libmeegoimengine-dev/
+libmeegoimengine-doc/
+libmeegoimengine-tests.substvars
+libmeegoimengine-tests/
+libmeegoimenginewords-dev/
+libmeegoimenginewords0-dbg/
+libmeegoimenginewords0.postinst.debhelper
+libmeegoimenginewords0.postrm.debhelper
+libmeegoimenginewords0.substvars
+libmeegoimenginewords0/
+tmp/

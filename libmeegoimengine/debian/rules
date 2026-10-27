@@ -1,0 +1,125 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+
+DEBDIR = ..
+
+comma :=,
+empty :=
+space := $(empty) $(empty)
+
+# Set the build type (debug/release)
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	QMAKE_OPTIONS+=CONFIG+=debug
+else
+	QMAKE_OPTIONS+=CONFIG+=release
+endif
+
+EXCLUSIONS = 
+# Don't build documentation by setting DEB_BUILD_OPTION=nodocs
+ifeq (,$(findstring nodoc,$(DEB_BUILD_OPTIONS)))
+       QMAKE_OPTIONS+=CONFIG+=docs
+else
+       EXCLUSIONS += --no-package=libmeegoimengine-doc
+endif
+
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+    INSTALL_PROGRAM += -s
+endif
+
+TMP_BUILD_OPTS = $(subst $(comma),$(space),$(DEB_BUILD_OPTIONS))
+
+ifneq (,$(filter parallel=%,$(TMP_BUILD_OPTS)))
+         NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(TMP_BUILD_OPTS)))
+         PARALLEL_MAKEFLAGS += -j$(NUMJOBS)
+endif
+
+ifneq (,$(filter coverage,$(TMP_BUILD_OPTS)))
+	QMAKE_OPTIONS = COV_OPTION=on
+endif
+
+# shared library versions, option 1
+version=0.1.0
+major=0
+
+QT_INSTALL_DATA:=$(shell qmake -query QT_INSTALL_DATA)
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir $(EXCLUSIONS)
+
+	qmake $(QMAKE_OPTIONS)
+	sed -e 's|QT_INSTALL_DATA|${QT_INSTALL_DATA}|' > debian/libmeegoimengine-dev.install < debian/libmeegoimengine-dev.install.in
+
+	touch configure-stamp
+
+
+build: build-stamp
+build-stamp: configure-stamp 
+	dh_testdir $(EXCLUSIONS)
+
+	make  $(PARALLEL_MAKEFLAGS)
+
+	touch build-stamp
+
+clean:
+	dh_testdir $(EXCLUSIONS)
+	dh_testroot $(EXCLUSIONS)
+
+	rm -f build-stamp configure-stamp
+
+	make  $(PARALLEL_MAKEFLAGS) clean || true
+	rm -f lib/*
+	rm -rf .obj	
+
+	dh_clean  $(EXCLUSIONS)
+
+install: build
+	dh_testdir $(EXCLUSIONS)
+	dh_testroot $(EXCLUSIONS)
+	dh_clean -k  $(EXCLUSIONS)
+	dh_installdirs $(EXCLUSIONS)
+
+	INSTALL_ROOT=$(CURDIR)/debian/tmp make  $(PARALLEL_MAKEFLAGS) install
+	rm -f $(INSTALL_ROOT)/usr/share/doc/libmeegoimengine/api/installdox
+
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir $(EXCLUSIONS)
+	dh_testroot $(EXCLUSIONS)
+	dh_installchangelogs  $(EXCLUSIONS)
+	dh_installdocs $(EXCLUSIONS)
+	dh_install --sourcedir=debian/tmp -v  $(EXCLUSIONS)
+#	dh_installexamples $(EXCLUSIONS)
+#	dh_install $(EXCLUSIONS)
+#	dh_installmenu $(EXCLUSIONS)
+#	dh_installdebconf	 $(EXCLUSIONS)
+#	dh_installlogrotate $(EXCLUSIONS)
+#	dh_installemacsen $(EXCLUSIONS)
+#	dh_installpam $(EXCLUSIONS)
+#	dh_installmime $(EXCLUSIONS)
+#	dh_installinit $(EXCLUSIONS)
+#	dh_installcron $(EXCLUSIONS)
+#	dh_installinfo $(EXCLUSIONS)
+#	dh_installman $(EXCLUSIONS)
+	dh_link $(EXCLUSIONS)
+	dh_strip --dbg-package=libmeegoimenginewords0 $(EXCLUSIONS)
+	dh_compress $(EXCLUSIONS)
+	dh_fixperms $(EXCLUSIONS)
+#	dh_perl $(EXCLUSIONS)
+#	dh_python $(EXCLUSIONS)
+	dh_makeshlibs $(EXCLUSIONS)
+	dh_installdeb $(EXCLUSIONS)
+	dh_shlibdeps $(EXCLUSIONS)
+	dh_gencontrol $(EXCLUSIONS)
+	dh_md5sums $(EXCLUSIONS)
+	dh_builddeb --destdir=$(DEBDIR) $(EXCLUSIONS)
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure

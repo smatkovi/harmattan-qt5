@@ -1,0 +1,13 @@
+.moc
+.obj
+moc_*
+gen_*
+*.so
+*.o
+Makefile
+*-stamp
+core
+*.gcov
+*.gcda
+*.gcno
+*~

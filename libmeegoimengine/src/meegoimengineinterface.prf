@@ -1,0 +1,3 @@
+MEEGOIMENGINE_WORDS_PREFIX=/usr
+LIBS+=-L$${MEEGOIMENGINE_WORDS_PREFIX}/lib
+qtAddLibrary(meegoimengine)

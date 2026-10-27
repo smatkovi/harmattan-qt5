@@ -1,0 +1,10 @@
+usr/lib/pkgconfig/*
+usr/lib/*.so
+QT_INSTALL_DATA/mkspecs/features/meegoimengineinterface.prf
+QT_INSTALL_DATA/mkspecs/features/meegoimengine.prf
+usr/include/meego/meegoimengine/mimenginefactory.h
+usr/include/meego/meegoimengine/mimenginewordsinterface.h
+usr/include/meego/meegoimengine/MImEngineWordsInterface
+usr/include/meego/meegoimengine/mimenginehwrinterface.h
+usr/include/meego/meegoimengine/MImEngineHwrInterface
+usr/include/meego/meegoimengine/mimenginetypes.h

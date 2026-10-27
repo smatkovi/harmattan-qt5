@@ -1,0 +1,18 @@
+/*! @mainpage MeeGo Touch Input Method Engine Framework Documentation
+
+@section intro Introduction
+
+MeeGo Touch Input Method Engine Framework is an integration framework that provides interfaces to be implemented by input method engine plugins created by developers. Such engine plugins act as backends for the UI plugins of @ref libmeegoimframework. They can, for example, return modified, alternate, corrected, or otherwise interpreted versions of the entered input. The input entered may be in text, handwriting, speech or some other format that the backend can process into text. The included Nokia proprietary error correction engine is such a plugin. It implements word error correction and prediction and returns suggestions based on its dictionary.
+
+@section basicusage Basic Usage
+
+<B>Main classes:</B>
+
+The following base classes are needed to implement an input method engine plugin:
+
+- MImEngineWordsInterface : to implement an engine plugin for error correction and prediction
+
+@section api API reference
+<a href="classes.html">All Classes</a>
+
+*/

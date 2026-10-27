@@ -1,0 +1,5 @@
+stub driver for unit test
+step:
+$qmake
+$make
+$make install

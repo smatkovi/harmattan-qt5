@@ -29,6 +29,9 @@ the commits after it.
 | `meegotouch-controlpanelapplets` | meegotouch-controlpanelapplets 0.21.10-1+0m7 (the settings applets) |
 | `libconnsettings` | libconnsettings 0.29+0m6 |
 | `meego-im-settings-applet` | meego-im-settings-applet 0.80.12+0m7 (text input settings) |
+| `meego-im-framework` | meego-im-framework 0.80.8.harmattan19+0m7 (the input method framework, Maliit) |
+| `meego-keyboard` | meego-keyboard 0.7.21-5+0m7 (the N9's virtual keyboard, BSD) |
+| `libmeegoimengine` | libmeegoimengine 0.4.11-1+0m7 (the keyboard's word engine interface) |
 
 Not open, and not here: the N9's own extensions (`mcompositor-swipe`,
 `meegotouchhome-nokia` with the Events view, `meegotouch-systemui-nokia`
@@ -50,7 +53,10 @@ Licences: as each package states (mostly LGPL 2.1).
 | `system-ui` | builds without QmSystem2/libresourceqt/libngf; sysuid draws the status bar that the applications show |
 | `duicontrolpanel` | the settings application runs with the N9's categories (`DCP_ROOT` for a staging directory) |
 | `meegotouch-controlpanelapplets` | about, reset, warranty and test applets; display, battery, offline and USB wait for QmSystem2, the sound settings for libprofile and GStreamer 1.0 |
-| `qmsystem2`, `libresourceqt`, `libconnsettings`, `meego-im-settings-applet` | not yet |
+| `qmsystem2` | builds; the battery from UPower or the kernel, time without timed, the heartbeat without iphbd |
+| `libconnsettings` | builds (plain C, on Leste's osso-ic headers) |
+| `mcompositor/plugins/swipe` | new: the N9's swipe (minimize from the sides, close from the top, sneak peek) |
+| `libresourceqt`, `meego-im-framework`, `meego-keyboard`, `meego-im-settings-applet` | not yet |
 
 Tried on a PC (Xvfb, Mesa llvmpipe), not yet on a device.
 

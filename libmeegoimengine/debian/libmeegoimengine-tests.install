@@ -1,0 +1,4 @@
+/usr/share/libmeegoimengine-tests/
+/usr/lib/libmeegoimengine-tests/
+/usr/lib/meego-imengines/drivers/words/libstub*
+/usr/lib/meego-imengines/drivers/hwr/libstub*

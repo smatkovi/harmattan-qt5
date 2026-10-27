@@ -1,0 +1,10 @@
+exec_prefix=PREFIX_PATH
+libdir=${exec_prefix}/lib
+includedir=PREFIX_PATH/include/meego/meegoimengine
+
+Name: MeegoImEngine
+Description: Meego Touch Input Method Engine Framework
+Version: 0.1.0
+Cflags: -I${includedir}
+Libs: -L${libdir} -lmeegoimengine
+

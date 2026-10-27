@@ -1,0 +1,17 @@
+unit test for meegoimengine
+
+usage: please run env configuration before test
+step:
+$cd ../../words/
+$qmake
+$cd ..
+$make install
+
+$cd ../unit_test/mydriverstub
+$qmake
+$make install
+
+$cd ../ut_meegoimengine
+$qmake
+$make
+$source env.sh

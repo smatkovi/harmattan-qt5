@@ -1,0 +1,5 @@
+Makefile
+*-stamp
+doxygen.log*
+moc_*
+*.o

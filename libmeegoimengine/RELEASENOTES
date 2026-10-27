@@ -1,0 +1,35 @@
+= 0.1.10 =
+== Changes ==
+ * DuiImWords::instance() takes two parameter now, the path of the drivers and the parent
+
+= 0.1.9 =
+== Changes ==
+ * Removed QSettings
+
+= 0.1.6 =
+== Changes ==
+ * init() is now private
+ * clearBuffer() is now replaced with clearEngineBuffer()
+ * clearBufferAndSave() is now replaced with saveAndClearEngineBuffer()
+
+== New ==
+ * error() to show last error string describing the error
+ * maximumCandidates() and setMaximumCandidates are the new getter and setter to access the maximum candidates given by the engine
+ * suggestedCandidateIndex() and setSuggestedCandidateIndex() are the new getter and setter to access the candidate index
+   suggested by the engine
+
+== Fixed ==
+
+ * NB#106198  FIXE    duiimenginewords has global variables
+ * NB#102783  FIXE    DuiImengineWords private
+ * NB#106302  FIXE    duiimeenginewords multiple Plugin loading fails
+
+= 0.1.5 =
+ * Bugs fixed: #NB106268, NB#102780
+ * improvement in unit tests: Added mydriverstub2 as the second test driver 
+
+= 0.1.4 =
+== New ==
+ * setExactWordPositionInList() 
+ * instrumented binaries are produced
+ * improvements in unit tests

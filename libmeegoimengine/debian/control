@@ -1,0 +1,44 @@
+Source: libmeegoimengine
+Section: libs
+Priority: extra
+Maintainer: Mohammad Anwari <Mohammad.Anwari@nokia.com> 
+Build-Depends: debhelper (>= 5), libqt4-dev (>= 4.6), doxygen
+Standards-Version: 3.8.0
+
+Package: libmeegoimengine-dev
+Section: libdevel
+Architecture: all
+Depends: libqt4-dev (>= 4.6), libmeegoimenginewords0 (= ${Source-Version})
+Description: libmeegoimmengine development files
+ Development files for Meego Touch Input Method Engine Framework
+
+Package: libmeegoimenginewords0
+Architecture: any
+Depends:  ${misc:Depends}, ${shlibs:Depends}
+Description: Meego Touch Input Method Engine Framework library, word correction/prediction
+ libmeegoimengine framework library
+
+Package: libmeegoimenginewords0-dbg
+Section: devel
+Architecture: any
+Depends: libmeegoimenginewords0 (= ${Source-Version})
+Description: libmeegoimmenginewords debug files
+ Debug files for Meego Touch Input Method Engine Framework
+
+Package: libmeegoimengine-doc
+Section: doc
+Architecture: all
+Description: API documentation for libmeegoimengine
+
+Package: libmeegoimengine-tests
+Section: devel
+Architecture: any
+Depends: libmeegoimenginewords0 (= ${source:Version}), 
+Description: Unit tests for libmeegoimengine
+
+Package: libmeegoimengine-dummydriver
+Section: devel
+Architecture: any
+Depends: libmeegoimenginewords0 (= ${source:Version}),
+Description: Dummy Driver for libmeegoimengine
+
