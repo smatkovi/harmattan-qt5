@@ -22,6 +22,7 @@
 #include <QFile>
 #include <QLocalServer>
 #include <QLocalSocket>
+#include <QStandardPaths>
 #include <QBuffer>
 #include <QDataStream>
 #include <QMetaObject>
@@ -63,7 +64,14 @@ private:
 MRmiPrivate::MRmiPrivate(const QString &key, bool isServer)
         : _key(key), _obj(0), method_size(0)
 {
+#if QT_VERSION < 0x050000
     _key = "/var/run/" + key;
+#else
+    // the session runs as the user (Leste, FreeBSD), who can't write to
+    // /var/run: the user's runtime directory ($XDG_RUNTIME_DIR)
+    _key = QStandardPaths::writableLocation(QStandardPaths::RuntimeLocation)
+           + "/" + key;
+#endif
     output_buffer.open(QIODevice::WriteOnly);
     if (!isServer)
           return;

@@ -172,8 +172,20 @@ bool MTextureFromPixmap::invertedTexture() const
 
 void MTextureFromPixmap::update()
 {
-    if (hasTextureFromPixmap() || !drawable)
+    if (!drawable)
         return;
+    if (hasTextureFromPixmap()) {
+        // EXT_texture_from_pixmap leaves the texture undefined when the
+        // pixmap changes while bound, and Mesa's software drivers copy
+        // the pixmap when it is bound: bind it again on every damage
+        if (d->glpixmap) {
+            Display *display = QX11Info::display();
+            glBindTexture(GL_TEXTURE_2D, textureId);
+            glXReleaseTexImageEXT(display, d->glpixmap, GLX_FRONT_LEFT_EXT);
+            glXBindTexImageEXT(display, d->glpixmap, GLX_FRONT_LEFT_EXT, NULL);
+        }
+        return;
+    }
 
     QT_TRY {
         QImage img = QGLWidget::convertToGLFormat(mImageFromX11Drawable(drawable));
