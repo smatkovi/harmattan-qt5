@@ -33,7 +33,9 @@ M_LIBRARY
 #define WARNING
 #include "../debug.h"
 
+#if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2(wallpaperapplet, WallpaperApplet)
+#endif
 
 WallpaperApplet::WallpaperApplet() :
     m_WallpaperBusinessLogic (0)

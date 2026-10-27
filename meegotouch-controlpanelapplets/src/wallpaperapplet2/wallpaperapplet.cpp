@@ -26,7 +26,9 @@
 
 #include <MAction>
 
+#if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2(wallpaperapplet2, WallpaperApplet)
+#endif
 
 #ifndef UNIT_TEST
 #include <MLibrary>

@@ -13,7 +13,10 @@ CONFIG += plugin \
           link_pkgconfig
 
 QT += dbus
-MOBILITY += systeminfo
+# Qt 5 has no Qt Mobility (aboutbusinesslogic.cpp reads the device's data
+# itself); QNetworkInterface for the WLAN address
+lessThan(QT_MAJOR_VERSION, 5): MOBILITY += systeminfo
+greaterThan(QT_MAJOR_VERSION, 4): QT += network
 
 contains(DEFINES, HAVE_CONTENT_ACTION) {
     PKGCONFIG += contentaction-0.1

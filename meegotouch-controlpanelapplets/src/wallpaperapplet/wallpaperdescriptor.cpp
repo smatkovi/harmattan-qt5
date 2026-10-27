@@ -197,7 +197,7 @@ Image::setUrl (
 {
     QUrl     newUrl;
 
-    newUrl.setEncodedUrl (urlString.toAscii());
+    newUrl.setEncodedUrl (urlString.toLatin1());
     if (newUrl == m_Url)
         return;
 

@@ -33,7 +33,7 @@ static ProfileBackend *backend = 0;
 
 inline const char* toCharArray (QString &str)
 {
-    return str.toAscii().constData();
+    return str.toLatin1().constData();
 }
 
 ProfileBackend::ProfileBackend (QObject *parent) :

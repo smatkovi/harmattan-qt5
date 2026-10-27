@@ -122,7 +122,7 @@ openDebugFile ()
 
         fileName = QDir::homePath() + "/controlpanel-applets.log";
         printf("---> %s", SYS_STR(fileName));
-        debugStream = fopen (fileName.toAscii().constData(), "a");
+        debugStream = fopen (fileName.toLatin1().constData(), "a");
         if (debugStream) {
             fprintf (debugStream, 
                     "***********************************************\n"

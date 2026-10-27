@@ -32,7 +32,9 @@ M_LIBRARY
 #define WARNING
 #include "../debug.h"
 
+#if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2(themeapplet, ThemeApplet)
+#endif
 
 ThemeApplet::ThemeApplet() :
     m_ThemeBusinessLogic (ThemeBusinessLogic::instance())

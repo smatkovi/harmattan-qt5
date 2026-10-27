@@ -140,22 +140,22 @@ t_operator_data_list *gprsWidget::readOperatorConfigData()
                         for (ii = 0; ii < str_list.size(); ii++) {
                             switch(ii) {
                                 case 0:
-                                    data->operator_id  = strdup(str_list.at(ii).toAscii().data());
+                                    data->operator_id  = strdup(str_list.at(ii).toLatin1().data());
                                     break;
                                 case 1:
-                                    data->country = strdup(str_list.at(ii).toAscii().data());
+                                    data->country = strdup(str_list.at(ii).toLatin1().data());
                                     break;
                                 case 2:
-                                    data->operator_name   = strdup(str_list.at(ii).toAscii().data());
+                                    data->operator_name   = strdup(str_list.at(ii).toLatin1().data());
                                     break;
                                 case 3:
-                                    data->apn_name = strdup(str_list.at(ii).toAscii().data());
+                                    data->apn_name = strdup(str_list.at(ii).toLatin1().data());
                                     break;
                                 case 4:
-                                    data->username  = strdup(str_list.at(ii).toAscii().data());
+                                    data->username  = strdup(str_list.at(ii).toLatin1().data());
                                     break;
                                 case 5:
-                                    data->password = strdup(str_list.at(ii).toAscii().data());
+                                    data->password = strdup(str_list.at(ii).toLatin1().data());
                                     break;
                                 default:
                                     // no more data expected
@@ -170,11 +170,11 @@ t_operator_data_list *gprsWidget::readOperatorConfigData()
             }
         }
         else {
-            //printf("Could not open operators configuration file: %s\n", configFilePath.toAscii().data());
+            //printf("Could not open operators configuration file: %s\n", configFilePath.toLatin1().data());
         }
     }
     else {
-        //printf("Could not get handle to operators configuration file: %s\n", configFilePath.toAscii().data());
+        //printf("Could not get handle to operators configuration file: %s\n", configFilePath.toLatin1().data());
     }
     return ret_val;
 }

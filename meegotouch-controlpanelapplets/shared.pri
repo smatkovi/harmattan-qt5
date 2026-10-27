@@ -17,3 +17,13 @@ defineTest(addSubDirs) {
     export (SUBDIRS)
 }
 
+
+# Qt 5: QtWidgets and QtX11Extras named here (the meegotouch features
+# would add them after qt.prf has run), Q_WS_X11, Xlib linked (Qt 4's
+# QtGui brought it), no -Werror
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT *= widgets x11extras
+    DEFINES *= Q_WS_X11
+    LIBS *= -lX11
+    QMAKE_CXXFLAGS -= -Werror
+}

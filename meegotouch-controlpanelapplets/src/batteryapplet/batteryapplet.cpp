@@ -35,7 +35,9 @@ M_LIBRARY
 #undef DEBUG
 #include "../debug.h"
 
+#if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2(batteryapplet, BatteryApplet)
+#endif
 
 BatteryApplet::BatteryApplet ():
 	m_MainWidget (0)

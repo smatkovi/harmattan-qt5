@@ -77,7 +77,7 @@ WarrantyWidget::initialize ()
     if (! m_warrantyText.isEmpty ())
     {
         if (m_warrantyText.contains ("qtn_"))
-            m_warrantyText = qtTrId (m_warrantyText.toAscii ().constData ());
+            m_warrantyText = qtTrId (m_warrantyText.toLatin1().constData ());
         else
         {
             QFile warrantyFile (configPath + m_warrantyText);

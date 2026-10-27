@@ -22,7 +22,9 @@
 #include "offlineapplet.h"
 #include "offlinebrief.h"
 
+#if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2(offlineapplet, OfflineApplet)
+#endif
 
 void OfflineApplet::init()
 {

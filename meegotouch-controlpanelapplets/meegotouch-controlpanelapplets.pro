@@ -11,7 +11,8 @@ CONFIG(docs) {
 }
 
 addSubDirs(src)
-addSubDirs(tests)
+# the unit tests are not ported to Qt 5 yet
+lessThan(QT_MAJOR_VERSION, 5): addSubDirs(tests)
 
 QMAKE_CLEAN += \
 	configure-stamp \

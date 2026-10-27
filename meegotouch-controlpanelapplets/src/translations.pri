@@ -19,8 +19,10 @@ LRELEASE_OPTIONS = -idbased
 SOURCEDIR = $$PWD/$$CATALOGNAME
 TRANSLATIONDIR = $$PWD
 TRANSLATION_INSTALLDIR = /usr/share/l10n/meegotouch
-include($$[QT_INSTALL_DATA]/mkspecs/features/meegotouch_defines.prf)
-include($$[QT_INSTALL_DATA]/mkspecs/features/meegotouch_translations.prf)
+# (load() finds the features also on QMAKEFEATURES, outside Qt's own
+# mkspecs)
+load(meegotouch_defines)
+load(meegotouch_translations)
 
 # hack around again?
 LRELEASE_OPTIONS -= -markuntranslated '!!\\ '

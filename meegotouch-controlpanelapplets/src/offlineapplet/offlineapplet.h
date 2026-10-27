@@ -28,6 +28,10 @@ class Q_DECL_EXPORT OfflineApplet : public QObject, public DcpAppletIf
 {
 	Q_OBJECT
 	Q_INTERFACES(DcpAppletIf)
+#if QT_VERSION >= 0x050000
+	// Qt 5's plugins say what they are in the class (Q_EXPORT_PLUGIN2 is gone)
+	Q_PLUGIN_METADATA(IID "com.nokia.m.core.DcpAppletIf/1.0")
+#endif
 
 public:
     virtual void init();

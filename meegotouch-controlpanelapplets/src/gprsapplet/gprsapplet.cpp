@@ -27,7 +27,9 @@
 #define DEBUG
 #include "../debug.h"
 
+#if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2(gprsapplet, gprsApplet)
+#endif
 
 const QString cssDir = "/usr/share/themes/base/meegotouch/libgprsapplet/style/";
 

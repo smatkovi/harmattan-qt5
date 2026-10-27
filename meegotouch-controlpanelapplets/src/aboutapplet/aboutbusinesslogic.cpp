@@ -19,12 +19,36 @@
 #include "aboutbusinesslogic.h"
 #include <QFile>
 #include <QTimer>
+#if QT_VERSION < 0x050000
 #include <QSystemInfo>
 #include <QNetworkInterface>
 #include <QSystemDeviceInfo>
 #include <QSystemNetworkInfo>
+#else
+#include <QFile>
+#include <QNetworkInterface>
+#endif
 
+#if QT_VERSION < 0x050000
 QTM_USE_NAMESPACE
+#else
+/*
+ * Qt 5 has no Qt Mobility: what its QSystemInfo, QSystemDeviceInfo and
+ * QSystemNetworkInfo gave on the N9 comes from the device tree, DMI and
+ * the network interfaces.
+ */
+// the first line of the first of @files that can be read
+static QString firstLine (const char *const files[])
+{
+    for (int i = 0; files[i]; ++i) {
+        QFile f (QLatin1String (files[i]));
+        if (f.open (QIODevice::ReadOnly))
+            // device tree strings end with a NUL
+            return QString::fromUtf8 (f.readLine ()).remove (QChar (0)).trimmed ();
+    }
+    return QString ();
+}
+#endif
 
 #include <QDir>
 #include <QRegExp>
@@ -115,7 +139,7 @@ AboutBusinessLogic::ipAddress (
         goto finalize;
     }
 
-    strcpy (ifr.ifr_name, device.toAscii().constData());
+    strcpy (ifr.ifr_name, device.toLatin1().constData());
     sin->sin_family = AF_INET;
 
     if (0 == ioctl(sfd, SIOCGIFADDR, &ifr)) {
@@ -140,7 +164,9 @@ AboutBusinessLogic::osVersion (QString lsbFilePath )
 {
     QString retval;
 
+#if QT_VERSION < 0x050000
     QSystemInfo systemInfo;
+#endif
 #ifdef MEEGO
    
     QFile rel_file ("/etc/meego-release");  
@@ -159,7 +185,9 @@ AboutBusinessLogic::osVersion (QString lsbFilePath )
 
 #endif
 
+#if QT_VERSION < 0x050000
     retval = systemInfo.version (QSystemInfo::Firmware);
+#endif
     /*
      * The fw-version format is something like that:
      * SupportedHWID_PROGRAM_ReleaseVersion_suffixes
@@ -184,6 +212,8 @@ AboutBusinessLogic::osVersion (QString lsbFilePath )
             int pos = version.indexIn (contents);
             if (pos > -1) {
                 retval = version.cap (1);
+                // the value may be quoted
+                retval.remove ('"');
                 goto finalize;
             }
         }
@@ -193,7 +223,12 @@ finalize:
     if (retval.isEmpty()) {
         retval = "-";
     } else {
+#if QT_VERSION < 0x050000
         retval = "<b>PR1.2</b><br>(" + retval + ")";
+#else
+        // (PR1.2 is the N9's firmware, not this system's)
+        retval = "<b>" + retval + "</b>";
+#endif
     }
 
     return retval;
@@ -235,8 +270,11 @@ AboutBusinessLogic::osName (QString lsbFilePath)
 
         QRegExp distrib_name ("DISTRIB_ID=(\\S*)");
         int pos = distrib_name.indexIn (contents);
-        if (pos > -1)
+        if (pos > -1) {
             retval = distrib_name.cap (1);
+            // the value may be quoted
+            retval.remove ('"');
+        }
     }
 
     return retval;
@@ -251,6 +289,7 @@ QString
 AboutBusinessLogic::WiFiAddress ()
 {
     QString address;
+#if QT_VERSION < 0x050000
     QSystemNetworkInfo netInfo;
 
     address = netInfo.interfaceForMode (
@@ -259,6 +298,17 @@ AboutBusinessLogic::WiFiAddress ()
     if (address.isNull ())
         address = netInfo.interfaceForMode (
             QSystemNetworkInfo::WimaxMode).hardwareAddress ();
+#else
+    // the first wireless interface (wlan0 on Linux, wlan0 or iwm0 ... on
+    // FreeBSD)
+    foreach (const QNetworkInterface &iface, QNetworkInterface::allInterfaces ()) {
+        const QString name = iface.name ();
+        if (name.startsWith ("wlan") || name.startsWith ("wl")) {
+            address = iface.hardwareAddress ();
+            break;
+        }
+    }
+#endif
 
     return address;
 }
@@ -271,10 +321,13 @@ AboutBusinessLogic::IMEI ()
 {
     QString imei;
 
+#if QT_VERSION < 0x050000
     // Get IMEI from QtMobility SystemDeviceInfo obj.
     QSystemDeviceInfo deviceInfo;
 
     imei = deviceInfo.imei ();
+#endif
+    // (Qt 5: from the modem, oFono, once it is connected)
 
     return imei;
 }
@@ -288,6 +341,7 @@ AboutBusinessLogic::productName ()
     if (! m_prodName.isEmpty ())
         return m_prodName;
 
+#if QT_VERSION < 0x050000
     QSystemDeviceInfo sdi;
 
     /*
@@ -297,6 +351,16 @@ AboutBusinessLogic::productName ()
      */
     QString vendor = sdi.manufacturer ();
     QString model = sdi.model ();
+#else
+    static const char *const vendors[] = {
+        "/sys/devices/virtual/dmi/id/sys_vendor", 0 };
+    static const char *const models[] = {
+        "/proc/device-tree/model", "/sys/devices/virtual/dmi/id/product_name", 0 };
+    QString vendor = firstLine (vendors);
+    QString model = firstLine (models);
+    if (vendor.isEmpty ())
+        return model;
+#endif
 
     if (model.contains (vendor))
         return model;
