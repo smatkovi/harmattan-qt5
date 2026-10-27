@@ -29,6 +29,10 @@ class VolumeExtension : public QObject, public VolumeExtensionInterface
 {
     Q_OBJECT
     Q_INTERFACES(VolumeExtensionInterface MApplicationExtensionInterface)
+#if QT_VERSION >= 0x050000
+    // Qt 5's plugins say what they are in the class (Q_EXPORT_PLUGIN2 is gone)
+    Q_PLUGIN_METADATA(IID "com.meego.core.VolumeExtensionInterface/0.20")
+#endif
 
 public:
     VolumeExtension();

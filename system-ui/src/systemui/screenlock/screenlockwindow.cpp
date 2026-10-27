@@ -154,6 +154,6 @@ void ScreenLockWindow::setSkipTaskbarProperty()
     e.xclient.format = 32;
     e.xclient.data.l[0] = 1;
     e.xclient.data.l[1] = X11Wrapper::XInternAtom(display, "_NET_WM_STATE_SKIP_TASKBAR", False);
-    X11Wrapper::XSendEvent(display, RootWindow(display, x11Info().screen()), False, (SubstructureNotifyMask | SubstructureRedirectMask), &e);
+    X11Wrapper::XSendEvent(display, RootWindow(display, QX11Info::appScreen()), False, (SubstructureNotifyMask | SubstructureRedirectMask), &e);
     X11Wrapper::XSync(display, False);
 }

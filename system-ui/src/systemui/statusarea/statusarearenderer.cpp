@@ -21,10 +21,14 @@
 #include "xeventlistenerwidget.h"
 #include <MStyle>
 #include "statusareastyle.h"
+#if QT_VERSION < 0x050000
 #include <QMeeGoLivePixmap>
 #include <QMeeGoGraphicsSystemHelper>
+#endif
 #include <QX11Info>
 #include "x11wrapper.h"
+#include <QPainter>
+#include <X11/Xutil.h>
 
 // Update the pixmap 5 times per second at most
 static const int ACCUMULATION_INTERVAL = 200;
@@ -37,6 +41,9 @@ StatusAreaRenderer::StatusAreaRenderer(QObject *parent) :
     scene(new QGraphicsScene),
     statusArea(new StatusArea),
     statusAreaLivePixmap(NULL),
+#if QT_VERSION >= 0x050000
+    statusAreaPixmap(0),
+#endif
     statusAreaPropertyWindow(0),
     windowManagerWindow(0),
     windowManagerWindowWidget(NULL),
@@ -115,16 +122,26 @@ void StatusAreaRenderer::setSizeFromStyle()
 bool StatusAreaRenderer::createSharedPixmapHandle()
 {
     Display *display = QX11Info::display();
-    Pixmap pixmap = X11Wrapper::XCreatePixmap(display, QX11Info::appRootWindow(), statusAreaWidth, statusAreaHeight, QX11Info::appDepth());
+    Pixmap pixmap = X11Wrapper::XCreatePixmap(display, QX11Info::appRootWindow(), statusAreaWidth, statusAreaHeight, DefaultDepth(QX11Info::display(), QX11Info::appScreen()));
+#if QT_VERSION < 0x050000
     statusAreaPixmap = QPixmap::fromX11Pixmap(pixmap, QPixmap::ExplicitlyShared);
 
     if (!statusAreaPixmap.isNull()) {
+#else
+    statusAreaPixmap = pixmap;
+
+    if (statusAreaPixmap != 0) {
+#endif
         if (shareDrawableAtom != None) {
             // Allow sharing the pixmap even if the X security module is loaded
             XClientMessageEvent event;
             memset(&event, 0, sizeof(XClientMessageEvent));
             event.type = ClientMessage;
+#if QT_VERSION < 0x050000
             event.window = statusAreaPixmap.handle();
+#else
+            event.window = statusAreaPixmap;
+#endif
             event.message_type = shareDrawableAtom;
             event.format = 8;
             event.data.b[0] = True;
@@ -138,6 +155,11 @@ bool StatusAreaRenderer::createSharedPixmapHandle()
 
 bool StatusAreaRenderer::createBackPixmap()
 {
+#if QT_VERSION >= 0x050000
+    // pixels as the X server keeps a pixmap of the default (24-bit) depth
+    backPixmap = QImage(statusAreaWidth, statusAreaHeight, QImage::Format_RGB32);
+    return !backPixmap.isNull();
+#else
     if (statusAreaLivePixmap) {
         delete statusAreaLivePixmap;
         statusAreaLivePixmap = NULL;
@@ -155,11 +177,16 @@ bool StatusAreaRenderer::createBackPixmap()
     } else {
         return false;
     }
+#endif
 }
 
 uint StatusAreaRenderer::sharedPixmapHandle()
 {
+#if QT_VERSION < 0x050000
     return static_cast<quint32> (statusAreaPixmap.handle());
+#else
+    return static_cast<quint32> (statusAreaPixmap);
+#endif
 }
 
 void StatusAreaRenderer::createStatusAreaPropertyWindow()
@@ -223,9 +250,11 @@ StatusAreaRenderer::~StatusAreaRenderer()
     scene->removeItem(statusArea);
     delete statusArea;
 
+#if QT_VERSION < 0x050000
     if (statusAreaLivePixmap != NULL) {
         delete statusAreaLivePixmap;
     }
+#endif
 
     if (statusAreaPropertyWindow != 0) {
         X11Wrapper::XDeleteProperty(QX11Info::display(),
@@ -237,12 +266,18 @@ StatusAreaRenderer::~StatusAreaRenderer()
                         X11Wrapper::XInternAtom(QX11Info::display(), "_MEEGOTOUCH_STATUSBAR_PIXMAP", False));
     }
 
+#if QT_VERSION < 0x050000
     if (!statusAreaPixmap.isNull()) {
         Pixmap pixmap = statusAreaPixmap.handle();
         if (pixmap != 0) {
             X11Wrapper::XFreePixmap(QX11Info::display(), pixmap);
         }
     }
+#else
+    if (statusAreaPixmap != 0) {
+        X11Wrapper::XFreePixmap(QX11Info::display(), statusAreaPixmap);
+    }
+#endif
 
     delete windowManagerWindowWidget;
 
@@ -265,6 +300,43 @@ void StatusAreaRenderer::accumulateSceneChanges(const QList<QRectF> &region)
 
 void StatusAreaRenderer::renderAccumulatedRegion()
 {
+#if QT_VERSION >= 0x050000
+    if (!accumulatedRegion.isEmpty() && statusAreaPixmap != 0 && !backPixmap.isNull()) {
+        QRectF pixmapRect(backPixmap.rect());
+        // Don't draw areas that are outside the pixmap
+        if (accumulatedRegion.intersects(pixmapRect)) {
+            QRectF sourceRect = accumulatedRegion.intersected(pixmapRect);
+            QPainter painter(&backPixmap);
+            painter.fillRect(sourceRect, QColor(Qt::black));
+            scene->render(&painter, sourceRect, sourceRect);
+            painter.end();
+            copyToSharedPixmap(sourceRect.toAlignedRect().intersected(backPixmap.rect()));
+        }
+        accumulatedRegion = QRectF(0.0f, 0.0f, 0.0f, 0.0f);
+    }
+}
+
+void StatusAreaRenderer::copyToSharedPixmap(const QRect &rect)
+{
+    Display *display = QX11Info::display();
+    XImage *xi = XCreateImage(display, DefaultVisual(display, QX11Info::appScreen()), DefaultDepth(QX11Info::display(), QX11Info::appScreen()),
+                              ZPixmap, 0, (char *) backPixmap.bits(),
+                              backPixmap.width(), backPixmap.height(), 32,
+                              backPixmap.bytesPerLine());
+    if (xi == NULL) {
+        return;
+    }
+    xi->byte_order = Q_BYTE_ORDER == Q_LITTLE_ENDIAN ? LSBFirst : MSBFirst;
+    GC gc = XCreateGC(display, statusAreaPixmap, 0, NULL);
+    // the clients see the change as damage of the shared pixmap
+    XPutImage(display, statusAreaPixmap, gc, xi, rect.x(), rect.y(), rect.x(), rect.y(),
+              rect.width(), rect.height());
+    XFreeGC(display, gc);
+    XFlush(display);
+    // the data is the QImage's
+    xi->data = NULL;
+    XDestroyImage(xi);
+#else
     if (!accumulatedRegion.isEmpty() && !statusAreaPixmap.isNull() && !backPixmap.isNull()) {
         if (statusAreaLivePixmap && !QMeeGoGraphicsSystemHelper::isRunningMeeGo()) {
             QMeeGoGraphicsSystemHelper::switchToMeeGo();
@@ -299,6 +371,7 @@ void StatusAreaRenderer::renderAccumulatedRegion()
         }
         accumulatedRegion = QRectF(0.0f, 0.0f, 0.0f, 0.0f);
     }
+#endif
 }
 
 bool StatusAreaRenderer::setupStatusBarVisibleListener()

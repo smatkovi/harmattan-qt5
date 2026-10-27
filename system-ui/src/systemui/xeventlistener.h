@@ -72,7 +72,9 @@ private:
     static void setupListener();
 
     static QHash<XEventListenerFilterInterface *, long> filterList;
+#if QT_VERSION < 0x050000
     static QAbstractEventDispatcher::EventFilter previousEventFilter;
+#endif
 
 #ifdef UNIT_TEST
         friend class Ut_XEventListener;

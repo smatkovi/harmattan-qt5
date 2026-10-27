@@ -8,6 +8,9 @@ include(../../../localconfig.pri)
 
 TEMPLATE      = lib
 CONFIG       += plugin gui meegotouch system-ui link_pkgconfig
+# Qt 5: QtWidgets and QtX11Extras named here (CONFIG += qt again runs
+# qt.prf before meegotouch.prf adds them)
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets x11extras
 INCLUDEPATH  += \
     ../../libnotificationsystem \
     ../../systemui/statusindicatormenu \

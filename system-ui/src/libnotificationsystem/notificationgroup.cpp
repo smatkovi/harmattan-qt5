@@ -21,6 +21,7 @@
 #include "notificationgroup.h"
 #include "notificationwidgetparameterfactory.h"
 #include "genericnotificationparameterfactory.h"
+#include <QDataStream>
 
 NotificationGroup::NotificationGroup() :
     groupId_(0),

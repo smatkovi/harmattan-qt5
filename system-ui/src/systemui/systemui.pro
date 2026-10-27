@@ -13,7 +13,11 @@ target.path = /usr/bin
 CONFIG += meegotouch \
           link_pkgconfig
 
-QT += dbus gui meegographicssystemhelper
+QT += dbus gui
+# Qt 5: no MeeGo graphics system; QtWidgets and QtX11Extras named here
+# (CONFIG += qt again runs qt.prf before meegotouch.prf adds them)
+lessThan(QT_MAJOR_VERSION, 5): QT += meegographicssystemhelper
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets x11extras
 
 INCLUDEPATH += ../libnotificationsystem
 QMAKE_LIBDIR += ../../lib

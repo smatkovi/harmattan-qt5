@@ -19,13 +19,61 @@
 #include "xeventlistener.h"
 
 #include <QSharedPointer>
+#if QT_VERSION >= 0x050000
+#include <QAbstractNativeEventFilter>
+#include <QCoreApplication>
+#include <QX11Info>
+#include <X11/Xlibint.h>
+#include <xcb/xcb.h>
+#include <cstring>
+#endif
 #include <X11/X.h>
 
 static long maskMap[LASTEvent];
 
 static QSharedPointer<XEventListener> eventListenerInstance;
 QHash<XEventListenerFilterInterface *, long> XEventListener::filterList;
+#if QT_VERSION < 0x050000
 QAbstractEventDispatcher::EventFilter XEventListener::previousEventFilter = NULL;
+#else
+/*
+ * Qt 5 has no QAbstractEventDispatcher::setEventFilter() and hands the X
+ * events over in xcb's format: each becomes an XEvent through Xlib's own
+ * conversion from the wire format, as in libmeegotouch's MApplication,
+ * and goes to xEventFilter().
+ */
+class XEventListenerNativeFilter : public QAbstractNativeEventFilter
+{
+public:
+    bool nativeEventFilter(const QByteArray &eventType, void *message, long *)
+    {
+        if (eventType != "xcb_generic_event_t")
+            return false;
+        Display *dpy = QX11Info::display();
+        xcb_generic_event_t *event = static_cast<xcb_generic_event_t *>(message);
+        const int type = event->response_type & ~0x80;
+        if (!dpy || type < 2 || type >= LASTEvent)    // errors, replies, extensions
+            return false;
+
+        typedef Bool (*WireToEvent)(Display *, XEvent *, xEvent *);
+        WireToEvent convert = XESetWireToEvent(dpy, type, 0);
+        XESetWireToEvent(dpy, type, convert);
+        if (!convert)
+            return false;
+        // Xlib reckons the 16-bit sequence number against its own request
+        // count: the one it read last, so that nothing changes
+        xEvent wire;
+        std::memcpy(&wire, event, sizeof wire);
+        wire.u.u.sequenceNumber = static_cast<CARD16>(dpy->last_request_read);
+        XEvent xevent;
+        std::memset(&xevent, 0, sizeof xevent);
+        if (!convert(dpy, &xevent, &wire))
+            return false;
+        xevent.xany.display = dpy;
+        return XEventListener::xEventFilter(&xevent);
+    }
+};
+#endif
 
 XEventListener::XEventListener()
 {
@@ -33,6 +81,7 @@ XEventListener::XEventListener()
 
 XEventListener::~XEventListener()
 {
+#if QT_VERSION < 0x050000
     if (previousEventFilter) {
         QAbstractEventDispatcher *dispatcher = QAbstractEventDispatcher::instance();
         if (dispatcher) {
@@ -40,6 +89,7 @@ XEventListener::~XEventListener()
         }
         previousEventFilter = NULL;
     }
+#endif
 }
 
 void XEventListener::setupEventMasks()
@@ -63,7 +113,11 @@ void XEventListener::setupListener()
     // Initialize event listener on first registration
     if (eventListenerInstance.isNull()) {
         setupEventMasks();
+#if QT_VERSION < 0x050000
         previousEventFilter = QAbstractEventDispatcher::instance()->setEventFilter(xEventFilter);
+#else
+        QCoreApplication::instance()->installNativeEventFilter(new XEventListenerNativeFilter);
+#endif
         eventListenerInstance = QSharedPointer<XEventListener>(new XEventListener);
     }
 }
@@ -97,9 +151,11 @@ bool XEventListener::xEventFilter(void *message)
         }
     }
 
+#if QT_VERSION < 0x050000
     if (!eventHandled && previousEventFilter) {
         eventHandled = previousEventFilter(message);
     }
+#endif
 
     return eventHandled;
 }

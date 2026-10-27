@@ -136,10 +136,21 @@ private:
     //! The status area to be displayed in this window
     StatusArea *statusArea;
 
+#if QT_VERSION < 0x050000
     //! Shared Pixmap between libmeegotouch and systemui for the status area.
     QPixmap statusAreaPixmap;
     //! Back buffer pixmap - the content is first rendered here and then copied to the shared pixmap
     QPixmap backPixmap;
+#else
+    //! Shared X pixmap between libmeegotouch and systemui for the status
+    //! area (Qt 5's QPixmap has no X pixmap behind it)
+    Pixmap statusAreaPixmap;
+    //! Back buffer - the content is first rendered here and then copied
+    //! to the shared pixmap with XPutImage()
+    QImage backPixmap;
+    //! Copies @rect of the back buffer to the shared pixmap
+    void copyToSharedPixmap(const QRect &rect);
+#endif
     //! Used for better performance if MeeGo graphics system is available, wrapped by backPixmap
     QMeeGoLivePixmap* statusAreaLivePixmap;
 

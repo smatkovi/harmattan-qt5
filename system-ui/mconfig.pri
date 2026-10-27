@@ -9,6 +9,16 @@ DEFINES += THEMEDIR=\\\"\"$$M_THEME_DIR\"\\\"
 QMAKE_CXXFLAGS += -g
 QMAKE_LFLAGS += -g
 
+# Qt 5 and Xlib in one file: qt5x11prelude.h before everything else
+# (moc's predefined macros come from the compiler with these flags, but
+# without the include path: moc goes without, as Qt 4's did)
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QMAKE_CXXFLAGS += -include $$PWD/qt5x11prelude.h
+    CONFIG += no_moc_predefs
+    # Qt 4's QtGui linked Xlib, Qt 5's does not
+    LIBS *= -lX11
+}
+
 # Directories
 unix {
     SYSTEMUI_THEMES_DIR = /usr/share/themes/base/meegotouch/sysuid

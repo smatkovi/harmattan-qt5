@@ -32,6 +32,7 @@
 #include <QDateTime>
 #include <mfiledatastore.h>
 #include <QFile>
+#include <QDataStream>
 
 //! Directory in which the persistent data files are located
 static const QString PERSISTENT_DATA_PATH = QDir::homePath() + QString("/.config/sysuid/notificationmanager/");

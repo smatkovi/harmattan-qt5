@@ -21,6 +21,7 @@
 #include "notification.h"
 #include "notificationwidgetparameterfactory.h"
 #include "genericnotificationparameterfactory.h"
+#include <QDataStream>
 
 Notification::Notification() :
     notificationId_(0),

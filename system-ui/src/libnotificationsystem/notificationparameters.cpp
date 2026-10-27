@@ -21,6 +21,7 @@
 
 #include "notificationparameters.h"
 #include "notificationparameter.h"
+#include <QDataStream>
 
 NotificationParameters::NotificationParameters()
 {
