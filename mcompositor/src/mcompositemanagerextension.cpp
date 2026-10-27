@@ -44,6 +44,11 @@ void MCompositeManagerExtension::listenXEventType(long XEventType)
     p->d->installX11EventFilter(XEventType, this);
 }
 
+bool MCompositeManagerExtension::providesAnimations() const
+{
+    return true;
+}
+
 void MCompositeManagerExtension::dumpState() const
 {
     /* NOP */

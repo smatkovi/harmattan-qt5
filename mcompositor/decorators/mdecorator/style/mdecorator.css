@@ -10,6 +10,9 @@
 MEscapeButtonPanelStyle {
     back-button-icon-id: "icon-m-toolbar-back";
     close-button-icon-id: "icon-m-toolbar-close";
+    /* applications close with a swipe down from the top edge, as on the
+       N9 (mcompositor's swipe gesture), not with a button */
+    has-close-button: false;
 }
 
 #MNavigationBarCloseButton {

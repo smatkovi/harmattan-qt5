@@ -65,6 +65,13 @@ class MCompositeManagerExtension: public QObject
     //! to be included in MCompositeManager::dumpState()'s output.
     virtual void dumpState() const;
 
+    /*!
+     * Whether the extension animates the windows itself (the N9's did):
+     * mcompositor's own animations are then kept short. True unless an
+     * extension says otherwise.
+     */
+    virtual bool providesAnimations() const;
+
     // for unit tests
     void addToStack(MCompositeWindow *cw, bool to_top);
 

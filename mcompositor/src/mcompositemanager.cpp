@@ -4507,7 +4507,12 @@ void MCompositeManager::loadPlugins(const QString &overridePluginPath,
 
 bool MCompositeManager::hasPlugins() const
 {
-    return !d->m_extensions.isEmpty();
+    // (only extensions that animate the windows themselves count: the
+    // window animations are kept short for them)
+    foreach (MCompositeManagerExtension *e, d->m_extensions)
+        if (e->providesAnimations())
+            return true;
+    return false;
 }
 
 bool MCompositeManager::x11EventFilter(XEvent *event)

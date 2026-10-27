@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
-SUBDIRS  = src mcompositor mdecorator libdecorator translations
+SUBDIRS  = src mcompositor mdecorator libdecorator translations swipe
 SUBDIRS += tests appinterface_test unittests
 
 NODOCS:{
@@ -13,6 +13,8 @@ mdecorator.subdir = decorators/mdecorator
 mdecorator.depends = libdecorator
 src.depends = libdecorator
 mcompositor.depends = src
+swipe.subdir = plugins/swipe
+swipe.depends = src
 appinterface_test.subdir = tests/appinterface
 appinterface_test.depends = libdecorator
 unittests.subdir = tests/unit
