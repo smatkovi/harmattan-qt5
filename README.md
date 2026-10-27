@@ -31,3 +31,38 @@ with the screen lock and the volume bar) and its "blanco" theme; those
 are written anew elsewhere or come from one's own device.
 
 Licences: as each package states (mostly LGPL 2.1).
+
+## Status
+
+| Directory | Qt 5 |
+| --- | --- |
+| `libmlocale` | builds |
+| `libmeegotouch` | builds; applications run with the N9's theme |
+| `contextkit` | builds; providers and subscribers talk over D-Bus |
+| `mcompositor` | builds; manages and composites MeeGo Touch and plain X11 windows, `mdecorator` frames the latter (GLX; the unit tests don't build yet) |
+| `meegotouchhome`, `system-ui`, `duicontrolpanel`, the rest | not yet |
+
+Tried on a PC (Xvfb, Mesa llvmpipe), not yet on a device.
+
+What Qt 5 changed for these, in short (the commit messages have the
+details): X events arrive as xcb events, so each becomes an XEvent again
+for the `x11EventFilter()`s; Xlib's event queue stays empty, so
+`XIfEvent()`-style waits look into Qt's queue; QPixmap has no X pixmap
+behind it any more; Xlib's `Bool` macro breaks moc's code; `mmoc` is
+the moc again.
+
+## Building on a PC
+
+Each directory installs into a stage (`DESTDIR`), and the next one is
+built against it: `libmlocale`, `libmeegotouch` (qmake), `contextkit`
+(`./autogen.sh --no-configure && ./configure --prefix=/usr --disable-doc
+--disable-coverage`; needs tinycdb), `mcompositor` (qmake with
+`CONFIG+=NODOCS`). The stage's `bin` goes on the `PATH` (for `mmoc`),
+its `lib/pkgconfig` on `PKG_CONFIG_PATH`, its mkspecs features on
+`QMAKEFEATURES`.
+
+To run without installing, libmeegotouch reads the theme from
+`M_THEME_DIR`/`M_THEME_NAME` and its target configurations from
+`M_TARGETS_CONF_DIR`; contextkit reads its registry from
+`CONTEXT_PROVIDERS`, `CONTEXT_TYPES`, `CONTEXT_CORE_TYPES` and
+`CONTEXT_CORE_DECLARATIONS`.
