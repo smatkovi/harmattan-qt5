@@ -468,8 +468,10 @@ Window MWindowPropertyCache::transientFor()
         replyCollected(me);
         transient_for = None;
         if (r) {
-            if (xcb_get_property_value_length(r) == sizeof(Window))
-                transient_for = *((Window*)xcb_get_property_value(r));
+            // format 32 values are 32 bits in xcb's replies, also where
+            // Window is 64 (the N9 was 32-bit)
+            if (xcb_get_property_value_length(r) == sizeof(CARD32))
+                transient_for = *((CARD32*)xcb_get_property_value(r));
             free(r);
             if (transient_for == window)
                 transient_for = 0;
@@ -498,8 +500,10 @@ Window MWindowPropertyCache::invokedBy()
         replyCollected(me);
         invoked_by = None;
         if (r) {
-            if (xcb_get_property_value_length(r) == sizeof(Window))
-                invoked_by = *((Window*)xcb_get_property_value(r));
+            // format 32 values are 32 bits in xcb's replies, also where
+            // Window is 64 (the N9 was 32-bit)
+            if (xcb_get_property_value_length(r) == sizeof(CARD32))
+                invoked_by = *((CARD32*)xcb_get_property_value(r));
             free(r);
         }
     }
@@ -725,8 +729,20 @@ const XWMHints &MWindowPropertyCache::getWMHints()
         xcb_get_property_cookie_t c = { requests[me].cookie };
         r = xcb_get_property_reply(xcb_conn, c, 0);
         replyCollected(me);
-        if (r && xcb_get_property_value_length(r) >= int(sizeof(XWMHints))) {
-            memcpy(wmhints, xcb_get_property_value(r), sizeof(XWMHints));
+        // the property is 9 CARD32 (8 from older clients), XWMHints has
+        // longs, which are 64 bits on 64-bit systems: field by field
+        if (r && xcb_get_property_value_length(r) >= int(8 * sizeof(CARD32))) {
+            const CARD32 *h = (const CARD32 *)xcb_get_property_value(r);
+            wmhints->flags = h[0];
+            wmhints->input = h[1];
+            wmhints->initial_state = h[2];
+            wmhints->icon_pixmap = h[3];
+            wmhints->icon_window = h[4];
+            wmhints->icon_x = h[5];
+            wmhints->icon_y = h[6];
+            wmhints->icon_mask = h[7];
+            wmhints->window_group = xcb_get_property_value_length(r)
+                                    >= int(9 * sizeof(CARD32)) ? h[8] : 0;
             if (prestartedApp())
                 // Ignore the bogus iconic initial_state requests
                 // of prestarted apps.
@@ -944,8 +960,9 @@ const QList<Atom>& MWindowPropertyCache::supportedProtocols()
     wm_protocols.clear();
     if (!r)
         return wm_protocols;
-    int n_atoms = xcb_get_property_value_length(r) / sizeof(Atom);
-    Atom* atoms = (Atom*)xcb_get_property_value(r);
+    // (32-bit values in xcb's replies, also where Atom is 64)
+    int n_atoms = xcb_get_property_value_length(r) / sizeof(CARD32);
+    CARD32* atoms = (CARD32*)xcb_get_property_value(r);
     for (int i = 0; i < n_atoms; ++i)
         wm_protocols.append(atoms[i]);
     free(r);
@@ -966,8 +983,9 @@ const QVector<Atom> &MWindowPropertyCache::netWmState()
         net_wm_state.clear();
         return net_wm_state;
     }
-    int n_atoms = xcb_get_property_value_length(r) / sizeof(Atom);
-    Atom* atoms = (Atom*)xcb_get_property_value(r);
+    // (32-bit values in xcb's replies, also where Atom is 64)
+    int n_atoms = xcb_get_property_value_length(r) / sizeof(CARD32);
+    CARD32* atoms = (CARD32*)xcb_get_property_value(r);
     net_wm_state.resize(n_atoms);
     for (int i = 0; i < n_atoms; ++i)
         net_wm_state[i] = atoms[i];
@@ -1135,12 +1153,12 @@ Atom MWindowPropertyCache::windowTypeAtom()
     r = xcb_get_property_reply(xcb_conn, c, 0);
     replyCollected(me);
     if (r) {
-        int n = xcb_get_property_value_length(r) / (int)sizeof(Atom);
-        if (n > 0) {
-            type_atoms.resize(n);
-            memcpy(type_atoms.data(), xcb_get_property_value(r),
-                   xcb_get_property_value_length(r));
-        }
+        // (32-bit values in xcb's replies, also where Atom is 64)
+        int n = xcb_get_property_value_length(r) / (int)sizeof(CARD32);
+        const CARD32 *atoms = (const CARD32 *)xcb_get_property_value(r);
+        type_atoms.resize(n);
+        for (int i = 0; i < n; ++i)
+            type_atoms[i] = atoms[i];
         free(r);
     }
 
