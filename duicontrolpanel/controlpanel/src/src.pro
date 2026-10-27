@@ -40,7 +40,7 @@ QT += network dbus
 LIBS += -lduicontrolpanel
 
 # libcreds2
-LIBS += -lcreds
+!DCP_WITHOUT_CREDS: LIBS += -lcreds
 
 # a fake check target so as not to stop the testing:
 QMAKE_EXTRA_TARGETS += check

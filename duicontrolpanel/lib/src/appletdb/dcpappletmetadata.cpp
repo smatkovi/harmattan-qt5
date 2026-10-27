@@ -35,7 +35,7 @@
 #endif
 
 DcpAppletMetadata* DcpAppletMetadataPrivate::sm_LastUsed = 0;
-QString DcpAppletMetadataPrivate::sm_SOPath = APPLET_LIBS "/";
+QString DcpAppletMetadataPrivate::sm_SOPath = dcpRooted(APPLET_LIBS "/");
 
 static const QString lastUsedAppletKey = QString(MOSTUSEDCOUNTER_GCONFKEY) +
                                          "/lastUsed";

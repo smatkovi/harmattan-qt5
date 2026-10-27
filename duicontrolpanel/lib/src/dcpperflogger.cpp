@@ -52,7 +52,7 @@ DcpPerfLogger &DcpPerfLogger::instance()
 
 void DcpPerfLogger::startLogging(const QString &filename)
 {
-    m_logFd = open(filename.toAscii().data(), 
+    m_logFd = open(filename.toLatin1().data(), 
                    O_WRONLY | O_CREAT | O_APPEND, 
                    S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
     if (m_logFd < 0) {

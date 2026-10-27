@@ -39,7 +39,9 @@
 #include "dcpperflogger.h"
 
 #include <MApplication>
+#ifndef DISABLE_LAUNCHER
 #include <MComponentCache>
+#endif
 #include <MApplicationWindow>
 #include <MPannableViewport>
 #include <MSceneManager>
@@ -50,6 +52,7 @@
 bool PageFactory::sm_IsInProcessModeEnabled = true;
 
 #include "dcpdebug.h"
+#include <DcpApplet>
 
 
 PageFactory *PageFactory::sm_Instance = 0;
@@ -533,8 +536,8 @@ PageFactory::changeToAppletPage (const QString& appletName)
     // metadata). Since it is quite a rare case, we do it only here when needed
     DcpAppletManager* db = DcpAppletManager::instance();
     if (!db->containsName (appletName)) {
-        db->addDesktopDir (DESKTOP_DIR);
-        db->addDesktopDir (DESKTOP_DIR2);
+        db->addDesktopDir (dcpRooted(DESKTOP_DIR));
+        db->addDesktopDir (dcpRooted(DESKTOP_DIR2));
         db->loadMetadata ();
     }
 

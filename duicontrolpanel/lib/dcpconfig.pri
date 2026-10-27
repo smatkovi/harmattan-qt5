@@ -1,6 +1,20 @@
 !dcpconfig {
     CONFIG += dcpconfig
 
+# Qt 5, away from the N9: without applauncherd's MComponentCache (it
+# needs the booster) and without Aegis' credentials (libcreds), the
+# control panel starts as a plain MApplication and its applets run
+# unconfined; QtWidgets and QtX11Extras named here (CONFIG += qt again
+# runs qt.prf before meegotouch.prf adds them)
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT *= widgets x11extras
+    DEFINES *= Q_WS_X11
+    !exists(/usr/include/applauncherd/MComponentCache): CONFIG += DISABLE_LAUNCHER
+    !exists(/usr/include/sys/creds.h): CONFIG += DCP_WITHOUT_CREDS
+    DCP_WITHOUT_CREDS: DEFINES += DCP_WITHOUT_CREDS
+    QMAKE_CXXFLAGS -= -Werror
+}
+
 isEmpty(HOST_ARCH) {
     HOST_ARCH=$$system(dpkg-architecture -qDEB_HOST_GNU_TYPE || echo meego)
     message("arch $$HOST_ARCH")

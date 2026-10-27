@@ -20,6 +20,7 @@
 #include "filecategory.h"
 
 #include <QDir>
+#include <DcpApplet>
 
 DcpCategories* DcpCategories::sm_Instance = 0;
 
@@ -80,12 +81,12 @@ DcpCategories::DcpCategories()
 #endif
 
     // load the available categories:
-    QDir dir (DCP_CATEGORY_DIR);
+    QDir dir (dcpRooted(DCP_CATEGORY_DIR));
     QStringList nameFilters(QString("*.cpcategory"));
     foreach (QString fileName,
              dir.entryList (nameFilters, QDir::Readable | QDir::Files))
     {
-        Category* category = new FileCategory (DCP_CATEGORY_DIR "/" + fileName);
+        Category* category = new FileCategory (dcpRooted(DCP_CATEGORY_DIR "/") + fileName);
 
         if (category->isValid()) {
             add (category);

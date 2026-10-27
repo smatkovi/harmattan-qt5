@@ -20,6 +20,9 @@
 
 #include <MAbstractCellCreator>
 #include <DcpContentItem>
+// Qt 5's Q_DECLARE_METATYPE(T*) wants T complete
+#include <DcpAppletMetadata>
+#include <DcpAppletObject>
 
 class DcpContentItemCellCreator: public MAbstractCellCreator<DcpContentItem>
 {

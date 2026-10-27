@@ -5,10 +5,10 @@ CONFIG += build_all silent warn_on
 
 SUBDIRS += lib \
            controlpanel \
-           briefsupplier \
-           declapplet \
-           qmlapplet \
-           examples \ 
+           briefsupplier
+# the QML applets are QtDeclarative's (Qt Quick 1), which Qt 5 does not
+# have; the examples come later
+lessThan(QT_MAJOR_VERSION, 5): SUBDIRS += declapplet qmlapplet examples
 
 include(debian/deb.pri)
 include(gentests/gentests.pri)

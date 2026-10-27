@@ -35,14 +35,18 @@
 #include <cstdio>
 #include <sys/wait.h>
 #include <unistd.h>
+#ifndef DISABLE_LAUNCHER
 #include <MComponentCache>
+#endif
 #include <MApplication>
 #include <MLocale>
 #include "syslog.h"
 
 static const QString appIdentifier = "duicontrolpanel";
 
-static inline MApplication* createApplication (int argc, char** argv,
+// (argc by reference: QCoreApplication keeps a reference to it, which Qt 5
+// reads again)
+static inline MApplication* createApplication (int &argc, char** argv,
                                                MApplicationService* service)
 {
 #ifndef DISABLE_LAUNCHER
@@ -53,7 +57,7 @@ static inline MApplication* createApplication (int argc, char** argv,
 }
 
 int
-startMainApplication (int argc, char* argv[])
+startMainApplication (int &argc, char* argv[])
 {
     DCP_DEBUG ("");
     DcpDebug::start("start_app");
@@ -85,7 +89,7 @@ startMainApplication (int argc, char* argv[])
 }
 
 int
-startAppletLoader (int argc, char* argv[])
+startAppletLoader (int &argc, char* argv[])
 {
     DCP_DEBUG ("");
     openlog ("dcp-appletloader", LOG_PID, LOG_USER);
@@ -141,8 +145,8 @@ M_EXPORT int main(int argc, char *argv[])
 
     // parse options
     QStringList desktopDirs;
-    desktopDirs << DESKTOP_DIR;
-    desktopDirs << DESKTOP_DIR2;
+    desktopDirs << dcpRooted(DESKTOP_DIR);
+    desktopDirs << dcpRooted(DESKTOP_DIR2);
     bool isAppletLoader = false; // are we the appletloader process?
     bool isOutprocess = false; // should we run applets outprocess?
 

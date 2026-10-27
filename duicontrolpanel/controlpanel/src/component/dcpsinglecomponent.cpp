@@ -25,7 +25,7 @@
 #include "category.h"
 #include "dcpperflogger.h"
 
-#include <QtGui/QGraphicsGridLayout>
+#include <QGraphicsGridLayout>
 
 #include <MImageWidget>
 #include <MLabel>

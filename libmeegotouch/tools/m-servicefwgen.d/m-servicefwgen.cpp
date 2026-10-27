@@ -878,7 +878,7 @@ QString Worker::mHeaders()
 {
     return
 "\
-#include <Qt> // for Qt::HANDLE\n\
+#include <QWidget> // for WId\n\
 #include <MApplication>\n\
 #include <MWindow>\
 ";
@@ -1384,7 +1384,7 @@ void doChainTaskHandling( QString &line, bool& inChainTask, QTextStream& newProx
         argumentList << qVariantFromValue(_taskTitle);\n";
             } else {
                 newProxyHeaderStream << "\
-        Qt::HANDLE windowId = 0;\n\
+        WId windowId = 0; // Qt 5: Qt::HANDLE is a pointer\n\
 \n\
         if ( MApplication::instance() )\n\
         {\n\
