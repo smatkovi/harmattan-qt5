@@ -12,6 +12,19 @@
 #include <QtGui/QtGui>
 #include <QtWidgets/QtWidgets>
 #include <QtDBus/QtDBus>
+// QmSystem2's enums have names Xlib takes as macros (None, ...): first too
+#if defined(HAVE_QMSYSTEM) && defined(__has_include)
+#if __has_include(<qmbattery.h>)
+#include <qmbattery.h>
+#include <qmdevicemode.h>
+#include <qmdisplaystate.h>
+#include <qmlocks.h>
+#include <qmsystemstate.h>
+#include <qmusbmode.h>
+#include <qmtime.h>
+#include <qmheartbeat.h>
+#endif
+#endif
 #include <X11/Xlib.h>
 #undef Bool
 typedef int Bool;

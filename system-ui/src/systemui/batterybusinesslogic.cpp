@@ -21,6 +21,12 @@
 #include <QTimer>
 #include <MNotification>
 
+// Xlib's None (from qt5x11prelude.h) would replace QmBattery::None; this
+// file uses no X
+#ifdef None
+#undef None
+#endif
+
 BatteryBusinessLogic::BatteryBusinessLogic(QObject *parent) :
     QObject(parent), lowBatteryNotifier(0), notification(0), touchScreenLockActive(false)
 #ifdef HAVE_QMSYSTEM
