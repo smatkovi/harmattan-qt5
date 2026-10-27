@@ -21,6 +21,8 @@ the commits after it.
 | `meegotouchtheme` | meegotouchtheme 0.24.13-1+0m7 (the LGPL "base" theme) |
 | `contextkit` | contextkit 0.5.41+0m7 |
 | `qmsystem2` | qmsystem2 1.4.3+0m7 |
+| `mce-dev` | mce-dev 1.11.0+0m7 (MCE's D-Bus names, headers only) |
+| `libdsme` | libdsme 0.61.6+0m6 |
 | `libresourceqt` | libresourceqt 1.41+0m7 |
 | `libcontentaction` | libcontentaction 0.1.71+0m7 |
 | `duicontrolpanel` | duicontrolpanel 0.14.7.1+0m7 |
