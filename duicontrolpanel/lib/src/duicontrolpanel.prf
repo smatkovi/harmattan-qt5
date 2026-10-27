@@ -1,4 +1,6 @@
-include($$[QT_INSTALL_DATA]/mkspecs/dcpconfig.pri)
+# dcpconfig.pri is installed next to the features directory (found
+# there also when the features come from QMAKEFEATURES)
+include($$PWD/../dcpconfig.pri)
 
 # extending include path
 INCLUDEPATH += $$DCP_INSTALL_HEADERS
