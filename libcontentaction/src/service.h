@@ -24,6 +24,7 @@
 
 #include <QString>
 #include <QHash>
+#include <QObject>
 
 class QDBusInterface;
 

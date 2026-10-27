@@ -5,7 +5,7 @@ AC_SUBST([$1_CFLAGS])
 AC_SUBST([$1_LIBS])])
 
 AC_DEFUN([AC_PROG_QT_MOC], [
-MOC=`pkg-config QtCore --variable=moc_location`
+MOC=`pkg-config Qt5Core --variable=host_bins`/moc
 AC_CHECK_FILE([$MOC], [],
    AC_MSG_ERROR([Can't find moc compiler: $MOC]))
 AC_SUBST([MOC])])

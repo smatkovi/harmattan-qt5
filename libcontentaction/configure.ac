@@ -2,23 +2,27 @@ AC_PREREQ([2.61])
 AC_INIT([libcontentaction], [0.1.71], [james.thomas@codethink.co.uk], libcontentaction)
 
 AC_CONFIG_SRCDIR([Makefile.am])
-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+# GNU make is needed (pattern rules), today's automake warns about it
+AM_INIT_AUTOMAKE([-Wall -Wno-portability foreign])
 
 AC_CONFIG_MACRO_DIR([m4])
 
 AC_LANG([C++])
 AC_PROG_CXX
-CXXFLAGS="$CXXFLAGS -Wall -Werror -DQT_NO_KEYWORDS"
+# no -Werror: today's compilers and Qt 5's deprecations warn; Qt 5
+# wants position independent code
+CXXFLAGS="$CXXFLAGS -Wall -fPIC -DQT_NO_KEYWORDS"
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 AC_PROG_QT_MOC
 
 # check for libraries
-PKG_CHECK_MODULES([QtTest], [QtTest])
-PKG_CHECK_MODULES([QtCore], [QtCore])
-PKG_CHECK_MODULES([QtXml], [QtXml])
-PKG_CHECK_MODULES([QtDBus], [QtDBus])
-PKG_CHECK_MODULES([QtSystemInfo], [QtSystemInfo])
+# Qt 5; the device's maker and model (all Qt Mobility's QtSystemInfo
+# gave) come from the device tree or DMI
+PKG_CHECK_MODULES([QtTest], [Qt5Test])
+PKG_CHECK_MODULES([QtCore], [Qt5Core])
+PKG_CHECK_MODULES([QtXml], [Qt5Xml])
+PKG_CHECK_MODULES([QtDBus], [Qt5DBus])
 PKG_CHECK_MODULES([GLIB], [glib-2.0 >= 2.12.0])
 PKG_CHECK_MODULES([GIO], [gio-2.0 gio-unix-2.0])
 PKG_CHECK_MODULES([MT], [meegotouch >= 0.20])

@@ -25,11 +25,22 @@
 #include <QDebug>
 #include <QXmlDefaultHandler>
 #include <QDir>
+#include <QFile>
 #include <QStringList>
 #include <QMultiHash>
-#include <QSystemDeviceInfo>
 
-QTM_USE_NAMESPACE
+
+// the first line of the first of @files that can be read
+static QString firstLine(const char *const files[])
+{
+    for (int i = 0; files[i]; ++i) {
+        QFile f(QLatin1String(files[i]));
+        if (f.open(QIODevice::ReadOnly))
+            // device tree strings end with a NUL
+            return QString::fromUtf8(f.readLine()).remove(QChar(0)).trimmed();
+    }
+    return QString();
+}
 
 const QString ContentAction::HighlighterMimeClass("x-maemo-highlight/");
 
@@ -256,9 +267,13 @@ QString ContentAction::Internal::bindParams(const QString &str)
     static QString model;
 
     if (!initialized) {
-        QSystemDeviceInfo sid;
-        manufacturer = sid.manufacturer();
-        model = sid.model();
+        // Qt Mobility's QSystemDeviceInfo read these on the N9
+        static const char *const makers[] = {
+            "/sys/devices/virtual/dmi/id/sys_vendor", 0 };
+        static const char *const models[] = {
+            "/proc/device-tree/model", "/sys/devices/virtual/dmi/id/product_name", 0 };
+        manufacturer = firstLine(makers);
+        model = firstLine(models);
         initialized = true;
     }
     

@@ -31,6 +31,9 @@
 #include <MLabelHighlighter>
 #include <MPopupList>
 
+// Qt 5 wants it declared before qRegisterMetaType() uses it
+Q_DECLARE_METATYPE(ContentAction::Action);
+
 typedef QPair<QString, const QRegExp &> MimeAndRegexp;
 typedef QList<MimeAndRegexp> MimesAndRegexps;
 
@@ -284,6 +287,6 @@ void ContentAction::dehighlightLabel(MLabel *label)
     label->setProperty("_lca_highlighter", QVariant());
 }
 
-Q_DECLARE_METATYPE(ContentAction::Action);
 
 #include "highlight.moc"
+

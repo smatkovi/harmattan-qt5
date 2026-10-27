@@ -4,6 +4,6 @@ includedir=@abs_srcdir@/src
 Name: contentaction
 Description: libcontentaction
 Version: uninstalled
-Requires: QtCore
+Requires: Qt5Core
 Libs: -L${libdir} -L${libdir}/.libs -lcontentaction
 Cflags: -I${includedir}

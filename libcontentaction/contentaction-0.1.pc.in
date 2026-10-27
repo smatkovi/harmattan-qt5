@@ -6,6 +6,6 @@ includedir=@includedir@
 Name: contentaction
 Description: libcontentaction
 Version: @VERSION@
-Requires: QtCore
+Requires: Qt5Core
 Libs: -L${libdir} -lcontentaction
 Cflags: -I${includedir}/contentaction
