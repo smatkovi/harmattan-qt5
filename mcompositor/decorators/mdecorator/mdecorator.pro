@@ -15,3 +15,8 @@ check.depends = $$TARGET
 check.commands = $$system(true)
 target.path = /usr/bin
 INSTALLS += target
+
+# its styles (style/mdecorator.css)
+style.files = style/mdecorator.css
+style.path = /usr/share/themes/base/meegotouch/mdecorator/style
+INSTALLS += style

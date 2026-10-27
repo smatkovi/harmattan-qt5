@@ -1,0 +1,21 @@
+/*
+ * mdecorator's own styles (MeeGo Touch reads them from
+ * themes/base/meegotouch/mdecorator/style/).
+ *
+ * The N9's "blanco" theme has neither icon-m-framework-close nor
+ * icon-m-framework-back, which the base theme gives the escape button
+ * (the N9's own applications close with a swipe): the decorator's
+ * buttons take blanco's toolbar icons.
+ */
+MEscapeButtonPanelStyle {
+    back-button-icon-id: "icon-m-toolbar-back";
+    close-button-icon-id: "icon-m-toolbar-close";
+}
+
+#MNavigationBarCloseButton {
+    icon-id: "icon-m-toolbar-close";
+}
+
+#MNavigationBarBackButton {
+    icon-id: "icon-m-toolbar-back";
+}
