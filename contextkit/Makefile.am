@@ -3,11 +3,16 @@ DISTCHECK_CONFIGURE_FLAGS = --disable-doc --disable-coverage
 AUTOMAKE_OPTIONS = subdir-objects
 ACLOCAL_AMFLAGS = -I m4
 
+# the documentation needs asciidoc and friends (--disable-doc without)
+if CONTEXTKIT_BUILD_DOCS
+DOC_SUBDIRS = doc
+endif
+
 SUBDIRS = \
 	libcontextprovider \
 	libcontextsubscriber \
 	spec \
-	doc \
+	$(DOC_SUBDIRS) \
 	python \
 	tools \
 	common

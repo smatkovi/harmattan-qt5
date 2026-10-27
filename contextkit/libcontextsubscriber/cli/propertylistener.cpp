@@ -26,8 +26,7 @@
 #include <QVariant>
 #include <QCoreApplication>
 #include <QDBusArgument>
-#include <qjson/serializer.h>
-#include <qjson/parser.h>
+#include "contextjson.h"
 
 PropertyListener::PropertyListener(const QString &key):
     QObject(QCoreApplication::instance()), prop(new ContextProperty(key, this))
@@ -45,7 +44,7 @@ QString PropertyListener::valueToString(QString defaultValue) const
     QVariant value;
     if (!defaultValue.isEmpty()) {
         bool isOk;
-        QVariant def = QJson::Parser().parse(defaultValue.toUtf8(), &isOk);
+        QVariant def = ContextSubscriber::jsonToQVariant(defaultValue, &isOk);
         if (!isOk)
             qWarning() << "failed to parse default value as json:" << defaultValue;
         value = prop->value(def);
@@ -57,7 +56,7 @@ QString PropertyListener::valueToString(QString defaultValue) const
         return result += "Unknown";
     result += value.typeName();
     result += ':';
-    result += QJson::Serializer().serialize(value);
+    result += ContextSubscriber::qVariantToJSON(value);
     return result;
 }
 

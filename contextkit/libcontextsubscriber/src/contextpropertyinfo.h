@@ -22,6 +22,7 @@
 #ifndef CONTEXTPROPERTYINFO_H
 #define CONTEXTPROPERTYINFO_H
 
+#include <QMetaMethod>
 #include <QVariant>
 #include <QStringList>
 #include <QObject>
@@ -60,7 +61,7 @@ public:
     ResolutionStrategy resolutionStrategy() const;
 
 protected:
-    virtual void connectNotify(const char *signal);
+    virtual void connectNotify(const QMetaMethod &signal);
 
 private:
     QString keyName; ///< The name of the key his ContextPropertyInfo represents.

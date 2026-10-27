@@ -3,9 +3,9 @@ context_listen_SOURCES = context-listen.cpp			        \
 	propertylistener.h propertylistener.cpp commandwatcher.h	\
 	commandwatcher.cpp
 
-AM_CXXFLAGS = $(QtCore_CFLAGS) $(QtDBus_CFLAGS) $(QJson_CFLAGS) \
+AM_CXXFLAGS = $(QtCore_CFLAGS) $(QtDBus_CFLAGS) \
 	      '-DCONTEXT_LOG_MODULE_NAME="context-listen"'
-LIBS += $(QtCore_LIBS) $(QJson_LIBS)
+LIBS += $(QtCore_LIBS)
 
 # library dependency hack for seamless make in cli/
 AM_CXXFLAGS += -I$(srcdir)/../src \

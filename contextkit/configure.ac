@@ -2,7 +2,8 @@ AC_PREREQ([2.61])
 AC_INIT([ContextKit], [0.5.41], [james.thomas@codethink.co.uk], ContextKit)
 
 AC_CONFIG_SRCDIR([Makefile.am])
-AM_INIT_AUTOMAKE([-Wall -Werror foreign dist-bzip2 tar-ustar 1.9])
+# GNU make is needed (pattern rules), today's automake warns about it
+AM_INIT_AUTOMAKE([-Wall -Wno-portability foreign dist-bzip2 tar-ustar 1.9])
 
 AC_CONFIG_MACRO_DIR([m4])
 
@@ -15,11 +16,13 @@ DOLT
 AM_PATH_PYTHON
 
 # check for libraries
-PKG_CHECK_MODULES_SUBST([QtTest], [QtTest])
-PKG_CHECK_MODULES_SUBST([QtCore], [QtCore])
-PKG_CHECK_MODULES_SUBST([QtDBus], [QtDBus >= 4.6])
-PKG_CHECK_MODULES_SUBST([QtXml], [QtXml])
-PKG_CHECK_MODULES_SUBST([QJson], [QJson])
+# Qt 5: JSON comes from QtCore (QJsonDocument), not from QJson
+PKG_CHECK_MODULES_SUBST([QtTest], [Qt5Test])
+PKG_CHECK_MODULES_SUBST([QtCore], [Qt5Core])
+PKG_CHECK_MODULES_SUBST([QtDBus], [Qt5DBus])
+PKG_CHECK_MODULES_SUBST([QtXml], [Qt5Xml])
+# Qt 5 wants position independent code (-reduce-relocations)
+QtCore_CFLAGS="$QtCore_CFLAGS -fPIC"
 # only for compiling c code
 PKG_CHECK_MODULES_SUBST([DBUS], [dbus-1])
 PKG_CHECK_MODULES([GLIB], [glib-2.0 >= 2.12.0])
@@ -111,7 +114,7 @@ AC_CONFIG_FILES([
 # The user only needs to have the documentation tools (asciidoc, etc.)
 # if she checked out the master Git branch, instead of using a release
 # tag or a release tarball, as she should.
-if test "$missing_deps_BUILD_DOCS" != "" -a \! -f ${srcdir}/spec/context-properties.html
+if test "x$enable_doc" != xno -a "$missing_deps_BUILD_DOCS" != "" -a \! -f ${srcdir}/spec/context-properties.html
 then
 	missing_deps=`echo $missing_deps_BUILD_DOCS | cut -c3-`
 	AC_MSG_FAILURE([

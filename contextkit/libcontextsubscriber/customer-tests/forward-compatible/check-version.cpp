@@ -25,6 +25,7 @@
 #include <stdlib.h>
 #include "contextregistryinfo.h"
 #include "contextpropertyinfo.h"
+#include <unistd.h>
 
 void fail()
 {

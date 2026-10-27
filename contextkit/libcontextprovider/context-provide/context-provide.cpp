@@ -27,6 +27,7 @@
 #include <QMap>
 #include <QDebug>
 #include <stdlib.h>
+#include <unistd.h>
 #include <service.h>
 
 using namespace ContextProvider;

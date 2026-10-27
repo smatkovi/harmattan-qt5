@@ -22,10 +22,14 @@
 #ifndef CONTEXTJSON_H
 #define CONTEXTJSON_H
 
+#include <climits>
 #include <QString>
 #include <QVariant>
-#include <qjson/serializer.h>
-#include <qjson/parser.h>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonParseError>
+#include <QJsonValue>
 
 // stolen from glib
 #if __GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ > 4)
@@ -37,32 +41,70 @@
 namespace ContextSubscriber {
 
 // Please note that it is intentional that this header file contains
-// implementation.  This way libcontextsubscriber doesn't have to link
-// against libqjson (this would be one more extra dependency), but
-// only relatively rare users of this feature have to.
+// implementation.  With Qt 5 the JSON support is in QtCore, so nothing
+// extra has to be linked.
+
+// QJsonDocument only holds an object or an array, so a single value
+// travels as the one element of an array.  JSON numbers become integers
+// where they are whole, as QJson made them.
+CKIT_GNUC_UNUSED
+static QVariant jsonValueToQVariant(const QJsonValue &v) {
+    switch (v.type()) {
+    case QJsonValue::Double: {
+        double d = v.toDouble();
+        if (d == (double) (qlonglong) d)
+            return (d >= INT_MIN && d <= INT_MAX)
+                ? QVariant((int) d) : QVariant((qlonglong) d);
+        return QVariant(d);
+    }
+    case QJsonValue::Array: {
+        QVariantList l;
+        foreach (const QJsonValue &e, v.toArray())
+            l << jsonValueToQVariant(e);
+        return l;
+    }
+    case QJsonValue::Object: {
+        QVariantMap m;
+        QJsonObject o = v.toObject();
+        for (QJsonObject::const_iterator i = o.constBegin(); i != o.constEnd(); ++i)
+            m.insert(i.key(), jsonValueToQVariant(i.value()));
+        return m;
+    }
+    case QJsonValue::Null:
+    case QJsonValue::Undefined:
+        // an invalid QVariant, as QJson gave (not one holding nullptr,
+        // D-Bus can't carry that)
+        return QVariant();
+    default:
+        return v.toVariant();
+    }
+}
 
 /// Dumps a QVariant into a QString in JSON format.  This is very
 /// useful if the value is quite complex (list of maps of lists) and
 /// you would like to see it for debugging reasons.
-///
-/// If you use this function, you have to add libqjson to the list of
-/// libraries you link against.
 CKIT_GNUC_UNUSED
 static QString qVariantToJSON(const QVariant &v) {
-    QJson::Serializer serializer;
-    return serializer.serialize(v);
+    QJsonArray a;
+    a.append(QJsonValue::fromVariant(v));
+    QByteArray json = QJsonDocument(a).toJson(QJsonDocument::Compact);
+    // without the brackets of the array
+    return QString::fromUtf8(json.mid(1, json.size() - 2));
 }
 
-/// Loads json data into a QVariant.  On parse error it returns QVariant().
+/// Loads json data into a QVariant.  On parse error it returns QVariant()
+/// and sets *ok (when given) to false.
 CKIT_GNUC_UNUSED
-static QVariant jsonToQVariant(const QString &s) {
-    QJson::Parser parser;
-    bool ok;
-    QVariant v = parser.parse(s.toUtf8(), &ok);
+static QVariant jsonToQVariant(const QString &s, bool *ok = 0) {
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson("[" + s.toUtf8() + "]", &error);
+    bool parsed = error.error == QJsonParseError::NoError
+        && doc.array().size() == 1;
     if (ok)
-        return QVariant(v);
-    else
+        *ok = parsed;
+    if (!parsed)
         return QVariant();
+    return jsonValueToQVariant(doc.array().at(0));
 }
 
 } // namespace

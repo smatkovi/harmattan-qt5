@@ -6,8 +6,8 @@ includedir=@includedir@
 Name: contextsubscriber
 Description: ContextKit Context Subscriber library
 Version: @VERSION@
-Requires: QtCore
-Requires.private: QtDBus QtXml
+Requires: Qt5Core
+Requires.private: Qt5DBus Qt5Xml
 Libs: -L${libdir} -lcontextsubscriber
 Libs.private: @CDB_LIBS@
 Cflags: -I${includedir}/contextsubscriber

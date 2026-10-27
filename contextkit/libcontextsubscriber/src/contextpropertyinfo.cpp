@@ -417,22 +417,21 @@ const QList<ContextProviderInfo> ContextPropertyInfo::providers() const
 
 /// Called when people connect to signals. Used to emit deprecation warnings
 /// when people connect to deprecated signals.
-void ContextPropertyInfo::connectNotify(const char *_signal)
+void ContextPropertyInfo::connectNotify(const QMetaMethod &signal)
 {
-    QObject::connectNotify(_signal);
-    QLatin1String signal(_signal);
+    QObject::connectNotify(signal);
 
-    if (signal == SIGNAL(providerChanged(QString)))
+    if (signal == QMetaMethod::fromSignal(&ContextPropertyInfo::providerChanged))
         contextWarning() << F_DEPRECATION << "ContextPropertyInfo::providerChanged signal is deprecated.";
-    else if (signal == SIGNAL(providerDBusTypeChanged(QDBusConnection::BusType)))
+    else if (signal == QMetaMethod::fromSignal(&ContextPropertyInfo::providerDBusTypeChanged))
         contextWarning() << F_DEPRECATION << "ContextPropertyInfo::providerDBusTypeChanged signal is deprecated.";
-    else if (signal == SIGNAL(typeChanged(QString)))
+    else if (signal == QMetaMethod::fromSignal(&ContextPropertyInfo::typeChanged))
         contextWarning() << F_DEPRECATION << "ContextPropertyInfo::typeChanged signal is deprecated.";
-    else if (signal == SIGNAL(existsChanged(bool)))
+    else if (signal == QMetaMethod::fromSignal(&ContextPropertyInfo::existsChanged))
         contextWarning() << F_DEPRECATION << "ContextPropertyInfo::existsChanged signal is deprecated.";
-    else if (signal == SIGNAL(providedChanged(bool)))
+    else if (signal == QMetaMethod::fromSignal(&ContextPropertyInfo::providedChanged))
         contextWarning() << F_DEPRECATION << "ContextPropertyInfo::providedChanged signal is deprecated.";
-    else if (signal == SIGNAL(pluginChanged(QString,QString)))
+    else if (signal == QMetaMethod::fromSignal(&ContextPropertyInfo::pluginChanged))
         contextWarning() << F_DEPRECATION << "ContextPropertyInfo::pluginChanged signal is deprecated.";
 }
 

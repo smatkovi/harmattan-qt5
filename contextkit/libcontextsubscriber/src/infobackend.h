@@ -22,6 +22,7 @@
 #ifndef INFOBACKEND_H
 #define INFOBACKEND_H
 
+#include <QMetaMethod>
 #include <QVariant>
 #include <QStringList>
 #include <QObject>
@@ -77,8 +78,8 @@ Q_SIGNALS:
     void listChanged();
 
 protected:
-    virtual void connectNotify(const char *signal);
-    virtual void disconnectNotify(const char *signal);
+    virtual void connectNotify(const QMetaMethod &signal);
+    virtual void disconnectNotify(const QMetaMethod &signal);
 
 private:
     int connectCount; ///< Number of connections to signals. Used to optimized signal emission when 0.

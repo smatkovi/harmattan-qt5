@@ -22,6 +22,7 @@
 #include <stdlib.h>
 #include <cdb.h>
 #include <fcntl.h>
+#include <unistd.h>
 #include <QDebug>
 #include <QByteArray>
 #include <QFile>

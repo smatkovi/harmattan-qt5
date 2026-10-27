@@ -6,7 +6,7 @@ includedir=@abs_srcdir@/src
 Name: contextsubscriber
 Description: ContextKit Context Subscriber library
 Version: uninstalled
-Requires: QtCore
-Requires.private: QtDBus QtXml
+Requires: Qt5Core
+Requires.private: Qt5DBus Qt5Xml
 Libs: -L${libdir} -L${libdir}/.libs -lcontextsubscriber
 Cflags: -I${includedir}

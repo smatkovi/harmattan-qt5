@@ -6,6 +6,6 @@ includedir=@abs_srcdir@/src
 Name: contextprovider
 Description: ContextKit Context Provider library
 Version: uninstalled
-Requires: QtCore QtDBus dbus-1
+Requires: Qt5Core Qt5DBus dbus-1
 Libs: -L${libdir} -L${libdir}/.libs -lcontextprovider
 Cflags: -I${includedir} -I${pcfiledir}/src

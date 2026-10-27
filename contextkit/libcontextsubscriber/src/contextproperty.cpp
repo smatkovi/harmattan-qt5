@@ -104,6 +104,7 @@
 
 #include <QCoreApplication>
 #include <QThread>
+#include <unistd.h>
 
 using namespace ContextSubscriber;
 

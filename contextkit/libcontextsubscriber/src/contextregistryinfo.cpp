@@ -187,15 +187,15 @@ void ContextRegistryInfo::onKeysRemoved(const QStringList& removedKeys)
 
 /// Called when people connect to signals. Used to emit deprecation warnings
 /// when people connect to deprecated signals.
-void ContextRegistryInfo::connectNotify(const char *signal)
+void ContextRegistryInfo::connectNotify(const QMetaMethod &signal)
 {
     QObject::connectNotify(signal);
 
-    if (signal == SIGNAL(keysChanged(QStringList)))
+    if (signal == QMetaMethod::fromSignal(&ContextRegistryInfo::keysChanged))
         contextWarning() << F_DEPRECATION << "ContextRegistryInfo::keysChanged signal is deprecated.";
-    else if (signal == SIGNAL(keysAdded(QStringList)))
+    else if (signal == QMetaMethod::fromSignal(&ContextRegistryInfo::keysAdded))
         contextWarning() << F_DEPRECATION << "ContextRegistryInfo::keysAdded signal is deprecated.";
-    else if (signal == SIGNAL(keysRemoved(QStringList)))
+    else if (signal == QMetaMethod::fromSignal(&ContextRegistryInfo::keysRemoved))
         contextWarning() << F_DEPRECATION << "ContextRegistryInfo::keysRemoved signal is deprecated.";
 }
 

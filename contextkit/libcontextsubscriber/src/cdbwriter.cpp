@@ -22,6 +22,8 @@
 #include <cdb.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <QDataStream>
 #include "cdbwriter.h"
 #include "logging.h"
 #include "loggingfeatures.h"

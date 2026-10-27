@@ -43,7 +43,7 @@
 #include <QMap>
 #include <QDir>
 #include <QSet>
-#include <qjson/parser.h>
+#include <contextjson.h>
 
 const QString CommandWatcher::commanderBusName = "org.freedesktop.ContextKit.Commander";
 
@@ -397,9 +397,8 @@ void CommandWatcher::setCommand(const QString& command)
         value = (value.toLower() == "true" || value == "1") ? "true" : "false";
 
     // Now all input is treated as JSon.
-    QJson::Parser parser;
     bool ok;
-    QVariant v = parser.parse(value.toUtf8(), &ok);
+    QVariant v = ContextSubscriber::jsonToQVariant(value, &ok);
     if (!ok) {
         qDebug() << "An error occurred during parsing";
         return;

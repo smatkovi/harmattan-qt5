@@ -22,6 +22,7 @@
 #ifndef CONTEXTREGISTRYINFO_H
 #define CONTEXTREGISTRYINFO_H
 
+#include <QMetaMethod>
 #include <QVariant>
 #include <QStringList>
 #include <QObject>
@@ -51,7 +52,7 @@ private:
     static ContextRegistryInfo* registryInstance;
 
 protected:
-    void connectNotify(const char *signal);
+    void connectNotify(const QMetaMethod &signal);
 
 private Q_SLOTS:
     void onKeysChanged(const QStringList& currentKeys);
