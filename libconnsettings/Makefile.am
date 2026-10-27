@@ -1,4 +1,7 @@
-SUBDIRS = src tests cmdline
+if HAVE_CHECK
+TESTS_DIR = tests
+endif
+SUBDIRS = src $(TESTS_DIR) cmdline
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = connsettings.pc

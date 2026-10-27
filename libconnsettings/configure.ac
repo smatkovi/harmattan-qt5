@@ -1,4 +1,6 @@
-AC_INIT([libconnsettings], patsubst(esyscmd([dpkg-parsechangelog | sed -n '/^Version: \(.*\)$/ {s//\1/;p}']), [
+dnl the version from debian/changelog's first line (dpkg-parsechangelog is
+dnl not everywhere: FreeBSD, other distributions)
+AC_INIT([libconnsettings], patsubst(esyscmd([sed -n '1s/.*(\(.*\)).*/\1/p' debian/changelog]), [
 ]), [jukka.rissanen@nokia.com])
 AM_INIT_AUTOMAKE([foreign])
 
@@ -35,7 +37,8 @@ fi
 AM_CONDITIONAL(DOXYGEN_DOCS_ENABLED, test x$enable_docs = xyes)
 AC_SUBST(DOXYGEN)
 
-PKG_CHECK_MODULES(GLIB, glib-2.0)
+# (gobject-2.0 for g_object_unref() on the GConf client)
+PKG_CHECK_MODULES(GLIB, glib-2.0 gobject-2.0)
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
 
@@ -48,7 +51,9 @@ AC_SUBST(OSSO_IC_CFLAGS)
 AC_SUBST(OSSO_IC_LIBS)
 
 # For testing
-PKG_CHECK_MODULES([CHECK], [check >= 0.9.4])
+# the unit tests need check; the library does not
+PKG_CHECK_MODULES([CHECK], [check >= 0.9.4], [have_check=yes], [have_check=no])
+AM_CONDITIONAL(HAVE_CHECK, test x$have_check = xyes)
 
 CONCFLAGS="-Wall -Werror -Wmissing-prototypes"
 AC_SUBST(CONCFLAGS)
