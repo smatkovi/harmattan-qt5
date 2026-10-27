@@ -43,7 +43,12 @@ Licences: as each package states (mostly LGPL 2.1).
 | `libmeegotouch` | builds; applications run with the N9's theme |
 | `contextkit` | builds; providers and subscribers talk over D-Bus |
 | `mcompositor` | builds; manages and composites MeeGo Touch and plain X11 windows, `mdecorator` frames the latter (GLX; the unit tests don't build yet) |
-| `meegotouchhome`, `system-ui`, `duicontrolpanel`, the rest | not yet |
+| `libcontentaction` | builds |
+| `meegotouchhome` | builds and starts; it is the generic MeeGo home of the source release (1.2.20, quick launch bar, launcher, switcher), not the N9's three-page home (1.3.2, not released) |
+| `system-ui` | builds without QmSystem2/libresourceqt/libngf; sysuid draws the status bar that the applications show |
+| `duicontrolpanel` | the settings application runs with the N9's categories (`DCP_ROOT` for a staging directory) |
+| `meegotouch-controlpanelapplets` | about, reset, warranty and test applets; display, battery, offline and USB wait for QmSystem2, the sound settings for libprofile and GStreamer 1.0 |
+| `qmsystem2`, `libresourceqt`, `libconnsettings`, `meego-im-settings-applet` | not yet |
 
 Tried on a PC (Xvfb, Mesa llvmpipe), not yet on a device.
 
@@ -66,6 +71,7 @@ its `lib/pkgconfig` on `PKG_CONFIG_PATH`, its mkspecs features on
 
 To run without installing, libmeegotouch reads the theme from
 `M_THEME_DIR`/`M_THEME_NAME` and its target configurations from
-`M_TARGETS_CONF_DIR`; contextkit reads its registry from
+`M_TARGETS_CONF_DIR`, extra translations from `M_TRANSLATION_DIR`;
+contextkit reads its registry from
 `CONTEXT_PROVIDERS`, `CONTEXT_TYPES`, `CONTEXT_CORE_TYPES` and
 `CONTEXT_CORE_DECLARATIONS`.
