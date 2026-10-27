@@ -49,12 +49,12 @@ void MCompositeManagerExtension::dumpState() const
     /* NOP */
 }
 
-Qt::HANDLE MCompositeManagerExtension::desktopWindow() const
+WId MCompositeManagerExtension::desktopWindow() const
 {    
     return ((MCompositeManager*)qApp)->d->desktop_window;
 }
 
-Qt::HANDLE MCompositeManagerExtension::currentAppWindow()
+WId MCompositeManagerExtension::currentAppWindow()
 {
     MCompositeManager *p = (MCompositeManager *) qApp;
     return p->d->current_app;

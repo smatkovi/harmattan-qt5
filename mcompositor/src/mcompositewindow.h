@@ -20,11 +20,13 @@
 #ifndef DUICOMPOSITEWINDOW_H
 #define DUICOMPOSITEWINDOW_H
 
+#include <qwindowdefs.h>
 #include <QGraphicsItem>
 #include <QtOpenGL>
 #include <QPointer>
 #include <X11/Xutil.h>
 #include <mwindowpropertycache.h>
+#include <x11bool.h>
 
 class MCompWindowAnimator;
 class MTexturePixmapPrivate;
@@ -69,7 +71,7 @@ public:
      * \param mpc property cache object for this window
      * \param item QGraphicsItem parent, defaults to none
      */
-    MCompositeWindow(Qt::HANDLE window, MWindowPropertyCache *mpc,
+    MCompositeWindow(WId window, MWindowPropertyCache *mpc,
                      QGraphicsItem *item = 0);
 
     /*! Destroys this MCompositeWindow and frees resources
@@ -77,7 +79,7 @@ public:
      */
     virtual ~MCompositeWindow();
 
-    virtual Qt::HANDLE window() const { return win_id; }
+    virtual WId window() const { return win_id; }
 
     // Reimplemented to defer deleteLater()s until transitions are over.
     virtual bool event(QEvent *);
@@ -168,7 +170,7 @@ public:
     void stopPing();
     void receivedPing(ulong timeStamp);
 
-    static MCompositeWindow *compositeWindow(Qt::HANDLE window);
+    static MCompositeWindow *compositeWindow(WId window);
 
     /*!
      * Ensures that the corresponding texture reflects the contents of the
@@ -382,7 +384,7 @@ private:
     QTimer *t_ping, *t_reappear;
     QTimer *damage_timer;
     QTimer close_timer;
-    Qt::HANDLE win_id;
+    WId win_id;
 
     friend class MTexturePixmapPrivate;
     friend class MCompositeWindowShaderEffect;

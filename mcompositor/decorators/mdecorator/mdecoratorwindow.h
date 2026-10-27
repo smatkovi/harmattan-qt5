@@ -60,7 +60,7 @@ public:
      * to the windows below.
      */
     void setInputRegion();
-    void managedWindowChanged(Qt::HANDLE w, const QString &title,
+    void managedWindowChanged(WId w, const QString &title,
                                             M::OrientationAngle orient,
                                             bool hung);
     void createQueryDialog();

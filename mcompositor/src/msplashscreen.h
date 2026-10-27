@@ -20,6 +20,7 @@
 #ifndef MSPLASHSCREEN_H
 #define MSPLASHSCREEN_H
 
+#include <qwindowdefs.h>
 #include <mtexturepixmapitem.h>
 #include <mwindowpropertycache.h>
 
@@ -56,7 +57,7 @@ public:
 
     ~MSplashScreen();
 
-    Qt::HANDLE window() const { return win_id; }
+    WId window() const { return win_id; }
     Pixmap windowPixmap() const { return pixmap; }
     QRectF boundingRect() const;
     bool matches(MWindowPropertyCache *pc) const;
@@ -74,7 +75,6 @@ private:
     QString portrait_file;
     QString landscape_file;
     unsigned int pixmap;
-    QPixmap *q_pixmap;
     QTimer timer;
     bool fade_animation;
     Window win_id;

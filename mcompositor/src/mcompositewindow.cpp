@@ -36,7 +36,7 @@
 
 int MCompositeWindow::window_transitioning = 0;
 
-MCompositeWindow::MCompositeWindow(Qt::HANDLE window, 
+MCompositeWindow::MCompositeWindow(WId window, 
                                    MWindowPropertyCache *mpc, 
                                    QGraphicsItem *p)
     : QGraphicsItem(p),
@@ -668,7 +668,7 @@ void MCompositeWindow::setDecorated(bool decorated)
     need_decor = decorated;
 }
 
-MCompositeWindow *MCompositeWindow::compositeWindow(Qt::HANDLE window)
+MCompositeWindow *MCompositeWindow::compositeWindow(WId window)
 {
     MCompositeManager *p = (MCompositeManager *) qApp;
     return p->d->windows.value(window, 0);

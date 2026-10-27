@@ -55,7 +55,7 @@ signals:
     void clicked();
 };
 
-MSimpleWindowFrame::MSimpleWindowFrame(Qt::HANDLE w)
+MSimpleWindowFrame::MSimpleWindowFrame(WId w)
     : QWidget(0),
       managed_window(w)
 {
@@ -119,12 +119,12 @@ const QSize &MSimpleWindowFrame::suggestedWindowSize() const
     return window_size;
 }
 
-Qt::HANDLE MSimpleWindowFrame::windowArea()
+WId MSimpleWindowFrame::windowArea()
 {
     return window_area->winId();
 }
 
-Qt::HANDLE MSimpleWindowFrame::managedWindow()
+WId MSimpleWindowFrame::managedWindow()
 {
     return managed_window;
 }
@@ -169,7 +169,7 @@ void MSimpleWindowFrame::closeWindow()
     XSync(QX11Info::display(), FALSE);
 }
 
-void MSimpleWindowFrame::setParentFrame(Qt::HANDLE frame)
+void MSimpleWindowFrame::setParentFrame(WId frame)
 {
     parent_frame = frame;
 }

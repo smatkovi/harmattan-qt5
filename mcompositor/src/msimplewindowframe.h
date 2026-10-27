@@ -37,7 +37,7 @@ public:
      *
      * \param managedWindow the window that will be drawn with a frame
      */
-    MSimpleWindowFrame(Qt::HANDLE managedWindow);
+    MSimpleWindowFrame(WId managedWindow);
 
     /*!
      * Frees the resources
@@ -54,19 +54,19 @@ public:
      * Returns the window id of the area where the managed window is
      * going to be re-parented
      */
-    Qt::HANDLE windowArea();
+    WId windowArea();
 
     /*!
      * Returns the window id of the managed window contained by this frame
      */
-    Qt::HANDLE managedWindow();
+    WId managedWindow();
 
     /*!
     * Sets parent window of this frame if any
     *
     * \param frame the parent window this this frame
     */
-    void setParentFrame(Qt::HANDLE frame);
+    void setParentFrame(WId frame);
 
     /*!
     * Sets the decoration of the frame to dialog mode by hiding the minimize button
@@ -95,9 +95,9 @@ private:
     QPixmap *homepixmap;
     QPixmap *closepixmap;
 
-    Qt::HANDLE parent_frame;
+    WId parent_frame;
     // the actual window that is being managed
-    Qt::HANDLE managed_window;
+    WId managed_window;
 
     static QPixmap *homepix;
     static QPixmap *closepix;

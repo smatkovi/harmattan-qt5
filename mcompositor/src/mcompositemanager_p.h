@@ -37,6 +37,7 @@
 #include <X11/Xlib-xcb.h>
 
 #include "mrestacker.h"
+#include <x11bool.h>
 
 class QGraphicsScene;
 class QGLWidget;

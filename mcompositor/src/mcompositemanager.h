@@ -27,6 +27,7 @@
 #include <QTimer>
 #include <mwindowpropertycache.h>
 #include <QElapsedTimer>
+#include <x11bool.h>
 
 class QGraphicsScene;
 class MCompositeManagerPrivate;
@@ -123,7 +124,9 @@ public:
     /*!
      * Reimplemented from QApplication::x11EventFilter() to catch X11 events
      */
-    bool x11EventFilter(XEvent *event);
+    // (virtual: Qt 5's QApplication has none to reimplement; called by the
+    // xcb event bridge)
+    virtual bool x11EventFilter(XEvent *event);
 
     /*!
      * Returns the scene where the items are rendered
@@ -139,7 +142,7 @@ public:
      * rendered. Typically, this will be the window id of a toplevel
      * QGraphicsView widget where the items are drawn
      */
-    void setSurfaceWindow(Qt::HANDLE window);
+    void setSurfaceWindow(WId window);
 
     /*!
      * Redirects and manages existing windows as composited items

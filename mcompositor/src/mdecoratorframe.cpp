@@ -50,12 +50,12 @@ MDecoratorFrame::MDecoratorFrame(QObject *p)
     remote_decorator->exportObject(this);
 }
 
-Qt::HANDLE MDecoratorFrame::managedWindow() const
+WId MDecoratorFrame::managedWindow() const
 {
     return client ? client->window() : 0;
 }
 
-Qt::HANDLE MDecoratorFrame::winId() const
+WId MDecoratorFrame::winId() const
 {
     return decorator_window;
 }
@@ -156,7 +156,7 @@ void MDecoratorFrame::queryDialogAnswer(unsigned window, bool killit)
     static_cast<MCompositeManager *>(qApp)->queryDialogAnswer(window, killit);
 }
 
-void MDecoratorFrame::setDecoratorWindow(Qt::HANDLE window)
+void MDecoratorFrame::setDecoratorWindow(WId window)
 {
     decorator_window = window;
     XMapWindow(QX11Info::display(), window);

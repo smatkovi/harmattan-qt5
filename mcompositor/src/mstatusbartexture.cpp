@@ -22,6 +22,7 @@
 #include <QX11Info>
 #include <mstatusbartexture.h>
 #include <mtexturefrompixmap.h>
+#include "mx11pixmap.h"
 #include <mcompositewindow.h>
 #include "mcompositemanager.h"
 
@@ -126,7 +127,7 @@ bool MStatusBarTexture::updateStatusBarGeometry()
     if (!TFP->drawable)
         return false;
     
-    QPixmap pixmap = QPixmap::fromX11Pixmap(TFP->drawable, QPixmap::ExplicitlyShared);    
+    QSize pixmap = mX11DrawableSize(TFP->drawable);
     QSize lscape, portrait;
 
     MCompositeWindow *desktop =

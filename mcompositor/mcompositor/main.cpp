@@ -18,6 +18,7 @@
 ****************************************************************************/
 
 #include <QtGui>
+#include <QtWidgets>
 #include <QGLWidget>
 #include "mcompositescene.h"
 #include "mcompositemanager.h"
@@ -36,12 +37,22 @@ int main(int argc, char *argv[])
     setenv("CONTEXT_COMMANDING", "1", 1);
 #endif
     
+#if QT_VERSION < 0x050000
     // Don't load any Qt plugins
     QCoreApplication::setLibraryPaths(QStringList(PLUGINDIR));
+#else
+    // Qt 5 talks to X through plugins (the xcb platform and its GLX
+    // integration): Qt's own plugins stay, and the compositor is X only
+    setenv("QT_QPA_PLATFORM", "xcb", 1);
+    QCoreApplication::setLibraryPaths(QStringList(PLUGINDIR)
+        << QLibraryInfo::location(QLibraryInfo::PluginsPath));
+#endif
 
     QApplication::setDesktopSettingsAware(false);
+#if QT_VERSION < 0x050000
     // make QPixmap create X pixmaps
     QApplication::setGraphicsSystem("native");
+#endif
     MCompositeManager app(argc, argv);
 
     QGraphicsScene *scene = app.scene();
@@ -49,7 +60,11 @@ int main(int argc, char *argv[])
     
     view.setFrameStyle(0);
     view.setProperty("NoMStyle", true);
+#if QT_VERSION < 0x050000
     view.setUpdatesEnabled(false);
+#endif
+    // (in Qt 5 the viewport set below inherits the view's disabled
+    // updates, and then glwidget->update() would never paint)
     view.setAutoFillBackground(false);
     view.setBackgroundBrush(Qt::NoBrush);
     view.setForegroundBrush(Qt::NoBrush);
@@ -74,7 +89,11 @@ int main(int argc, char *argv[])
     fmt.setSampleBuffers(false);
 
     QGLWidget *w = new QGLWidget(fmt);
+#if QT_VERSION < 0x050000
+    // (Qt 5 has no such attribute; a QGLWidget draws whenever its
+    // context is current)
     w->setAttribute(Qt::WA_PaintOutsidePaintEvent);
+#endif
     if (!app.isEgl()) {
         QPalette p = w->palette();
         p.setColor(QPalette::Background, QColor(Qt::black));

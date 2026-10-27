@@ -39,6 +39,7 @@ class EglTextureManager;
 #endif
 
 #include "mtexturefrompixmap.h"
+#include <x11bool.h>
 
 class QGLWidget;
 class QGraphicsItem;

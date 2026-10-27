@@ -20,6 +20,7 @@
 #ifndef MABSTRACTDECORATOR_H
 #define MABSTRACTDECORATOR_H
 
+#include <qwindowdefs.h>
 #include <MWindow>
 #include <QObject>
 #include "mabstractappinterface.h"
@@ -43,7 +44,7 @@ public:
     /*!
      * Returns the id of the window decorated by this decorator
      */
-    Qt::HANDLE managedWinId();
+    WId managedWinId();
     
     /*!
      * Informs the compositor of the available client geometry when client
@@ -79,7 +80,7 @@ protected:
       * @wmname and @orient are the title and current orientation of @window.
       * @hung indicates to show the "not responding" dialog right away.
       */
-    virtual void manageEvent(Qt::HANDLE window,
+    virtual void manageEvent(WId window,
                              const QString &wmname,
                              M::OrientationAngle orient,
                              bool sbonly, bool hung) = 0;

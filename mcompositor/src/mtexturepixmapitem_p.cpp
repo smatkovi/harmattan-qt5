@@ -320,14 +320,14 @@ void MTexturePixmapPrivate::renderTexture(const QTransform& transform)
     // eglSwapBuffersRegionNOK()
 
     bool shape_on = !QRegion(item->boundingRect().toRect()).subtracted(shape).isEmpty();
-    bool scissor_on = damageRegion.numRects() > 1 || shape_on;
+    bool scissor_on = damageRegion.rectCount() > 1 || shape_on;
     
     if (scissor_on)
         glEnable(GL_SCISSOR_TEST);
     
     // Damage regions taking precedence over shape rects 
-    if (damageRegion.numRects() > 1) {
-        for (int i = 0; i < damageRegion.numRects(); ++i) {
+    if (damageRegion.rectCount() > 1) {
+        for (int i = 0; i < damageRegion.rectCount(); ++i) {
             glScissor(damageRegion.rects().at(i).x(),
                       brect.height() -
                       (damageRegion.rects().at(i).y() +
@@ -338,7 +338,7 @@ void MTexturePixmapPrivate::renderTexture(const QTransform& transform)
         }
     } else if (shape_on) {
         // draw a shaped window using glScissor
-        for (int i = 0; i < shape.numRects(); ++i) {
+        for (int i = 0; i < shape.rectCount(); ++i) {
             glScissor(shape.rects().at(i).x(),
                       brect.height() -
                       (shape.rects().at(i).y() +
@@ -528,7 +528,7 @@ void MTexturePixmapPrivate::init()
                  item->propertyCache()->realGeometry().y());
 }
 
-MTexturePixmapPrivate::MTexturePixmapPrivate(Qt::HANDLE window,
+MTexturePixmapPrivate::MTexturePixmapPrivate(Window window,
                                              MTexturePixmapItem *p)
     : window(window),
       TFP(),

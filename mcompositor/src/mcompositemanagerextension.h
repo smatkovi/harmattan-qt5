@@ -20,6 +20,7 @@
 #ifndef MCOMPOSITEMANAGEREXTENSION_H
 #define MCOMPOSITEMANAGEREXTENSION_H
 
+#include <qwindowdefs.h>
 #include <QObject>
 #include <X11/Xlib.h>
 
@@ -39,12 +40,12 @@ class MCompositeManagerExtension: public QObject
     /*
      * Returns the desktop window
      */
-    Qt::HANDLE desktopWindow() const;
+    WId desktopWindow() const;
 
     /*
      * Returns the current application window
      */
-    Qt::HANDLE currentAppWindow();
+    WId currentAppWindow();
     
     /*! 
      * Informs the composite manager that this extension is subscribed
@@ -68,7 +69,7 @@ class MCompositeManagerExtension: public QObject
     void addToStack(MCompositeWindow *cw, bool to_top);
 
  signals:    
-    void currentAppChanged(Qt::HANDLE window);
+    void currentAppChanged(WId window);
     
  protected:
     /*!

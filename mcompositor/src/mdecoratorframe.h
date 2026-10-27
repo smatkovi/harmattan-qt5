@@ -20,6 +20,7 @@
 #ifndef DUIDECORATORFRAME_H
 #define DUIDECORATORFRAME_H
 
+#include <qwindowdefs.h>
 #include <QObject>
 #include <QRect>
 
@@ -49,13 +50,13 @@ public:
     /*!
      * Retuns the window id of the managed window.
      */
-    Qt::HANDLE managedWindow() const;
+    WId managedWindow() const;
     MCompositeWindow *managedClient() const { return client; }
 
     /*!
      * Returns the window id of the decorator window.
      */
-    Qt::HANDLE winId() const;
+    WId winId() const;
 
     /*!
      * Hides the decorator QGraphicsItem.
@@ -98,7 +99,7 @@ public:
     /*!
      * Sets the decorator window and maps that window if it is unmapped.
      */
-    void setDecoratorWindow(Qt::HANDLE window);
+    void setDecoratorWindow(WId window);
 
     void setDecoratorItem(MCompositeWindow *window);
 
@@ -116,7 +117,7 @@ private:
     static MDecoratorFrame *d;
 
     MCompositeWindow *client;
-    Qt::HANDLE decorator_window;
+    WId decorator_window;
     MCompositeWindow *decorator_item;
     MRmiClient *remote_decorator;
     int top_offset;

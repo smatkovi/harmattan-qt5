@@ -16,4 +16,6 @@ contains(DEFINES, WINDOW_DEBUG_ALOT) {
     SOURCES += xserverpinger.cpp
 }
 
-QT = core gui opengl
+# Qt 5: QApplication and QGraphicsView are in QtWidgets, QX11Info in
+# QtX11Extras
+QT = core gui opengl widgets x11extras

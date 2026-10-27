@@ -1,4 +1,5 @@
 #include <QtGui>
+#include <QtWidgets>
 #include <QDBusConnection>
 #include <mdecorator_dbus_interface.h>
 

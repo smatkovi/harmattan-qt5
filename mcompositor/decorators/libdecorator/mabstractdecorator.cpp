@@ -35,7 +35,7 @@
 
 struct MAbstractDecoratorPrivate
 {    
-    Qt::HANDLE client;
+    WId client;
     MRmiServer* rmi;
     QRect clientGeometry;
     MAbstractDecorator* q_ptr;
@@ -55,7 +55,7 @@ MAbstractDecorator::~MAbstractDecorator()
 {
 }
 
-Qt::HANDLE MAbstractDecorator::managedWinId()
+WId MAbstractDecorator::managedWinId()
 {
     Q_D(MAbstractDecorator);
     

@@ -66,6 +66,13 @@
 #include <X11/XKBlib.h>
 #include <X11/Xproto.h>
 #include "mcompatoms_p.h"
+#if QT_VERSION >= 0x050000
+#include <QAbstractEventDispatcher>
+#include <QAbstractNativeEventFilter>
+#include <QGuiApplication>
+#include <QWindow>
+#include "mxcbevent.h"
+#endif
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -1602,7 +1609,12 @@ Time MCompositeManager::getServerTime() const
                     ATOM(_NET_CLIENT_LIST),
                     XA_WINDOW, 32, PropModeAppend,
                     (unsigned char *)&data, 0);
+#if QT_VERSION < 0x050000
     XIfEvent(QX11Info::display(), &xevent, timestamp_predicate, NULL);
+#else
+    if (!mWaitForXEvent(QX11Info::display(), &xevent, timestamp_predicate, NULL))
+        return CurrentTime;
+#endif
     return xevent.xproperty.time;
 }
 
@@ -3092,7 +3104,11 @@ void MCompositeManagerPrivate::redirectWindows()
     // Wait for the MapNotify for the overlay (show() of the graphicsview
     // in main() causes it even if we don't map it explicitly)
     XEvent xevent;
+#if QT_VERSION < 0x050000
     XIfEvent(QX11Info::display(), &xevent, map_predicate, (XPointer)xoverlay);
+#else
+    mWaitForXEvent(QX11Info::display(), &xevent, map_predicate, (XPointer)xoverlay);
+#endif
     showOverlayWindow(false);
     if (!possiblyUnredirectTopmostWindow())
         enableCompositing();
@@ -4328,10 +4344,61 @@ void MCompositeManager::xtracef(const char *fun, const char *fmt, ...)
 }
 #endif //REMOTE_CONTROL
 
+#if QT_VERSION >= 0x050000
+/*
+ * Qt 5 hands X events over in xcb's format only, where Qt 4 called
+ * QApplication::x11EventFilter(XEvent *), on which the whole compositor
+ * is built (map and configure requests, damage, properties). Each xcb
+ * event becomes an XEvent through Xlib's own conversion from the wire
+ * format (extensions such as Damage and Composite register theirs with
+ * the Display, which is the connection Qt uses) and goes to
+ * x11EventFilter(), as libmeegotouch's MApplication does it.
+ */
+class MCompositorX11EventBridge : public QAbstractNativeEventFilter
+{
+public:
+    explicit MCompositorX11EventBridge(MCompositeManager *manager) : manager(manager) {}
+
+    bool nativeEventFilter(const QByteArray &eventType, void *message, long *)
+    {
+        if (eventType != "xcb_generic_event_t")
+            return false;
+        XEvent xevent;
+        if (!mXEventFromXcb(QX11Info::display(),
+                            static_cast<xcb_generic_event_t *>(message), &xevent))
+            return false;
+        bool handled = manager->x11EventFilter(&xevent);
+        // Qt 4 did without the events of its own windows that the
+        // compositor takes (map, configure, property, focus); Qt 5 knows
+        // from them whether its window is shown and paints only then
+        return handled && !isQtWindow(xevent.xany.window);
+    }
+
+    static bool isQtWindow(Window window)
+    {
+        foreach (QWindow *w, QGuiApplication::allWindows())
+            if (w->handle() && w->winId() == window)
+                return true;
+        return false;
+    }
+
+private:
+    MCompositeManager *manager;
+};
+#endif
+
 MCompositeManager::MCompositeManager(int &argc, char **argv)
     : QApplication(argc, argv)
 {
     ensureSettingsFile();
+#if QT_VERSION >= 0x050000
+    installNativeEventFilter(new MCompositorX11EventBridge(this));
+    // Qt 4 flushed Xlib's request buffer before it waited for events; Qt 5
+    // flushes only its xcb connection, and the compositor's Xlib requests
+    // (XMapWindow, ...) would wait in Xlib's buffer
+    connect(QAbstractEventDispatcher::instance(), &QAbstractEventDispatcher::aboutToBlock,
+            [] { XFlush(QX11Info::display()); });
+#endif
 
     d = new MCompositeManagerPrivate(this);
     connect(d, SIGNAL(windowBound(MCompositeWindow*)), SIGNAL(windowBound(MCompositeWindow*)));
@@ -4448,7 +4515,7 @@ bool MCompositeManager::x11EventFilter(XEvent *event)
     return d->x11EventFilter(event);
 }
 
-void MCompositeManager::setSurfaceWindow(Qt::HANDLE window)
+void MCompositeManager::setSurfaceWindow(WId window)
 {
     d->localwin = window;
 }
@@ -4471,7 +4538,7 @@ bool MCompositeManager::isCompositing()
 
 void MCompositeManager::debug(const QString& d)
 {
-    const char* msg = d.toAscii();
+    const char* msg = d.toLatin1();
     _log("%s\n", msg);
 }
 

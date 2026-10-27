@@ -21,6 +21,7 @@
 #include <QSet>
 #include "mrestacker.h"
 #include <X11/Xproto.h> // X_ConfigureWindow
+#include "mxcbevent.h"
 
 // Enable or disable debugging messages.
 #define RESTACKER_LOG(txt, args... )                        /* NOP */
@@ -442,7 +443,11 @@ static Bool processDestroyNotify(Display *, XEvent *xev, XPointer xargs)
 void MRestacker::processDestroyNotifys(WindowStack *stack)
 {
     ProcessPendingEventsArgs ppeargs = { this, stack };
+#if QT_VERSION < 0x050000
     XCheckIfEvent(dpy, NULL, processDestroyNotify, (XPointer)&ppeargs);
+#else
+    mPeekXEvents(dpy, processDestroyNotify, (XPointer)&ppeargs);
+#endif
     dirtyState = false;
 }
 

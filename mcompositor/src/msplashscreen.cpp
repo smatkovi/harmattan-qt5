@@ -23,6 +23,7 @@
 #include "mdevicestate.h"
 #include "mcompositewindowanimation.h"
 #include "mcompatoms_p.h"
+#include "mx11pixmap.h"
 
 #include <X11/Xatom.h>
 
@@ -69,7 +70,6 @@ MSplashScreen::MSplashScreen(unsigned int splash_pid,
       portrait_file(splash_p),
       landscape_file(splash_l),
       pixmap(splash_pixmap),
-      q_pixmap(0),
       fade_animation(false)
 {
     MSplashPropertyCache::get()->setPid(splash_pid);
@@ -102,19 +102,22 @@ MSplashScreen::MSplashScreen(unsigned int splash_pid,
             // "bottom" edge is forbidden -> use portrait
             // "right" edge is forbidden also -> landscape
             landscape = true;
+        QImage image;
         if (landscape) {
-            q_pixmap = new QPixmap(landscape_file);
-            if (q_pixmap->isNull())
+            image.load(landscape_file);
+            if (image.isNull())
                 qWarning() << __func__ << "couldn't load" << landscape_file;
             if (portrait_file != landscape_file)
                 orientation = 0;
         } else {
-            q_pixmap = new QPixmap(portrait_file);
-            if (q_pixmap->isNull())
+            image.load(portrait_file);
+            if (image.isNull())
                 qWarning() << __func__ << "couldn't load" << portrait_file;
         }
-        if (!q_pixmap->isNull())
-            pixmap = q_pixmap->handle();
+        if (!image.isNull())
+            // an X pixmap of its own (Qt 5's QPixmap has none), which
+            // MTexturePixmapItem frees as one that was provided
+            pixmap = mX11PixmapFromImage(image);
 
         MSplashPropertyCache::get()->setOrientationAngle(orientation);
     }
@@ -135,8 +138,6 @@ MSplashScreen::~MSplashScreen()
     // NOTE: if pixmap was provided to us, MTexturePixmapItemPrivate frees it.
     // TODO: signal switcher that we freed it
 
-    // return this QPixmap to the QPixmapCache with a valid X pixmap
-    delete q_pixmap;
 }
 
 QRectF MSplashScreen::boundingRect() const

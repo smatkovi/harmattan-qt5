@@ -18,6 +18,7 @@
 ****************************************************************************/
 
 #include <QtGui>
+#include <QtWidgets>
 #include <stdlib.h>
 #include <QX11Info>
 #include <QRect>

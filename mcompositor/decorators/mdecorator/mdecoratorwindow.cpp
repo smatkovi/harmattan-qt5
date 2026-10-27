@@ -63,7 +63,7 @@ public:
     {
     }
 
-    void manageEvent(Qt::HANDLE window,
+    void manageEvent(WId window,
                              const QString &wmname,
                              M::OrientationAngle orient,
                              bool sbonly, bool hung)
@@ -292,7 +292,7 @@ MDecoratorWindow::MDecoratorWindow(QWidget *parent)
     setOrientationAngleLocked(true);
 }
 
-void MDecoratorWindow::managedWindowChanged(Qt::HANDLE w,
+void MDecoratorWindow::managedWindowChanged(WId w,
                                             const QString &title,
                                             M::OrientationAngle orient,
                                             bool hung)
@@ -300,7 +300,7 @@ void MDecoratorWindow::managedWindowChanged(Qt::HANDLE w,
     app->setManagedWindow(w);
     app->actionsChanged(QList<MDecoratorIPCAction>(), w);
 
-    Qt::HANDLE old_window = managed_window;
+    WId old_window = managed_window;
     managed_window = w;
     if (messageBox && !hung)
         hideQueryDialog();
@@ -659,4 +659,5 @@ void MDecoratorWindow::menuDisappeared()
     setBackgroundBrush(QBrush(Qt::NoBrush));
 }
 
+#include <x11bool.h>
 #include "mdecoratorwindow.moc"

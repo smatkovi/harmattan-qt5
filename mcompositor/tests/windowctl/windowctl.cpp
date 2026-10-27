@@ -774,7 +774,7 @@ static bool old_main(Display **dpyp, QStringList& args, QString& stdOut)
 		      SubstructureNotifyMask | PropertyChangeMask);
 
 	/*printf ("argc == %d, argv[1] = '%s'\n", argc, argv[1]);*/
-        QByteArray tmp = args.at(0).toAscii();
+        QByteArray tmp = args.at(0).toLatin1();
 	for (char *p = tmp.data(); *p; ++p) {
 		const char *command;
 		if (*p == 'a') {
@@ -860,9 +860,9 @@ static bool old_main(Display **dpyp, QStringList& args, QString& stdOut)
 				return false;
 			} else
 				do_command(dpy, *p,
-					   strtol(args.at(1).toAscii().data(),
+					   strtol(args.at(1).toLatin1().data(),
 						  NULL, 16),
-					   strtol(args.at(2).toAscii().data(),
+					   strtol(args.at(2).toLatin1().data(),
 						  NULL, 16), stdOut);
 			return true;
 		}
@@ -872,8 +872,8 @@ static bool old_main(Display **dpyp, QStringList& args, QString& stdOut)
 				return false;
 			} else {
                                 bool mode = (*p == 'V');
-				configure(dpy, args.at(1).toAscii().data(),
-					  args.at(2).toAscii().data(), mode);
+				configure(dpy, args.at(1).toLatin1().data(),
+					  args.at(2).toLatin1().data(), mode);
                         }
 			return true;
 		}
@@ -882,8 +882,8 @@ static bool old_main(Display **dpyp, QStringList& args, QString& stdOut)
 	  			print_usage_and_exit(stdOut);
 				return false;
 			} else
-				set_group(dpy, args.at(1).toAscii().data(),
-					  args.at(2).toAscii().data());
+				set_group(dpy, args.at(1).toLatin1().data(),
+					  args.at(2).toLatin1().data());
 			return true;
 		}
 		if (*p == 'e') {
@@ -896,7 +896,7 @@ static bool old_main(Display **dpyp, QStringList& args, QString& stdOut)
 				return false;
 			}
         		signal (SIGCHLD, SIG_IGN);
-			run_pkill(args.at(1).toAscii().data(), stdOut);
+			run_pkill(args.at(1).toLatin1().data(), stdOut);
 			return true;
 		}
 		if (*p == 'R') {
@@ -905,7 +905,7 @@ static bool old_main(Display **dpyp, QStringList& args, QString& stdOut)
 				return false;
 			}
         		signal (SIGCHLD, SIG_IGN);
-			rotate_screen(args.at(1).toAscii().data(), stdOut);
+			rotate_screen(args.at(1).toLatin1().data(), stdOut);
 			return true;
 		}
 		if (*p == 'P') {
@@ -936,30 +936,30 @@ static bool old_main(Display **dpyp, QStringList& args, QString& stdOut)
 		if (*p == 'J') {
                         if (args.count() == 3) {
                                 set_always_mapped(dpy,
-                                    strtol(args.at(1).toAscii().data(), 0, 16),
-                                    atoi(args.at(2).toAscii().data()));
+                                    strtol(args.at(1).toLatin1().data(), 0, 16),
+                                    atoi(args.at(2).toLatin1().data()));
                                 return true;
                         }
                 }
 		if (*p == 'E') {
 			if (args.count() == 3) {
                                 set_meego_layer(dpy,
-                                    strtol(args.at(1).toAscii().data(), 0, 16),
-                                    atoi(args.at(2).toAscii().data()));
+                                    strtol(args.at(1).toLatin1().data(), 0, 16),
+                                    atoi(args.at(2).toLatin1().data()));
                                 return true;
                         } else if (args.count() == 2) {
-			        meego_layer = atoi(args.at(1).toAscii().data());
+			        meego_layer = atoi(args.at(1).toLatin1().data());
                                 break;
                         }
                 }
 		if (*p == 'X') {
 			if (args.count() == 6) {
                                 set_mstatusbar_geom(dpy,
-                                    strtol(args.at(1).toAscii().data(), 0, 16),
-                                    atoi(args.at(2).toAscii().data()),
-                                    atoi(args.at(3).toAscii().data()),
-                                    atoi(args.at(4).toAscii().data()),
-                                    atoi(args.at(5).toAscii().data()));
+                                    strtol(args.at(1).toLatin1().data(), 0, 16),
+                                    atoi(args.at(2).toLatin1().data()),
+                                    atoi(args.at(3).toLatin1().data()),
+                                    atoi(args.at(4).toLatin1().data()),
+                                    atoi(args.at(5).toLatin1().data()));
                                 return true;
                         }
                 }
@@ -978,16 +978,16 @@ static bool old_main(Display **dpyp, QStringList& args, QString& stdOut)
                     if (args.count() != 4) {
                         print_usage_and_exit(stdOut); return false;
                     }
-                    Atom a = XInternAtom(dpy, args.at(2).toAscii().data(),
+                    Atom a = XInternAtom(dpy, args.at(2).toLatin1().data(),
                                          False);
                     XEvent ev;
                     memset(&ev, 0, sizeof(ev));
                     ev.xclient.type = ClientMessage;
                     ev.xclient.message_type = a;
-                    ev.xclient.window = strtol(args.at(3).toAscii().data(),
+                    ev.xclient.window = strtol(args.at(3).toLatin1().data(),
                                                NULL, 16);
                     ev.xclient.format = 32;
-                    Window w = strtol(args.at(1).toAscii().data(), NULL, 16);
+                    Window w = strtol(args.at(1).toLatin1().data(), NULL, 16);
                     if (w == 0) {
                         w = DefaultRootWindow(dpy); 
                         XSendEvent(dpy, w, False, SubstructureRedirectMask, &ev);
@@ -1063,7 +1063,7 @@ static bool old_main(Display **dpyp, QStringList& args, QString& stdOut)
                     return true;
                 }
                 if (*p == 'Z' && args.count() == 2) {
-                    track_w = strtol(args.at(1).toAscii().data(), NULL, 16);
+                    track_w = strtol(args.at(1).toLatin1().data(), NULL, 16);
                     printf("tracking damages of 0x%lx\n", track_w);
                     XDamageCreate(dpy, track_w, XDamageReportRawRectangles);
                     goto mainloop;
@@ -1074,7 +1074,7 @@ static bool old_main(Display **dpyp, QStringList& args, QString& stdOut)
 				return false;
 			} else
 				do_command(dpy, *command,
-					   strtol(args.at(1).toAscii().data(),
+					   strtol(args.at(1).toLatin1().data(),
 						  NULL, 16), 0, stdOut);
 			return true;
 		}
@@ -1099,9 +1099,9 @@ static bool old_main(Display **dpyp, QStringList& args, QString& stdOut)
 	if (fork())
 	  return true;
 
-	if (args.count() == 2 && strcmp(args.at(0).toAscii().data(), "E"))
+	if (args.count() == 2 && strcmp(args.at(0).toLatin1().data(), "E"))
 		XSetTransientForHint(dpy, w,
-				     strtol(args.at(1).toAscii().data(),
+				     strtol(args.at(1).toLatin1().data(),
 					    NULL, 16));
 
         if (modal) set_modal(dpy, w);

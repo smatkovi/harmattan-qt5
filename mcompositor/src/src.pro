@@ -19,6 +19,8 @@ contains(QT_CONFIG, opengles2) {
          message("building Makefile for GLX version")
          DEFINES += DESKTOP_VERSION
          SOURCES += \
+    mx11pixmap.cpp \
+    mxcbevent.cpp \
 	 	    mtexturepixmapitem_glx.cpp \
 	 	    mtexturefrompixmap_glx.cpp
      }
@@ -52,7 +54,9 @@ HEADERS += \
     mcompositewindowanimation.h \
     mdynamicanimation.h \
     mrestacker.h \
-    mstatusbartexture.h
+    mstatusbartexture.h \
+    mx11pixmap.h \
+    mxcbevent.h
 
 SOURCES += \
     mtexturepixmapitem_p.cpp \

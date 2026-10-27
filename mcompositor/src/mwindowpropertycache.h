@@ -31,6 +31,7 @@
 #include <X11/extensions/shape.h>
 #include <X11/extensions/Xdamage.h>
 #include <mcompatoms_p.h>
+#include <x11bool.h>
 
 class MCSmartTimer;
 

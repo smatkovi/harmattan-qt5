@@ -4,6 +4,7 @@
 #include <QObject>
 #include <tasfixtureplugininterface.h>
 #include <QtGui>
+#include <QtWidgets>
 #include <MSceneManager>
 #include <MApplication>
 

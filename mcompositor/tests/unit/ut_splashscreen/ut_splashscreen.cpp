@@ -1,5 +1,6 @@
 #include <QtTest/QtTest>
 #include <QtGui>
+#include <QtWidgets>
 #include <QGLWidget>
 #include <QtDebug>
 

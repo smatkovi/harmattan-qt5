@@ -20,6 +20,7 @@
 #define GLX_GLXEXT_PROTOTYPES 1
 #define GLX_EXT_texture_from_pixmap 1
 
+#include "mx11pixmap.h"
 #include "mtexturefrompixmap.h"
 
 #include <QDebug>
@@ -67,7 +68,7 @@ static void getConfig(bool alpha)
         GLX_DRAWABLE_TYPE, GLX_PIXMAP_BIT,
         GLX_BIND_TO_TEXTURE_TARGETS_EXT, GLX_TEXTURE_2D_BIT_EXT,
         GLX_DOUBLEBUFFER, True,
-        GLX_Y_INVERTED_EXT, GLX_DONT_CARE,
+        GLX_Y_INVERTED_EXT, (int) GLX_DONT_CARE,
         None
     };
 
@@ -81,13 +82,30 @@ static void getConfig(bool alpha)
         return;
     }
 
+    // the config of the pixmaps' depth (24 bits, or 32 with alpha) with 8
+    // bits a colour: today's Mesa lists 10-bit configs first, which read
+    // the 8-bit pixmaps wrongly
+    int chosen = 0;
+    for (int i = 0; i < c; i++) {
+        int red = 0;
+        glXGetFBConfigAttrib(display, configs[i], GLX_RED_SIZE, &red);
+        XVisualInfo *vi = glXGetVisualFromFBConfig(display, configs[i]);
+        int depth = vi ? vi->depth : 0;
+        if (vi)
+            XFree(vi);
+        if (red == 8 && depth == (alpha ? 32 : 24)) {
+            chosen = i;
+            break;
+        }
+    }
+
     int inverted;
-    glXGetFBConfigAttrib(display, configs[0], GLX_Y_INVERTED_EXT, &inverted);
+    glXGetFBConfigAttrib(display, configs[chosen], GLX_Y_INVERTED_EXT, &inverted);
     if (alpha) {
-        configAlpha = configs[0];
+        configAlpha = configs[chosen];
         configAlphaInverted = inverted ? true : false;
     } else {
-        config = configs[0];
+        config = configs[chosen];
         configInverted = inverted ? true : false;
     }
     XFree(configs);
@@ -157,10 +175,8 @@ void MTextureFromPixmap::update()
     if (hasTextureFromPixmap() || !drawable)
         return;
 
-    QPixmap qp = QPixmap::fromX11Pixmap(drawable);
-
     QT_TRY {
-        QImage img = QGLWidget::convertToGLFormat(qp.toImage());
+        QImage img = QGLWidget::convertToGLFormat(mImageFromX11Drawable(drawable));
         glBindTexture(GL_TEXTURE_2D, textureId);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img.width(), img.height(), 0,
                      GL_RGBA, GL_UNSIGNED_BYTE, img.bits());
