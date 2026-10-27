@@ -244,6 +244,10 @@ public:
         // number after them)
         xEvent wire;
         std::memcpy(&wire, event, sizeof wire);
+        // Xlib reckons the event's 16-bit sequence number against its own
+        // request count, which Qt's requests through xcb leave behind
+        // ("sequence lost"): the one it read last, so that nothing changes
+        wire.u.u.sequenceNumber = static_cast<CARD16>(dpy->last_request_read);
         XEvent xevent;
         std::memset(&xevent, 0, sizeof xevent);
         if (!convert(dpy, &xevent, &wire))

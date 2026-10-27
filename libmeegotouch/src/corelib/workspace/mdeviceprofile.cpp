@@ -80,7 +80,11 @@ MDeviceProfilePrivate::MDeviceProfilePrivate()
         #endif //HAVE_GCONF
     }
 
-    filename = M_TARGETS_CONF_DIR + QString("/") + targetname + ".conf";
+    // M_TARGETS_CONF_DIR, else the directory built in
+    QString targetsDir = QString::fromLocal8Bit(qgetenv("M_TARGETS_CONF_DIR"));
+    if (targetsDir.isEmpty())
+        targetsDir = M_TARGETS_CONF_DIR;
+    filename = targetsDir + QString("/") + targetname + ".conf";
 
 #endif //Q_OS_WIN
 

@@ -11,7 +11,8 @@ INCLUDEPATH += . \
 DEPENDPATH += $$INCLUDEPATH
 QMAKE_LIBDIR += ../lib
 TEMPLATE = app
-TARGET =
+# Qt 5's qmake no longer names an empty TARGET after the directory
+TARGET = mapplicationextensionrunner
 DEPENDPATH += .
 
 LIBS += $$mAddLibrary(meegotouchcore) \

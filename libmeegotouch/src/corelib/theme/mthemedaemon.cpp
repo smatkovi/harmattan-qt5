@@ -75,6 +75,11 @@ QString MThemeDaemon::systemThemeDirectory()
     appDir.cd("themes");
     return appDir.absolutePath();
 #else
+    // M_THEME_DIR, as qt-components' theme client reads it, else the
+    // directory built in
+    const QByteArray dir = qgetenv("M_THEME_DIR");
+    if (!dir.isEmpty())
+        return QString::fromLocal8Bit(dir);
     return THEMEDIR;
 #endif
 }

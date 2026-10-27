@@ -55,6 +55,10 @@ MLocalThemeDaemon::MLocalThemeDaemon(const QString &applicationName) :
     M_themeName =  M_THEME_DEFAULT;
     M_localDaemon = this;
 #endif
+    // without GConf (or to try another theme): M_THEME_NAME
+    const QByteArray themeName = qgetenv("M_THEME_NAME");
+    if (!themeName.isEmpty())
+        theme = QString::fromLocal8Bit(themeName);
 
     QList<PixmapCacheEntry*> pixmapsToDelete;
     if ( daemon.activateTheme(theme, language, QList<MThemeDaemonClient *>(), pixmapsToDelete) == false ) {
