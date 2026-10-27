@@ -30,7 +30,9 @@ namespace ML10N {
 
 icu::UnicodeString MIcuConversions::qStringToUnicodeString(const QString &sourceStr)
 {
-    return UnicodeString(static_cast<const UChar *>(sourceStr.utf16()));
+    // UChar is char16_t since ICU 59, QString's utf16() ushort
+    return UnicodeString(reinterpret_cast<const UChar *>(sourceStr.utf16()),
+                         sourceStr.length());
 }
 
 QString MIcuConversions::unicodeStringToQString(const icu::UnicodeString &sourceStr)

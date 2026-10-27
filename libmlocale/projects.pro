@@ -20,9 +20,11 @@ isEqual( IN_PWD, $${OUT_PWD} ) {
     IS_OUT_OF_SOURCE = 1
 }
 
+# Not src/icu-extradata: Nokia's additions to ICU 4.4's data (collation,
+# locale data) in its old source format, which today's genrb refuses;
+# today's ICU carries its own
 SUBDIRS += \
     src \
-    src/icu-extradata \
     benchmarks \
     tests \
 

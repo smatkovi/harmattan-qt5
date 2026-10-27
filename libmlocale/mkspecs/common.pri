@@ -15,17 +15,11 @@ QMAKE_TARGET_COPYRIGHT = Copyright (C) 2010 Nokia
     include($${M_BUILD_TREE}/mkspecs/mlocaleconfig.pri)
 }
 
-#disable werrors on windows and freemantle (M_OS_MAEMO5 comes from meegotouchconfig.pri)
-win32 {
-    } else {
-        contains( DEFINES, M_OS_MAEMO5 ) {
-        } else { 
-	    !contains( M_BUILD_FEATURES, no-werror ) {
-	        QMAKE_CFLAGS *= -Werror
-	        QMAKE_CXXFLAGS *= -Werror
-            }
-        }
-    }
+# No -Werror: today's compilers, ICU and Qt 5's deprecations warn where
+# Harmattan's GCC 4.4 and Qt 4.7 did not
+
+# ICU 61 and later keep their classes in the icu namespace only
+DEFINES += U_USING_ICU_NAMESPACE=1
 
 mac {
     INCLUDEPATH += include
