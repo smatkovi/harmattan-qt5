@@ -25,6 +25,7 @@
 #include "switcherbuttonmodel.h"
 #include "windowinfo.h"
 #include <X11/Xlib.h>
+#include "x11bool.h"
 
 /*!
  * SwitcherButton widget represents an open window in the Switcher.

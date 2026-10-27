@@ -22,6 +22,7 @@
 #include <MWidgetView>
 #include "switchermodel.h"
 #include "switcherbasestyle.h"
+#include "x11bool.h"
 
 class Switcher;
 class MLayout;

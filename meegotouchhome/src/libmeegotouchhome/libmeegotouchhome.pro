@@ -10,6 +10,10 @@ SOURCES += library.cpp
 TEMPLATE = lib
 TARGET = meegotouchhome
 CONFIG += meegotouch
+# Qt 5: CONFIG += qt again (base.pri) runs qt.prf before meegotouch.prf,
+# too early for the modules the latter adds
+QT *= widgets x11extras
+DEFINES *= Q_WS_X11
 INCLUDEPATH += .
 DEPENDPATH += .
 
@@ -41,7 +45,7 @@ QT += network \
     svg \
     dbus \
     xml
-exists($$[QT_INSTALL_LIBS]/libQtOpenGL.so):QT += opengl
+exists($$[QT_INSTALL_LIBS]/libQtOpenGL.so)|exists($$[QT_INSTALL_LIBS]/libQt5OpenGL.so):QT += opengl
 DEFINES += APPLICATIONS_DIRECTORY=\'$$quote(\"/usr/share/applications/\")\'
 DEFINES += M_XDG_DIR=\\\"\"$$M_XDG_DIR\"\\\"
 
@@ -49,7 +53,6 @@ contains(BENCHMARKS, on) {
     DEFINES += BENCHMARKS_ON
 }
 QMAKE_CXXFLAGS += \
-    -Werror \
     -g
 QMAKE_CLEAN += *.gcov \
     ./.obj/*.gcno

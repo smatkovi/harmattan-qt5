@@ -208,7 +208,7 @@ void WindowInfo::updateWindowProperties()
 {
     // It is possible that the window has already been closed so check for errors.
     // XSync() needs to be called so that previous errors go to the original handler.
-    X11Wrapper::XSync(QX11Info::display(), FALSE);
+    X11Wrapper::XSync(QX11Info::display(), False);
     XErrorHandler errh = X11Wrapper::XSetErrorHandler(handleXError);
     xErrorCode = Success;
 

@@ -1,5 +1,6 @@
 # Input
 HEADERS += homeapplication.h \
+    x11bool.h \
     windowinfo.h \
     home.h \
     desktop.h \

@@ -141,8 +141,15 @@ protected:
     //! XDamage handle for the X window's pixmap
     Damage xWindowPixmapDamage;
 
+#if QT_VERSION < 0x050000
     //! The X window's pixmap as a shared QPixmap
     QPixmap qWindowPixmap;
+#else
+    //! A copy of the X window's pixmap (Qt 5's QPixmap can't share an X
+    //! pixmap), taken again when it was damaged
+    mutable QPixmap qWindowPixmap;
+    mutable bool qWindowPixmapOutdated;
+#endif
 
     //! The point where dragging started
     QPointF dragStartPos;

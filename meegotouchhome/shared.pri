@@ -20,8 +20,8 @@ defineReplace(findFile) {
     return($${LOCATED})
 }
 
-defineTest(addSubDirs)
-{
+# Qt 5: qmake wants the brace on the line of the definition
+defineTest(addSubDirs) {
 	for(subdirs, 1) {
 		entries = $$files($$subdirs)
 		for(entry, entries) {

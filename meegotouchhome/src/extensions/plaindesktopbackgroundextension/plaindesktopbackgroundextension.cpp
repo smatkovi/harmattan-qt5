@@ -28,7 +28,9 @@
 #include "plaindesktopbackgroundpixmap.h"
 #include "plaindesktopbackgroundstyle.h"
 
+#if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2(plaindesktopbackgroundextension, PlainDesktopBackgroundExtension)
+#endif
 
 PlainDesktopBackgroundExtension::PlainDesktopBackgroundExtension() :
     desktop(NULL),

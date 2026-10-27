@@ -25,6 +25,7 @@
 #include "xeventlistener.h"
 #include "windowinfo.h"
 #include <X11/Xlib.h>
+#include "x11bool.h"
 
 
 /*!

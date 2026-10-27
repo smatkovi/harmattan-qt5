@@ -36,6 +36,10 @@ class PlainDesktopBackgroundExtension : public QObject, public MDesktopBackgroun
 {
     Q_OBJECT
     Q_INTERFACES(MDesktopBackgroundExtensionInterface MApplicationExtensionInterface)
+#if QT_VERSION >= 0x050000
+    // Qt 5's plugins say what they are in the class (Q_EXPORT_PLUGIN2 is gone)
+    Q_PLUGIN_METADATA(IID "com.meego.core.MDesktopBackgroundExtensionInterface/1.0")
+#endif
 
 public:
     /*!

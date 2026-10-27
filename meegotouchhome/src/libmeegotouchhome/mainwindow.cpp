@@ -152,7 +152,7 @@ void MainWindow::changeNetWmState(bool set, Atom one, Atom two)
     XEvent e;
     e.xclient.type = ClientMessage;
     Display *display = QX11Info::display();
-    Atom netWmStateAtom = X11Wrapper::XInternAtom(display, "_NET_WM_STATE", FALSE);
+    Atom netWmStateAtom = X11Wrapper::XInternAtom(display, "_NET_WM_STATE", False);
     e.xclient.message_type = netWmStateAtom;
     e.xclient.display = display;
     e.xclient.window = internalWinId();
@@ -162,7 +162,7 @@ void MainWindow::changeNetWmState(bool set, Atom one, Atom two)
     e.xclient.data.l[2] = two;
     e.xclient.data.l[3] = 0;
     e.xclient.data.l[4] = 0;
-    X11Wrapper::XSendEvent(display, RootWindow(display, x11Info().screen()), FALSE, (SubstructureNotifyMask | SubstructureRedirectMask), &e);
+    X11Wrapper::XSendEvent(display, RootWindow(display, QX11Info::appScreen()), False, (SubstructureNotifyMask | SubstructureRedirectMask), &e);
 }
 
 bool MainWindow::isCallUILaunchingKey(int key)

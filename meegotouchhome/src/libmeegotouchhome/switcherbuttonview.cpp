@@ -17,6 +17,7 @@
 **
 ****************************************************************************/
 #include <cmath>
+#include <cstring>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsLinearLayout>
 #include "mainwindow.h"
@@ -30,6 +31,7 @@
 #include "switcherbuttonviewxeventlistener.h"
 #include "switcherbutton.h"
 #include "x11wrapper.h"
+#include <X11/Xutil.h>
 
 #ifdef Q_WS_X11
 unsigned char SwitcherButtonView::xErrorCode = Success;
@@ -39,12 +41,42 @@ unsigned char SwitcherButtonView::xErrorCode = Success;
 static const int ICON_GEOMETRY_UPDATE_INTERVAL = 200;
 Atom SwitcherButtonView::iconGeometryAtom = 0;
 
+#if QT_VERSION >= 0x050000
+// The contents of an X pixmap of 24 or 32 bits a pixel, as Qt 4's
+// QPixmap::fromX11Pixmap() shared it; a null image if it is gone
+static QImage imageFromX11Pixmap(Pixmap pixmap)
+{
+    Display *dpy = QX11Info::display();
+    Window root;
+    int x, y;
+    unsigned int w, h, border, depth;
+    if (!pixmap || !XGetGeometry(dpy, pixmap, &root, &x, &y, &w, &h, &border, &depth))
+        return QImage();
+    XImage *xi = XGetImage(dpy, pixmap, 0, 0, w, h, AllPlanes, ZPixmap);
+    if (!xi)
+        return QImage();
+    QImage image;
+    if (xi->bits_per_pixel == 32 && xi->byte_order == LSBFirst
+        && Q_BYTE_ORDER == Q_LITTLE_ENDIAN) {
+        image = QImage(w, h, depth == 32 ? QImage::Format_ARGB32_Premultiplied
+                                         : QImage::Format_RGB32);
+        for (unsigned int row = 0; row < h; ++row)
+            memcpy(image.scanLine(row), xi->data + row * xi->bytes_per_line, w * 4);
+    }
+    XDestroyImage(xi);
+    return image;
+}
+#endif
+
 SwitcherButtonView::SwitcherButtonView(SwitcherButton *button) :
     MButtonView(button),
     controller(button),
     xWindowPixmap(0),
     xWindowPixmapIsValid(false),
     xWindowPixmapDamage(0),
+#if QT_VERSION >= 0x050000
+    qWindowPixmapOutdated(false),
+#endif
     onDisplay(false),
     xEventListener(new SwitcherButtonViewXEventListener(*this))
 {
@@ -93,6 +125,13 @@ void SwitcherButtonView::paint(QPainter *painter, const QStyleOptionGraphicsItem
 
 void SwitcherButtonView::drawBackground(QPainter *painter, const QStyleOptionGraphicsItem *) const
 {
+#if QT_VERSION >= 0x050000
+    if (qWindowPixmapOutdated && xWindowPixmapIsValid) {
+        qWindowPixmap = QPixmap::fromImage(imageFromX11Pixmap(xWindowPixmap));
+        qWindowPixmapOutdated = false;
+    }
+#endif
+
     // Store the painter state
     painter->save();
     painter->setRenderHint(QPainter::SmoothPixmapTransform);
@@ -241,7 +280,7 @@ void SwitcherButtonView::updateXWindowPixmap()
     // It is possible that the window is not redirected so check for errors.
     // XSync() needs to be called so that previous errors go to the original
     // handler.
-    X11Wrapper::XSync(QX11Info::display(), FALSE);
+    X11Wrapper::XSync(QX11Info::display(), False);
     XErrorHandler errh = X11Wrapper::XSetErrorHandler(handleXError);
     xErrorCode = Success;
 
@@ -250,7 +289,7 @@ void SwitcherButtonView::updateXWindowPixmap()
 
     // XCompositeNameWindowPixmap doesn't wait for the server to reply, we'll
     // need to do it ourselves to catch the possible BadMatch
-    X11Wrapper::XSync(QX11Info::display(), FALSE);
+    X11Wrapper::XSync(QX11Info::display(), False);
 
     xWindowPixmapIsValid = xErrorCode == Success;
     if (xWindowPixmapIsValid) {
@@ -267,7 +306,11 @@ void SwitcherButtonView::updateXWindowPixmap()
         // Register the pixmap for XDamage events
         createDamage();
 
+#if QT_VERSION < 0x050000
         qWindowPixmap = QPixmap::fromX11Pixmap(xWindowPixmap, QPixmap::ExplicitlyShared);
+#else
+        qWindowPixmapOutdated = true;
+#endif
     } else {
         // If a BadMatch error occurred the window wasn't redirected yet; deference the invalid pixmap
         if (newWindowPixmap != 0) {
@@ -309,7 +352,13 @@ void SwitcherButtonView::damageEvent(Qt::HANDLE &damage, short &x, short &y, uns
     Q_UNUSED(width);
     Q_UNUSED(height);
 #ifdef Q_WS_X11
+#if QT_VERSION < 0x050000
     if (xWindowPixmapDamage == damage) {
+#else
+    // Qt 5's Qt::HANDLE is a pointer, X's Damage an XID
+    if (xWindowPixmapDamage == static_cast<Damage>(reinterpret_cast<quintptr>(damage))) {
+        qWindowPixmapOutdated = true;
+#endif
         X11Wrapper::XDamageSubtract(QX11Info::display(), xWindowPixmapDamage, None, None);
         update();
     }
