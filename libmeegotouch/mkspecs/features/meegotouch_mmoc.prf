@@ -29,7 +29,10 @@ isEmpty(_MEEGOTOUCH_MMOC_PRF_) {
             equals(QT_ARCH, arm) | equals(QT_ARCH, armv6) {
                 M_MMOC_EXECUTABLE = mmoc.pl
             } else {
-                M_MMOC_EXECUTABLE = mmoc
+                # Qt 5's makefiles depend on the tool as a file: the
+                # installed mmoc with its path
+                M_MMOC_EXECUTABLE = $$system(command -v mmoc)
+                isEmpty(M_MMOC_EXECUTABLE): M_MMOC_EXECUTABLE = mmoc
             }
         }
     }
