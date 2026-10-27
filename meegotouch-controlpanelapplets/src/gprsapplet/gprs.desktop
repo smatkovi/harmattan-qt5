@@ -1,0 +1,17 @@
+[Desktop Entry]
+Type=ControlPanelApplet
+Name=GPRS Connectivity
+X-logical-id=qtn_prod_gprs_connectivity
+X-translation-catalog=gprsapplet
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=GPRS Connectivity
+
+[DUI]
+X-DUIApplet-Applet=libgprsapplet.so
+
+[DCP]
+Category=Connections
+Order=40
+WidgetType=Label

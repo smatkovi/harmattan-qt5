@@ -1,0 +1,192 @@
+libconnsettings (0.29+0m6) unstable; urgency=low
+
+  * This entry has been added by BIFH queue processor
+    version has been changed to 0.29+0m6
+
+ -- BIFH Bot <sysint@maemo.research.nokia.com>  Thu, 04 Aug 2011 09:14:19 +0300
+
+libconnsettings (0.29) unstable; urgency=low
+
+  * Fixes: NB264994 - icd2 leaks memory
+
+ -- Janne Ylalehto <janne.ylalehto@nokia.com>  Thu, 04 Aug 2011 09:14:18 +0300
+
+libconnsettings (0.28) unstable; urgency=low
+
+  * Fixes: NB#225184 - packages still generating -docs packages for arm targets
+
+ -- Markus Silvan <ext-markus.p.silvan@nokia.com>  Tue, 15 Feb 2011 10:12:08 +0200
+
+libconnsettings (0.27) unstable; urgency=low
+
+  * Fixes: NB#204786 - conn_settings.h triggers compilation warning.
+  * Fixes: NB#204819 - libconnsettings de-allocation unspecified.
+
+ -- Tomasz Bursztyka <tomasz.bursztyka@nokia.com>  Mon, 15 Nov 2010 14:50:13 +0200
+
+libconnsettings (0.26) unstable; urgency=low
+
+  * Check null pointer in conn_settings_get_list(). This is Coverity id #38514
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Tue, 26 Oct 2010 13:39:10 +0300
+
+libconnsettings (0.25) unstable; urgency=low
+
+  * Fixes: NB#187473 - libconnsettings: add automake to build-deps
+
+ -- Markus Silvan <ext-markus.p.silvan@nokia.com>  Fri, 03 Sep 2010 13:29:10 +0300
+
+libconnsettings (0.24) unstable; urgency=low
+
+  * Added autoconf to build dependencies
+
+ -- Markus Silvan <ext-markus.p.silvan@nokia.com>  Wed, 25 Aug 2010 09:24:02 +0300
+
+libconnsettings (0.23) unstable; urgency=low
+
+  * Check empty value when calling conn_settings_values_destroy()
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Wed, 16 Jun 2010 08:52:42 +0300
+
+libconnsettings (0.22) unstable; urgency=low
+
+  * Flush gconf cache after writing.
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Fri, 04 Jun 2010 13:37:52 +0300
+
+libconnsettings (0.21) unstable; urgency=low
+
+  * Adding g_type_init() call when getting id's
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Tue, 06 Apr 2010 12:18:03 +0300
+
+libconnsettings (0.20) unstable; urgency=low
+
+  * Doxygen was missing from build dependencies.
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Thu,  4 Mar 2010 13:27:50 +0200
+
+libconnsettings (0.19) unstable; urgency=low
+
+  * Fixed the command line tool so that empty lists or one element lists
+    can be created
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Thu,  4 Mar 2010 10:57:09 +0200
+
+libconnsettings (0.18) unstable; urgency=low
+
+  * Added function to check whether id exists
+  * Fixed possible segfault (if key is not found) in conn_settings_get_int(),
+    conn_settings_get_double() and conn_settings_get_bool()
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Fri, 19 Feb 2010 10:09:04 +0200
+
+libconnsettings (0.17) unstable; urgency=low
+
+  * Fixed circular package dependency
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Thu, 18 Feb 2010 14:41:13 +0200
+
+libconnsettings (0.16) unstable; urgency=low
+
+  * Fixed examples
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Thu, 18 Feb 2010 13:36:47 +0200
+
+libconnsettings (0.15) unstable; urgency=low
+
+  * Added function to free array of values returned by
+    conn_settings_get_list()
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Fri, 12 Feb 2010 17:17:37 +0200
+
+libconnsettings (0.14) unstable; urgency=low
+
+  * Added function to escape a string.
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Thu, 11 Feb 2010 17:20:53 +0200
+
+libconnsettings (0.13) unstable; urgency=low
+
+  * Notifier must be removed when settings context is cleaned.
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Thu, 11 Feb 2010 16:33:13 +0200
+
+libconnsettings (0.12) unstable; urgency=low
+
+  * Fixed double free in conn_settings_list_ids()
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Wed, 10 Feb 2010 13:18:44 +0200
+
+libconnsettings (0.11) unstable; urgency=low
+
+  * Setting empty lists is now possible.
+  * Fixed memory leaks in functions conn_settings_value_destroy(),
+    conn_settings_list_keys(), conn_settings_list_ids() and
+    conn_settings_get_byte_array()
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Tue,  9 Feb 2010 16:54:19 +0200
+
+libconnsettings (0.10) unstable; urgency=low
+
+  * Enable unit tests to be executed by CITA
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Thu,  4 Feb 2010 15:43:50 +0200
+
+libconnsettings (0.9) unstable; urgency=low
+
+  * Fixed the copyright notices
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Thu,  4 Feb 2010 09:41:34 +0200
+
+libconnsettings (0.8) unstable; urgency=low
+
+  * Let key contain subdirectories so that various settings (like
+    service provider configuration) can be fetched from db
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Fri, 29 Jan 2010 14:28:50 +0200
+
+libconnsettings (0.7) unstable; urgency=low
+
+  * Notification API fixed so that setting id is passed to notify func.
+    This is needed so that IAP removal is identified correctly i.e., IAP
+    id is passed to notify function.
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Thu, 28 Jan 2010 17:03:00 +0200
+
+libconnsettings (0.6) unstable; urgency=low
+
+  * List type was not handled correctly in notify function
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Thu, 28 Jan 2010 11:39:37 +0200
+
+libconnsettings (0.5) unstable; urgency=low
+
+  * Fixed conn_settings_set_list() when string list is used
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Wed, 27 Jan 2010 18:02:27 +0200
+
+libconnsettings (0.4) unstable; urgency=low
+
+  * conn_settings_open() can now open non existing directory which is
+    then created
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Wed, 27 Jan 2010 12:24:39 +0200
+
+libconnsettings (0.3) unstable; urgency=low
+
+  * Add notifier support
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Mon, 25 Jan 2010 14:45:53 +0200
+
+libconnsettings (0.2) unstable; urgency=low
+
+  * Added more options to cmd line tool
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Fri, 22 Jan 2010 16:18:41 +0200
+
+libconnsettings (0.1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Jukka Rissanen <jukka.rissanen@nokia.com>  Thu, 14 Jan 2010 14:44:27 +0200

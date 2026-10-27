@@ -1,0 +1,17 @@
+Source: testpackage
+Section: devel
+Priority: extra
+Maintainer: David Kedves <kedazo@gmail.com>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.9.1
+
+Package: wallpaper1
+Section: user/misc
+Architecture: all
+Description: wallpaper1 testpackage
+
+Package: wallpaper2
+Section: user/misc
+Architecture: all
+Description: wallpaper2 testpackage
+

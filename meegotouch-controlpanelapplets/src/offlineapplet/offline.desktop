@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=ControlPanelApplet
+Name=OfflineButton
+X-logical-id=qtn_sett_main_flightmode
+X-translation-catalog=offline,offlineapplet
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=OfflineButton
+
+[DUI]
+X-DUIApplet-Applet=libofflineapplet.so
+
+[DCP]
+Category=MainPage
+Order=0
+WidgetType=Toggle
+ForceInProcessBrief=1
+HelpId=IDUG_MEEGO_PROFILES_OFFLINE.html
+

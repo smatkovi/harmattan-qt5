@@ -1,0 +1,59 @@
+meegotouch-controlpanelapplets
+==============================
+# Building without tests [on .deb based systems]
+
+# UT/FT TESTING:
+ # build and install eg.: qmake; make -j3 install
+ testrunner-lite -f /usr/share/meegotouch-controlpanelapplets-tests/tests.xml -o result.xml
+
+# TESTING COVERAGE:
+ ./gen-coverage.sh;
+ # result'll be available: coverage/index.html
+
+# Other DEB_BUILD_OPTIONS (you can apply more than one
+# at once, you should separate these options by a comma)
+#
+# export it before issuing dpkg-buildpackage
+
+# Disable documentation building
+DEB_BUILD_OPTIONS=nodoc
+
+# Adjust make parallelization level to eg.: 5
+DEB_BUILD_OPTIONS=parallel=5
+
+# Build duicontrolpanel-wallpaperapplet from the new
+# improved wallpaper applet source tree (wallpaperapplet2)
+# INFO: this is the *DEFAULT* now
+DEB_BUILD_OPTIONS=wallpaper2
+
+# Build the old wallpaper applet (instead of the new one^^^)
+DEB_BUILD_OPTIONS=wallpaper1
+
+# Disable tests building (an empty -tests package will be generated)
+DEB_BUILD_OPTIONS=nocheck
+
+# Build only certain applet(s)
+# If an applet given, the translations and test will built as well
+# If no BUILD_APPLET option, all of the applets will built, just as before
+BUILD_APPLET=<appletname>
+appletnames used ^^^^:
+
+about
+theme
+battery
+display
+offline
+reset
+sound
+testapplet
+usb
+wallpaper
+wallpaper2
+warranty
+gprs
+# ^^ pls keep this list updated, together with src/src.pro
+
+# Install the tests files to a different name directory
+# eg.: use meegotouchcp-wallpaper-tests with BUILD_APPLET=wallpaper
+TEST_PKG=<pkg-name>
+

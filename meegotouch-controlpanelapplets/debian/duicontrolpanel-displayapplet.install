@@ -1,0 +1,4 @@
+usr/lib/duicontrolpanel/display.desktop
+usr/lib/duicontrolpanel/brightness.desktop
+usr/lib/duicontrolpanel/applets/libdisplayapplet.so
+usr/share/themes/base/meegotouch/libdisplayapplet/style/libdisplayapplet.css

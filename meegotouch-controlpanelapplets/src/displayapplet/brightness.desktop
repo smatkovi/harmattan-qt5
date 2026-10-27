@@ -1,0 +1,24 @@
+[Desktop Entry]
+Type=ControlPanelApplet
+Name=Brightness
+Icon=
+Exec=
+X-logical-id=qtn_sett_main_brightness
+X-translation-catalog=settings,display,energy,displayapplet
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=Brightness
+
+[DUI]
+X-DUIApplet-Applet=libdisplayapplet.so
+
+[DCP]
+Category=MainPage
+Part=Brightness
+Order=5
+ForceInProcessBrief=1
+WidgetType=Slider
+SliderLeftImage=icon-s-image-edit-low-brightness
+SliderRightImage=icon-s-image-edit-high-brightness
+

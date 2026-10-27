@@ -1,0 +1,19 @@
+[Desktop Entry]
+Type=ControlPanelApplet
+Name=Reset settings
+Icon=
+Exec=
+X-logical-id=qtn_sett_main_reset
+X-translation-catalog=resetapplet,reset
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=Reset settings
+
+[DUI]
+X-DUIApplet-Applet=libresetapplet.so
+
+[DCP]
+Category=qtn_sett_main_reset
+Order=1
+WidgetType=Special

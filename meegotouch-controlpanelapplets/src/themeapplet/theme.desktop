@@ -1,0 +1,22 @@
+[Desktop Entry]
+Type=ControlPanelApplet
+Name=Theme
+X-logical-id=qtn_teme_theme
+X-translation-catalog=themeapplet,theme
+Icon=
+Exec=
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=Theme
+
+[DUI]
+X-DUIApplet-Applet=libthemeapplet.so
+X-DUIApplet-ImageLandscape=Widget_landscape_NOT_DEFINED.png
+X-DUIApplet-ImagePortrait=Widget_portrait_NOT_DEFINED.png
+
+[DCP]
+Category=qtn_sett_main_personalize
+Order=2
+WidgetType=Image
+Text2= Not found

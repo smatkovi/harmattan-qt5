@@ -1,0 +1,17 @@
+Source: test-ringtone-package
+Section: devel
+Priority: extra
+Maintainer: David Kedves <kedazo@gmail.com>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.9.1
+
+Package: ringtone1
+Section: user/misc
+Architecture: all
+Description: ringtone1 testpackage
+
+Package: ringtone2
+Section: user/misc
+Architecture: all
+Description: ringtone2 testpackage
+

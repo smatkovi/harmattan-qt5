@@ -1,0 +1,22 @@
+[Desktop Entry]
+Type=ControlPanelApplet
+Name=Test applet
+X-logical-id=qtn_test_test
+X-translation-catalog=testapplet
+Icon=
+Exec=
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=Test applet
+
+[DUI]
+X-DUIApplet-Applet=libtestapplet.so
+X-DUIApplet-ImageLandscape=Widget_landscape_NOT_DEFINED.png
+X-DUIApplet-ImagePortrait=Widget_portrait_NOT_DEFINED.png
+
+[DCP]
+Category= qtn_sett_main_look
+Order=2
+WidgetType=Label
+Text2= Not found

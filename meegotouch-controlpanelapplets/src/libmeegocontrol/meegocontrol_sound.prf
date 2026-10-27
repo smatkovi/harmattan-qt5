@@ -1,0 +1,21 @@
+QMAKE_LFLAGS_RPATH = -Wl
+
+# Use this feature only when you need only the soundsettings widgets
+
+# extending include path
+INCLUDEPATH += /usr/include/libmeegocontrol
+DEPENDPATH += /usr/include/libmeegocontrol
+
+LIBS += -lmeegocontrol
+
+CONFIG += \
+    meegotouchcore
+
+# Clock and duicontrolpanel headers...
+INCLUDEPATH += \
+    /usr/include/duicontrolpanel \
+    /usr/include/gstreamer-0.10 \
+    /usr/include/glib-2.0 \
+    /usr/lib/glib-2.0/include \
+    /usr/include/libxml2
+

@@ -1,0 +1,17 @@
+[Desktop Entry]
+Type=ControlPanelApplet
+Name=About product
+X-logical-id=qtn_prod_about_product
+X-translation-catalog=aboutapplet,about-product
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=About product
+
+[DUI]
+X-DUIApplet-Applet=libaboutapplet.so
+
+[DCP]
+Category=qtn_sett_main_aboutmy
+Order=1
+WidgetType=Label

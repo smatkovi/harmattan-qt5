@@ -1,0 +1,5 @@
+usr/lib/libconnsettings0-test/*
+usr/share/libconnsettings0-test/*
+../../tests/rununittests.sh usr/share/libconnsettings0-test
+../../tests/check_conn_settings usr/lib/libconnsettings0-test
+

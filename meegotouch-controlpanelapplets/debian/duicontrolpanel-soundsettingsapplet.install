@@ -1,0 +1,4 @@
+usr/share/themes/base/meegotouch/libsoundsettingsapplet/style/libsoundsettingsapplet.css
+usr/share/themes/blanco/meegotouch/duicontrolpanel/style/soundsettingsapplet.css
+usr/lib/duicontrolpanel/applets/libsoundsettingsapplet.so
+usr/lib/duicontrolpanel/soundsettingsapplet.desktop

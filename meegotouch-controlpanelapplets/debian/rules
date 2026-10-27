@@ -1,0 +1,133 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Uncomment this to turn on verbose mode.
+# export DH_VERBOSE=1
+
+DEBDIR = ..
+CXXFLAGS = -Wall
+
+comma :=,
+empty :=
+space := $(empty) $(empty)
+
+QMAKE_PARAMS = $(empty)
+
+# Define PUBLIC_RELEASE if changelog is not contains ~ in version number
+CXXFLAGS += `head -n 1 debian/changelog | grep '~' > /dev/null || echo -DPUBLIC_RELEASE`
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CXXFLAGS += -O0
+else
+	CXXFLAGS += -O2
+endif
+
+ifneq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
+	QMAKE_PARAMS += BUILD_FEATURES=nocheck
+endif
+
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+    INSTALL_PROGRAM += -s
+endif
+
+TMP_BUILD_OPTS = $(subst $(comma),$(space),$(DEB_BUILD_OPTIONS))
+
+ifneq (,$(filter parallel=%,$(TMP_BUILD_OPTS)))
+    NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(TMP_BUILD_OPTS)))
+    PARALLEL_MAKEFLAGS += -j$(NUMJOBS)
+endif
+
+# Don't build documentation by setting DEB_BUILD_OPTION=nodocs,...
+ifneq (,$(findstring nodoc,$(DEB_BUILD_OPTIONS)))
+     EXCLUSIONS += --no-package=libmeegocontrol-doc
+else
+     QMAKE_OPTIONS += CONFIG+=docs
+endif
+
+QMAKE_OPTIONS += COV_OPTION=off $(QMAKE_PARAMS) QMAKE_CXXFLAGS="$(CXXFLAGS)"
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir $(EXCLUSIONS)
+	@qmake $(QMAKE_OPTIONS) > /dev/null
+	touch configure-stamp
+
+build: build-stamp
+build-stamp: configure-stamp
+	dh_testdir $(EXCLUSIONS)
+	$(MAKE) $(PARALLEL_MAKEFLAGS)
+	touch build-stamp
+
+clean:
+	dh_testdir $(EXCLUSIONS)
+	dh_testroot $(EXCLUSIONS)
+
+	rm -f build-stamp configure-stamp
+
+	-@$(MAKE) $(PARALLEL_MAKEFLAGS) distclean
+
+	dh_clean $(EXCLUSIONS)
+
+install: build
+	dh_testdir $(EXCLUSIONS)
+	dh_testroot $(EXCLUSIONS)
+	dh_clean -k $(EXCLUSIONS)
+	dh_installdirs $(EXCLUSIONS)
+	INSTALL_ROOT=$(CURDIR)/debian/tmp $(MAKE) $(PARALLEL_MAKEFLAGS) install
+
+# Build architecture-independent files here.
+binary-indep: build install
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir $(EXCLUSIONS)
+	dh_testroot $(EXCLUSIONS)
+	dh_installchangelogs $(EXCLUSIONS)
+	dh_install --sourcedir=debian/tmp $(EXCLUSIONS)
+	dh_link $(EXCLUSIONS)
+	dh_strip --dbg-package=libmeegocontrol0-dbg -p libmeegocontrol0
+	dh_strip --dbg-package=duicontrolpanel-offlineapplet-dbg -p duicontrolpanel-offlineapplet
+	dh_strip --dbg-package=duicontrolpanel-usbapplet-dbg -p duicontrolpanel-usbapplet
+	dh_strip --dbg-package=duicontrolpanel-batteryapplet-dbg -p duicontrolpanel-batteryapplet
+	dh_strip --dbg-package=duicontrolpanel-displayapplet-dbg -p duicontrolpanel-displayapplet
+	dh_strip --dbg-package=duicontrolpanel-profileapplet-dbg -p duicontrolpanel-profileapplet
+	dh_strip --dbg-package=duicontrolpanel-wallpaperapplet-dbg -p duicontrolpanel-wallpaperapplet
+	dh_strip --dbg-package=duicontrolpanel-resetapplet-dbg -p duicontrolpanel-resetapplet
+	dh_strip --dbg-package=duicontrolpanel-aboutapplet-dbg -p duicontrolpanel-aboutapplet
+	dh_strip --dbg-package=duicontrolpanel-warrantyapplet-dbg -p duicontrolpanel-warrantyapplet
+	dh_strip --dbg-package=duicontrolpanel-testapplet-dbg -p duicontrolpanel-testapplet
+	dh_strip --dbg-package=duicontrolpanel-soundsettingsapplet-dbg -p duicontrolpanel-soundsettingsapplet
+	dh_strip -p meegotouch-controlpanelapplets-tests
+	dh_compress $(EXCLUSIONS)
+	dh_fixperms $(EXCLUSIONS)
+	dh_makeshlibs $(EXCLUSIONS)
+	dh_installdeb $(EXCLUSIONS)
+	dh_shlibdeps $(EXCLUSIONS) -- --warnings=0
+	dh_gencontrol $(EXCLUSIONS)
+	-@rm -f debian/duicontrolpanel-resetapplet/DEBIAN/conffiles
+	dh_md5sums $(EXCLUSIONS)
+	dh_builddeb --destdir=$(DEBDIR) $(EXCLUSIONS)
+
+# old solution, it was before the dh_md5sums call
+#	sed -e "s:/.*.sh::" -e "/^$$/d" -i debian/duicontrolpanel-resetapplet/DEBIAN/conffiles
+
+binary-aegisgen:
+	aegis-deb-add -control debian/duicontrolpanel-resetapplet/DEBIAN/control \
+	              .. debian/duicontrolpanel-resetapplet.aegis=_aegis
+	aegis-deb-add -control debian/duicontrolpanel-offlineapplet/DEBIAN/control \
+	              .. debian/duicontrolpanel-offlineapplet.aegis=_aegis
+	aegis-deb-add -control debian/duicontrolpanel-soundsettingsapplet/DEBIAN/control \
+	              .. debian/duicontrolpanel-soundsettingsapplet.aegis=_aegis
+	aegis-deb-add -control debian/duicontrolpanel-batteryapplet/DEBIAN/control \
+	              .. debian/duicontrolpanel-batteryapplet.aegis=_aegis
+ifneq (,$(findstring old,$(DEB_BUILD_OPTIONS)))
+	aegis-deb-add -control debian/duicontrolpanel-wallpaperapplet/DEBIAN/control \
+	              .. debian/duicontrolpanel-wallpaperapplet.aegis=_aegis
+else
+	aegis-deb-add -control debian/duicontrolpanel-wallpaperapplet/DEBIAN/control \
+	              .. debian/duicontrolpanel-wallpaperapplet2.aegis=_aegis
+endif
+
+
+binary: binary-indep binary-arch binary-aegisgen
+.PHONY: build clean binary-indep binary-arch binary-aegisgen binary install configure
+

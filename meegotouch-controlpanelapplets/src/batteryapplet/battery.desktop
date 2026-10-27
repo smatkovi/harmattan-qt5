@@ -1,0 +1,19 @@
+[Desktop Entry]
+Type=ControlPanelApplet
+Name=Battery
+Icon=
+Exec=
+X-logical-id=qtn_ener_battery
+X-translation-catalog=batteryapplet,energy
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=Battery
+
+[DUI]
+X-DUIApplet-Applet=libbatteryapplet.so
+
+[DCP]
+Category=qtn_sett_main_battery
+Order=1
+WidgetType=Label

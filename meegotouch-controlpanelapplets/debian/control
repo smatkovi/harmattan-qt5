@@ -1,0 +1,224 @@
+Source: meegotouch-controlpanelapplets
+Section: devel
+Priority: optional
+Maintainer: David Kedves <dkedves@blumsoft.eu>
+Build-Depends: debhelper (>= 5), libduicontrolpanel-dev (>= 0.11.8),
+               libmeegotouch-dev (>= 0.24.3), libqmsystem2-dev (>= 1.2),
+               libprofile-dev, libthumbnailer-dev, libcontentmanager-dev,
+               doxygen, clean-device-dev (>= 0.0.3), libgstreamer0.10-dev,
+               libqtm-dev, libqtm-systeminfo-dev, libresourceqt-dev,
+               libquillimagefilter-dev, libquillmetadata-dev, libquill-dev,
+               libqtsparql-dev, libqtsparql-tracker-live-dev, 
+               libcontentaction-dev, aegis-builder, devicelock-dev,
+               libgallerycore-dev, mce-dev (>=1.11.0), libtimed-dev
+Standards-Version: 3.9.1
+
+Package: meegotouch-controlpanelapplets-tests
+Section: devel
+Priority: optional
+Replaces: systemui-applets-tests, duicontrolpanel-soundsettingsapplet-tests
+Conflicts: systemui-applets-tests, duicontrolpanel-soundsettingsapplet-tests
+Provides: systemui-applets-tests, duicontrolpanel-soundsettingsapplet-tests
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, duicontrolpanel-usbapplet,
+         duicontrolpanel-batteryapplet, duicontrolpanel-aboutapplet,
+         duicontrolpanel-displayapplet, duicontrolpanel-wallpaperapplet,
+         duicontrolpanel-resetapplet, duicontrolpanel-offlineapplet,
+         duicontrolpanel-soundsettingsapplet
+XB-Maemo-CI-Packages: libmeegocontrol0, duicontrolpanel-soundsettingsapplet
+XB-Maemo-CI-Stage: fast, staging, acceptance, validation
+Description: Test package for meegotouch-controlpanelapplets
+
+Package: meegotouchcp-applets-l10n-engineering-english
+Section: devel
+Architecture: all
+Provides: systemui-applets-l10n-engineering-english
+Conflicts: systemui-applets-l10n-engineering-english
+Replaces: systemui-applets-l10n-engineering-english
+Depends: ${misc:Depends}
+Description: Engineering English translations for meegotouch-controlpanelapplets packages.
+
+Package: libmeegocontrol-doc
+Section: doc
+Priority: optional
+Depends: ${misc:Depends}
+Architecture: all
+Description: Documentation for libmeegocontrol
+
+Package: libmeegocontrol0
+Architecture: any
+Replaces: libmeegocontrol-dev
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}, libgstreamer0.10-0,
+         libgconf2-6, libprofile0, libresourceqt1
+Description: libmeegocontrol to use some controlpanel applet as a library
+
+Package: libmeegocontrol-dev
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends}, libgstreamer0.10-dev, libresourceqt-dev,
+         libmeegocontrol0 (= ${binary:Version}), libthumbnailer-dev,
+         libduicontrolpanel-dev, libcontentmanager-dev
+Description: libmeegocontrol development files
+
+Package: libmeegocontrol0-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: libmeegocontrol0 (= ${binary:Version}), ${misc:Depends}
+Description: libmeegocontrol debug symbols
+
+Package: duicontrolpanel-offlineapplet
+Section: misc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, duicontrolpanel, mce,
+         applauncherd-launcher
+Description: Offline settings applet.
+
+Package: duicontrolpanel-offlineapplet-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: duicontrolpanel-offlineapplet (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: offline-applet debug symbols
+
+Package: duicontrolpanel-usbapplet
+Section: misc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, duicontrolpanel
+Description: USB applet for the control panel application
+
+Package: duicontrolpanel-usbapplet-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: duicontrolpanel-usbapplet (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: usb-applet debug symbols
+
+Package: duicontrolpanel-batteryapplet
+Section: misc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, duicontrolpanel, applauncherd-launcher
+Description: Battery settings applet.
+
+Package: duicontrolpanel-batteryapplet-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: duicontrolpanel-batteryapplet (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: battery-applet debug symbols
+
+Package: duicontrolpanel-displayapplet
+Section: misc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, duicontrolpanel, mce
+Description: Display settings applet.
+
+Package: duicontrolpanel-displayapplet-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: duicontrolpanel-displayapplet (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: display-applet debug symbols
+
+Package: duicontrolpanel-profileapplet
+Section: misc
+Priority: extra
+Architecture: any
+Description: Profiles settings applet.
+
+Package: duistatusindicatormenu-profileplugin
+Section: misc
+Priority: extra
+Architecture: any
+Description: dummy package until it is removed...
+
+Package: duicontrolpanel-profileapplet-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: duicontrolpanel-profileapplet (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: profile-applet debug symbols
+
+Package: duicontrolpanel-wallpaperapplet
+Section: misc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, tumbler, libthumbnailer0,
+         duicontrolpanel, applauncherd-launcher
+Description: Desktop wallpaper changing applet.
+
+Package: duicontrolpanel-wallpaperapplet-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: duicontrolpanel-wallpaperapplet (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: wallpaper-applet debug symbols
+
+Package: duicontrolpanel-resetapplet
+Section: misc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, duicontrolpanel, clean-device,
+         applauncherd-launcher, devicelock
+Description: Device clearing and restore settings applet.
+
+Package: duicontrolpanel-resetapplet-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: duicontrolpanel-resetapplet (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: reset-applet debug symbols
+
+Package: duicontrolpanel-aboutapplet
+Section: misc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, duicontrolpanel
+Description: The about-product applet that shows device and software
+ informations.
+
+Package: duicontrolpanel-aboutapplet-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: duicontrolpanel-aboutapplet (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: about-applet debug symbols
+
+Package: duicontrolpanel-warrantyapplet
+Section: misc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, duicontrolpanel
+Description: The warranty applet that shows the warranty information.
+
+Package: duicontrolpanel-warrantyapplet-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: duicontrolpanel-warrantyapplet (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: warranty-applet debug symbols
+
+Package: duicontrolpanel-testapplet
+Section: misc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, duicontrolpanel
+Description: Testapplet to manual test duicontrolpanel.
+
+Package: duicontrolpanel-testapplet-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: duicontrolpanel-testapplet (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: test-applet debug symbols
+
+Package: duicontrolpanel-soundsettingsapplet
+Section: sound
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libresourceqt1,
+    applauncherd-launcher, grep, libtimed0
+Description: Sound Settings Applet
+
+Package: duicontrolpanel-soundsettingsapplet-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: duicontrolpanel-soundsettingsapplet (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: soundsettings-applet debug symbols
+

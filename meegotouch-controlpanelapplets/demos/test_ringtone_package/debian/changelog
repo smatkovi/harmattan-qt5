@@ -1,0 +1,5 @@
+test-ringtone-package (1.0) oneiric; urgency=low
+
+  * Sample ring-tones from OpenMoko repository
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 07 Dec 2011 09:56:12 +0100

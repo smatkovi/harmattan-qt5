@@ -1,0 +1,20 @@
+#!/bin/sh
+set -e
+# Yes, this is a HACK:
+CSS_DIR=/usr/share/themes/blanco/meegotouch/duicontrolpanel/style
+CSS_FILE=duicontrolpanel.css
+MYCSS_FILE=soundsettingsapplet.css
+
+mkdir -p $CSS_DIR || true
+touch $CSS_DIR/$CSS_FILE
+
+if cat $CSS_DIR/$CSS_FILE | grep $MYCSS_FILE > /dev/null; then
+  echo "Okay!"
+else
+  echo "Patching CSS."
+  echo "@import \"$MYCSS_FILE\";" >> $CSS_DIR/$CSS_FILE
+fi
+
+#DEBHELPER#
+
+exit 0

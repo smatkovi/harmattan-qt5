@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+#export DH_VERBOSE=1
+export DH_OPTIONS
+
+install:
+	mkdir -p debian/ringtone1/opt/ringtone2/usr/share/sounds/ring-tones
+	cp notify_drone.aac debian/ringtone1/opt/ringtone1/usr/share/sounds/ring-tones
+	mkdir -p debian/ringtone2/opt/ringtone2/usr/share/sounds/ring-tones
+	cp ringtone_supertux.aac debian/ringtone2/opt/ringtone2/usr/share/sounds/ring-tones
+	cp sms_supertux.aac debian/ringtone2/opt/ringtone2/usr/share/sounds/ring-tones
+	dh $@
+
+%:
+	dh  $@
+

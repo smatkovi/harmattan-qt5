@@ -1,0 +1,8 @@
+<aegis>
+  <request>
+    <credential name="dsme::DeviceStateControl" />
+    <for path="/usr/lib/duicontrolpanel/applets/libbatteryapplet.so" />
+    <for path="duicontrolpanel::/usr/bin/duicontrolpanel.launch" />
+    <for path="applauncherd-launcher::/usr/bin/applauncherd.bin" />
+  </request>
+</aegis>

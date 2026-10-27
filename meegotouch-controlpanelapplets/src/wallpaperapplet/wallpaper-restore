@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# We do not care about parameters yet
+
+WALLPAPER_HOME=$HOME/.wallpapers
+BACKUP_TAR=$HOME/.wallpapersbackup.tar.gz
+BACKUP_FILE=$HOME/.wallpapersbackup.gconf
+
+rm -rf $WALLPAPER_HOME
+
+[ -e $BACKUP_TAR ] && (tar -xzpf $BACKUP_TAR -C / || exit 2)
+[ -e $BACKUP_FILE ] && gconftool-2 --load $BACKUP_FILE
+
+exit 0
+

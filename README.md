@@ -24,6 +24,9 @@ the commits after it.
 | `libresourceqt` | libresourceqt 1.41+0m7 |
 | `libcontentaction` | libcontentaction 0.1.71+0m7 |
 | `duicontrolpanel` | duicontrolpanel 0.14.7.1+0m7 |
+| `meegotouch-controlpanelapplets` | meegotouch-controlpanelapplets 0.21.10-1+0m7 (the settings applets) |
+| `libconnsettings` | libconnsettings 0.29+0m6 |
+| `meego-im-settings-applet` | meego-im-settings-applet 0.80.12+0m7 (text input settings) |
 
 Not open, and not here: the N9's own extensions (`mcompositor-swipe`,
 `meegotouchhome-nokia` with the Events view, `meegotouch-systemui-nokia`

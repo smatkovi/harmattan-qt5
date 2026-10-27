@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=ControlPanelApplet
+Name=Warranty
+Icon=
+Exec=
+X-logical-id=qtn_warr_title
+X-translation-catalog=warrantyapplet,warranty
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=Warranty
+
+[DUI]
+X-DUIApplet-Applet=libwarrantyapplet.so
+
+[DCP]
+Category=qtn_sett_main_aboutmy
+Order=2
+WidgetType=Label
+

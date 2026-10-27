@@ -1,0 +1,19 @@
+[Desktop Entry]
+Type=ControlPanelApplet
+Name=Wallpaper2
+X-logical-id=qtn_wall_wallpaper2
+X-translation-catalog=wallpaperapplet2,wallpaper
+Icon=
+Exec=
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=Wallpaper2
+
+[DUI]
+X-DUIApplet-Applet=libwallpaperapplet2.so
+
+[DCP]
+Category=qtn_sett_main_wallpaper
+Order=1
+WidgetType=Label

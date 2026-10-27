@@ -1,0 +1,3 @@
+usr/lib/duicontrolpanel/reset.desktop
+usr/lib/duicontrolpanel/applets/libresetapplet.so
+etc/osso-rfs-scripts/mcpapplets-rfs.sh

@@ -1,0 +1,9 @@
+
+This is provides two demo packages for the ringtone applet new feature,
+which allows the users to provide "ringtone packs" trought the ovi-store.
+
+Use this command to build the ringtone1 and ringtone2 packages:
+dpkg-buildpackage -rfakeroot -b
+
+PS.: Of course it is possible to include more ringtone in per package.
+

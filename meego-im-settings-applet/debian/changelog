@@ -1,0 +1,68 @@
+meego-im-settings-applet (0.80.12+0m7) unstable; urgency=low
+
+  * This entry has been added by BIFH queue processor
+    version has been changed to 0.80.12+0m7
+
+ -- BIFH Bot <sysint@maemo.research.nokia.com>  Wed, 09 Nov 2011 13:56:01 +0200
+
+meego-im-settings-applet (0.80.12) unstable; urgency=low
+
+  * Fixes: NB#278076 - With the swype keyboard enabled,uninstalling...
+  * Fixes NB#288718 - qtn_txts_enable_swype displayed in Swype settings
+  * Fixes NB#286561 - Swype settings view flickers in a scenario
+
+ -- Kimmo Surakka <kimmo.surakka@nokia.com>  Wed, 09 Nov 2011 13:56:00 +0200
+
+meego-im-settings-applet (0.80.11) unstable; urgency=low
+
+  * Fixes: NB#280528 - Open Text input applet takes too much time
+
+ -- Aapo Kojo <aapo.kojo@nokia.com>  Mon, 31 Oct 2011 15:42:28 +0200
+
+meego-im-settings-applet (0.80.10) unstable; urgency=low
+
+  * New release
+
+ -- Aapo Kojo <aapo.kojo@nokia.com>  Mon, 24 Oct 2011 11:10:56 +0300
+
+meego-im-settings-applet (0.80.9) unstable; urgency=low
+
+  * Fixes: NB#280199 - Parentheses are reordered when selecting English and Arabic keyboard
+
+ -- Antti Pulakka <ext-antti.j.pulakka@nokia.com>  Wed, 14 Sep 2011 12:40:11 +0300
+
+meego-im-settings-applet (0.80.8) unstable; urgency=low
+
+  * Fixes: NB#279040
+
+ -- Kimmo Surakka <kimmo.surakka@nokia.com>  Fri, 26 Aug 2011 16:34:05 +0300
+
+meego-im-settings-applet (0.80.7) unstable; urgency=low
+
+  * New release
+
+ -- huaming wang <huaming.wang@nokia.com>  Fri, 26 Aug 2011 15:06:05 +0300
+
+meego-im-settings-applet (0.80.6) unstable; urgency=low
+
+  * New release
+
+ -- huaming wang <huaming.wang@nokia.com>  Wed, 17 Aug 2011 14:47:13 +0300
+
+meego-im-settings-applet (0.80.5) unstable; urgency=low
+
+  * Fixes: NB#275980 - error correction applet disappeared from text input setting page
+
+ -- huaming wang <huaming.wang@nokia.com>  Fri, 05 Aug 2011 15:45:48 +0300
+
+meego-im-settings-applet (0.80.4) unstable; urgency=low
+
+  * Fixes: NB#270168 - VKB is not appearing when all the installed input methods are deselected & device is rebooted
+
+ -- huaming wang <huaming.wang@nokia.com>  Thu, 04 Aug 2011 14:03:41 +0300
+
+meego-im-settings-applet (0.80.3) unstable; urgency=low
+
+  * New Package Release
+
+ -- Jon Nordby <jonn@openismus.com>  Wed, 13 Jul 2011 14:16:59 +0200

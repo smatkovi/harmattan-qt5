@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+#export DH_VERBOSE=1
+export DH_OPTIONS
+
+install:
+	mkdir -p debian/wallpaper1/opt/wallpaper2/usr/share/backgrounds
+	cp wallpaper1.jpg debian/wallpaper1/opt/wallpaper1/usr/share/backgrounds
+	mkdir -p debian/wallpaper2/opt/wallpaper2/usr/share/backgrounds
+	cp wallpaper2.jpg debian/wallpaper2/opt/wallpaper2/usr/share/backgrounds
+	dh $@
+
+%:
+	dh  $@
+

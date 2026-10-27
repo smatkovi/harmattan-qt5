@@ -1,0 +1,61 @@
+Source: libconnsettings
+Priority: optional
+Maintainer: Jukka Rissanen <jukka.rissanen@nokia.com>
+Build-Depends: debhelper (>= 4.0.0), autotools-dev, libglib2.0-dev (>= 2.8),
+ libgconf2-dev (>> 2.6.4), icd2-osso-ic-dev, check, doxygen, autoconf, automake
+Standards-Version: 3.6.2
+Section: libs
+
+Package: libconnsettings0-dev
+Section: libdevel
+Architecture: any
+Depends: libconnsettings0 (= ${Source-Version}), 
+ libglib2.0-dev (>= 2.8), libgconf2-dev (>> 2.6.4), 
+ icd2-osso-ic-dev
+Description: Internet Connectivity settings library development files
+ Internet Connectivity settings library (libconnsettings) provides common
+ support functions for accessing configuration data in various backends.
+ .
+ This package contains the header files.
+
+Package: libconnsettings0
+Section: libs
+Architecture: any
+Depends: 
+Description: Internet Connectivity settings library
+ Internet Connectivity settings library (libconnsettings) provides common
+ support functions for accessing configuration data in various backends.
+ .
+ This package contains the shared libraries.
+
+Package: libconnsettings0-dbg
+Section: libs
+Architecture: any
+Depends: libconnsettings0 (= ${Source-Version})
+Description: Debug symbols for the Internet Connectivity settings library
+ Internet Connectivity settings library (libconnsettings) debug symbols.
+
+Package: libconnsettings0-test
+Section: net
+Architecture: any
+Depends: dbus, gconf2
+Description: CI tests for libconnsettings
+ This package contains continuous integration tests for the code inside
+ libconnsettings source package.
+
+Package: conn-settings-tool
+Section: net
+Architecture: any
+Depends: 
+Description: Internet Connectivity settings library command line tool
+ Command line tool to set or get setting values.
+
+Package: libconnsettings0-doc
+Section: libdevel
+Architecture: all
+Description: Internet Connectivity settings library documentation
+ Internet Connectivity settings library (libconnsettings) provides common
+ support functions for accessing configuration data in various backends.
+ .
+ This package contains the documentation files.
+

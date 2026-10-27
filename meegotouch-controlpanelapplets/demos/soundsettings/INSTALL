@@ -1,0 +1,23 @@
+This demo application shows how to use the wallpaper editor widget in an
+application. To compile and test the application follow these steps:
+
+(1) Go into the meegotouch controlpanelapplets source tree and build the
+    packages:
+    
+    dpkg-buildpackage -nc
+
+(2) Install the packages (especially the libmeegocontrol packages):
+
+    fakeroot dpkg -i ../*.deb
+
+(3) Go into the demo source directory and build the demo application:
+
+    cd demos/soundsettings/
+    qmake
+    make
+
+(4) Run the demo application with one or two image files in the command line:
+
+    ./soundsettings -software
+
+(5) Click on the 'start browser...' button to start the sound file browser.

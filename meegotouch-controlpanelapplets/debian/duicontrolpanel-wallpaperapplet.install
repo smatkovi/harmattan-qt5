@@ -1,0 +1,5 @@
+usr/share/themes/base/meegotouch/libwallpaperapplet2/style/libwallpaperapplet2.css
+usr/lib/duicontrolpanel/wallpaper2.desktop
+usr/lib/duicontrolpanel/applets/libwallpaperapplet2.so
+usr/share/backup-framework/applications/wallpaper.conf
+usr/bin/wallpaper_duplicate_finder.sh

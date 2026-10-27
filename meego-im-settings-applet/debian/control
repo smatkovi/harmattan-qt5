@@ -1,0 +1,24 @@
+Source: meego-im-settings-applet
+Section: libs
+Priority: extra
+Maintainer: Mohammad Anwari <Mohammad.Anwari@nokia.com> 
+Build-Depends: debhelper (>= 5), libqt4-dev (>= 4.6), libmeegoimframework-dev (>= 0.80.2), libmeegotouch-dev, libduicontrolpanel-dev (>= 0.7.20), libqt4-opengl-dev, libgles2-sgx-img-dev [arm armel] | libgles2-dev [arm armel], opengles-sgx-img-common-dev [arm armel], libgl-dev [i386] | libgl1-mesa-dev [i386], libgconf2-dev, pkg-config, dpkg-dev, libqt4-meegographicssystemhelper-dev [arm armel], aegis-builder (>= 1.6)
+Standards-Version: 3.7.2
+
+Package: meego-im-settings-applet-tests
+Architecture: any
+Depends:  testrunner-lite, ci-testing, meego-im-settings-applet (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
+XB-Maemo-CI-Packages: meego-im-settings-applet
+XB-Maemo-CI-Stage: fast, staging
+Description: MeegoTouch Input Method Settings Unit Test Suite 
+ MeegoTouch Input Method Settings unit test suite. 
+
+Package: meego-im-settings-applet
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}, duicontrolpanel (>= 0.7.20), libduicontrolpanel (>= 0.7.20)
+Description: MeegoTouch Text Input Settings Applet
+
+Package: meego-im-settings-applet-dbg
+Architecture: any
+Depends:  meego-im-settings-applet (= ${binary:Version})
+Description: Debugging symbols for meego-im-settings-applet

@@ -1,0 +1,12 @@
+* Thu, 07 Jul 2011 Alexandr Ivanov <alexandr.ivanov@tieto.com>
+- style fixes
+
+* Tue, 28 Jun 2011 Mika Laitio <ext-mika.1.laitio@nokia.com>
+- add support for /etc/meegotouch/connections/gprs/operators config file
+  apn/operator info for the operators. Add combobox to allow user to select
+  operator specific connection.
+- request the registered operator name from ofono and select that's info by
+  default in the combobox. (if data for that operator is in the config file)
+
+* Thu, 26 May 2011 Jani Sarkijarvi <ext-jani.2.sarkijarvi@nokia.com>
+- add gprs applet.

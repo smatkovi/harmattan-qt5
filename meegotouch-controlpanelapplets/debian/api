@@ -1,0 +1,8 @@
+interface: libmeegocontrol
+type: library
+scope: Platform
+state: unstable
+libs-pkg: libmeegocontrol0
+dev-pkg: libmeegocontrol-dev
+doc-type: doxygen
+doxygen-conf: Doxyfile

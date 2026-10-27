@@ -1,0 +1,21 @@
+[Desktop Entry]
+Type=ControlPanelApplet
+Name=USB
+X-logical-id=qtn_usb_title
+X-translation-catalog=usbapplet,usb
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=USB
+
+Icon=
+Exec=
+
+[DUI]
+X-DUIApplet-Applet=libusbapplet.so
+
+[DCP]
+Category=qtn_sett_main_accessories
+Order=1
+WidgetType=Label
+

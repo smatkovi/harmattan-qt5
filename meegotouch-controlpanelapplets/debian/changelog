@@ -1,0 +1,1514 @@
+meegotouch-controlpanelapplets (0.21.10-1+0m7) meegotouch; urgency=low
+
+  * This entry has been added by BIFH queue processor
+    version has been changed to 0.21.10-1+0m7
+
+ -- BIFH Bot <sysint@maemo.research.nokia.com>  Mon, 16 Jan 2012 11:57:57 +0200
+
+meegotouch-controlpanelapplets (0.21.10-1) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#296601 - duplicate wallpapers after upgrade
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 16 Jan 2012 10:57:56 +0100
+
+meegotouch-controlpanelapplets (0.21.9-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#293824 - Sound settings applet does not search for ring tones
+    under /opt
+  * Fixes: NB#293823 - Wallpaper applet does not read from from /opt and
+    packages which install wallpapers are impossible
+
+  [ David Kedves ]
+  * Added demo ringtones and wallpapers source packages (debianized) for
+    testing NB#293823 and NB#293824
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 09 Dec 2011 13:01:02 +0100
+
+meegotouch-controlpanelapplets (0.21.8-1) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#292500 - Black thumbnail is displaying in wallpaper applet.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 02 Dec 2011 12:03:26 +0100
+
+meegotouch-controlpanelapplets (0.21.7-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#290413 - COREWEB: /usr/bin/duicontrolpanel.launch
+    'QImageReader::read QImageReader::read LoadFilter::readFromReader
+    LoadFilter::apply QuillImageFilter::apply'
+  * 292137 - Security code need to be entered before clearing,
+    although Device lock's autolock value is "Off"
+  * Handling custom ringtones in soundsettingsapplet: NB#292017 partial fix.
+  * 292017 - Custom ringtone assigned for contact is reset to global ringtone
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 29 Nov 2011 10:37:10 +0100
+
+meegotouch-controlpanelapplets (0.21.6-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#287094 - Setting > Sounds and vibration> Ringtone : 
+    §qtn_sond_pick_music§ is not right aligned in Farsi
+  * Fixed: NB#289944 - Wrong alignment of the text in Settings > device > 
+    display
+  * Fixed: NB#290271 - 'Tap to select' is shown for a while when the display
+    applet is opened
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 11 Nov 2011 10:42:38 +0100
+
+meegotouch-controlpanelapplets (0.21.5-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#288423 - User should NOT be able to set different system sound
+    levels for different profiles
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 28 Oct 2011 14:36:48 +0200
+
+meegotouch-controlpanelapplets (0.21.4-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixed 284470 - Reset: §qtn_rset_clear_query§ contain error.
+  * Fixes: NB#281864 - Wallpaper preview shows the wallpaper incorrectly
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 25 Oct 2011 09:15:16 +0200
+
+meegotouch-controlpanelapplets (0.21.3-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#286583 - Contacts not responding error message is displayed when
+    selecting 'Get more from nokia store' option from ringtone picker.
+  * Fixes: NB#286907 - libmeegocontrol-dev package is incomplete
+  * Fixes: NB#271442 - Ovi store link does not makes sense on all alert tone
+    views....
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 14 Oct 2011 14:22:39 +0200
+
+meegotouch-controlpanelapplets (0.21.2-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#281864 - Wallpaper preview shows the wallpaper incorrectly 
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 14 Oct 2011 14:22:10 +0200
+
+meegotouch-controlpanelapplets (0.21.1-6) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#284478 - Battery applet should stop the charging animation when
+    it is not visible
+  * Fixed 284481 - [TASK] Drop WallpaperEditorWidget from libmeegocontrol
+  * Fixed 284996 - Done button is always active in Ringtone selection page
+    of Sound settings.
+
+  [ Peter Csaszar ]
+  * Fixes: NB#281303 - [TASK] Support for multiple color profiles
+
+  [ David Kedves ]
+  * Fixes: NB#284065 - Profile and volume indicators are not displayed for a
+    while
+  * Package build fixes
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 11 Oct 2011 12:00:01 +0200
+
+meegotouch-controlpanelapplets (0.20.75-1) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#284843 - PR1.2 builds reported as PR1.1 in About product
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 05 Oct 2011 11:13:08 +0200
+
+meegotouch-controlpanelapplets (0.20.74-5) meegotouch; urgency=low
+
+  * Fix NB#284459 - Red battery (very)low icon shown on Battery settings
+    view way too late
+  * Fixes: NB#284656 - Battery level is shown as currupted
+  * Fixes: NB#253772 - Percentage symbol is missing in power-save mode
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 30 Sep 2011 16:05:32 +0200
+
+meegotouch-controlpanelapplets (0.20.73-1) meegotouch; urgency=low
+
+  * Fixes: NB#282073 - Soundsettings applet optimalization (oprofile report)
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 21 Sep 2011 10:14:34 +0200
+
+meegotouch-controlpanelapplets (0.20.72-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#235814 - Ringtone view to Sheet
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 15 Sep 2011 10:57:28 +0200
+
+meegotouch-controlpanelapplets (0.20.71-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes When charging is complete and charger still connected, 
+    activating power save mode should not change state
+
+  [ David Kedves ]
+  * Fixes: NB#249881 - Add profile selector slider to Sound settings
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 13 Sep 2011 11:07:49 +0200
+
+meegotouch-controlpanelapplets (0.20.70-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#277711 - Add 'Pick from Gallery' feature in Wallpaper settings
+  * Fixes: NB#277805 - [TASK] Use sheet picker in Sounds & Vibration settings.
+  * Fixes: NB#280113 - Please keep power saver icon in the battery applet 
+    while charging in power saver mode.
+  * Fixes: NB#253772 - [TASK] Make battery percentage visible also when power
+    save is activated manually
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 05 Sep 2011 09:43:21 +0200
+
+meegotouch-controlpanelapplets (0.20.69-1) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#280115 - Customization point for setting visibility of
+    Stand-by screen in Display settings applet
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 30 Aug 2011 15:16:29 +0300
+
+meegotouch-controlpanelapplets (0.20.68-1) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#278497 - About license text fix.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 23 Aug 2011 14:15:26 +0300
+
+meegotouch-controlpanelapplets (0.20.66-3) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Fixes: Wong icon for power safe mode in settings view
+
+  [ Laszlo Pere ]
+  * Fixes: NB#273733 - Energy: Wrong location of the percentage symbol"%" in 
+    the string §qtn_ener_battery_level§.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 18 Aug 2011 14:14:53 +0300
+
+meegotouch-controlpanelapplets (0.20.65-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#277710 - Wallpaper settings should remove their own editor
+
+  [ David Kedves ]
+  * SoundSettingsApplet: more memory leak fixes.
+
+ -- David Kedves <ext-david.1.kedves@nokia.com>  Wed, 17 Aug 2011 17:43:53 +0200
+
+meegotouch-controlpanelapplets (0.20.64-1) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#277403 - Remove Top-close settings from Display settings
+  * Fixed few soundsettings-applet memory leaks.
+
+  [ Laszlo Pere ]
+  * Finished the sound-settings applet file copy mechanism.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 16 Aug 2011 16:15:39 +0300
+
+meegotouch-controlpanelapplets (0.20.63-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#276291 - About Product: The overlapping of the software version
+    information in the about product setting view in Arabic language.
+  * File copy for soundsettingsapplet implemented. It is not perfect yet, but
+    the basics are working.
+
+  [ David Kedves ]
+  * Disable the soundsettingsapplet file copy feature for now.
+  * MContainer usage fixes. (eliminated from most of the places)
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 15 Aug 2011 11:15:06 +0300
+
+meegotouch-controlpanelapplets (0.20.62-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#261019 - settings doesn't respond for sometime while saving the
+    wallpaper.
+  * Fixes: NB#262622 - After downloading wallpaper from ovi-store it is
+    appears as black thumbnail placeholder in wallpaper applet
+  * Fixes: NB#270857 - [TASK] Add PR1.1 to "About product" applet before the 
+    actual version string
+
+  [ Zoltan Nyul ]
+  * Fixes: NB#250348 - Ringtone view to indicate currently selected
+    ringtone on top of the view
+
+  [ David Kedves ]
+  * Some meego.com changes in wallpaper and soundsettings applets
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 04 Aug 2011 09:52:36 +0300
+
+meegotouch-controlpanelapplets (0.20.61-1) meegotouch; urgency=low
+
+  * Fixes: NB#271025 - Cannot find operator custom wallpaper
+  * Fixed 270578 - Currently selected wallpaper thumbnail is not
+    getting updated in wallpaper applet view when the wallpaper is set
+    from gallery application from the second time onwards.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 07 Jul 2011 14:26:38 +0300
+
+meegotouch-controlpanelapplets (0.20.60-1) meegotouch; urgency=low
+
+  * Fixes: NB#270397 - Wallpapers are not shown in thumbnail view.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 04 Jul 2011 14:43:36 +0300
+
+meegotouch-controlpanelapplets (0.20.59-1) meegotouch; urgency=low
+
+  * Handle multiple certs as well (must be comma separated.)
+  * Fixes: NB#270156 - About Product needs to append type label pictures
+    provided by customization
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 01 Jul 2011 15:54:11 +0300
+
+meegotouch-controlpanelapplets (0.20.58-1) meegotouch; urgency=low
+
+  * Fixes: NB#240855 (Make sure that only one Thumbnailer instance is exists)
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 30 Jun 2011 14:49:41 +0300
+
+meegotouch-controlpanelapplets (0.20.57-1) meegotouch; urgency=low
+
+  * Fixes: NB#267533 - Device needs reset after setting close application with
+    top swipe
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 30 Jun 2011 10:50:32 +0300
+
+meegotouch-controlpanelapplets (0.20.56-2) meegotouch; urgency=low
+
+  * Fixes: NB#266526 - Type label customization doesn't have any affect in
+    device UI
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 30 Jun 2011 10:37:27 +0300
+
+meegotouch-controlpanelapplets (0.20.55-6) meegotouch; urgency=low
+
+  * Changes: remove mcompositor.conf during RFS
+  * Fixes: NB#266632 - Wrong label for Brightness applet
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 28 Jun 2011 12:55:11 +0300
+
+meegotouch-controlpanelapplets (0.20.54-2) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#264306 - Display applet: a new switch needed
+  * Revert Zoltans changes...
+
+  [ Laszlo Pere ]
+  * Fixes: NB#265208 - do not show the remaining percentage when cable is
+    still connected for charging
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 20 Jun 2011 12:32:50 +0300
+
+meegotouch-controlpanelapplets (0.20.53-1) meegotouch; urgency=low
+
+  * Add a small workaround for 258638 - Brightness scrollbar loads slowly in
+    settings application
+  * Fixes: NB#264465 - battery condition settings status message uses wrong
+  * Request for security tokens
+  * Fixes: NB#262498 - Lankku SW product name in about product
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 14 Jun 2011 09:26:53 +0200
+
+meegotouch-controlpanelapplets (0.20.52-1) meegotouch; urgency=low
+
+  * AboutApplet: Handle properly the hyperlink in the license text
+  * AboutApplet: Use the localized license text in case if it is available
+  * Fixes: NB#204139 - About: License text still draft and we have to hardcode
+    into the applet source-code
+  * Fixes: NB#258344 - wrong ringtone vibra patterns used in Silent and Beep
+    profiles
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 09 Jun 2011 11:44:43 +0200
+
+meegotouch-controlpanelapplets (0.20.51-3) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#262623 - Wallpaper disappears from the wallpaper applet after
+    setting it active from Store client
+
+  [ David Kedves ]
+  * Fixes: NB#263279 - [TASK] QtM System Info model() and productName() return
+    values swapped
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 07 Jun 2011 11:38:53 +0200
+
+meegotouch-controlpanelapplets (0.20.50-1) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#259912 - Settings; battery, string clipping
+    §qtn_ener_remaining_standby§
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 07 Jun 2011 08:13:37 +0200
+
+meegotouch-controlpanelapplets (0.20.49-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Added a new directory to the soundsettingsapplet ring-tones dirlist for ovi
+    store: "~/.ring-tones"
+  * Added file-system watch for newly create sound files. Handles
+    "~/.ring-tones".
+  * Fixes: NB#261954 - Downloaded ringtones that are downloaded by OVI store
+    to specific folder should be made visible, selectable and playable in
+    Ringtone Settings Applet 
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 02 Jun 2011 10:03:18 +0200
+
+meegotouch-controlpanelapplets (0.20.48-1) meegotouch; urgency=low
+
+  * Fixes: NB#261281 - Settings: Sound settings: After choosing a personal 
+    ringtone the screen goes back but chosen song not highlighted.
+  * Fixes: NB#260369 - About applet needs device specific 2D barcode
+  * Fixes: NB#260398 - Wallpaper; A different string than §qtn_comm_save§
+    should be used
+  * Basic file-system watching is added to the wallpaperapplet 1.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 01 Jun 2011 09:11:18 +0200
+
+meegotouch-controlpanelapplets (0.20.47-1) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#257420 - thumbnail in wallpaper applet is blank.
+  * Fixes: NB#260111 - Add separate help buttons for Reset original
+    settings and Clear device
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 27 May 2011 13:01:04 +0300
+
+meegotouch-controlpanelapplets (0.20.46-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#259523 - Sound Setting, string §qtn_sond_store§ is truncated
+  * Fixes: NB#256992 - [TASK] No sound should appear localized and in fixed 
+    position
+
+  [ David Kedves ]
+  * Fixes: NB#259688 - Battery links to wrong user guide topic
+  * Fixes: NB#259685 - Flight mode links to wrong user guide topic
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 26 May 2011 13:14:47 +0300
+
+meegotouch-controlpanelapplets (0.20.45-1) meegotouch; urgency=low
+
+  * Fixes: NB#256900 - Sound settings applet should use "player"
+    Resource Policy class
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 23 May 2011 16:27:49 +0300
+
+meegotouch-controlpanelapplets (0.20.44-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#257291 - Battery settings; icon-s-description-inverse is clipped
+    in Indonesian, 'power save mode' in active state 
+  * QmUSBMode::SDK is now used in the USB applet.
+  * Fixes: NB#255791 - [TASK] Add a new USB mode called "SDK"
+  * Fixed: 256485 - Able to set and unset Gconf key for SDK , but not able
+    to save the mode in USB settings. 
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 20 May 2011 11:45:21 +0300
+
+meegotouch-controlpanelapplets (0.20.43-1) meegotouch; urgency=low
+
+  [ David Kedves [
+  * Updated USB applet texts (the info label about the current mode)
+  * Fixes: NB#255959 - Flickering occurs in About product view.
+  * Fixes: NB#255508 - [TASK] Add context specific help button to Low Power
+    Mode a.k.a. Screensaver on/off switch in display settings
+
+  [ Laszlo Pere ]
+  * Fixes: NB#256626 - Updated style for horizontal separators
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 18 May 2011 08:48:47 +0300
+
+meegotouch-controlpanelapplets (0.20.42-2) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#254971 - Preview doesn't stop in given scenario.
+  * Fixes: NB#255791 - [TASK] Add a new USB mode called "SDK"
+
+  [ David Kedves ]
+  * Fixed: 255490 - missing a lot of valuable minutes when showing remaining
+    times
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 16 May 2011 17:09:11 +0300
+
+meegotouch-controlpanelapplets (0.20.41-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#251589 - USB localized settings banner breaks out of layout
+  * Fixes: NB#253617 - Unneeded scroll bar visible in Wallpaper applet
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 10 May 2011 11:36:46 +0300
+
+meegotouch-controlpanelapplets (0.20.40-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#252225 - Ringtone header needs update
+  * Fixes: NB#252261 - [TASK] USB mode is not changed when the device is 
+    already connected.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 06 May 2011 15:00:18 +0300
+
+meegotouch-controlpanelapplets (0.20.39-2) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixed 242379 - Battery layout adjustments needed
+  * Properly destroying Thumbnailer objects. Please note tha the thumbler crash
+    fix is still not integrated, and this change might render the NB#240855 more
+    frequent, but it will solve the problem once the fix for that bug is
+    released.
+  * Fixes: NB#251603 - Label for "Unlock by tapping twice" is too long and 
+    makes switch go off screen (French)
+  * Changing the usb mode if we are not in disconnected.
+
+  [ David Kedves ]
+  * Fixes: NB#247353 - USB: Truncated text Nokia Ovi Suite mode in finnish
+  * Fixes: NB#234219 - Remaining talk time & Remaining standby time to be
+    visible in battery settings UI
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 05 May 2011 10:38:21 +0300
+
+meegotouch-controlpanelapplets (0.20.38-3) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Usb banner fix...
+  * Clear-device dialog text aligned to center
+  * Fixes: NB#249355 - control panel crashed on trying to relaunch it when the
+    reset settings confirmation dialog is up.
+  * Fixed 251187 - Settings: §qtn_rset_clear_query§ long translation and
+    medium translation are shown together
+  * Fixed 231658 - Query dialogs are missing titles
+  * Fixes: NB#245737 - [TAKS] DaDD Image ABout product text needs to be changed
+  
+  [ Laszlo Pere ]
+  * Fixes: NB#249788 - Current state not visible when device is plugged in and
+    charging.
+  * Fixes: NB#250389 - Launcher icon used in ringtone selection
+  * Fixes: NB#251898 - Reset view has view menu.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 03 May 2011 11:20:48 +0300
+
+meegotouch-controlpanelapplets (0.20.37-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#236350 - [TASK] Display control in main view doesn't work 
+    sometimes.
+
+  [ David Kedves ]
+  * Fixed 250565 - Dialogs should have centered text
+  * Fixes: NB#250091 - About product view items are not presented in the order
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 28 Apr 2011 13:43:10 +0300
+
+meegotouch-controlpanelapplets (0.20.36-2) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#246673 - Sound settings headers need updated style name
+  * Fixes: NB#246678 - USB header style update and spacers
+  * Fixes: NB#249788 - Current state not visible when device is plugged in and
+    charging.
+
+  [ David Kedves ]
+  * Speed up the about applet ...
+    (previously it took ~2sec to open it... now much faster :-D)
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 27 Apr 2011 08:52:45 +0300
+
+meegotouch-controlpanelapplets (0.20.35-1) meegotouch; urgency=low
+
+  * Fixes: NB#247840 - About product addition of barcode
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 21 Apr 2011 09:28:33 +0300
+
+meegotouch-controlpanelapplets (0.20.34-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#247342 - [FEA] [TASK] Wallpaper applet thumbnail generation 
+    should be from directory and not tracker
+  * Fixes: NB#248505 - Low power mode does not work properly when enable from
+    settings
+  * Fixes: NB#248294 - Not scrolling to the selected ringtone in Sounds and 
+    vibration
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 20 Apr 2011 10:36:27 +0300
+
+meegotouch-controlpanelapplets (0.20.33-2) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#247341 - [FEA] [TASK] Remove Get from Gallery button from
+    Wallpaper settings.
+  * Fixes: NB#247339 - [FEA] [TASK] Disable cropping feature from wallpaper
+    editor
+  * Fixes NB246705 - Display header style update and divider line
+  * Fixes NB246699 - About header style update
+  * Fixes NB246678 - USB header style update and spacers
+
+  [ David Kedves ]
+  * Fixes: NB#244580 - Missing translation for !! Brightness
+  * Fixes: NB#246636 - Device doesnt bootup if restore original settings is
+    performed when USB is connected as mass storage
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 19 Apr 2011 12:21:19 +0300
+
+meegotouch-controlpanelapplets (0.20.32-2) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * UsbApplet: logical id fix...
+  * DisplayApplet: Enable 'Low power mode' switch...
+  * Fixes: NB#247649 - Enable low power mode setting.
+
+  [ Laszlo Pere ]
+  * Fixes: NB#246159 - [TASK] Dashboard on controlpanel applets is red because
+    wallpaper is failing unit test cases
+  * Fixed: NB#243944 - Too large title font used in Display settings view
+  * Fixed NB246680 - Warranty header style update
+  * Fixed: NB#244003 - Wrong wallpaper is displayed in task list
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 15 Apr 2011 13:49:24 +0300
+
+meegotouch-controlpanelapplets (0.20.31-2) meegotouch; urgency=low
+
+  * USB-Applet: following the ui. spec changes...
+  
+  [ Laszlo Pere ]
+  * Stopping the physics when the user pressed the done or cancel buttons
+    in the wallpaper editor.
+
+  [ David Kedves ]
+  * Fixes: NB#229563 - (AcceptID-961941) [FEA] SW type label in
+    settings
+
+ -- David Kedves <kedazo@gmail.com>  Tue, 12 Apr 2011 21:59:08 +0300
+
+meegotouch-controlpanelapplets (0.20.30-3) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Removed placeholder icons from the grid view of the wallpaper applet.
+  * Faster image loading in the wallpaper grid view.
+  * Blue rectangle in wallpaper grid (net fully tested and ready just yet)
+  * Blue rectangle is ready.
+  * Fixes NB244533 - Wallpaper applet grid needs to be updated
+  * Fixes NB244128 - Portrait images cannot be set to fullscreen wallpapers
+  * Fixes: NB#240683 - [Meta] Option to enable/disable double tap wake-up
+  * Fixes: NB#240689 - UI spec: option to enable/disable double tap wake-up
+  * Fixes: NB#240691 - UI: option to enable/disable double tap wake-up
+  * Fixes NB244975 - Small font is used for brightness in display applet and
+    brightness item is getting highlighted
+
+  [ David Kedves ]
+  * Correcting application header stylenames in:
+    - display-applet
+    - wallpaper-applet
+    - battery-applet
+  * Disable the low-power mode for now... (as requested...)
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 11 Apr 2011 08:08:08 +0300
+
+meegotouch-controlpanelapplets (0.20.29-1) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#244525 - 'Brightness' string is not localized
+
+  [ Laszlo Pere ]
+  * Fixes NB243608 - ResetApplet: Spacing between buttons incorrect
+  * Fixes NB241744 - Header icon alignment
+  * Fixes NB243944 - Too large title font used in Display settings view
+  * Fixes NB243972 - Brightness adjustment should not be available under
+    Display settings
+  * Fixes: NB#184751 - Able to move the wallpaper image outside
+    the screen and set the same as wallpaper.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 08 Apr 2011 09:08:24 +0300
+
+meegotouch-controlpanelapplets (0.20.28-1) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#235004 - Sound Preview for tones is not played for all the tones
+    in the list on selecting one after another
+  * Fixes: NB#238747 - Wrong icons used in settings panel Brightness slider
+  * Low Power Mode switch to display-applet
+  * Fixes: NB#237609 - Ring tone preview continues after the incoming call.
+  * Fixes: NB#239883 - [TASK] soundsettingsapplet migration to Qsparql
+  * Fixes: NB#235004 - Sound Preview for tones is not played for all the tones
+    in the list on selecting one after another
+  * Fixes: NB#239887 - [TASK] wallpaperapplet migration to Qsparql
+  * Fixes: NB#233395 - [TASK] Ringtone preview volume gets really high
+  * Fixes: NB#241373 - libmeegocontrol0 exports internal symbols
+  
+  [ Laszlo Pere ]
+  * Fixes NB238613 - Unable to restore wall paper
+  * Fixes: NB#237055 - Wallpaper editor missing inertia when panning
+  * Fixes: NB#240711 - Profile vibration settings are using wrong order
+  * Fixes: NB#240465 - Wallpaper applet thumbnail list uses enormous amount of memory
+  * Fixes: NB#197462 - Missing icons for wallpaper applet
+  * Fixes: NB#184751 - [TASK] Able to move the wallpaper image outside the 
+    screen and set the same as wallpaper.
+  * Fixes NB241718 - List item labels not aligned properly in 
+    soundsettingsapplet
+  * Fixes NB241743 - List item labels not aligned properly - Battery
+  * Fixes NB241744 - Header icon alignment
+  * Fixes: NB#237701 - In wallpaper selection if the settings application is 
+    moved to background it will crash
+  * Fixes: NB#240868 - Incorrect order of settings (PSM threshold vs battery 
+    condition)
+  * Fixes: NB#228102 - Sounds and feedback settings uses wrong styles and icons
+  * Fixes NB242729 - Wallpaper setting applet is spammy
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 05 Apr 2011 10:55:09 +0300
+
+meegotouch-controlpanelapplets (0.20.27-2) meegotouch; urgency=low
+
+  * Fixes: NB#240845 - Preloading libmeegocontrol.so causes crashes in
+    settings application's plugins 
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 29 Mar 2011 13:19:27 +0300
+
+meegotouch-controlpanelapplets (0.20.26-4) meegotouch; urgency=low
+
+  [ Sandor Pinter ]
+  * Fixes: NB#234670 - Layout issues
+
+  [ Laszlo Pere ]
+  * Fixes: NB#236379 - Profile settings missing in sound settings view.
+  * WallpaperApplet uses less memory now.
+
+  [ David Kedves ]
+  * Fixes: NB#238794 - Battery UI is not update even when the charger is
+    disconnected.
+  * Fixes: NB#239077 - Remaining charging time remains on UI after
+    disconnecting charger
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 24 Mar 2011 13:20:24 +0200
+
+meegotouch-controlpanelapplets (0.20.25-1) meegotouch; urgency=low
+
+  [Laszlo Pere]
+  * Fixes: NB#188154 - Profile cannot be changed through Settings > Profiles
+  * Fixes: NB#233648 - Better steps for display brightness
+  * Fixes: NB#234534 - Battery context sensitive help icon is in wrong place
+  * Fixes: NB#229217 - Battery settings UI should indicate the remaining 
+    charging time estimate
+
+  [David Kedves]
+  * Fixes: NB#237428 - Default USB mode displayed incorrectly in the following
+    scenario
+  * Fixes: NB#237431 - Changing the USB mode while a mode is active throws an
+    error but UI changes to the new mode
+  * Fixes: NB#218188 - Keypad tone settings available even though there's no
+    support for that
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 21 Mar 2011 14:32:08 +0200
+
+meegotouch-controlpanelapplets (0.20.24-1) meegotouch; urgency=low
+
+  [Laszlo Pere]
+  * Fixes: NB#235353 - UI problem with the sound/haptics settings
+  * Fixes: NB#235042 - Touch screen tones value is not updating and always 
+    showing tap to select.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 11 Mar 2011 11:22:46 +0100
+
+meegotouch-controlpanelapplets (0.20.23-1) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#230465 - Flight mode button needs to be moved to Settings main
+    level
+  * Fixes: the display brightness should be sync between the applet and in
+    settings main page
+  * Fixes: NB#234226 - Offline applet is not working out-process
+  
+  [Laszlo Pere]
+  * Fixes: NB#234041 - Power save mode missing translations
+
+  [ Viktor Nagy ]
+  * Fixes: NB#230625 - possible memory leak in duicontrolpanel
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 09 Mar 2011 15:30:48 +0100
+
+meegotouch-controlpanelapplets (0.20.22-3) meegotouch; urgency=low
+
+  [Laszlo Pere]
+  * Fixes: NB#232788 - Soundsettingsapplet uses MLabel for separator
+  * Fixes: NB#230407 - Sound settings plugin needs to be moved to Settings 
+    main view
+  * Fixes: NB#230468 - Display settings plugin needs to be moved to Settings 
+    main view
+  * Fixes: NB#230438 - Reset settings and Clear device buttons needs to be 
+    moved to Reset category
+  * Fixes: NB#230415 - Wallpaper settings plugin needs to be moved to Settings 
+    main view
+  * Fixes: NB#223171 - Wrong color buttons used in Wallpaper settings
+  * Fixes: NB#223167 - Wrong color of toolbar buttons used for Sound settings
+  * Fixes: NB#218087 - Display settings place is not logical 
+  * Fixes: NB#223091 - Brightness label has unnecessary box around it 
+  * Fixes: NB#233099 - USB view page is not themed properly.. Backgound of 
+    title area is white.
+  * Fixes: NB#231772 - Music preview does not stop when either Done or Cancel
+    button of AlertToneBrowser is selected
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 08 Mar 2011 10:26:43 +0100
+
+meegotouch-controlpanelapplets (0.20.21-2) meegotouch; urgency=low
+
+  [Laszlo Gal]
+  * Updating USB Applet UI to the latest ui spec
+
+  [David Kedves]
+  * Fixes: NB#231270 - Touch screen tones and vibration should control GConf
+    key /meegotouch/input_feedback/volume/2/[vibra|pulse]
+  * Fixes: NB#224197 - Get more from Ovi Store is not responding
+  * Fixes: NB#231267 - Drop profile statusindicator-menu plugin
+  * Fixes: NB#229968 - packages compiled from meegotouch-controlpanelapplets
+    are missing debug symbols
+  * Fixes: NB#231545 - Text should wrap in Offline mode info banner
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 02 Mar 2011 09:02:19 +0100
+
+meegotouch-controlpanelapplets (0.20.20-1) meegotouch; urgency=low
+
+  [Laszlo Gal]
+  * Updating Battery Applet UI to the latest ui spec
+
+  [Zoltan Nyul]
+  * Fixes: NB#230191 - Ringtone play back does not resume 
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 28 Feb 2011 08:53:32 +0100
+
+meegotouch-controlpanelapplets (0.20.19-1) meegotouch; urgency=low
+
+  [Laszlo Pere]
+  * Fixes: NB#228108 - Sound settings select sound page list item labels use 
+    wrong style
+  * Fixes: NB#228444 - Specific sound setting view is not in accordance with 
+    UI specification
+  * Fixes: NB#228102 - Sounds and feedback settings uses wrong styles and icons 
+
+  [David Kedves]
+  * Fixes: NB#199460 - Customized ringtones not appeared on soundsettings
+  * Fixes: NB#228457 - Offline button shows Event banner instead of
+    Information banner
+
+  [Gabriel Schulhof]
+  * Fixes: 223196 - SMS alert tone doesn't obey Profile setting
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 24 Feb 2011 12:15:19 +0100
+
+meegotouch-controlpanelapplets (0.20.18-1) meegotouch; urgency=low
+
+  * Start working on battery condition info
+  * Wallpaper applet brief fix
+  * Fixes: NB#213666 -Concurrent Application Functions:
+    Unable to preview ringtone during playing music.
+
+  [Laszlo Pere]
+  * Fixes: NB#229380 - Tough the wallpaper is set in portrait the thumbnail of
+    the image is seen in landscape.
+  * Fixes: NB#222535 - Wallpaper editor does not handle orientation metadata
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 21 Feb 2011 15:30:09 +0100
+
+meegotouch-controlpanelapplets (0.20.17-4) meegotouch; urgency=low
+
+  [ Sandor Pinter ]
+  * Reading about applet's license str from a file
+
+  [ David Kedves ]
+  * Fixes: 223087 - Texts are not properly aligned in Display settings
+  * Fixes: 208364 - The content picker pages are white in soundsettings
+                    applet and wallpaper applet.
+  * Fixes: 227270 - Info text of wallpaper item is shown as "!!None"
+
+  [ Zoltan Nyul ]
+  * Partially fix NB#213666 - Concurrent Application Functions:
+                              Unable to preview ringtone during playing music.
+  * Fixes: NB#225708 - Sounds and Feedback dialog title is truncated
+
+  [Laszlo Pere]
+  * Fixes: NB#223048 - Wallpaper preview view shows blank screen in a scenario.
+  * Fixes: NB#208373 - The wallpaper applet title letter ('p') touching the 
+    images below.
+  * Fixes: NB#222535 - Wallpaper editor does not handle orientation metadata
+  * Fixes: NB#223167 - Wrong color of toolbar buttons used for Sound settings
+  * Fixes: NB#223171 - Wrong color buttons used in Wallpaper settings
+
+  [Gabriel Schulhof]
+  * Fixes: 223196 - SMS alert tone doesn't obey Profile setting
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 21 Feb 2011 10:27:49 +0100
+
+meegotouch-controlpanelapplets (0.20.16-1) meegotouch; urgency=low
+
+  * Fixes: NB#226539 - Unable to build gallerycore due to missing header in
+    libmeegocontrol
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 09 Feb 2011 10:42:53 +0200
+
+meegotouch-controlpanelapplets (0.20.15-1) meegotouch; urgency=low
+
+  * Fixes: NB#226300 - Not able to build clock due to issue in sound settings
+    applet
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 08 Feb 2011 13:09:24 +0200
+
+meegotouch-controlpanelapplets (0.20.14-2) meegotouch; urgency=low
+
+  * Theme problems fixed...
+  * Drop "Display stays on while charging" label
+  * Disable theme-applet
+  * New: add debian/api file
+  * Fixes: NB#223021 - libmeegocontrol is missing API file
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 07 Feb 2011 12:59:10 +0200
+
+meegotouch-controlpanelapplets (0.20.12-1) meegotouch; urgency=low
+
+  * Fixes: NB#220818 - Gallery, Camera, Clock are not launched
+  * Clean tests.xml before build
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 21 Jan 2011 14:32:28 +0100
+
+meegotouch-controlpanelapplets (0.20.10-1) meegotouch; urgency=low
+
+  * Fix a debianizing error...
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 20 Jan 2011 10:56:48 +0100
+
+meegotouch-controlpanelapplets (0.20.9-2) meegotouch; urgency=low
+
+  * Rename test-pkg to : meegotouch-controlpanelapplets-tests
+  * Do not send a signal in alerttonebrowser when nothing is changed
+  * Fixes: NB#220291 - AlertToneBrowser has no public API to pre-set the
+    suggested tone file name.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 20 Jan 2011 10:32:49 +0100
+
+meegotouch-controlpanelapplets (0.20.8-1) meegotuch; urgency=low
+
+  * Fixes: NB#217706 - save/cancel buttons are not displaying after selecting
+    image from wallpaper settings
+  * Same fix applied for Sound settings applet
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 13 Jan 2011 12:18:21 +0100
+
+meegotouch-controlpanelapplets (0.20.7-1) meegotouch; urgency=low
+
+  * Fixes: NB#211868 - Possible memory leak during Profile change
+  * The selectAndScoll() is not called when the widget is not visible.
+  * Fixed Ushas finding (status-menu icon and label is not updated issue)
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 12 Jan 2011 09:05:35 +0100
+
+meegotouch-controlpanelapplets (0.20.6-1) meegotouch; urgency=low
+
+  * Profile-selection-dialog memory leak fixes
+  * Show active profile name in status-menu as subtitle
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 11 Jan 2011 09:40:32 +0100
+
+meegotouch-controlpanelapplets (0.20.5-1) meegotouch; urgency=low
+
+  * Fixes: NB#211493 - Not able to set a song with a Russian title as a ringtone
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 20 Dec 2010 14:22:32 +0100
+
+meegotouch-controlpanelapplets (0.20.4-1) meegotouch; urgency=low
+
+  * Drop libuserguide dependency
+  * Fixes: NB#211721 - Settings application closes after tap on wallpaper
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 14 Dec 2010 13:40:46 +0100
+
+meegotouch-controlpanelapplets (0.20.3-1) meegotouch; urgency=low
+
+  * Fixes: NB#211460 - Clock application crashes on revisiting the content
+    picker after selecting a user defined tone
+  * Fixes: NB#210859 - Profile in status menu not according to layout guide.
+  * Added support and demo for custom alert tone handling.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 13 Dec 2010 12:34:56 +0100
+
+meegotouch-controlpanelapplets (0.20.2-1) meegotouch; urgency=low
+
+  * Fixes: highlight in profile-settings
+  * Fixes: update status-menu icon after profile-switching
+  * Fixes: NB#210859 - Profile in status menu not according to layout guide.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 10 Dec 2010 15:57:36 +0100
+
+meegotouch-controlpanelapplets (0.20.1-2) meegotouch; urgency=low
+
+  * Fixes: NB#209139 - Tone in content picker remains selected even after 
+    doing a cancel
+  * Fixes: NB#208329 - When you first select an image in the wallpaper editor 
+    the spinner is not aligned in the middle of the image 
+  * Eliminate loadCSS from warranty and about applets
+  * Fixes: NB#210603 - In Clock default tone picker widget there is 
+    inconsistency in the display color of [Done] and [Cancel] buttons in 
+    Landscape and Portrait mode
+  * Fixes: NB#208873 - Ringtone doesn't stop when tasked away from picker.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 09 Dec 2010 11:53:51 +0100
+
+meegotouch-controlpanelapplets (0.17.9-1) meegotouch; urgency=low
+
+  * Drop profile-qt dependency
+  * Fixes: NB#208326 - When the content picker is closed in soundsettingsapplet
+    the list is not scrolling to the selected file 
+  * Fixes: NB#208227 - Missing gstreamer-0.10 dependency in
+    libmeegocontrol-dev
+  * Fixes: NB#208544 - When power-save mode is active, do not show the slider
+  * Fixes: NB#208873 - Soundsettings: stop ringtone playing when window exits
+    the display
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 02 Dec 2010 12:34:28 +0100
+
+meegotouch-controlpanelapplets (0.17.8-1) meegotouch; urgency=low
+
+  * Fixes: NB#207581 - USB settings Page is not properly aligned.
+  * DisplayApplet: Use ComboBox instead of own maked widget...
+  * Fixes: NB#204285 - vibration profile setting is confusing
+  * Fixes: NB#207909 - No error banner displayed when changing USB modes in a
+    particular scenario
+  * Added documentation for the soundsettingsapplet libmeegocontrol parts.
+  * Fixes: NB#208227 - Missing dependencies in libmeegocontrol-dev
+  * WallpaperApplet: removed infoheader because of the layout guide changes.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 30 Nov 2010 14:57:25 +0100
+
+meegotouch-controlpanelapplets (0.17.7-1) meegotouch; urgency=low
+
+  * Fixes: NB#206416 - Wallpaper settings layout is not as per layout guide. 
+  * Fixes: NB#205284 - Need an API to access Sound Settings applet
+  * Fixes: NB#206529 - Auto-activate power saver button getting turned off
+                       when battery view is opened for the next time.
+  * Fixes: NB#206534 - Reset settings should reset touch-screen and vibration
+  * Fixes: NB#206939 - Change pinch gesture handling to use totalScaleFactor 
+                       instead of scaleFactor
+  * Fixes: NB#206923 - styleName fixes for title / sub-title headers 
+  * Fixes: NB#206918 - Save/Cancel/Done buttons on tool bar are shown as text 
+                       instead of buttons.
+  * Fixes: NB#206889 - USB Connectivity options is not inverted
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 25 Nov 2010 12:18:35 +0100
+
+meegotouch-controlpanelapplets (0.17.5-1) meegotouch; urgency=low
+
+  * Fixes: NB#203210 - Unable to close the profile dialog by tapping outside
+    it.
+  * The first version with a wallpaper editor widget in the libmeegocontrol
+    library.
+  * Added demo application for the wallpaper editor widget.
+  * Removed the fullscreen mode for the wallpaper editor: we must have a
+    libMeeGoTouch bug.
+  * Moved soundsettings applet to this source-tree
+  * Fixes: NB#204415 - duicontrolpanel crashed due to change in LMT
+  * Fixes: NB#189576 - Progress spinner is not showing during the theme 
+    changing/selection progress
+  * Fixes: NB#204361 - COREWEB: /usr/bin/sysuid 
+    'ProfileWidget::showProfileDialog() QMetaObject::metacall 
+    QMetaObject::activate MButton::clicked'
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 22 Nov 2010 17:10:30 +0100
+
+meegotouch-controlpanelapplets (0.17.4-1) meegotouch; urgency=low
+
+  * Update the desktop files according to the new categories in controlpanel
+  * Fixes: NB#199672 - Able to see highlight on other theme item for sometime 
+    until theme is updated completely.
+  * Fixes: NB#201102 - Sometimes value text on USB item doesn't get updated to
+    the selected usb mode.
+  * Fixes: NB#197172 - Grid type view checkmark icon is not consistent with the
+    application design.
+  * Fixes: NB#201029 - Sorting of images in Wallpaper applet is different after
+    warm flash
+  * Fixes: NB#201437 - wallpaper; §qtn_wall_wallpaper§ contains wrong menu, 
+    'user guide'
+  * Apply qmsystem Maemo -> MeeGo namespace change
+  * Implemented: SWP#DUI-4315 Layout changes to Profiles applet and Profiles
+    status menu
+  * Fixes: NB#202356 - libmeegocontrol-dev lacks dependency on libthumbnailer-dev
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 04 Nov 2010 12:00:36 +0200
+
+meegotouch-controlpanelapplets (0.17.3-1) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * Use QtMobility to fetch IMEI (and not some closed source lib)
+  * Use QNetworkInterface to get hardware addresses...
+  * Fixes: NB#200236 - meegotouch-controlpanelapplets 0.17.1 can not be
+    recompiled
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 27 Oct 2010 11:25:17 +0200
+
+meegotouch-controlpanelapplets (0.17.2-1) meegotouch; urgency=low
+
+  [ Zoltan Nyul ]
+  * Battery applet updated to the new ui spec
+  * Context Sensitive help button added to the battery applet
+
+  [ David Kedves ]
+  * Make userguide dependency as optional (as it closed-source)
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 25 Oct 2010 13:11:22 +0200
+
+meegotouch-controlpanelapplets (0.17.1-1) meegotouch; urgency=low
+
+  * Fixes: NB#198310 - Able to select one more theme before one theme change
+    is complete.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 18 Oct 2010 10:04:34 +0200
+
+meegotouch-controlpanelapplets (0.16.1-1) meegotouch; urgency=low
+
+  * Introducing libmeegocontrol
+  * libMeegoControl documentation added
+  * Fixes: NB#194506 - Impossible to select a wallpaper
+    image using the contentpicker.
+  * Fixes: NB#194787 - On tapping on theme applet repeatedly
+    multiple dialogs are coming up.
+  * Fixes: NB#194853 - list does not change back to the current theme,
+    if you cancel the theme dialog box by clicking outside
+  * Fixes: NB#194409 - After setting the wall paper form gallery or the
+    wallpaper mainview, current wallpaper thumbnail doesn't get set
+    to the currently set image.
+  * Fixes:NB#187326 -  Reset settings buttons too close to each other in
+    portrait
+  * Updated desktop files to make ContectAction able to launch
+    the settings applets via duicontrolpanels servicefw.
+  * Using the new grid layout in the wallpaper applet.
+  * Fixes: NB#184799 - wallpaper doesn't reset on doing reset settings.
+  * Re-added missing restore-original-settings scripts...
+    (for battery, theme, display, wallpaper and usb applets)
+  * Update wallpaper-backup mechanism... (backup-fw will deprecate "dir" type
+    backup locations...)
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 12 Oct 2010 16:15:17 +0200
+
+systemui-applets (0.15.4-1) meegotouch; urgency=low
+
+  * Fixes: NB#191264 -  Off and activate/deactivate power saver button looks
+    like overlapping in battery applet in a given scenario.
+  * Fixes: NB#188734 -  no profile icon seen in status menu when the profile is 
+    other than Normal.
+  * Fixes: NB#192443 -  settings application closes after tap on wallpaper
+    button from Look & Feel page
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 16 Sep 2010 14:17:27 +0200
+
+systemui-applets (0.15.3-1) meegotouch; urgency=low
+
+  * Fixes: empty about-product-applet
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 13 Sep 2010 11:50:29 +0200
+
+systemui-applets (0.15.2-1) meegotouch; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#190055 -  Wallpaper cannot be set continuously in wallpaper 
+    setting view via selecting from Gallery.
+  * Fixes: NB#184762 - Not able to load a large sized image in wallpaper applet.
+
+  [ David Kedves ]
+  * Fixes: NB#190694 -  COREWEB: /usr/bin/sysuid
+    'MDialogBlancoViewPrivate::setCentralWidget'
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 10 Sep 2010 10:21:31 +0200
+
+systemui-applets (0.15.1-1) meegotouch; urgency=low
+
+  [ David Kedves ]
+  * PO-timer available in 'Warranty' applet
+  * Fixed theming problems in 'Usb' applet
+  * Fixes: NB#188540 -  Activate/Deactivate power saver button is right
+    aligned. Same is the case with activate and deactivate Offline mode.
+
+  [ Laszlo Pere ]
+  * Fixes: NB#188534 -  Profile settings uses wrong object names
+  * Fixes: NB#188206 -  Battery settings use wrong object names
+  * Fixes: NB#188213 -  Display settings uses wrong object names
+  * Fixes: NB#188710 -  Order of the profiles is wrong in Profile settings
+  * Fixes: NB#188712 -  Order of the profiles is wrong in Profile selection
+    dialog
+  * Fixes: NB#188091 -  Profile status menu plug-in uses incorrect icons and 
+    incorrect title
+  * Fixes: NB#188537 -  Theme applet uses MContentItem for OVI store
+
+  [ Zoltan Nyul ]
+  * Fixes: NB#184073  -  Show text Charging complete and Charging
+    complete icon in Battery settings UI when the battery has reached
+    FULL state
+
+  [ David Kedves ]
+  * Fixes: NB#187290 - current wallpaper view has a sound icon + wrong font
+  * Fixes: NB#188718 - Battery settings view should not have a view menu
+  * Fixes: NB#188289 - USB settings button group uses wrong layout
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 02 Sep 2010 16:11:01 +0200
+
+systemui-applets (0.14.17-1) harmattan; urgency=low
+
+  * Fixed a destructor crash in Theme-applets ThemeWidget class 
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 26 Aug 2010 10:55:38 +0200
+
+systemui-applets (0.14.16-1) harmattan; urgency=low
+
+  * Fixes: NB#185858 - Wrong text layout in setting of Wallpaper from Gallery
+  * Fixes: NB#177534 - cannot manually deactivate PSM if
+                       entered to PSM automatically
+  * Fixes: NB#186764 -  View Menu should not be shown on Theme setting view
+  * Fixes: NB#183127 - User guide improvements...
+  * Fixes: NB#187166 -  Theme dialog doesn't close by tapping on select button
+    in theme dialog.
+  * Fixes: NB#187083 - Need of unique IDs for several objects [profile applet]
+  * Fixes: NB#186822 - Device system ordering problem
+  * Fixes: NB#187315 - Connectivity: activate offline mode not at the top
+  * Fixes: NB#187306 - Large gap in between 1st item and title bar in theme
+  * Fixes: NB#187354 - Theme chooser doesnt find themes
+  * Fixes: NB#187290 - current wallpaper view has a sound icon + wrong font
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 24 Aug 2010 14:58:43 +0200
+
+systemui-applets (0.14.15-1) harmattan; urgency=low
+
+  * Fixes: NB#185694 - Device-lock query is not displayed while doing
+                       reset-settings/clear-user-data
+  * Fixes: NB#183195 -  No banners or confirmation dialogue shown on activating
+                        and deactivating offline mode from connectivity view.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 19 Aug 2010 12:02:56 +0200
+
+systemui-applets (0.14.14-1) harmattan; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes NB#184751 - Able to move the wallpaper image outside the screen and
+    set the same as wallpaper.
+  * A test script added.
+  * The wallpaper command line program has been removed, we use DBus now.
+
+ -- Laszlo Pere <lpere@blumsoft.eu>  Thu, 12 Aug 2010 07:51:30 +0200
+
+systemui-applets (0.14.13-1) harmattan; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#182044 - Wallpaper applet does not support background images
+    set by theme IDs.
+  * Fixes: NB#181622 - select profile dialog is shown on lock ui.
+  * Fixes: NB#180067 - Wallpaper can't be set correctly.
+  * Fixes: NB#182578 - Icon temporarily displayed under selected themes
+  * Fixes: NB#182709 - systemui-applets is not buildable with cs2009q3 toolchain
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 30 Jul 2010 15:21:41 +0200
+
+systemui-applets (0.14.12-2) harmattan; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#180999 - Wallpaper image must be changed separately to landscape
+    and portrait modes
+  * Fixes: NB#179836 -  Display settings: wrong spelling for backlight time-out
+    values §qtn_comm_time_second§
+
+  [ David Kedves ]
+  * Wallpaper-applet backup enhancements...
+  * Fixes: NB#181605 - Profiles applet view is not proper.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 23 Jul 2010 12:32:39 +0200
+
+systemui-applets (0.14.11-1) harmattan; urgency=low
+
+  [ Laszlo Pere ]
+  * Showing the remaining times as charging until the charging state is not
+    changed (but still not animating if the battery is full).
+  * Fixes: NB#168748 - Wallpaper applet can not set GIF image as wallpaper to 
+    home
+  * Fixes: NB#175984 - The progress spinner is not shown on Theme setting 
+    main view
+  * Fixes: NB#175015 - Icon for "Get more from Ovi Store" is missing in Theme
+    setting main view
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 12 Jul 2010 14:41:04 +0200
+
+systemui-applets (0.14.10-1) harmattan; urgency=low
+
+  [ Robert Manner ]
+  * Fixes: NB#174929 - Presenting order of setting items on Look & Feel
+    is incorrect
+
+  [ David Kedves ]
+  * Fixes: NB#173717 - Auto active power save mode set psm_threshold wrongly
+  * Fixes: NB#177154 - Update the UI properly on PSMValueChanged signal
+  * Fixes: NB#177148 - Items in Display applet are not aligned properly
+  * Use the correct translation and logical ids in theme applet
+  * Use the correct translation and logical ids in wallpaper applet
+  * Fixes: NB#177003 - Do not load engineering englishes by hand...
+  * Fixes: NB#177572 - Failed to display the software version
+
+  [ Laszlo Pere ]
+  * Fixes: NB#172929 - Battery applet in Settings->Device system->Battery 
+    should stop animating once battery is full
+  * Fixes: NB#177846 - Profile status indicator menu plug-in doesn't close 
+    status menu
+  * Fixes: NB#177984 - systemui-applets depends on deprecated 
+    libduithumbnailer0.
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 02 Jul 2010 22:40:12 +0200
+
+systemui-applets (0.14.9-1) harmattan; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#176448 - [Estimated time] Should be in hours if > 1 hour
+
+  [ Sandor Pinter ]
+  * Adding backup support for wallpaper applet
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 24 Jun 2010 14:45:51 +0200
+
+systemui-applets (0.14.8-1) harmattan; urgency=low
+
+  * Fixes: NB#176163 - Battery icon in Energy UI is blinking
+                       instead of animating
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 23 Jun 2010 12:47:09 +0200
+
+systemui-applets (0.14.7-1) harmattan; urgency=low
+
+  [ Laszlo Pere ]
+  * Fixes: NB#174533 - Theme selector crashes when it cannot find deprecated 
+                       stuff from index.theme
+  * Made and improved a lot of unit tests...
+
+  [ David Kedves ]
+  * Fixes: NB#174928 - Display plugin should be under Device system
+  * Fixed charger animation rates according to ui specification
+  * Rewritten business logic (no more uses the sysuid d-bus api)
+  * Fixes: NB#172929 - Battery applet should stop animating once battery
+                       is full
+  * Fixed battery-applet ui initialization [slider value not initialized]
+  * Fixed the battery-applet icon-sizing issue
+  * Fixed the usb-applets layout
+  * About applet: logical id fixes
+  * About applet: added nokia-logo
+  * Display applet: load the correct translation catalogue
+  * USB applet fixes: notification handling improved...
+  * Display applet: layout fixes...
+  * Fixes: NB#174999 - Status menu is closes after selecting the profile.
+  * ResetApplet: use the real translation
+  * ResetApplet: fixed the text truncation issue...
+  * Fixes: NB#175377 - Clear device dialog not a query but a normal dialog
+  * Fixes: NB#175370 - Reset settings dialog is not a query but a normal
+    dialog
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 22 Jun 2010 10:53:32 +0200
+
+systemui-applets (0.14.6-2) harmattan; urgency=low
+
+  [ David Kedves ]
+  * Fixes: NB#170735 - No Error message shown if user tries to change the
+                       USB mode in USB setting view, while the USB cable is
+                       connecting with the device.
+  * Partially fixed NB#171105 - Translation Broken in Profiles
+  * Fixes: NB#173930 - Translation broken in USB
+  * Fixes: NB#173960 - Translations Broken in Battery settings
+
+  [ Sandor Pinter ]
+  * Changing profile dcp applet according to lates UI-spec
+  * Changing profile statusindicatormenu
+  * Fixes: NB#171105 - Translation Broken in Profiles
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 14 Jun 2010 14:51:08 +0200
+
+systemui-applets (0.14.5-1) harmattan; urgency=low
+
+  * Re-tag to match with the functional test package version...
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 07 Jun 2010 09:04:22 +0200
+
+systemui-applets (0.14.3-1) harmattan; urgency=low
+
+  [ David Kedves ]
+  * Drop volume-control from this package
+    (moved to system-ui)
+
+  [ Viktor Nagy ]
+  * Theme applet ui update.
+    Fixes: NB#170758 - Indicating the selected Theme item is incorrect
+
+  [ David Kedves ]
+  * Version bump
+  * Fixes: NB#172483 - Random sysuid crash found during swapping windows
+    from one to other
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 04 Jun 2010 12:23:25 +0200
+
+systemui-applets (0.14.1-1) harmattan; urgency=low
+
+  * Fixes: NB#170573 - Value text of USB item shows 'Always ask - Always ask
+    Active' instead of 'Always ask, Mass storage mode/Ovi Suite mode Active'
+    when connected in 'Mass storage/Ovi Suite mode'.
+  * Fixes: NB#170685 - Volume slider colors are strange when listening music
+    and receiving call
+  * Fixes: NB#170813 - Volume indicator is displayed if SMS notification
+    appears for the first time after start
+  * Fixes: NB#171609 - Making phone call always shows volumebar 
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 01 Jun 2010 15:20:43 +0200
+
+systemui-applets (0.13.9-1) harmattan; urgency=low
+
+  * Fixes: NB#169777 - Power save mode logic problems
+  * Turn on word-wrapping for about and warranty applets
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 20 May 2010 13:42:42 +0200
+
+systemui-applets (0.13.8-1) harmattan; urgency=low
+
+  * Display UI layout changes...
+  * Use resource policy in volume-control
+  * Fixes: NB#168419 - HW Zoom keys shound't launch volume slider while
+                       in camera precapture view
+  * Fixes: NB#168531 - Volume level info bar is shown on screen every time
+                       when volume level is changed
+  * Fixes: NB#168708 - Volume level control buttons behavior should not change
+                       depending on the screen orientation
+  * Energy UI: Power Save Mode fixes...
+  * Energy UI: Fixed icon/animation handling in battery-settings ui
+  * Theme applet fixes (brief updates when theme changed)
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 18 May 2010 07:11:53 +0200
+
+systemui-applets (0.13.7-1) harmattan; urgency=low
+
+  * Lazy-init in volume-applet (for faster sysuid startup)
+  * Fixes: NB#162431 - Status bar is not always displayed (it is too nice)
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 11 May 2010 11:26:49 +0200
+
+systemui-applets (0.13.6-1) harmattan; urgency=low
+
+  * Wallpaper fixes:
+    - a segfault fix
+    - title bar haight has been changed
+  * About applet delayed initialization
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 07 May 2010 15:29:01 +0200
+
+systemui-applets (0.13.5-1) harmattan; urgency=low
+
+  * Bugfix for testapplet (crash)
+  * Wallpaper-applet: Use the same bage as duihome as the default one
+  * Added warranty applet (not fully working, not yet specified properly)
+  * Fixed all the compile warnings
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 07 May 2010 10:26:47 +0200
+
+systemui-applets (0.13.4-1) harmattan; urgency=low
+
+  * Removed the ledapplet, it is now an empty debian package.
+  * Improvements in wallpaper-applet
+  * Bugfixes for volume-control
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 06 May 2010 11:53:35 +0200
+
+systemui-applets (0.13.3-1) harmattan; urgency=low
+
+  [ László Pere ]
+  * Fixes: NB#165600 - Unable to change the Wall paper. 
+  * Fixes: NB#165814 - Problems with setting brightness in Settings
+  [ David Kedves ]
+  * Remove batteryplugin from source tree
+  * Volume control updates:
+    - add pulseaudio-module-meego-mainvolume dependency
+    - update the DBus API (d-bus math meegoized now)
+  * Updated UI for Display applet, Battery applet, USB applet
+  * Using usb_moded for usb businesslogic
+
+ -- David Kedves <dkedves@blumsoft.eu>  Wed, 28 Apr 2010 09:30:47 +0200
+
+systemui-applets (0.13.2-1) harmattan; urgency=low
+
+  * Newly implemented: Reset applet
+  * Newly implemented: Wallpaper applet
+  * Newly implemented: About applet
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 23 Apr 2010 08:20:00 +0200
+
+systemui-applets (0.13.1) harmattan; urgency=low
+
+  * Implemented: SWP#DUI-2063 - Volume Control UI -
+                 Interactive Slider (overlay)
+  * Implemented: SWP#DUI-2626 - Volume control status menu plugin
+  * Implemented: SWP#DUI-2627 - Volume control HW key support
+  * (Volume control will starts work when mainvolume PulseAudio module
+     released)
+  * Disabled battery statusindicatormenu plugin (dropped)
+  * Fully meegotouch compatible
+  * Now plugins uses MStatusIndicatorMenu interface
+
+ -- David Kedves <dkedves@blumsoft.eu>  Mon, 19 Apr 2010 12:08:34 +0200
+
+systemui-applets (0.12.7) harmattan; urgency=low
+
+  * Fix a build error
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 01 Apr 2010 16:14:35 +0200
+
+systemui-applets (0.12.6) harmattan; urgency=low
+
+  * Adjusting dependencies...
+  * Fixes: NB#161391 - duistatusindicatormenu utilizing CPU all the time
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 01 Apr 2010 15:21:24 +0200
+
+systemui-applets (0.12.5) harmattan; urgency=low
+
+  [Laszlo Pere]
+  Implemented: SWP#DUI430 - User changable theme setting dcp applet
+  [David Kedves]
+  * Fixes: NB#161508 - Display blanks in 2 minutes even though the 
+                       timeout is set to 5 minutes
+  * Fixes some problems in Profile applet and plugin about l18n
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 30 Mar 2010 11:08:28 +0200
+
+systemui-applets (0.12.4) harmattan; urgency=low
+
+  * Fixes: NB#159842 - Sliders handle in battery applet covers is not hiding 
+    and covers the text above it
+  * Fixes: NB#159315 - Battery indicator doesn't show the battery capacity
+    correctly
+
+ -- David Kedves <dkedves@blumsoft.eu>  Thu, 18 Mar 2010 09:37:28 +0100
+
+systemui-applets (0.12.3-1) harmattan; urgency=low
+
+  * Icon-id fix in volumebarplugin
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 16 Mar 2010 11:55:49 +0100
+
+systemui-applets (0.12.3) harmattan; urgency=low
+
+  * Fixes: NB#156759 - Battery applet UI not as specified
+  * Fixes: NB#160053 - Duicontrolpanel crash
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 16 Mar 2010 11:31:34 +0100
+
+systemui-applets (0.12.2) harmattan; urgency=low
+
+  * Split system-ui -> system-ui / systemui-applets
+
+ -- David Kedves <dkedves@blumsoft.eu>  Tue, 23 Feb 2010 09:42:38 +0100
+
+system-ui (0.12.1-2) harmattan; urgency=low
+
+  * Fixes some crashes:
+    - Battery applet
+    - Display applet
+  * Install VolumePlugin properly
+  * TouchScreen/Shutdown UI seems works properly on latest image (with this
+    pkg)
+
+ -- David Kedves <dkedves@blumsoft.eu>  Fri, 19 Feb 2010 13:42:06 +0100

@@ -1,0 +1,11 @@
+
+The ringtones are downloaded from OpenMoko subversion repository
+http://svn.openmoko.org/trunk/src/target/OM-2007.2/artwork/sounds/
+
+(License is allowing the redistribution, for license please go to
+ http://wiki.openmoko.org/wiki/Ringtones#License
+)
+
+And converted to aac format by ffmpeg.
+[ ffmpeg -i ${INFILE} -acodec libfaac -ab 128k ${AAC_OUTFILE} ]
+

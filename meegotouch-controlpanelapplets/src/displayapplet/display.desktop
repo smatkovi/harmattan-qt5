@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=ControlPanelApplet
+Name=Display
+Icon=
+Exec=
+X-logical-id=qtn_disp_display
+X-translation-catalog=displayapplet,display
+X-Maemo-Service=com.nokia.DuiControlPanel
+X-Maemo-Method=com.nokia.DuiControlPanelIf.appletPage
+X-Maemo-Object-Path=/
+X-Maemo-Fixed-Args=Display
+
+[DUI]
+X-DUIApplet-Applet=libdisplayapplet.so
+
+[DCP]
+Category=qtn_sett_main_battery
+Order=2
+WidgetType=Label
+
