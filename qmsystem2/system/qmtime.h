@@ -61,7 +61,11 @@ namespace MeeGo
       QmTimeTimeChanged = 0,      /**< Time (and settings) changed */
       QmTimeOnlySettingsChanged   /**< Settings changed */
   };
+#if QT_VERSION < 0x050000
+  // (Qt 5's moc wants Q_NAMESPACE for enums of a namespace; this one is
+  // deprecated, the signal with it is connected directly)
   Q_ENUMS(QmTimeWhatChanged);
+#endif
 }
 #endif
 

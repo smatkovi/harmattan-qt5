@@ -32,6 +32,7 @@
 #include <dsme/processwd.h>
 #include <dsme/protocol.h>
 #include <cstdlib>
+#include <unistd.h>
 #include <QDebug>
 
 namespace MeeGo

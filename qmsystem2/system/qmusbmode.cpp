@@ -172,7 +172,7 @@ bool QmUSBMode::setDefaultMode(QmUSBMode::Mode mode) {
     if (str.isEmpty()) {
         return false;
     }
-    gboolean ret = gconf_client_set_string(priv->gcClient, USB_MODE_GCONF, str.toAscii().data(), NULL);
+    gboolean ret = gconf_client_set_string(priv->gcClient, USB_MODE_GCONF, str.toLatin1().data(), NULL);
     if (ret == TRUE) {
         return true;
     } else {

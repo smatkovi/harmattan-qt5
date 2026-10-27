@@ -1,4 +1,6 @@
 LIBS += -lqmsystem2
 DEPENDPATH += /usr/include/qmsystem2
 INCLUDEPATH += /usr/include/qmsystem2
-CONFIG += timed qt
+CONFIG += qt
+# (the N9 built QmTime on timed; elsewhere it may be left out)
+exists($$[QT_INSTALL_DATA]/mkspecs/features/timed.prf): CONFIG += timed
