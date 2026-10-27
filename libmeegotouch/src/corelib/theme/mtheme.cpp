@@ -569,9 +569,9 @@ const MStyle *MTheme::style(const char *styleClassName,
             parentStyleName = parent->objectName();
     }
 
-    return MStyleSheetPrivate::style(sheets, parentsData, parentStyleName.toAscii(),
-                                     styleMetaObjectHierarchy, scn, objectName.toAscii(),
-                                     mode.toAscii(), type.toAscii(), orientation);
+    return MStyleSheetPrivate::style(sheets, parentsData, parentStyleName.toLatin1(),
+                                     styleMetaObjectHierarchy, scn, objectName.toLatin1(),
+                                     mode.toLatin1(), type.toLatin1(), orientation);
 }
 
 const MStyle *MTheme::style(const char *styleClassName,
@@ -603,7 +603,7 @@ const MStyle *MTheme::style(const char *styleClassName,
         MStyleSheetPrivate::ParentData &pd = parentsData[i];
         QList<QByteArray> parentClassHierarchiesConverted;
         foreach (const QString &str, parentClassHierarchies[i]) {
-            parentClassHierarchiesConverted << str.toAscii();
+            parentClassHierarchiesConverted << str.toLatin1();
         }
         pd.hierarchy = parentClassHierarchiesConverted;
         pd.sheets = d->extractSheetsForClassHierarchy(sheets, pd.hierarchy);
@@ -617,7 +617,7 @@ const MStyle *MTheme::style(const char *styleClassName,
     if (d->customStylesheet)
         sheets.append(d->customStylesheet);
 
-    return MStyleSheetPrivate::style(sheets, parentsData, parentStyleName.toAscii(), styleMetaObjectHierarchy, styleClassName, objectName.toAscii(), mode.toAscii(), type.toAscii(), orientation);
+    return MStyleSheetPrivate::style(sheets, parentsData, parentStyleName.toLatin1(), styleMetaObjectHierarchy, styleClassName, objectName.toLatin1(), mode.toLatin1(), type.toLatin1(), orientation);
 }
 
 void MTheme::releaseStyle(const MStyle *style)
@@ -778,6 +778,11 @@ MThemePrivate::MThemePrivate(const QString &applicationName, MTheme::ThemeServic
     changeThemeTimer(0),
     changeThemeSemaphore("MTHEME_CHANGE_THEME_GUARD", 1)
 {
+#if QT_VERSION >= 0x050000
+    // Qt 5 has no QPixmap on a shared X pixmap, the way the theme daemon
+    // hands its pixmaps out: every application loads the theme itself
+    themeService = MTheme::LocalTheme;
+#endif
     switch (themeService) {
     case MTheme::LocalTheme:
         themeDaemon = new MLocalThemeDaemon(applicationName);

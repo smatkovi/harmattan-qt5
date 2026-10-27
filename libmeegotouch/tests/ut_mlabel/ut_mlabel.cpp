@@ -1026,7 +1026,7 @@ void Ut_MLabel::testSizeHint_data()
         foreach (const WrapInfo &wrapInfo, wrapModes) {
             foreach (const QString &text, texts) {
                 const QString descr = text.left(20) + ".../" + wrapInfo.first + "/" + QString::number(widthConstraint);
-                descriptions.append(descr.toAscii());
+                descriptions.append(descr.toLatin1());
                 QTest::newRow(descriptions.last().constData()) << text << wrapInfo.second << widthConstraint;
             }
         }

@@ -26,7 +26,8 @@
 #include <QList>
 #include <QGraphicsWidget>
 #include <QEventLoop>
-#include <QInputContext>
+#include <QGuiApplication>
+#include <QInputMethod>
 #include <QTimer>
 
 #include "mcancelevent.h"

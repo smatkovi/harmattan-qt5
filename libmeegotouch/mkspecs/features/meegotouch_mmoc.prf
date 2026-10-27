@@ -35,5 +35,7 @@ isEmpty(_MEEGOTOUCH_MMOC_PRF_) {
     }
 
 QMAKE_MOC = $$M_MMOC_EXECUTABLE
+# Qt 5's moc.prf sets QMAKE_MOC itself (qtPrepareTool), from this
+QT_TOOL.moc.binary = $$M_MMOC_EXECUTABLE
 
 }

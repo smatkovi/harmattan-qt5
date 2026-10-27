@@ -25,6 +25,7 @@
 #include <QMap>
 #include <QList>
 #include <QFileSystemWatcher>
+#include <QIODevice>
 
 class MServiceMapper;
 

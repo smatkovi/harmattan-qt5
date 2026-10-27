@@ -25,8 +25,8 @@
 
 #include "mlayouthelper_p.h"
 
-#include <QtGui/QGraphicsItem>
-#include <QtGui/QGraphicsGridLayout>
+#include <QGraphicsItem>
+#include <QGraphicsGridLayout>
 MGridLayoutPolicy::MGridLayoutPolicy(MLayout *layout) :
     MAbstractLayoutPolicy(*(new MGridLayoutPolicyPrivate(layout)))
 {

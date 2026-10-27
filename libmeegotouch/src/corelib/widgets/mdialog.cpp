@@ -639,4 +639,6 @@ void MDialog::setTitleBarIconId(const QString &iconId)
     model()->setTitleBarIconId(iconId);
 }
 
+// Xlib's Bool macro collides with QMetaType::Bool in Qt 5's moc output
+#undef Bool
 #include "moc_mdialog.cpp"

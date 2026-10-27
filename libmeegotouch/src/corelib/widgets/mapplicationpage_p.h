@@ -23,7 +23,7 @@
 #include <mapplicationpage.h>
 #include <mscenewindow_p.h>
 #include <QRect>
-#include <QWeakPointer>
+#include <QPointer>
 
 class MPannableViewport;
 
@@ -45,7 +45,7 @@ public:
 
     bool contentCreated;
 
-    QWeakPointer<QGraphicsWidget> customNavigationBarContent;
+    QPointer<QGraphicsWidget> customNavigationBarContent;
 
     void _q_onSceneWindowStateChanged(MSceneWindow::SceneWindowState newState,
                                       MSceneWindow::SceneWindowState oldState);

@@ -17,6 +17,8 @@
 **
 ****************************************************************************/
 
+#include <QStandardPaths>
+#include <unistd.h>
 #include "msystemdirectories.h"
 #include "qdebug.h"
 
@@ -47,7 +49,7 @@ QString MSystemDirectories::cacheDirectory()
         if (!(cacheDirInfo.isWritable() && cacheDirInfo.isDir()))
         {
             // now we try a standard cache location
-            cacheDir = cacheDirPrefix + QDesktopServices::storageLocation(QDesktopServices::CacheLocation) + QDir::separator() + QLatin1String("meegotouch") + QDir::separator();
+            cacheDir = cacheDirPrefix + QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QDir::separator() + QLatin1String("meegotouch") + QDir::separator();
             QDir().mkpath(cacheDir);
             cacheDirInfo.setFile(cacheDir);
             if (!cacheDirInfo.isWritable() && cacheDirInfo.isDir()) {

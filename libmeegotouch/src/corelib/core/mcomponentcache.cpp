@@ -114,7 +114,7 @@ void MComponentCachePrivate::populateForMApplication()
 
 void MComponentCachePrivate::populateForWRTApplication()
 {
-    MApplication::setGraphicsSystem("raster");
+    // Qt 5 has no graphics systems to choose
     populateForMApplication();
 }
 
@@ -135,10 +135,9 @@ MApplication* MComponentCachePrivate::mApplication(int &argc, char **argv, const
                 qWarning("MComponentCache: QCoreApplication::arguments() will not contain all arguments.");
             }
 
-            // Copy arguments to QCoreApplication 
-            for (int i = 0; i < qMin(argc, ARGV_LIMIT); i++) {
-                qApp->argv()[i] = argv[i];
-            }
+            // Qt 5 does not let the arguments of a QCoreApplication be
+            // replaced: a cached application keeps the booster's (Qt 4's
+            // argv() is gone)
 
             // This changes argc in QCoreApplication
             initialArgc = qMin(argc, ARGV_LIMIT);

@@ -23,8 +23,6 @@
 #include <QDir>
 #include <QFileInfo>
 #include <qglobal.h>
-#include <QInputContextFactory>
-#include <QInputContext>
 
 #include "minputmethodstate.h"
 #include "mtheme.h"
@@ -182,6 +180,12 @@ void mMessageHandler(QtMsgType type, const char *msg)
         abort();
 }
 
+// Qt 5's message handlers take a context and a QString
+void mQt5MessageHandler(QtMsgType type, const QMessageLogContext &, const QString &msg)
+{
+    mMessageHandler(type, msg.toLocal8Bit().constData());
+}
+
 MComponentData *MComponentData::self = 0;
 
 MComponentDataPrivate::MComponentDataPrivate()
@@ -321,9 +325,9 @@ void MComponentDataPrivate::debugInit(bool levelSet)
     // own message handler again. If our message handler
     // was installed succesfully, initiate the connection to
     // syslog, if syslogServer is not the empty string.
-    QtMsgHandler handler(qInstallMsgHandler(mMessageHandler));
+    QtMessageHandler handler(qInstallMessageHandler(mQt5MessageHandler));
     if (handler != 0) {
-        qInstallMsgHandler(handler);
+        qInstallMessageHandler(handler);
     } else if (!syslogServer.isEmpty()) {
         initSyslogConnection(syslogServer);
     }
@@ -544,17 +548,8 @@ void MComponentDataPrivate::init(int &argc, char **argv, const QString &appIdent
     if (reverseLayout)
         qApp->setLayoutDirection(Qt::RightToLeft);
 
-    // set the input context
-    if (g_loadMInputContext == true) {
-        // QApplication::setInputContext takes ownership of this input context,
-        // but it does not call setParent( qApp ); on the input context yet.
-        // a bug for this is filed to qt software.
-        QInputContext *ic = QInputContextFactory::create("MInputContext", 0);
-
-        if (ic != 0) {
-            qApp->setInputContext(ic);
-        }
-    }
+    // The input context: in Qt 5 the platform's, chosen by QT_IM_MODULE
+    // (Maliit's is "Maliit"), no longer set by the application
 
 #ifndef Q_OS_WIN
     feedbackPlayer = new MFeedbackPlayer();

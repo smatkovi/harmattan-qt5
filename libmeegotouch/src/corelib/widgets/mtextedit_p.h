@@ -20,6 +20,7 @@
 #ifndef MTEXTEDIT_P_H
 #define MTEXTEDIT_P_H
 
+#include <QMetaMethod>
 #include <QTextCursor>
 #include <QString>
 #include <QList>
@@ -60,8 +61,8 @@ Q_SIGNALS:
 
 protected:
     /*! \reimp */
-    virtual void connectNotify(const char *signal);
-    virtual void disconnectNotify(const char *signal);
+    virtual void connectNotify(const QMetaMethod &signal);
+    virtual void disconnectNotify(const QMetaMethod &signal);
     /*! \reimp_end */
 
 private:

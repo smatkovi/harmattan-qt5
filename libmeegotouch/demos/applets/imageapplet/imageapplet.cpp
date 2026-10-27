@@ -17,6 +17,7 @@
 **
 ****************************************************************************/
 #include <QtGui>
+#include <QtWidgets>
 
 #include <MLibrary>
 #include "imageapplet.h"

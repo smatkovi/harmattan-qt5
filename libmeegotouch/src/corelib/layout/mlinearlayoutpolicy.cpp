@@ -24,9 +24,9 @@
 #include "mlayouthelper_p.h"
 #include "mdebug.h"
 
-#include <QtGui/QGraphicsItem>
-#include <QtGui/QGraphicsLayoutItem>
-#include <QtGui/QGraphicsLinearLayout>
+#include <QGraphicsItem>
+#include <QGraphicsLayoutItem>
+#include <QGraphicsLinearLayout>
 MLinearLayoutPolicy::MLinearLayoutPolicy(MLayout *l, Qt::Orientation o) :
     MAbstractLayoutPolicy(*(new MLinearLayoutPolicyPrivate(l, o)))
 {

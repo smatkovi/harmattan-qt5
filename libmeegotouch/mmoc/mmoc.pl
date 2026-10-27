@@ -138,8 +138,11 @@ sub runStyleMoc
         chomp;
         my $line = $_;
 
+        # not the macros' own definitions (Qt 5's moc sees them broken)
+        unless ($line =~ /^\s*#define/) {
         $line =~ s/\s*M_STYLE_ATTRIBUTE\s*\(\s*(\w+\:*\w*)\s*,\s*(\w+)\s*,\s*(\w+)\s*\)\s*/    Q_PROPERTY($1 $2 READ $2 WRITE set$3)/;
         $line =~ s/\s*M_STYLE_PTR_ATTRIBUTE\s*\(\s*(\w+\:*\w*\s*\*+)\s*,\s*(\w+)\s*,\s*(\w+)\s*\)\s*/    Q_PROPERTY(const $1 $2 READ $2 WRITE set$3)/;
+        }
 
         print MOC "$line\n";
     }
@@ -231,8 +234,10 @@ sub runModelMoc
         chomp;
         my $line = $_;
 
+        unless ($line =~ /^\s*#define/) {
         $line =~ s/$pattern[0]/    Q_PROPERTY($1 $2 READ $2 WRITE set$3)/;
         $line =~ s/$pattern[1]/    Q_PROPERTY($1 $2 READ $2 WRITE set$3)/;
+        }
 
         print MOC "$line\n";
     }

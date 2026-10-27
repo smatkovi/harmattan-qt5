@@ -21,7 +21,7 @@
 #define UT_MGRAPHICSCLIPEFFECT_H
 
 #include <QtTest/QtTest>
-#include <QtGui/QMainWindow>
+#include <QMainWindow>
 #include "mgraphicsclipeffect.h"
 #include "mgraphicsclipeffect_p.h"
 

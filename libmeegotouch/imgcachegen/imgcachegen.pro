@@ -36,3 +36,6 @@ HEADERS += ../src/corelib/theme/mimagedirectory.h \
 target.path = $$M_INSTALL_BIN
 INSTALLS += target
 
+
+# Qt 5: QApplication and the graphics view in QtWidgets
+QT += widgets x11extras

@@ -94,7 +94,7 @@ SwapHookPrivate::SwapHookPrivate() :
 
     foreach (const QString& candidate, libs) {
 
-        lib = dlopen(candidate.toAscii().data(), RTLD_NOW);
+        lib = dlopen(candidate.toLatin1().data(), RTLD_NOW);
 
         if(!lib) {
             qWarning("%s:%d: can't dlopen %s (%s)\n", __FILE__, __LINE__, qPrintable(candidate), dlerror());

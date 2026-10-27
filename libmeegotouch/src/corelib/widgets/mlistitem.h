@@ -20,6 +20,7 @@
 #ifndef MLISTITEM_H
 #define MLISTITEM_H
 
+#include <QMetaMethod>
 #include <MWidgetController>
 
 #include "mlistitemmodel.h"
@@ -79,12 +80,12 @@ protected:
     /*!
        Handler of notifications of new receivers connected to MListItem signals.
     */
-    virtual void connectNotify(const char *signal);
+    virtual void connectNotify(const QMetaMethod &signal);
 
     /*!
        Handler of notifications of receivers disconnecting from MListItem signals.
     */
-    virtual void disconnectNotify(const char *signal);
+    virtual void disconnectNotify(const QMetaMethod &signal);
 
     
 private:   

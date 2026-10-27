@@ -17,6 +17,7 @@
 **
 ****************************************************************************/
 
+#include <unistd.h>
 #include <qglobal.h>
 #include <cstdlib>
 #include <QCoreApplication>
@@ -36,6 +37,12 @@
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <X11/Xutil.h>
+#if QT_VERSION >= 0x050000
+#include <QAbstractNativeEventFilter>
+#include <X11/Xlibint.h>
+#include <xcb/xcb.h>
+#include <cstring>
+#endif
 #endif //Q_WS_X11
 
 #ifdef HAVE_XDAMAGE
@@ -199,9 +206,67 @@ MApplication::MApplication(int &argc, char **argv, MApplicationService *service)
     d->init(argc, argv, QString(), service);
 }
 
+#if defined(Q_WS_X11) && QT_VERSION >= 0x050000
+/*
+ * Qt 5 hands X events over in xcb's format only, where Qt 4 called
+ * QApplication::x11EventFilter(XEvent *), which MApplication and the
+ * applications built on it (the home screen, the system UI) override.
+ * This filter turns each xcb event into an XEvent with Xlib's own
+ * conversion from the wire format (the one Xlib uses for the events it
+ * reads itself; extensions such as Damage register theirs with the
+ * Display, which is the connection Qt uses) and passes it to
+ * x11EventFilter().
+ */
+class MX11EventBridge : public QAbstractNativeEventFilter
+{
+public:
+    explicit MX11EventBridge(MApplication *application) : application(application) {}
+
+    bool nativeEventFilter(const QByteArray &eventType, void *message, long *) override
+    {
+        if (eventType != "xcb_generic_event_t")
+            return false;
+        Display *dpy = QX11Info::display();
+        if (!dpy)
+            return false;
+        xcb_generic_event_t *event = static_cast<xcb_generic_event_t *>(message);
+        const int type = event->response_type & ~0x80;
+        if (type < 2)    // errors and replies
+            return false;
+
+        typedef Bool (*WireToEvent)(Display *, XEvent *, xEvent *);
+        WireToEvent convert = XESetWireToEvent(dpy, type, 0);
+        XESetWireToEvent(dpy, type, convert);
+        if (!convert)
+            return false;
+
+        // the 32 bytes of the wire event (xcb puts the full sequence
+        // number after them)
+        xEvent wire;
+        std::memcpy(&wire, event, sizeof wire);
+        XEvent xevent;
+        std::memset(&xevent, 0, sizeof xevent);
+        if (!convert(dpy, &xevent, &wire))
+            return false;
+        xevent.xany.display = dpy;
+        return application->x11EventFilter(&xevent);
+    }
+
+private:
+    MApplication *application;
+};
+#endif
+
 void MApplicationPrivate::init(int &argc, char **argv, const QString &appIdentifier, MApplicationService *newService)
 {
     componentData = MComponentData::createInstance(argc, argv, appIdentifier, newService);
+
+#if defined(Q_WS_X11) && QT_VERSION >= 0x050000
+    {
+        Q_Q(MApplication);
+        q->installNativeEventFilter(new MX11EventBridge(q));
+    }
+#endif
 
 #ifdef Q_WS_X11
     Q_Q(MApplication);
@@ -469,7 +534,9 @@ bool MApplication::x11EventFilter(XEvent *event)
         // xevent->more would inform us if there is more events for the
         // rendering operation. but there isn't interface to pass the
         // information to damageEvent.
-        emit damageEvent(xevent->damage, xevent->area.x, xevent->area.y, xevent->area.width, xevent->area.height);
+        // Qt 5's Qt::HANDLE is a pointer, X's Damage an XID
+        Qt::HANDLE damage = reinterpret_cast<Qt::HANDLE>(static_cast<quintptr>(xevent->damage));
+        emit damageEvent(damage, xevent->area.x, xevent->area.y, xevent->area.width, xevent->area.height);
 
         return true;
     }

@@ -17,6 +17,7 @@
 **
 ****************************************************************************/
 
+#include <unistd.h>
 #include "mdebug.h"
 #include "mwidgetcontroller.h"
 #include <QGraphicsGridLayout>
@@ -157,7 +158,7 @@ void MDebug::flush()
             case Critical:
             case Fatal:
             case System:
-                qt_message_output(convertMsgType(stream->type), stream->buffer.toLocal8Bit().constData());
+                qt_message_output(convertMsgType(stream->type), QMessageLogContext(), stream->buffer);
                 break;
             case Performance:
             case User:

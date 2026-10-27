@@ -19,9 +19,9 @@
 
 #include "mlinearlayoutpolicy_p.h"
 
-#include <QtGui/QGraphicsLinearLayout>
-#include <QtGui/QGraphicsWidget>
-#include <QtGui/QWidget>
+#include <QGraphicsLinearLayout>
+#include <QGraphicsWidget>
+#include <QWidget>
 
 #include "mwidgetcontroller.h"
 

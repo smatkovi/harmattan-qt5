@@ -19,9 +19,9 @@
 
 #include "mgridlayoutpolicy_p.h"
 
-#include <QtGui/QGraphicsGridLayout>
-#include <QtGui/QWidget>
-#include <QtGui/QGraphicsWidget>
+#include <QGraphicsGridLayout>
+#include <QWidget>
+#include <QGraphicsWidget>
 #include "mlayout.h"
 #include "mlayouthelper_p.h"
 MGridLayoutPolicyPrivate::MGridLayoutPolicyPrivate(MLayout *l) :

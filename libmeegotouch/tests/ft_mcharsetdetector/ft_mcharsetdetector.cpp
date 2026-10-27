@@ -1946,9 +1946,9 @@ void Ft_MCharsetDetector::testDetection()
     QFETCH(QString, bestMatchName);
     QFETCH(QString, bestMatchLanguage);
 
-    QTextCodec *codec = QTextCodec::codecForName(inputEncoding.toAscii());
+    QTextCodec *codec = QTextCodec::codecForName(inputEncoding.toLatin1());
     if (codec == NULL) // there is no codec matching the name
-        QFAIL(QString("no such codec: " + inputEncoding).toAscii().constData());
+        QFAIL(QString("no such codec: " + inputEncoding).toLatin1().constData());
 
     QByteArray encodedString = codec->fromUnicode(text);
     // add Latin1 junk:

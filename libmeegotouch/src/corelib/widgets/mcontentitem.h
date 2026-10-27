@@ -20,6 +20,7 @@
 #ifndef MCONTENTITEM_H__
 #define MCONTENTITEM_H__
 
+#include <QMetaMethod>
 #include <mwidgetcontroller.h>
 #include "mcontentitemmodel.h"
 #include <MProgressIndicator>
@@ -356,12 +357,12 @@ protected:
     /*!
        Handler of notifications of new receivers connected to MContentItem signals.
     */
-    virtual void connectNotify(const char *signal);
+    virtual void connectNotify(const QMetaMethod &signal);
 
     /*!
        Handler of notifications of receivers disconnecting from MContentItem signals.
     */
-    virtual void disconnectNotify(const char *signal);
+    virtual void disconnectNotify(const QMetaMethod &signal);
 
 
 private:

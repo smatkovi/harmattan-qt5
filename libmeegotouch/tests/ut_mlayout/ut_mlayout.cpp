@@ -38,10 +38,10 @@
 
 #include "../src/corelib/layout/mlayout_p.h"
 
-#include <QtGui/QPushButton>
-#include <QtGui/QGraphicsProxyWidget>
-#include <QtGui/QGraphicsLinearLayout>
-#include <QtGui/QSizePolicy>
+#include <QPushButton>
+#include <QGraphicsProxyWidget>
+#include <QGraphicsLinearLayout>
+#include <QSizePolicy>
 
 class TestPolicy : public MAbstractLayoutPolicy
 {

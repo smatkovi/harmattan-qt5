@@ -232,6 +232,13 @@ bool MApplicationExtensionManager::instantiateInProcessExtension(QSharedPointer<
 bool MApplicationExtensionManager::instantiateOutOfProcessExtension(
     QSharedPointer<const MApplicationExtensionMetaData> &metadata)
 {
+#if QT_VERSION >= 0x050000
+    // Qt 5 has no QPixmap on a shared X pixmap, the way an out of process
+    // extension draws for this one (MExtensionHandleView)
+    mWarning("MApplicationExtensionManager") << "Application extension" << metadata->fileName()
+        << "runs out of process, which this Qt 5 port does not draw yet";
+    return false;
+#endif
     MExtensionHandle *handle = new MExtensionHandle;
     handle->init(metadata->runnerBinary(), metadata->fileName());
     outOfProcessHandles.insert(metadata.data(), handle);

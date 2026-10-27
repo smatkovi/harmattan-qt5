@@ -279,7 +279,7 @@ void MApplicationWindowPrivate::_q_handleInSwitcherVisibilityChange()
 }
 
 #ifdef Q_WS_X11
-void MApplicationWindowPrivate::setWindowChainedProperty( const Window &parentWinId, const Window &childWinId )
+void MApplicationWindowPrivate::setWindowChainedProperty( const WId &parentWinId, const WId &childWinId )
 {
     Atom atomMInvokedBy = XInternAtom(QX11Info::display(), "_MEEGOTOUCH_WM_INVOKED_BY", False);
     Display *display = QX11Info::display();

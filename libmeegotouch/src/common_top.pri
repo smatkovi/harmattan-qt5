@@ -127,6 +127,13 @@ QT += \
     gui \
     xml
 
+# Qt 5: the graphics view and the widgets in QtWidgets, the X11 helpers
+# (QX11Info) in QtX11Extras
+QT += widgets x11extras
+# Qt 5 no longer defines Q_WS_X11; MeeGo Touch's X11 code (window
+# properties for mcompositor, X events, X pixmaps) depends on it
+unix:!macx: DEFINES += Q_WS_X11
+
 contains(DEFINES, HAVE_MEEGOGRAPHICSSYSTEM) {
     QT += meegographicssystemhelper
 }

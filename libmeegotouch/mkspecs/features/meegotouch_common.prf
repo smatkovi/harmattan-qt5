@@ -6,6 +6,16 @@ contains(MEEGOTOUCHCONFIG_DEPS, HAVE_DBUS) {
     QT *= dbus
 }
 
+# Qt 5: MeeGo Touch's classes build on QtWidgets (the graphics view,
+# QApplication) and QtX11Extras (QX11Info); Qt 5 no longer defines
+# Q_WS_X11, which MeeGo Touch's X11 API (MApplication::x11EventFilter(),
+# window properties) is declared under
+QT *= widgets
+unix:!macx {
+    QT *= x11extras
+    DEFINES *= Q_WS_X11
+}
+
 macx {
     INCLUDEPATH += /Library/Frameworks/m.framework/Headers
 }

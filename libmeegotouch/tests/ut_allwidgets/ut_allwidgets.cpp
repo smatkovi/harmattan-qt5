@@ -18,10 +18,10 @@
 ****************************************************************************/
 
 #include "ut_allwidgets.h"
-#include <QtGui/QPushButton>
-#include <QtGui/QGraphicsScene>
-#include <QtGui/QLabel>
-#include <QtGui/QWindowsStyle>
+#include <QPushButton>
+#include <QGraphicsScene>
+#include <QLabel>
+#include <QWindowsStyle>
 
 //Gain access to the view..
 #define protected public

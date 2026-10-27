@@ -124,7 +124,9 @@ namespace {
             return;
         }
 
-#ifdef  Q_WS_X11
+// Qt 5 has no QPixmap on an X pixmap: themes are loaded in process
+// (MTheme), the pixmaps passed as pointers
+#if defined(Q_WS_X11) && QT_VERSION < 0x050000
         Pixmap pixmap = XCreatePixmap(QX11Info::display(), QX11Info::appRootWindow(),
                                       image.width(), image.height(), image.depth());
         XSync(QX11Info::display(), false);
@@ -142,7 +144,7 @@ namespace {
     }
 
     QPixmap createXPixmapFromHandle(const MPixmapHandle& pixmapHandle) {
-#ifdef Q_WS_X11
+#if defined(Q_WS_X11) && QT_VERSION < 0x050000
         if (!pixmapHandle.xHandle) {
             if (pixmapHandle.eglHandle) {
                 qFatal("Valid eglHandle received but not running with meego compatible graphicssystem.");

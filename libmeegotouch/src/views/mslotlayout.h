@@ -22,7 +22,7 @@
 
 #include <QGraphicsLayout>
 #include <QGraphicsWidget>
-#include <QWeakPointer>
+#include <QPointer>
 
 //! \internal
 
@@ -59,8 +59,8 @@ protected:
 private:
     QGraphicsItem *parentItem();
     qreal calculateLength(QSizePolicy::Policy policy, qreal preferred, qreal available);
-    QWeakPointer<QGraphicsWidget> widgetPointer;
-    QWeakPointer<QGraphicsWidget> proxyWidgetPointer;
+    QPointer<QGraphicsWidget> widgetPointer;
+    QPointer<QGraphicsWidget> proxyWidgetPointer;
     bool ignoreSizePolicies;
 };
 //! \internal_end

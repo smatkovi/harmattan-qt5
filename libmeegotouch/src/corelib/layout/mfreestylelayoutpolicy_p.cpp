@@ -32,7 +32,7 @@ QRectF MFreestyleLayoutPolicyPrivate::moveAway(const QRectF &to_move,
         qreal width) const
 {
     QRectF result(to_move);
-    QRectF intersection = to_move.intersect(blocked_area);
+    QRectF intersection = to_move.intersected(blocked_area);
 
     bool moved = false;
     if (qAbs(intersection.width()) < qAbs(intersection.height())) {

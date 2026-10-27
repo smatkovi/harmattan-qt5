@@ -23,7 +23,7 @@
 #include "mscenewindowview_p.h"
 #include <mstylablewidget.h>
 #include <mstylablewidgetstyle.h>
-#include <QWeakPointer>
+#include <QPointer>
 
 class QGraphicsLinearLayout;
 class QParallelAnimationGroup;
@@ -90,7 +90,7 @@ protected:
 private:
     void resizeChildWidget();
 
-    QWeakPointer<QGraphicsWidget> widgetPointer;
+    QPointer<QGraphicsWidget> widgetPointer;
     M_STYLABLE_WIDGET(MStylableWidgetStyle)
 
 #ifdef UNIT_TEST
@@ -137,7 +137,7 @@ private:
     QGraphicsWidget *pannedSlot;
 
 
-    QWeakPointer<QGraphicsWidget> widgetPointer;
+    QPointer<QGraphicsWidget> widgetPointer;
     M_STYLABLE_WIDGET(MStylableWidgetStyle)
 
 #ifdef UNIT_TEST

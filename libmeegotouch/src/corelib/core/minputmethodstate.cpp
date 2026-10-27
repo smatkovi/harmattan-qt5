@@ -23,7 +23,8 @@
 #include <MDebug>
 
 #include <QApplication>
-#include <QInputContext>
+#include <QGuiApplication>
+#include <QInputMethod>
 #include <QTimer>
 #include <QKeyEvent>
 
@@ -172,14 +173,8 @@ void MInputMethodState::requestSoftwareInputPanel()
 #ifdef HAVE_MALIIT
     Maliit::requestInputMethodPanel();
 #else
-    QInputContext *inputContext = qApp->inputContext();
-
-    if (!inputContext) {
-        return;
-    }
-
-    QEvent request(QEvent::RequestSoftwareInputPanel);
-    inputContext->filterEvent(&request);
+    // Qt 5: the platform's input method
+    QGuiApplication::inputMethod()->show();
 #endif
 }
 
@@ -188,15 +183,8 @@ void MInputMethodState::closeSoftwareInputPanel()
 #ifdef HAVE_MALIIT
     Maliit::closeInputMethodPanel();
 #else
-    QInputContext *inputContext = qApp->inputContext();
-
-    if (!inputContext) {
-        return;
-    }
-
-    QEvent close(QEvent::CloseSoftwareInputPanel);
-    inputContext->filterEvent(&close);
-    inputContext->reset();
+    QGuiApplication::inputMethod()->hide();
+    QGuiApplication::inputMethod()->reset();
 #endif
 }
 
@@ -351,8 +339,7 @@ QString MInputMethodState::language() const
 #ifdef HAVE_MALIIT
     return Maliit::InputMethod::instance()->language();
 #else
-    QInputContext *inputContext = qApp->inputContext();
-    return inputContext ? inputContext->language() : QString();
+    return QGuiApplication::inputMethod()->locale().name();
 #endif
 }
 

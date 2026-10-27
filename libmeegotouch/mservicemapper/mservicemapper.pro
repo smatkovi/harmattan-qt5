@@ -45,3 +45,6 @@ target.path = $$M_INSTALL_BIN
 INSTALLS += \
     target \
     services
+
+# Qt 5: QApplication and the graphics view in QtWidgets
+QT += widgets x11extras

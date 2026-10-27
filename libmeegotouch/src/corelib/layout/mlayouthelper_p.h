@@ -20,8 +20,8 @@
 #ifndef MLAYOUTHELPER_H
 #define MLAYOUTHELPER_H
 
-#include <QtGui/QGraphicsLayout>
-#include <QtGui/QGraphicsItem>
+#include <QGraphicsLayout>
+#include <QGraphicsItem>
 
 //! \internal
 

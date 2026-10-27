@@ -39,7 +39,8 @@
 #include <QTimer>
 #include <QStyleOptionGraphicsItem>
 #include <QPanGesture>
-#include <QInputContext>
+#include <QGuiApplication>
+#include <QInputMethod>
 
 #include "mtextedit.h"
 #include "mtextedit_p.h"
@@ -1689,13 +1690,11 @@ void MTextEditViewPrivate::playFocusAnimation(QAbstractAnimation::Direction dire
 
 void MTextEditViewPrivate::icUpdate()
 {
-    QInputContext *ic = qApp->inputContext();
-
-    if (!ic || !controller->hasFocus()) {
+    if (!controller->hasFocus()) {
         return;
     }
 
-    ic->update();
+    QGuiApplication::inputMethod()->update(Qt::ImQueryAll);
 }
 
 void MTextEditViewPrivate::updateEditorToolbarPosition()

@@ -21,7 +21,7 @@
 #include "mflowlayoutpolicy_p.h"
 #include "mlayout.h"
 
-#include <QtGui/QWidget>
+#include <QWidget>
 
 MFlowLayoutPolicy::MFlowLayoutPolicy(MLayout *layout) :
     MAbstractLayoutPolicy(*(new MFlowLayoutPolicyPrivate(layout)))

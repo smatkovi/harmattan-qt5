@@ -208,7 +208,7 @@ QString MDesktopEntry::name() const
         // Get the name from the translation catalog;
         // if it does not exist use the unlocalized name prefixed
         // by the engineering English marker "!! ":
-        QString translation = qtTrId(value(LogicalIdKey).toAscii().data());
+        QString translation = qtTrId(value(LogicalIdKey).toLatin1().data());
         if (translation == value(LogicalIdKey))
             name = "!! " + name;
         else

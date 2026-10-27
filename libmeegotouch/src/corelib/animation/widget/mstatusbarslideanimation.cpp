@@ -79,7 +79,7 @@ void MStatusBarSlideAnimation::setRootElementsDisplacedByStatusBar(
 
     Q_FOREACH(QGraphicsWidget *rootElement, elementsList) {
         rootElementsDisplacedByStatusBar.append(
-                    QWeakPointer<QGraphicsWidget>(rootElement));
+                    QPointer<QGraphicsWidget>(rootElement));
     }
 
     createRootElementsAnimations();
@@ -183,7 +183,7 @@ void MStatusBarSlideAnimation::createRootElementsAnimations()
 {
     QGraphicsWidget *rootElement;
 
-    Q_FOREACH(QWeakPointer<QGraphicsWidget> rootElementPointer,
+    Q_FOREACH(QPointer<QGraphicsWidget> rootElementPointer,
               rootElementsDisplacedByStatusBar) {
         rootElement= rootElementPointer.data();
         if (!rootElement)

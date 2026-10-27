@@ -28,6 +28,7 @@
 
 #ifdef Q_WS_X11
 #include <X11/Xlib.h>
+#include <QAbstractNativeEventFilter>
 #endif //Q_WS_X11
 
 class MStatusBar;
@@ -36,13 +37,15 @@ class QPixmap;
 //! \internal
 
 #ifdef Q_WS_X11
-class MStatusBarEventListener
+// Qt 5: a native event filter on the application (Qt 4: the event
+// dispatcher's event filter)
+class MStatusBarEventListener : public QAbstractNativeEventFilter
 {
 public:
     MStatusBarEventListener();
     ~MStatusBarEventListener();
 
-    static bool xWindowPropertyEventFilter(void *message);
+    bool nativeEventFilter(const QByteArray &eventType, void *message, long *result);
 };
 #endif //Q_WS_X11
 
@@ -112,7 +115,11 @@ private:
     void setupXDamageForSharedPixmap();
     void destroyXDamageForSharedPixmap();
 
+    //! A copy of the status bar's shared X pixmap (Qt 5 has no QPixmap on
+    //! an X pixmap), kept up to date from its damage
     QPixmap sharedPixmap;
+    Pixmap sharedPixmapHandle;
+    void copyFromSharedPixmap(const QRect &rect);
     Qt::HANDLE pixmapDamage;
 
     /*! Updates the status bar shared pix handle from x property of given window

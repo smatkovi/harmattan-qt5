@@ -6,6 +6,6 @@ includedir=${prefix}/include
 Name: mlocale
 Description: MeeGo Locale Library
 Version: @@M_VERSION@@
-Requires: QtGui
+Requires: Qt5Gui
 Cflags: -I${includedir}
 Libs: -L${libdir} -lmlocale

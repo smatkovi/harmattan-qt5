@@ -24,7 +24,7 @@
 #include <QObject>
 #include <QPointF>
 #include <QHash>
-#include <QWeakPointer>
+#include <QPointer>
 
 class MBasicListItemInsertionAnimation;
 class MWidget;
@@ -44,7 +44,7 @@ private:
         qreal scale;
         bool visible;
     };
-    QHash<QWeakPointer<MWidget>*, TargetDefaultProperties> targets;
+    QHash<QPointer<MWidget>*, TargetDefaultProperties> targets;
 
 public:
     MBasicListItemInsertionAnimationPrivate();

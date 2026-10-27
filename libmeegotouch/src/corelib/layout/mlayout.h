@@ -22,8 +22,8 @@
 
 #include "mexport.h"
 
-#include <QtGui/QGraphicsLayout>
-#include <QtGui/QGraphicsWidget>
+#include <QGraphicsLayout>
+#include <QGraphicsWidget>
 
 class QGraphicsItem;
 class MAbstractLayoutPolicy;

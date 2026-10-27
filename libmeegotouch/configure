@@ -452,7 +452,7 @@ if [ $? -eq 0 ]; then
 
     # Test for DBus
     if [ "$CFG_DBUS" != "no" ]; then
-        pkg-config --exists QtDBus
+        pkg-config --exists Qt5DBus
         if [ $? -eq 0 ]; then
 	    HAVE_DBUS=yes
         fi

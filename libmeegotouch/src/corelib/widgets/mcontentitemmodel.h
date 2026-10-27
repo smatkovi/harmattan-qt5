@@ -65,7 +65,7 @@ public:
 
       \sa MContentItemView
       */
-    M_MODEL_PROPERTY(QPixmap, itemPixmap, ItemPixmap, false, NULL)
+    M_MODEL_PROPERTY(QPixmap, itemPixmap, ItemPixmap, false, QPixmap())
 
     /*!
       \property MContentItemModel::itemImage
@@ -103,7 +103,7 @@ public:
      \property MContentItemModel::optionalItemPixmap
      \brief Contains optional icon on the right-hand side
      */
-    M_MODEL_PROPERTY(QPixmap, optionalPixmap, OptionalPixmap, false, NULL)
+    M_MODEL_PROPERTY(QPixmap, optionalPixmap, OptionalPixmap, false, QPixmap())
 
     /*!
      \property MContentItemModel::optionalItemImage

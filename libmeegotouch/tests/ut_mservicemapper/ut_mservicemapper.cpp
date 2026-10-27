@@ -268,7 +268,7 @@ void Ut_MServiceMapper::checkInterfaceName_data()
     QTest::addColumn<QString>( "serviceName" );
     QTest::addColumn<QString>( "interfaceName" );
     for ( int i=0; i<initFiles; ++i ) {
-        QTest::newRow(m_services[i].toAscii().constData()) << m_services[i] << m_interfaces[i];
+        QTest::newRow(m_services[i].toLatin1().constData()) << m_services[i] << m_interfaces[i];
     }
 
     QTest::newRow("None existent service") << "BogusService" << "";

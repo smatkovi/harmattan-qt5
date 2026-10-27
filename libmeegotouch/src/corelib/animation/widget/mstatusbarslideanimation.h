@@ -28,7 +28,7 @@
 #include <QPointF>
 #include <QPropertyAnimation>
 #include <QList>
-#include <QWeakPointer>
+#include <QPointer>
 #include <QGraphicsWidget>
 
 class MSceneWindow;
@@ -98,7 +98,7 @@ private:
     TransitionDirection direction;
     QPropertyAnimation *positionAnimation;
     QPointF originalPos;
-    QList< QWeakPointer<QGraphicsWidget> > rootElementsDisplacedByStatusBar;
+    QList< QPointer<QGraphicsWidget> > rootElementsDisplacedByStatusBar;
     QList<QPropertyAnimation *> rootElementsAnimations;
     const QList<MSceneWindow *> *sceneWindowStack;
     QList<QPropertyAnimation *> sceneWindowsAnimations;

@@ -17,6 +17,7 @@
 **
 ****************************************************************************/
 
+#include <QMetaMethod>
 #include "mlistitem.h"
 #include "mlistitem_p.h"
 
@@ -61,20 +62,26 @@ void MListItem::longTap(const QPointF &pos)
     emit longTapped(pos);
 }
 
-void MListItem::connectNotify(const char *signal)
+// as SIGNAL() writes a signal: Qt 5 passes connectNotify() a QMetaMethod
+static QByteArray signalString(const QMetaMethod &signal)
+{
+    return QByteArray("2") + signal.methodSignature();
+}
+
+void MListItem::connectNotify(const QMetaMethod &signal)
 {
     Q_D(MListItem);
 
-    if (QLatin1String(signal) == SIGNAL(longTapped(QPointF))) {
+    if (signalString(signal) == SIGNAL(longTapped(QPointF))) {
         d->updateLongTapConnections();
     }
 }
 
-void MListItem::disconnectNotify(const char *signal)
+void MListItem::disconnectNotify(const QMetaMethod &signal)
 {
     Q_D(MListItem);
 
-    if (QLatin1String(signal) == SIGNAL(longTapped(QPointF))) {
+    if (signalString(signal) == SIGNAL(longTapped(QPointF))) {
         d->updateLongTapConnections();
     }
 }

@@ -30,7 +30,8 @@
 #include <MDebug>
 #include <QSet>
 #include <QGraphicsSceneMouseEvent>
-#include <QInputContext>
+#include <QGuiApplication>
+#include <QInputMethod>
 #include <QApplication>
 
 #include "mwidgetcreator.h"
@@ -175,11 +176,7 @@ void MWidgetController::setupModel()
 
 void MWidgetController::updateMicroFocus()
 {
-    QInputContext *ic = qApp->inputContext();
-
-    if (ic != 0) {
-        ic->update();
-    }
+    QGuiApplication::inputMethod()->update(Qt::ImQueryAll);
 }
 
 // method for setting new model for this controller + view

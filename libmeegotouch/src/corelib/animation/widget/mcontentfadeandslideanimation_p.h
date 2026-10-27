@@ -22,7 +22,7 @@
 
 #include "mabstractwidgetanimation_p.h"
 #include <QGraphicsEffect>
-#include <QWeakPointer>
+#include <QPointer>
 
 class MContentFadeAndSlideAnimation;
 class QParallelAnimationGroup;
@@ -49,7 +49,7 @@ public:
 private:
     QPixmap pixmap;
     QPoint offset;
-    QWeakPointer<SnapshotTakerEffect> snapshotTaker;
+    QPointer<SnapshotTakerEffect> snapshotTaker;
 };
 
 class MContentFadeAndSlideAnimationPrivate : public MAbstractWidgetAnimationPrivate

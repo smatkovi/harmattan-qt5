@@ -22,7 +22,7 @@
 
 #include <QObject>
 #include <QHash>
-#include <QWeakPointer>
+#include <QPointer>
 
 class MStyle;
 class MWidgetController;
@@ -50,7 +50,7 @@ private:
 
     MStyleContainer *q_ptr;
     const MWidgetController *parent;
-    QWeakPointer<MSceneManager> sceneManager;
+    QPointer<MSceneManager> sceneManager;
 };
 
 #endif

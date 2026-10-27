@@ -39,6 +39,8 @@ INSTALLS += \
 win32: {
     DEFINES += QT_MOC_PATH=\\\"\"moc.exe\"\\\"
 } else {
+    # Qt 5 sets QMAKE_MOC only later (moc.prf): the host's moc
+    isEmpty(QMAKE_MOC): QMAKE_MOC = $$[QT_HOST_BINS]/moc
     DEFINES += QT_MOC_PATH=\'$$quote(\"$$QMAKE_MOC\")\'
 }
 

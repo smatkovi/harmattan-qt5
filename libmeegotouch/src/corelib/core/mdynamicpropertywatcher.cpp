@@ -53,7 +53,7 @@ bool MDynamicPropertyWatcher::eventFilter(QObject* watched, QEvent* event)
     if (event->type() == QEvent::DynamicPropertyChange &&
         propertyName == static_cast<QDynamicPropertyChangeEvent*>(event)->propertyName())
     {
-        QVariant newPropertyValue = watched->property(propertyName.toAscii());
+        QVariant newPropertyValue = watched->property(propertyName.toLatin1());
         if (!lastPropertyValue.isValid() ||
             newPropertyValue != lastPropertyValue) {
 
@@ -96,7 +96,7 @@ bool MMultiObjectsPropertyWatcher::eventFilter(QObject* watched, QEvent* event)
     if (event->type() == QEvent::DynamicPropertyChange &&
         propertyName == static_cast<QDynamicPropertyChangeEvent*>(event)->propertyName())
     {
-        QVariant newPropertyValue = watched->property(propertyName.toAscii());
+        QVariant newPropertyValue = watched->property(propertyName.toLatin1());
         if (!lastValues[watched].isValid() ||
             newPropertyValue != lastValues[watched]) {
 

@@ -20,6 +20,7 @@
 #include "imagewidget.h"
 
 #include <QtGui>
+#include <QtWidgets>
 #include <MApplication>
 #include <MWindow>
 #include <MTheme>

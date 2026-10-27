@@ -59,6 +59,7 @@
 #include <QGraphicsLinearLayout>
 #ifdef Q_WS_X11
 #include <QX11Info>
+#include <X11/Xlib.h>
 #endif
 #include "mappletsharedmutex.h"
 #ifdef QT_OPENGL_LIB
@@ -405,9 +406,14 @@ void MExtensionRunner::handleCancelEvent(const MAppletCancelMessage *message)
 
 void MExtensionRunner::createAppletPixmap(Qt::HANDLE handle)
 {
+#if QT_VERSION < 0x050000
     // Create a QPixmap out of the pixmap handle
     pixmap = QPixmap::fromX11Pixmap(handle, QPixmap::ExplicitlyShared);
     image = QImage(pixmap.size(), QImage::Format_ARGB32);
+#else
+    // Qt 5 has no QPixmap on a shared X pixmap (see MExtensionHandleView)
+    Q_UNUSED(handle);
+#endif
 }
 
 void MExtensionRunner::sceneChanged(const QList<QRectF> &region)
@@ -455,7 +461,7 @@ void MExtensionRunner::sceneChanged(const QList<QRectF> &region)
 
     if (visible) {
         // Synchronize X to get the changes drawn to the pixmap
-        QApplication::syncX();
+        XSync(QX11Info::display(), False);
     }
 
     pixmapMutex->unlock();

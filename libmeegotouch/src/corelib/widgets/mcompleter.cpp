@@ -85,8 +85,8 @@ void MCompleterPrivate::init()
 
     emptyHideTimer.setInterval(EmptyCompleterHideTimeout);
     emptyHideTimer.setSingleShot(true);
-    connected &= q->connect(&emptyHideTimer, SIGNAL(timeout()),
-                            q, SLOT(hideCompleter()));
+    connected &= bool(q->connect(&emptyHideTimer, SIGNAL(timeout()),
+                                 q, SLOT(hideCompleter())));
 
     if (!connected) {
         qWarning("MCompleterPrivate::init() - Failed to connect signals!");
@@ -709,7 +709,7 @@ void MCompletionModel::setSourceModel(QAbstractItemModel *source)
 
 QModelIndex MCompletionModel::index(int row, int column, const QModelIndex &parent) const
 {
-    return hasIndex(row, column, parent) ? createIndex(row, column, 0) : QModelIndex();
+    return hasIndex(row, column, parent) ? createIndex(row, column) : QModelIndex();
 }
 
 QModelIndex MCompletionModel::mapToSource(const QModelIndex &index) const

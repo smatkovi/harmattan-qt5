@@ -43,7 +43,7 @@ public:
 
     void handleApplicationLayoutDirectionChangeEvent(QGraphicsItem *item);
     void handleLanguageChangeEvent(QEvent *event);
-    void findMWidgets(QList< QWeakPointer<MWidget> > &mWidgetsList,
+    void findMWidgets(QList< QPointer<MWidget> > &mWidgetsList,
                       QGraphicsItem *item);
     void handleWindowStateChangeEvent(QWindowStateChangeEvent *event);
     void handleCloseEvent(QCloseEvent *event);

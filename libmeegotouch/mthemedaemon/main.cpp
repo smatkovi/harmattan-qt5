@@ -103,6 +103,12 @@ static void mMessageHandler(QtMsgType type, const char *msg)
        abort();
 }
 
+// Qt 5's message handlers take a context and a QString
+static void mQt5MessageHandler(QtMsgType type, const QMessageLogContext &, const QString &msg)
+{
+    mMessageHandler(type, msg.toLocal8Bit().constData());
+}
+
 int main(int argc, char **argv)
 {
     setup_unix_signal_handlers();
@@ -110,9 +116,7 @@ int main(int argc, char **argv)
     // make sure we are not loading the maemo6 qt style which
     // could interfere with us
     QApplication::setStyle("windows");
-#ifndef HAVE_MEEGOGRAPHICSSYSTEM
-    QApplication::setGraphicsSystem("native");
-#endif // HAVE_MEEGOGRAPHICSSYSTEM
+    // (Qt 5 has no graphics systems to choose)
 
     QApplication app(argc, argv);
 
@@ -120,7 +124,7 @@ int main(int argc, char **argv)
         mWarning("mthemedaemon") << "can't send pixmap sharing message";
 
     outputLevel = getOutputLevelFromArgs(app.arguments());
-    qInstallMsgHandler(mMessageHandler);
+    qInstallMessageHandler(mQt5MessageHandler);
 
     // Apply custom server address, if the "-address" has been passed as argument
     QString serverAddress;

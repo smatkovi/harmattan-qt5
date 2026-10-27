@@ -24,7 +24,7 @@
 
 #include <MWidget>
 #include <QElapsedTimer>
-#include <QWeakPointer>
+#include <QPointer>
 #include "mslidermodel.h"
 
 class MSlider;
@@ -235,12 +235,12 @@ private:
 
     qreal valueToScreenCoordinate(int value) const;
 
-    QWeakPointer<const MScalableImage> backgroundBaseImage;
-    QWeakPointer<const MScalableImage> backgroundElapsedImage;
-    QWeakPointer<const MScalableImage> backgroundReceivedImage;
-    QWeakPointer<const MScalableImage> backgroundVerticalBaseImage;
-    QWeakPointer<const MScalableImage> backgroundVerticalElapsedImage;
-    QWeakPointer<const MScalableImage> backgroundVerticalReceivedImage;
+    QPointer<const MScalableImage> backgroundBaseImage;
+    QPointer<const MScalableImage> backgroundElapsedImage;
+    QPointer<const MScalableImage> backgroundReceivedImage;
+    QPointer<const MScalableImage> backgroundVerticalBaseImage;
+    QPointer<const MScalableImage> backgroundVerticalElapsedImage;
+    QPointer<const MScalableImage> backgroundVerticalReceivedImage;
 
     qreal grooveThickness;
     qreal grooveMargin;

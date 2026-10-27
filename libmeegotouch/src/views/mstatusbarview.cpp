@@ -36,55 +36,93 @@
 
 #ifdef Q_WS_X11
 #include <X11/Xatom.h>
+#include <X11/Xutil.h>
+#include <QX11Info>
+#include <QPainter>
+#include <xcb/xcb.h>
+#include <cstring>
 
 #define PROPERTY_WINDOW_INITIAL_POLL_TIMEOUT 3000
 #define PROPERTY_WINDOW_MAX_POLL_TIMEOUT 300000 // five minutes
 
 Atom MStatusBarView::propertyWindowAtom = 0;
 Atom MStatusBarView::pixmapHandleAtom = 0;
-QAbstractEventDispatcher::EventFilter previousEventFilter = NULL;
 static QSharedPointer<MStatusBarEventListener> eventListenerInstance;
 static MStatusBarView *statusBarViewInstance = NULL;
 
 MStatusBarEventListener::MStatusBarEventListener()
 {
-    // Setup event filter to follow _MEEGOTOUCH_STATUSBAR_PROPERTY_WINDOW property notify events
-    if (previousEventFilter == NULL) {
-        previousEventFilter = QAbstractEventDispatcher::instance()->setEventFilter(xWindowPropertyEventFilter);
-    }
+    // Follow _MEEGOTOUCH_STATUSBAR_PROPERTY_WINDOW property notify events
+    if (QCoreApplication::instance())
+        QCoreApplication::instance()->installNativeEventFilter(this);
 }
 
 MStatusBarEventListener::~MStatusBarEventListener()
 {
-        QAbstractEventDispatcher *dispatcher = QAbstractEventDispatcher::instance();
-        if (dispatcher) {
-            if (previousEventFilter) {
-                dispatcher->setEventFilter(previousEventFilter);
-                previousEventFilter = NULL;
-            } else {
-                dispatcher->setEventFilter(NULL);
-            }
-        }
+    if (QCoreApplication::instance())
+        QCoreApplication::instance()->removeNativeEventFilter(this);
 }
 
-bool MStatusBarEventListener::xWindowPropertyEventFilter(void *message)
+bool MStatusBarEventListener::nativeEventFilter(const QByteArray &eventType, void *message, long *)
 {
-    XEvent *xevent = static_cast<XEvent*>(message);
+    if (eventType != "xcb_generic_event_t" || statusBarViewInstance == NULL)
+        return false;
 
-    if (statusBarViewInstance != NULL) {
-        if (xevent->type == PropertyNotify) {
-            statusBarViewInstance->handleXPropertyNotify(xevent->xproperty);
-        } else if (xevent->type == DestroyNotify) {
-            statusBarViewInstance->handleXDestroyNotify(xevent->xdestroywindow);
-        }
+    // the two events the view follows, from xcb's format into Xlib's
+    xcb_generic_event_t *event = static_cast<xcb_generic_event_t *>(message);
+    switch (event->response_type & ~0x80) {
+    case XCB_PROPERTY_NOTIFY: {
+        xcb_property_notify_event_t *e = reinterpret_cast<xcb_property_notify_event_t *>(event);
+        XPropertyEvent propertyEvent;
+        memset(&propertyEvent, 0, sizeof propertyEvent);
+        propertyEvent.type = PropertyNotify;
+        propertyEvent.window = e->window;
+        propertyEvent.atom = e->atom;
+        propertyEvent.time = e->time;
+        propertyEvent.state = e->state == XCB_PROPERTY_NEW_VALUE ? PropertyNewValue : PropertyDelete;
+        statusBarViewInstance->handleXPropertyNotify(propertyEvent);
+        break;
     }
-
-    bool handled = false;
-    if (previousEventFilter && previousEventFilter != xWindowPropertyEventFilter) {
-        handled = previousEventFilter(message);
+    case XCB_DESTROY_NOTIFY: {
+        xcb_destroy_notify_event_t *e = reinterpret_cast<xcb_destroy_notify_event_t *>(event);
+        XDestroyWindowEvent destroyEvent;
+        memset(&destroyEvent, 0, sizeof destroyEvent);
+        destroyEvent.type = DestroyNotify;
+        destroyEvent.event = e->event;
+        destroyEvent.window = e->window;
+        statusBarViewInstance->handleXDestroyNotify(destroyEvent);
+        break;
     }
+    }
+    return false;
+}
 
-    return handled;
+void MStatusBarView::copyFromSharedPixmap(const QRect &rect)
+{
+    // Qt 5: the shared X pixmap's contents read with XGetImage into the
+    // local copy (Qt 4 drew the X pixmap itself)
+    if (!sharedPixmapHandle || sharedPixmap.isNull())
+        return;
+    const QRect r = rect.intersected(sharedPixmap.rect());
+    if (r.isEmpty())
+        return;
+    XImage *ximage = XGetImage(QX11Info::display(), sharedPixmapHandle, r.x(), r.y(),
+                               r.width(), r.height(), AllPlanes, ZPixmap);
+    if (!ximage)
+        return;
+    QImage::Format format = QImage::Format_Invalid;
+    if (ximage->bits_per_pixel == 32)
+        format = ximage->depth == 32 ? QImage::Format_ARGB32_Premultiplied : QImage::Format_RGB32;
+    else if (ximage->bits_per_pixel == 16)
+        format = QImage::Format_RGB16;
+    if (format != QImage::Format_Invalid) {
+        QImage image(reinterpret_cast<const uchar *>(ximage->data), r.width(), r.height(),
+                     ximage->bytes_per_line, format);
+        QPainter painter(&sharedPixmap);
+        painter.setCompositionMode(QPainter::CompositionMode_Source);
+        painter.drawImage(r.topLeft(), image);
+    }
+    XDestroyImage(ximage);
 }
 
 void MStatusBarView::handleXDestroyNotify(const XDestroyWindowEvent &destroyWindowEvent)
@@ -192,6 +230,7 @@ MStatusBarView::MStatusBarView(MStatusBar *controller) :
 #ifdef Q_WS_X11
     , isOnDisplay(false)
     , isInSwitcher(false)
+    , sharedPixmapHandle(0)
 #endif
 {
 #ifdef Q_WS_X11
@@ -270,6 +309,7 @@ void MStatusBarView::updateStatusBarSharedPixmapHandle()
     if (!sharedPixmap.isNull()) {
         destroyXDamageForSharedPixmap();
         sharedPixmap = QPixmap();
+        sharedPixmapHandle = 0;
     }
 
     // Get the status bar property window id from the root window property
@@ -464,7 +504,8 @@ void MStatusBarView::setupXDamageForSharedPixmap()
 {
     Q_ASSERT(!sharedPixmap.isNull());
 #ifdef HAVE_XDAMAGE
-    pixmapDamage = XDamageCreate(QX11Info::display(), sharedPixmap.handle(), XDamageReportRawRectangles);
+    pixmapDamage = reinterpret_cast<Qt::HANDLE>(static_cast<quintptr>(
+        XDamageCreate(QX11Info::display(), sharedPixmapHandle, XDamageReportRawRectangles)));
 #endif //HAVE_XDAMAGE
 }
 
@@ -472,7 +513,7 @@ void MStatusBarView::destroyXDamageForSharedPixmap()
 {
 #ifdef HAVE_XDAMAGE
     if (pixmapDamage) {
-        XDamageDestroy(QX11Info::display(), pixmapDamage);
+        XDamageDestroy(QX11Info::display(), static_cast<Damage>(reinterpret_cast<quintptr>(pixmapDamage)));
         pixmapDamage = 0;
     }
 #endif //HAVE_XDAMAGE
@@ -483,6 +524,7 @@ void MStatusBarView::handlePixmapDamageEvent(Qt::HANDLE &damage, short &x, short
 {
     if (damage == pixmapDamage) {
         Q_ASSERT(shouldStayUpToDate());
+        copyFromSharedPixmap(QRect(x, y, width, height));
         controller->update(x, y, width, height);
     }
 }
@@ -501,7 +543,18 @@ void MStatusBarView::handleDisplayExited()
 
 void MStatusBarView::handleSharedPixmapHandleReceived(quint32 handle)
 {
-    sharedPixmap = QPixmap::fromX11Pixmap(handle, QPixmap::ExplicitlyShared);
+    // Qt 5: a local copy of the shared X pixmap (see copyFromSharedPixmap())
+    sharedPixmapHandle = handle;
+    sharedPixmap = QPixmap();
+    Window root;
+    int px, py;
+    unsigned int width = 0, height = 0, border, depth;
+    if (handle && XGetGeometry(QX11Info::display(), handle, &root, &px, &py,
+                               &width, &height, &border, &depth)) {
+        sharedPixmap = QPixmap(width, height);
+        sharedPixmap.fill(Qt::transparent);
+        copyFromSharedPixmap(sharedPixmap.rect());
+    }
 
     destroyXDamageForSharedPixmap();
     updateXDamageForSharedPixmap();
@@ -515,6 +568,7 @@ void MStatusBarView::handlePixmapProviderOffline()
 {
     destroyXDamageForSharedPixmap();
     sharedPixmap = QPixmap();
+    sharedPixmapHandle = 0;
 
     // reset interval as we're starting a new polling session
     propertyWindowPollTimer.setInterval(PROPERTY_WINDOW_INITIAL_POLL_TIMEOUT);

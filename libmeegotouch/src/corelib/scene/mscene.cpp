@@ -17,6 +17,7 @@
 **
 ****************************************************************************/
 
+#include <unistd.h>
 #include <QList>
 #include <QGraphicsItem>
 #include <QGraphicsWidget>
@@ -328,7 +329,13 @@ bool MScenePrivate::eventEmulatePinch(QEvent *event)
         touchList.append(emuPoint1);
         touchList.append(emuPoint2);
 
-        QTouchEvent touchEvent(touchEventType, QTouchEvent::TouchPad, Qt::NoModifier, touchPointState, touchList);
+        // Qt 5 names the device by an object, not a type
+        static QTouchDevice *emulatedTouchPad = 0;
+        if (!emulatedTouchPad) {
+            emulatedTouchPad = new QTouchDevice;
+            emulatedTouchPad->setType(QTouchDevice::TouchPad);
+        }
+        QTouchEvent touchEvent(touchEventType, emulatedTouchPad, Qt::NoModifier, touchPointState, touchList);
         if (q->views().size()>0)
             QApplication::sendEvent(q->views().at(0), &touchEvent);
         q->update();

@@ -42,3 +42,6 @@ check-xml.depends = $$TARGET
 check-xml.commands = $$system(true)
 target.path = $$M_APPLICATION_EXTENSION_DIR
 INSTALLS += target
+
+# Qt 5: QApplication and the graphics view in QtWidgets
+QT += widgets x11extras

@@ -423,7 +423,7 @@ QString ImageResource::createCacheFilename(const QSize& size, const QString &cac
 
 void ImageResource::fillCacheEntry(PixmapCacheEntry *cacheEntry, QImage &image, const QSize &size)
 {
-#ifdef  Q_WS_X11
+#if defined(Q_WS_X11) && QT_VERSION < 0x050000
     if (convertToX11) {
         Pixmap x11Pixmap = XCreatePixmap(QX11Info::display(), QX11Info::appRootWindow(),
                                                  image.width(), image.height(), 16);

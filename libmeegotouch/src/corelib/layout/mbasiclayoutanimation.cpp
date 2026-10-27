@@ -22,8 +22,8 @@
 #include "mbasiclayoutanimationstyle.h"
 #include "mlayouthelper_p.h"
 
-#include <QtGui/QGraphicsItem>
-#include <QtGui/QGraphicsScene>
+#include <QGraphicsItem>
+#include <QGraphicsScene>
 #include <QEasingCurve>
 MBasicLayoutAnimation::MBasicLayoutAnimation(MLayout *layout) :
     MLayoutAnimation(*(new MBasicLayoutAnimationPrivate()), layout)

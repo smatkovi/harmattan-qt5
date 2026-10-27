@@ -20,7 +20,7 @@
 #ifndef MITEMSTATE_P_H
 #define MITEMSTATE_P_H
 
-#include <QtGui/QGraphicsLayout>
+#include <QGraphicsLayout>
 
 class QGraphicsWidget;
 

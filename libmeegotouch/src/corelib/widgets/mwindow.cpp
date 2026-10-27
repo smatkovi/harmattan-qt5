@@ -397,9 +397,15 @@ void MWindowPrivate::applyStartupWindowBackground()
     WId windowId = robustEffectiveWinId();
     const QPixmap *startupPixmap = style->x11StartupPixmap();
     const QColor startupFillColor = style->startupFillColor();
+#if QT_VERSION < 0x050000
     if (startupPixmap) {
         XSetWindowBackgroundPixmap(QX11Info::display(), windowId, startupPixmap->handle());
-    } else if (startupFillColor.isValid()) {
+    } else
+#else
+    // Qt 5's pixmaps are not X pixmaps: the fill colour only
+    Q_UNUSED(startupPixmap);
+#endif
+    if (startupFillColor.isValid()) {
         XSetWindowBackground(QX11Info::display(), windowId,
                              QColormap::instance().pixel(startupFillColor));
     } else {
@@ -457,7 +463,7 @@ void MWindowPrivate::handleLanguageChangeEvent(QEvent *event)
     // the events as event handlers might delete widgets, therefore
     // making the list returned by scene()->items() inaccurate
     // and containing dangling pointers
-    QList< QWeakPointer<MWidget> > wigdetsToGetEvent;
+    QList< QPointer<MWidget> > wigdetsToGetEvent;
 
     // Build wigdetsToGetEvent list
     // OBS: We will send the event in a root-to-leafs order for the sake of
@@ -474,20 +480,20 @@ void MWindowPrivate::handleLanguageChangeEvent(QEvent *event)
 
     // Use wigdetsToGetEvent list
     MWidget *mWidget;
-    Q_FOREACH(const QWeakPointer<MWidget>& widgetPointer, wigdetsToGetEvent) {
+    Q_FOREACH(const QPointer<MWidget>& widgetPointer, wigdetsToGetEvent) {
         mWidget = widgetPointer.data();
         if (mWidget)
             qApp->sendEvent(mWidget, event);
     }
 }
 
-void MWindowPrivate::findMWidgets(QList< QWeakPointer<MWidget> > &mWidgetsList,
+void MWindowPrivate::findMWidgets(QList< QPointer<MWidget> > &mWidgetsList,
                                   QGraphicsItem *item)
 {
     if (item->isWidget()) {
         MWidget *mWidget = qobject_cast<MWidget*>(static_cast<QGraphicsWidget *>(item));
         if (mWidget) {
-            mWidgetsList.append(QWeakPointer<MWidget>(mWidget));
+            mWidgetsList.append(QPointer<MWidget>(mWidget));
         }
     }
 
@@ -1660,5 +1666,7 @@ void MWindow::setRoundedCornersEnabled(bool enabled)
 }
 
 #ifndef UNIT_TEST
+// Xlib's Bool macro collides with QMetaType::Bool in Qt 5's moc output
+#undef Bool
 #include "moc_mwindow.cpp"
 #endif

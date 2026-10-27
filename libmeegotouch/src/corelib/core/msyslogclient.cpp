@@ -17,6 +17,7 @@
 **
 ****************************************************************************/
 
+#include <unistd.h>
 #include <QApplication>
 #include <QLocalSocket>
 #include <QUdpSocket>

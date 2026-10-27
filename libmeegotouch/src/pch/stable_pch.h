@@ -74,8 +74,7 @@
 #include <QHash>
 #include <QIODevice>
 #include <QImage>
-#include <QInputContext>
-#include <QInputContextFactory>
+#include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QItemSelection>
 #include <QItemSelectionModel>

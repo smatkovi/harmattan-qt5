@@ -23,7 +23,7 @@
 #include "mabstractwidgetanimation_p.h"
 #include "mstatusareaslideanimation.h"
 #include <QPointF>
-#include <QWeakPointer>
+#include <QPointer>
 
 class QPauseAnimation;
 class QPropertyAnimation;
@@ -51,7 +51,7 @@ private:
     QPropertyAnimation* statusBarPosAnimation;
     QSequentialAnimationGroup* statusBarAnimation;
 
-    QWeakPointer<MWidgetController> statusBarPointer;
+    QPointer<MWidgetController> statusBarPointer;
 };
 
 #endif

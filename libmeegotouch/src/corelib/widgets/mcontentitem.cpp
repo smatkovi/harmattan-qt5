@@ -17,6 +17,7 @@
 **
 ****************************************************************************/
 
+#include <QMetaMethod>
 #include <QPixmap>
 #include <mwidgetstyle.h>
 #include "mcontentitem.h"
@@ -255,20 +256,26 @@ void MContentItem::setSmallText(QString text)
     }
 }
 
-void MContentItem::connectNotify(const char *signal)
+// as SIGNAL() writes a signal: Qt 5 passes connectNotify() a QMetaMethod
+static QByteArray signalString(const QMetaMethod &signal)
+{
+    return QByteArray("2") + signal.methodSignature();
+}
+
+void MContentItem::connectNotify(const QMetaMethod &signal)
 {
     Q_D(MContentItem);
 
-    if (QLatin1String(signal) == SIGNAL(longTapped(QPointF))) {
+    if (signalString(signal) == SIGNAL(longTapped(QPointF))) {
         d->updateLongTapConnections();
     }
 }
 
-void MContentItem::disconnectNotify(const char *signal)
+void MContentItem::disconnectNotify(const QMetaMethod &signal)
 {
     Q_D(MContentItem);
 
-    if (QLatin1String(signal) == SIGNAL(longTapped(QPointF))) {
+    if (signalString(signal) == SIGNAL(longTapped(QPointF))) {
         d->updateLongTapConnections();
     }
 }

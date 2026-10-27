@@ -45,7 +45,7 @@ const MStyle *MTheme::style(const char *styleClassName,
     sheet.load(qApp->applicationDirPath() + "/ft_mstylesheet_testobject.css");
     QList<const MStyleSheet *> sheets;
     sheets.append(&sheet);
-    return MStyleSheet::style(sheets, styleClassName, objectName.toAscii(), mode.toAscii(), type.toAscii(), orientation, parent);
+    return MStyleSheet::style(sheets, styleClassName, objectName.toLatin1(), mode.toLatin1(), type.toLatin1(), orientation, parent);
 }
 
 

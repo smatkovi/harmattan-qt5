@@ -703,7 +703,7 @@ bool MStyleSheetParserPrivate::importFile(const QByteArray &filename, bool valid
         return MStyleSheetParser::validate(parsedFileInfo.absolutePath() + QDir::separator() + filename);
     }
     // add imported file to include list
-    QByteArray includeFileName = parsedFileInfo.absolutePath().toAscii() + QDir::separator().toAscii() + filename;
+    QByteArray includeFileName = parsedFileInfo.absolutePath().toLatin1() + QDir::separator().toLatin1() + filename;
     uint lastModified = modificationTime(includeFileName.constData());
     privateFileInfo->includes.push_back(QPair<QByteArray, uint>(includeFileName, lastModified));
 
@@ -1565,7 +1565,7 @@ bool MStyleSheetParser::validate(const QString &filename)
     QFileInfo fileInfo(filename);
     if (file.open(QFile::ReadOnly)) {
         MStyleSheetParser::StylesheetFileInfo *privateFileInfo = new MStyleSheetParser::StylesheetFileInfo;
-        privateFileInfo->filename = filename.toAscii();
+        privateFileInfo->filename = filename.toLatin1();
 
         result = p->parse(file, fileInfo, true);
         file.close();

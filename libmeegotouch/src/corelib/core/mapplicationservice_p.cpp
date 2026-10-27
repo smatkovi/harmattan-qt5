@@ -17,6 +17,7 @@
 **
 ****************************************************************************/
 
+#include <unistd.h>
 #include <QProcess>
 #include <QStringList>
 #include <QDBusConnection>

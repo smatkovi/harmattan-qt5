@@ -194,9 +194,9 @@ MStyle *MStyleSheet::style(const QList<const MStyleSheet *>& sheets,
     QByteArray parentStyleName;
     if (parent) {
         if (!parent->styleName().isNull())
-            parentStyleName = parent->styleName().toAscii();
+            parentStyleName = parent->styleName().toLatin1();
         else
-            parentStyleName = parent->objectName().toAscii();
+            parentStyleName = parent->objectName().toLatin1();
     }
 
     return MStyleSheetPrivate::style(sheets, parentsData, parentStyleName, styleMetaObjectHierarchy, styleClassName, objectName, mode, type, orientation);

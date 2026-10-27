@@ -249,7 +249,7 @@ const QRect &MInputWidgetRelocator::exposedContentRect()
     // Need to also handle the case where part of the input panel is outside of the visible scene
     // size, hence the intersection. It is also assumed that the input panel always pops up from
     // the bottom of the visible scene area.
-    const int obstructedHeight(mappedPanelRect.intersect(cachedExposedRect).height());
+    const int obstructedHeight(mappedPanelRect.intersected(cachedExposedRect).height());
     cachedExposedRect.setHeight(cachedExposedRect.height() - obstructedHeight);
 
     return cachedExposedRect;

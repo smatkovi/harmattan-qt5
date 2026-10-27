@@ -21,7 +21,7 @@
 #define UT_MWIDGETANIMATION_H
 
 #include <QtTest/QtTest>
-#include <QtGui/QMainWindow>
+#include <QMainWindow>
 #include "mwidgetanimation.h"
 #include "mwidgetanimation_p.h"
 #include <MApplication>

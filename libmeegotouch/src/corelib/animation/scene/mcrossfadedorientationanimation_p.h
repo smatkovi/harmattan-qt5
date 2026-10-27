@@ -23,7 +23,7 @@
 
 #include "msnapshotitem.h"
 
-#include <QWeakPointer>
+#include <QPointer>
 
 class QPropertyAnimation;
 
@@ -75,7 +75,7 @@ public:
     // The rotation point of the snapshot item, in its local coordinates.
     QPointF snapshotRotationPoint;
 
-    QWeakPointer<QGraphicsWidget> backgroundLayerEffectPointer;
+    QPointer<QGraphicsWidget> backgroundLayerEffectPointer;
 };
 
 #endif

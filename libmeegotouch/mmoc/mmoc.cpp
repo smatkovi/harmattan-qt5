@@ -129,8 +129,12 @@ void runModelMoc(const QString& header, const QStringList& arguments)
             break;
         }
 
-        line.replace(propertyRegExp, "    Q_PROPERTY(\\1 \\2 READ \\2 WRITE set\\3)");
-        line.replace(propertyPtrRegExp, "    Q_PROPERTY(\\1 \\2 READ \\2 WRITE set\\3)");
+        // not the macros' own definitions, which Qt 5's moc would see
+        // broken
+        if (!line.trimmed().startsWith("#define")) {
+            line.replace(propertyRegExp, "    Q_PROPERTY(\\1 \\2 READ \\2 WRITE set\\3)");
+            line.replace(propertyPtrRegExp, "    Q_PROPERTY(\\1 \\2 READ \\2 WRITE set\\3)");
+        }
         p.write(QString(line + "\n").toLatin1());
     }
     p.closeWriteChannel();
@@ -171,8 +175,10 @@ void runStyleMoc(const QString& header, const QStringList& arguments)
             break;
         }
 
-        line.replace(attributeRegExp, "    Q_PROPERTY(\\1 \\2 READ \\2 WRITE set\\3)");
-        line.replace(attributePtrRegExp, "    Q_PROPERTY(const \\1 \\2 READ \\2 WRITE set\\3)");
+        if (!line.trimmed().startsWith("#define")) {
+            line.replace(attributeRegExp, "    Q_PROPERTY(\\1 \\2 READ \\2 WRITE set\\3)");
+            line.replace(attributePtrRegExp, "    Q_PROPERTY(const \\1 \\2 READ \\2 WRITE set\\3)");
+        }
         p.write(QString(line + "\n").toLatin1());
     }
     p.closeWriteChannel();

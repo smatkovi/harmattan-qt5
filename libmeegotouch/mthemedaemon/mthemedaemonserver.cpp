@@ -19,6 +19,7 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <unistd.h>
 
 #include "mthemedaemonserver.h"
 #include <theme/mthemedaemonclient.h>
@@ -833,9 +834,9 @@ QString MThemeDaemonServer::MemoryUsagePrinter::keyForHandle(const MPixmapHandle
     QString key;
     if (handle.isValid()) {
         if (handle.xHandle) {
-            key = QString::number(static_cast<qulonglong>(handle.xHandle));
+            key = QString::number(static_cast<qulonglong>(reinterpret_cast<quintptr>(handle.xHandle)));
         } else {
-            key = QString::number(static_cast<qulonglong>(handle.eglHandle));
+            key = QString::number(static_cast<qulonglong>(reinterpret_cast<quintptr>(handle.eglHandle)));
         }
     }
     return key;

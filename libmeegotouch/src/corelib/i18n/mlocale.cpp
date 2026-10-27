@@ -4111,7 +4111,7 @@ QString MLocale::toLocalizedNumbers(const QString &text) const
 #endif
         icu::NumberingSystem * targetNumSys =
             NumberingSystem::createInstanceByName(
-                targetNumberingSystem.toAscii().constData(), status);
+                targetNumberingSystem.toLatin1().constData(), status);
         if(U_FAILURE(status)) {
             mDebug("MLocale") << __PRETTY_FUNCTION__
                               << "Error NumberingSystem::createInstanceByName()"

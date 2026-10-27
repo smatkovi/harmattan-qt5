@@ -17,6 +17,7 @@
 **
 ****************************************************************************/
 
+#include <QMetaMethod>
 #include "mtextedit.h"
 #include "mtextedit_p.h"
 
@@ -25,7 +26,8 @@
 #include <QTextDocument>
 #include <QTextCursor>
 #include <QTextCharFormat>
-#include <QInputContext>
+#include <QGuiApplication>
+#include <QInputMethod>
 #include <QApplication>
 #include <QGraphicsSceneMouseEvent>
 #include <QTextBlock>
@@ -314,9 +316,15 @@ MTextEditSignalEmitter::~MTextEditSignalEmitter()
 {
 }
 
-void MTextEditSignalEmitter::connectNotify(const char *signal)
+// as SIGNAL() writes a signal: Qt 5 passes connectNotify() a QMetaMethod
+static QByteArray signalString(const QMetaMethod &signal)
 {
-    if (QLatin1String(signal) == SIGNAL(scenePositionChanged())) {
+    return QByteArray("2") + signal.methodSignature();
+}
+
+void MTextEditSignalEmitter::connectNotify(const QMetaMethod &signal)
+{
+    if (signalString(signal) == SIGNAL(scenePositionChanged())) {
         // initialize the oldItemSendsScenePositionChanges flag
         if (scenePositionChangedConnections == 0) {
             oldItemSendsScenePositionChanges = editPtr.q_func()->flags()
@@ -328,9 +336,9 @@ void MTextEditSignalEmitter::connectNotify(const char *signal)
     QObject::connectNotify(signal);
 }
 
-void MTextEditSignalEmitter::disconnectNotify(const char *signal)
+void MTextEditSignalEmitter::disconnectNotify(const QMetaMethod &signal)
 {
-    if (QLatin1String(signal) == SIGNAL(scenePositionChanged())) {
+    if (signalString(signal) == SIGNAL(scenePositionChanged())) {
         scenePositionChangedConnections--;
         if (scenePositionChangedConnections <= 0 && !oldItemSendsScenePositionChanges) {
             editPtr.q_func()->setFlag(QGraphicsItem::ItemSendsScenePositionChanges, false);
@@ -1171,11 +1179,10 @@ bool MTextEditPrivate::isPreediting() const
 void MTextEditPrivate::requestSip()
 {
     Q_Q(MTextEdit);
-    QInputContext *inputContext = qApp->inputContext();
     QGraphicsView *focusedGraphicsView = dynamic_cast<QGraphicsView *>(QApplication::focusWidget());
 
     const bool editable = q->model()->textInteractionFlags() & Qt::TextEditable;
-    if (!inputContext || !focusedGraphicsView || !editable) {
+    if (!focusedGraphicsView || !editable) {
         return;
     }
 
@@ -1187,7 +1194,7 @@ void MTextEditPrivate::requestSip()
     // Enforce update if focus is moved from one MTextEdit to other.
     // If WA_InputMethodEnabled is not set then Qt will call
     // setFocusWidget automatically
-    inputContext->setFocusWidget(focusedGraphicsView);
+    // (Qt 5 follows the focus object itself: no setFocusWidget())
 
     MInputMethodState::requestSoftwareInputPanel();
 }
@@ -1223,19 +1230,11 @@ void MTextEditPrivate::notifyInputContextMouseHandler(int position,
         return;
     }
 
-    QInputContext *ic = qApp->inputContext();
-
-    if (ic == 0) {
+    // Qt 5: a click on the preedit is an input method action
+    if (translateGraphicsSceneMouseTypeToQMouse(event->type()) != QEvent::MouseButtonRelease)
         return;
-    }
-
-    // translate to normal mouse event and send to input context
-    QEvent::Type mouseEventType = translateGraphicsSceneMouseTypeToQMouse(event->type());
-    QPoint mousePoint = event->screenPos(); // right?
-    QMouseEvent mouseEvent(mouseEventType, mousePoint, event->button(),
-                           event->buttons(), event->modifiers());
     int preeditOffset = position - cursor()->anchor();
-    ic->mouseHandler(preeditOffset, &mouseEvent);
+    QGuiApplication::inputMethod()->invokeAction(QInputMethod::Click, preeditOffset);
 }
 
 
@@ -1605,13 +1604,11 @@ void MTextEditPrivate::updateMicroFocus()
 void MTextEditPrivate::icUpdate()
 {
     Q_Q(MTextEdit);
-    QInputContext *ic = qApp->inputContext();
-
-    if (!ic || !q->hasFocus()) {
+    if (!q->hasFocus()) {
         return;
     }
 
-    ic->update();
+    QGuiApplication::inputMethod()->update(Qt::ImQueryAll);
 }
 
 void MTextEditPrivate::safeReset()
@@ -1619,12 +1616,9 @@ void MTextEditPrivate::safeReset()
     Q_Q(MTextEdit);
 
     if (q->hasFocus()) {
-        QInputContext *ic = qApp->inputContext();
-        if (ic) {
-            omitInputMethodEvents = true;
-            ic->reset();
-            omitInputMethodEvents = false;
-        }
+        omitInputMethodEvents = true;
+        QGuiApplication::inputMethod()->reset();
+        omitInputMethodEvents = false;
     }
 }
 
@@ -2093,10 +2087,10 @@ void MTextEdit::focusInEvent(QFocusEvent *event)
 
     d->_q_updateTextDirection();
     bool ok = true;
-    ok &= connect(this, SIGNAL(cursorPositionChanged()),
-                  this, SLOT(_q_updateTextDirection()));
-    ok &= connect(MInputMethodState::instance(), SIGNAL(languageChanged(QString)),
-                  this, SLOT(_q_updateTextDirection()));
+    ok &= bool(connect(this, SIGNAL(cursorPositionChanged()),
+                       this, SLOT(_q_updateTextDirection())));
+    ok &= bool(connect(MInputMethodState::instance(), SIGNAL(languageChanged(QString)),
+                       this, SLOT(_q_updateTextDirection())));
     Q_ASSERT(ok);
 
     if (sceneManager()) {
@@ -2428,8 +2422,9 @@ void MTextEdit::handleMouseRelease(int eventCursorPosition, QGraphicsSceneMouseE
                 // active.
                 bool injectionAccepted = false;
 
-                QInputContext *ic = qApp->inputContext();
-                if (ic) { 
+                // Qt 5's input methods take no injected preedit: the
+                // word stays as it is
+                if (false) {
                     QString preedit = text.mid(start, end - start);
                     d->preeditInjectionInProgress = true;
 #ifdef HAVE_MALIIT
@@ -2437,7 +2432,7 @@ void MTextEdit::handleMouseRelease(int eventCursorPosition, QGraphicsSceneMouseE
 #else
                     MPreeditInjectionEvent event(preedit, eventCursorPosition - start);
 #endif
-                    injectionAccepted = ic->filterEvent(&event);
+                    Q_UNUSED(event);
                     d->preeditInjectionInProgress = false;
                 }
 

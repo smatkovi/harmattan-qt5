@@ -17,6 +17,7 @@
 **
 ****************************************************************************/
 
+#include <QMetaMethod>
 #include <QVector>
 #include <QGraphicsSceneEvent>
 #include <QGraphicsGridLayout>
@@ -324,20 +325,26 @@ void MList::keyPressEvent(QKeyEvent *event)
         d->listFilter->keyPressEvent(event);
 }
 
-void MList::connectNotify(const char *signal)
+// as SIGNAL() writes a signal: Qt 5 passes connectNotify() a QMetaMethod
+static QByteArray signalString(const QMetaMethod &signal)
+{
+    return QByteArray("2") + signal.methodSignature();
+}
+
+void MList::connectNotify(const QMetaMethod &signal)
 {
     Q_D(MList);
-    if (QLatin1String(signal) == SIGNAL(itemLongTapped(QModelIndex)) ||
-        QLatin1String(signal) == SIGNAL(itemLongTapped(QModelIndex,QPointF))) {
+    if (signalString(signal) == SIGNAL(itemLongTapped(QModelIndex)) ||
+        signalString(signal) == SIGNAL(itemLongTapped(QModelIndex,QPointF))) {
         d->updateLongTapConnections();
     }
 }
 
-void MList::disconnectNotify(const char *signal)
+void MList::disconnectNotify(const QMetaMethod &signal)
 {
     Q_D(MList);
-    if (QLatin1String(signal) == SIGNAL(itemLongTapped(QModelIndex)) ||
-        QLatin1String(signal) == SIGNAL(itemLongTapped(QModelIndex,QPointF))) {
+    if (signalString(signal) == SIGNAL(itemLongTapped(QModelIndex)) ||
+        signalString(signal) == SIGNAL(itemLongTapped(QModelIndex,QPointF))) {
         d->updateLongTapConnections();
     }
 }

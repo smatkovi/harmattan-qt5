@@ -20,6 +20,7 @@
 #ifndef MLIST_H
 #define MLIST_H
 
+#include <QMetaMethod>
 #include <QRectF>
 
 #include "mwidgetcontroller.h"
@@ -539,12 +540,12 @@ protected:
     /*!
        Handler of notifications of new receivers connected to MList signals.
     */
-    virtual void connectNotify(const char *signal);
+    virtual void connectNotify(const QMetaMethod &signal);
 
     /*!
        Handler of notifications of receivers disconnecting from MList signals.
     */
-    virtual void disconnectNotify(const char *signal);
+    virtual void disconnectNotify(const QMetaMethod &signal);
 
 private:
     Q_DECLARE_PRIVATE(MList)

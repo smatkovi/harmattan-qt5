@@ -18,6 +18,7 @@
 ****************************************************************************/
 
 #include <QtGui>
+#include <QtWidgets>
 #include <QDebug>
 #include <QDBusInterface>
 #include <QDBusConnection>

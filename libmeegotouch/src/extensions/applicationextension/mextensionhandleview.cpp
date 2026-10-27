@@ -41,12 +41,14 @@
 static void destroySharedXPixmap(QPixmap *qPixmap)
 {
     if (qPixmap != NULL) {
-#ifdef Q_WS_X11
+#if defined(Q_WS_X11) && QT_VERSION < 0x050000
         Pixmap xPixmap = qPixmap->handle();
         delete qPixmap;
         if (xPixmap != 0) {
             XFreePixmap(QX11Info::display(), xPixmap);
         }
+#else
+        delete qPixmap;
 #endif
     }
 }
@@ -149,7 +151,9 @@ void MExtensionHandleViewPrivate::sizeChanged(QSizeF size)
 
 void MExtensionHandleViewPrivate::allocatePixmapToBeTakenIntoUse(QSizeF size)
 {
-#ifdef Q_WS_X11
+    // Qt 5 has no QPixmap on a shared X pixmap: out of process extensions
+    // are not drawn (MApplicationExtensionManager runs them in process)
+#if defined(Q_WS_X11) && QT_VERSION < 0x050000
     // Allocate a new pixmap to be taken into use
     QSizeF pixmapSize = size.expandedTo(QSizeF(1, 1));
     Pixmap pixmap = XCreatePixmap(QX11Info::display(), QX11Info::appRootWindow(), pixmapSize.width(), pixmapSize.height(), QX11Info::appDepth());

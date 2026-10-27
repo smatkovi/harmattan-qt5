@@ -46,12 +46,12 @@ void MBasicListItemInsertionAnimationPrivate::_q_resetAnimation()
 
 void MBasicListItemInsertionAnimationPrivate::appendTargetWidget(MWidget *cell)
 {
-    targets.insert(new QWeakPointer<MWidget>(cell), TargetDefaultProperties(cell->zValue(), cell->opacity(), cell->scale(), cell->isVisible()));
+    targets.insert(new QPointer<MWidget>(cell), TargetDefaultProperties(cell->zValue(), cell->opacity(), cell->scale(), cell->isVisible()));
 }
 
 void MBasicListItemInsertionAnimationPrivate::resetTargetWidgets()
 {
-    foreach (QWeakPointer<MWidget> *cell, targets.keys()) {
+    foreach (QPointer<MWidget> *cell, targets.keys()) {
         if (!cell->isNull()) {
             TargetDefaultProperties properties = targets.value(cell);
             cell->data()->setZValue(properties.zValue);

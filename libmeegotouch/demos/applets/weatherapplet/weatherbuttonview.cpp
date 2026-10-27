@@ -20,6 +20,7 @@
 #include "weatherbuttonview.h"
 
 #include <QtGui>
+#include <QtWidgets>
 #include <QPainter>
 #include <QX11Info>
 #include <QTimeLine>

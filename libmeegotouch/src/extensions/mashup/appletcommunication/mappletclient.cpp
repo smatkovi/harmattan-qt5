@@ -17,6 +17,7 @@
 **
 ****************************************************************************/
 
+#include <unistd.h>
 #include "mappletclient.h"
 #include <MDebug>
 

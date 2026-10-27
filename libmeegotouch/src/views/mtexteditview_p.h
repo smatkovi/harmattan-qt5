@@ -215,8 +215,8 @@ protected:
 
     bool editActive; // true if editing started and having focus
 
-    QWeakPointer<MTextMagnifier> magnifier;
-    QWeakPointer<MEditorToolbar> editorToolbar;
+    QPointer<MTextMagnifier> magnifier;
+    QPointer<MEditorToolbar> editorToolbar;
 
     qreal currentPromptOpacity;
     QPropertyAnimation promptFocusAnimation;
@@ -228,7 +228,7 @@ protected:
 
     bool focusingTap;
 
-    QWeakPointer<MTextSelectionOverlay> selectionOverlay;
+    QPointer<MTextSelectionOverlay> selectionOverlay;
     bool selectionHandleIsPressed;
     QPointF lastHandlePos;
     QElapsedTimer handleTime;

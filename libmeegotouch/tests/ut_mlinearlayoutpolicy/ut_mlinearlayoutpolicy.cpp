@@ -24,8 +24,8 @@
 #include <mlayout.h>
 #include <mlinearlayoutpolicy.h>
 
-#include <QtGui/QGraphicsLinearLayout>
-#include <QtGui/QGraphicsWidget>
+#include <QGraphicsLinearLayout>
+#include <QGraphicsWidget>
 
 /**
     MockLayoutItem objects are layed out with the layout policy to test.

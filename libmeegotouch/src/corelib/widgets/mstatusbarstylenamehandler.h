@@ -21,7 +21,7 @@
 #define MSTATUSBARSTYLENAMEHANDLER_H
 
 #include <QString>
-#include <QWeakPointer>
+#include <QPointer>
 
 class MSceneWindow;
 class MSceneWindowEvent;
@@ -54,7 +54,7 @@ public:
 private:
     void updateStatusBarStyleName();
 
-    QWeakPointer<MSceneWindow> statusBarPointer;
+    QPointer<MSceneWindow> statusBarPointer;
     int sheetsBeingShown;
     int sceneWindowsBlockingSheets;
     QString regularStyleName;

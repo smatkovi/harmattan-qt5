@@ -19,7 +19,7 @@
 
 #include "mfreestylelayoutpolicy.h"
 #include "mfreestylelayoutpolicy_p.h"
-#include <QtGui/QWidget>
+#include <QWidget>
 MFreestyleLayoutPolicy::MFreestyleLayoutPolicy(MLayout *layout) :
     MAbstractLayoutPolicy(*(new MFreestyleLayoutPolicyPrivate(layout)))
 { }

@@ -506,7 +506,7 @@ void Ft_Locales::testCreateSystemLocale()
     QFETCH(QString, env);
     QFETCH(QString, locale);
 
-    setenv("LANG", env.toAscii().data(), 1);
+    setenv("LANG", env.toLatin1().data(), 1);
 
     languageItem.set(conf);
     MLocale *z = MLocale::createSystemMLocale();

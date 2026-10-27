@@ -53,5 +53,5 @@ MApplicationExtensionInterface *MApplicationExtensionLoader::loadExtension(const
         mWarning("MApplicationExtensionLoader") << "Application extension" << metadata.fileName() << "could not be loaded." << loader.errorString();
     }
 
-    return false;
+    return 0;
 }

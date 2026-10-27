@@ -68,7 +68,7 @@ void MSceneLayerEffect::mousePressEvent(QGraphicsSceneMouseEvent *event)
     Q_D(MSceneLayerEffect);
     event->accept();
 
-    if (scene()->itemAt(event->scenePos()) == this) {
+    if (scene()->itemAt(event->scenePos(), QTransform()) == this) {
         // The layer was pressed directly
         d->layerPressedDirectly = true;
     } else {
@@ -89,7 +89,7 @@ void MSceneLayerEffect::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     if (d->layerPressedDirectly) {
         // reset value
         d->layerPressedDirectly = false;
-        if (scene()->itemAt(event->scenePos()) == this) {
+        if (scene()->itemAt(event->scenePos(), QTransform()) == this) {
             // Mouse was released on top of the layer effect. That constitutes a
             // proper click event.
             // Let's dismiss our associated scene window.

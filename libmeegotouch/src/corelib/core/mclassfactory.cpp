@@ -29,7 +29,7 @@
 #include <QString>
 #include <MDebug>
 
-void mMessageHandler(QtMsgType type, const char *msg);
+void mQt5MessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
 class MClassFactoryPrivate
 {
@@ -42,7 +42,7 @@ public:
         // message handler as the original one could already
         // be destroyed at this point in time which leads to
         // a crash.
-        qInstallMsgHandler(mMessageHandler);
+        qInstallMessageHandler(mQt5MessageHandler);
     }
 
     QHash<QByteArray, MWidgetCreatorBase *> widgetCreators;

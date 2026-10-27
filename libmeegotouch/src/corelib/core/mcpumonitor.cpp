@@ -132,7 +132,7 @@ void MCpuMonitorPrivate::getCpuUsageInformation(unsigned long &total, unsigned l
 
         qint64 readBytes = statFile.readLine(buf, 256);
         if (readBytes > 0)
-            l = QString::fromAscii(buf).split(' ');
+            l = QString::fromLatin1(buf).split(' ');
 
         int idx = 0;
         QStringList::const_iterator end = l.constEnd();

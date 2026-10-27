@@ -51,7 +51,7 @@ QPropertyAnimation *MWidgetAnimationPrivate::getAnimation(QGraphicsWidget *widge
     } else {
         QPropertyAnimation *a = new QPropertyAnimation();
         a->setTargetObject(widget);
-        a->setPropertyName(property.toAscii());
+        a->setPropertyName(property.toLatin1());
         a->setDuration(duration);
         a->setEasingCurve(easingCurve);
         animationList.insert(property, a);
@@ -67,7 +67,7 @@ void MWidgetAnimationPrivate::setTargetForAllWidgets(const QString &property, co
         QGraphicsWidget  *widget = i.key();
         QPropertyAnimation *a = getAnimation(widget, property);
         if (a) {
-            a->setStartValue(widget->property(property.toAscii()));
+            a->setStartValue(widget->property(property.toLatin1()));
             a->setEndValue(value);
         }
     }
@@ -166,7 +166,7 @@ void MWidgetAnimation::setTargetValue(QGraphicsWidget *widget, const QString &pr
     if (!widget)
         d->setTargetForAllWidgets(property, value);
     else {
-        d->getAnimation(widget, property)->setStartValue(widget->property(property.toAscii()));
+        d->getAnimation(widget, property)->setStartValue(widget->property(property.toLatin1()));
         d->getAnimation(widget, property)->setEndValue(value);
     }
 }

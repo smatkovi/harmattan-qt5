@@ -23,6 +23,8 @@
 #include <QApplication>
 #ifdef Q_WS_X11
 #include <QX11Info>
+// Xlib's event union (Qt 5's headers no longer bring Xlib in)
+typedef union _XEvent XEvent;
 #endif
 
 #include "mexport.h"
@@ -304,7 +306,9 @@ protected:
 
 #ifdef Q_WS_X11
     //! \reimp
-    bool x11EventFilter(XEvent *event);
+    // (Qt 5's QApplication has no x11EventFilter() to reimplement: virtual
+    // here, called by MApplication's xcb event filter)
+    virtual bool x11EventFilter(XEvent *event);
     //! \reimp_end
 #endif
 
@@ -319,6 +323,9 @@ private:
 
 #ifdef UNIT_TEST
     friend class Ut_MApplication;
+#endif
+#ifdef Q_WS_X11
+    friend class MX11EventBridge;
 #endif
 };
 

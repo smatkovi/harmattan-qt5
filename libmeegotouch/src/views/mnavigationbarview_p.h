@@ -83,7 +83,7 @@ public:
     MButton *backButton;
     MButton *closeButton;
 
-    QWeakPointer<QGraphicsWidget> currentCustomContent;
+    QPointer<QGraphicsWidget> currentCustomContent;
 
     MDynamicPropertyWatcher *toolBarIsEmptyWatcher;
 

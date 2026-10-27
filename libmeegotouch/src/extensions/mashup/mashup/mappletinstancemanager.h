@@ -24,6 +24,9 @@
 #include <QString>
 #include <QHash>
 #include <QSizeF>
+#include <QObject>
+#include <QVariant>
+#include <QMap>
 
 class QGraphicsWidget;
 class MDataStore;

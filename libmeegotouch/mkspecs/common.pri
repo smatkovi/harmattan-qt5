@@ -15,17 +15,17 @@ QMAKE_TARGET_COPYRIGHT = Copyright (C) 2010 Nokia
     include($${M_BUILD_TREE}/mkspecs/meegotouchconfig.pri)
 }
 
-#disable werrors on windows and freemantle (M_OS_MAEMO5 comes from meegotouchconfig.pri)
-win32 {
-    } else {
-        contains( DEFINES, M_OS_MAEMO5 ) {
-        } else { 
-	    !contains( M_BUILD_FEATURES, no-werror ) {
-	        QMAKE_CFLAGS *= -Werror
-	        QMAKE_CXXFLAGS *= -Werror
-            }
-        }
-    }
+# No -Werror: today's compilers and Qt 5's deprecations warn where
+# Harmattan's GCC 4.4 and Qt 4.7 did not
+
+# Qt 5: the graphics view and QApplication in QtWidgets, QX11Info in
+# QtX11Extras; Qt 5 no longer defines Q_WS_X11, which MeeGo Touch's X11
+# code is written under (also for the tools that include this file)
+QT *= widgets
+unix:!macx {
+    QT *= x11extras
+    DEFINES *= Q_WS_X11
+}
 
 contains(TEMPLATE, app) {
     DEFINES += M_APPLICATION_NAME=\\\"$(QMAKE_TARGET)\\\"
