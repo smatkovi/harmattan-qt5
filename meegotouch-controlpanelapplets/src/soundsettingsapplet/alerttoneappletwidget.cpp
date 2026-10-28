@@ -26,10 +26,40 @@
 #include <QGraphicsLinearLayout>
 #include <MSeparator>
 #include <MApplicationPage>
+#if QT_VERSION < 0x050000
 #include <QSystemDeviceInfo>
+#else
+#include <QFile>
+#endif
 #include <QTimer>
 
+#if QT_VERSION < 0x050000
 using namespace QtMobility;
+#else
+/*
+ * Qt 5 has no QtMobility: a keyboard is an input device with the keyboard
+ * handler and a full key map (a few keys, as the power or volume keys
+ * have, are no keyboard).
+ */
+static bool
+hasHardwareKeyboard ()
+{
+    QFile devices ("/proc/bus/input/devices");
+    if (!devices.open (QIODevice::ReadOnly))
+        return false;
+    bool kbdHandler = false;
+    foreach (const QByteArray &line, devices.readAll ().split ('\n')) {
+        if (line.startsWith ("H: Handlers="))
+            kbdHandler = line.contains ("kbd");
+        else if (line.startsWith ("B: KEY=") && kbdHandler &&
+                 line.mid (7).trimmed ().split (' ').size () >= 5)
+            return true;
+        else if (line.isEmpty ())
+            kbdHandler = false;
+    }
+    return false;
+}
+#endif
 
 #include "soundsettingsutils.h"
 #include "alerttonewidget.h"
@@ -316,14 +346,18 @@ AlertToneAppletWidget::createFeedbackList(
          * Lets cache this value in GConf, as it is faster than querying it
          * XXX: This doesn't help on the first opening time
          */
+        hkbItem.set (false);
+#if QT_VERSION < 0x050000
         QSystemDeviceInfo devInfo;
         QSystemDeviceInfo::KeyboardTypeFlags keybFlags = devInfo.keyboardTypes ();
 
-        hkbItem.set (false);
         if ((keybFlags & QSystemDeviceInfo::FlipKeyboard) ||
             (keybFlags & QSystemDeviceInfo::FullQwertyKeyboard) ||
             (keybFlags & QSystemDeviceInfo::HalfQwertyKeyboard) ||
             (keybFlags & QSystemDeviceInfo::ITUKeypad))
+#else
+        if (hasHardwareKeyboard ())
+#endif
         {
             /* has hardware keyboard */
             hkbItem.set (true);

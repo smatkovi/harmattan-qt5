@@ -26,7 +26,13 @@ QMAKE_CXXFLAGS += -fvisibility=hidden -fvisibility-inlines-hidden -fPIC
 # some of these, but for that we need to use the LIBMEEGOCONTROL define in the
 # soundsettingsapplet source.
 #
-PKGCONFIG += dbus-1 profile gstreamer-0.10
+# (Qt 5: GStreamer 1.0)
+lessThan(QT_MAJOR_VERSION, 5) {
+    PKGCONFIG += dbus-1 profile gstreamer-0.10
+} else {
+    QT += widgets
+    PKGCONFIG += dbus-1 profile gstreamer-1.0
+}
 
 ###########################################
 # soundsetting applet extra dependencies  #

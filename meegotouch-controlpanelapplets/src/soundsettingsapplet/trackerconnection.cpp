@@ -306,11 +306,13 @@ TrackerConnection::processRequest (
 #endif
 
 fallback:
+#ifdef HAVE_QTSPARQL
     if (result)
     {
         delete result;
         result = 0;
     }
+#endif
 
     /*
      * This part is handling the case when the tracker information is not

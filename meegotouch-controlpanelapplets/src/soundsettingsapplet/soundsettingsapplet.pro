@@ -15,14 +15,24 @@ CONFIG +=           \
     gui             \
     meegotouchcore  \
     link_pkgconfig  \
-    duicontrolpanel \
-    timed           \
-    mobility
+    duicontrolpanel
 
-MOBILITY +=         \
-    systeminfo
-
-PKGCONFIG += dbus-1 profile gstreamer-0.10
+# Qt 5: GStreamer 1.0; the hardware keyboard from the input devices instead
+# of QtMobility's system info; timed (the alarms' own tones) only where it
+# is installed
+lessThan(QT_MAJOR_VERSION, 5) {
+    CONFIG += timed mobility
+    MOBILITY += systeminfo
+    DEFINES += HAVE_TIMED
+    PKGCONFIG += dbus-1 profile gstreamer-0.10
+} else {
+    QT += widgets dbus
+    PKGCONFIG += dbus-1 profile gstreamer-1.0
+    exists($$[QT_INSTALL_DATA]/mkspecs/features/timed.prf) {
+        CONFIG += timed
+        DEFINES += HAVE_TIMED
+    }
+}
 
 DEFINES += MC_EXPORT=""
 INCLUDEPATH += \
@@ -128,6 +138,14 @@ target.path += $$(DEBIAN_DESTDIR)/$$DCP_APPLET_DIR
 INSTALLS += \
     target  \
     desktop \
-    css \
-    harmattancss
+    css
+
+# Qt 5: beside the other applets (DCP_DESKTOP_DIR is not set here); the
+# style for blanco is the N9's own theme's, nothing is written into it
+lessThan(QT_MAJOR_VERSION, 5) {
+    INSTALLS += harmattancss
+} else {
+    desktop.path = $$(DEBIAN_DESTDIR)/usr/lib/duicontrolpanel
+    target.path = $$(DEBIAN_DESTDIR)/usr/lib/duicontrolpanel/applets
+}
 

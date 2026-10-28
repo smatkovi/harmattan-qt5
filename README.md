@@ -53,7 +53,7 @@ Licences: as each package states (mostly LGPL 2.1).
 | `meegotouchhome` | builds and starts; it is the generic MeeGo home of the source release (1.2.20, quick launch bar, launcher, switcher), not the N9's three-page home (1.3.2, not released) |
 | `system-ui` | builds without QmSystem2/libresourceqt/libngf; sysuid draws the status bar that the applications show |
 | `duicontrolpanel` | the settings application runs with the N9's categories (`DCP_ROOT` for a staging directory) |
-| `meegotouch-controlpanelapplets` | about, reset, warranty and test applets; display, battery, offline and USB wait for QmSystem2, the sound settings for libprofile and GStreamer 1.0 |
+| `meegotouch-controlpanelapplets` | about, reset, warranty, test, display, battery, offline, USB and the sound settings ("Alert Tones": libprofile, as Leste's profiled has it, GStreamer 1.0 for the preview; without QtMobility, timed and QtSparql) |
 | `qmsystem2` | builds; the battery from UPower or the kernel, time without timed, the heartbeat without iphbd |
 | `libconnsettings` | builds (plain C, on Leste's osso-ic headers) |
 | `mcompositor/plugins/swipe` | new: the N9's swipe (minimize from the sides, close from the top, sneak peek) |

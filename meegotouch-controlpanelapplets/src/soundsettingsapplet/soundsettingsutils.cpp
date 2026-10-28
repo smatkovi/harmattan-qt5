@@ -24,7 +24,9 @@
 #include <QCryptographicHash>
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
+#ifdef HAVE_TIMED
 #include <timed/interface>
+#endif
 #include <QDBusReply>
 
 #include "trackerconnection.h"
@@ -392,6 +394,7 @@ SoundSettings::removeUnusedFiles (
     }
 }
 
+#ifdef HAVE_TIMED
 /******************************************************************************
  * Timed related methods.
  */
@@ -455,4 +458,16 @@ SoundSettings::customAlarmSoundFiles (
         }
     }
 }
+#else
+/*
+ * Without timed (Qt 5 builds without it) there are no alarms of the clock to
+ * ask for their own tones.
+ */
+void
+SoundSettings::customAlarmSoundFiles (
+        QSet<QString>   &files)
+{
+    Q_UNUSED (files);
+}
+#endif
 
