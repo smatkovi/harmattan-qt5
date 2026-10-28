@@ -209,7 +209,7 @@ QString MfConfigurationPrivate::getTheme()
         g_free(str);
         str = NULL;
     } else {
-        qWarning("MfConfiguration: GConf \""MFCONFIGURATION_DIR"/theme/name\" is NULL");
+        qWarning("MfConfiguration: GConf \"" MFCONFIGURATION_DIR "/theme/name\" is NULL");
         result = MeegoDefaultTheme;
     }
 
