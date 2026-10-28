@@ -34,7 +34,7 @@
 static QString firstLine(const char *const files[])
 {
     for (int i = 0; files[i]; ++i) {
-        QFile f(QLatin1String(files[i]));
+        QFile f(QString::fromLatin1(files[i]));
         if (f.open(QIODevice::ReadOnly))
             // device tree strings end with a NUL
             return QString::fromUtf8(f.readLine()).remove(QChar(0)).trimmed();
