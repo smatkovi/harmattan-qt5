@@ -19,7 +19,7 @@
 
 #include <DcpStylableWidget>
 #include <QModelIndex>
-#include <QWeakPointer>
+#include <QPointer>
 
 #include "mimsubviewmodel.h"
 #include "mimsettingscontainerstore.h"
@@ -90,9 +90,10 @@ private:
     MImSettingsListItem *availableSubViewItem;
     MImPluginEnablerWidget *swypePluginEnabler;
 
-    QWeakPointer<MPopupList> availableSubViewList;
-    QWeakPointer<MDialog> keyboardDialog;
-    QWeakPointer<MList> keyboardList;
+    // QPointer: Qt 5's QWeakPointer is no longer made from a plain QObject pointer
+    QPointer<MPopupList> availableSubViewList;
+    QPointer<MDialog> keyboardDialog;
+    QPointer<MList> keyboardList;
 
     MImOnScreenPlugins& onscreenPlugins;
     QList<MImSubview> selectedSubViews;

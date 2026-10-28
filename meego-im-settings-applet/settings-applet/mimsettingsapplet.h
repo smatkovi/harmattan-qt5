@@ -30,6 +30,8 @@ class MImPlugins;
 class MImSettingsApplet : public QObject, public DcpAppletIf
 {
     Q_OBJECT
+    // Qt 5's plugins say what they are in the class (Q_EXPORT_PLUGIN2 is gone)
+    Q_PLUGIN_METADATA(IID "com.nokia.m.core.DcpAppletIf/1.0")
     Q_INTERFACES(DcpAppletIf)
 public:
     MImSettingsApplet();

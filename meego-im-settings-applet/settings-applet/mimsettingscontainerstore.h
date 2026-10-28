@@ -20,7 +20,7 @@
 #include <QMap>
 #include <QString>
 #include <QList>
-#include <QWeakPointer>
+#include <QPointer>
 
 class MContainer;
 class MLabel;
@@ -52,7 +52,8 @@ private:
     QMap<MAbstractInputMethodSettings*, MLabel*> settingsLabelMap;
 
     // List of created MContainers:
-    QList< QWeakPointer<MContainer> > containers;
+    // QPointer: Qt 5's QWeakPointer is no longer made from a plain QObject pointer
+    QList< QPointer<MContainer> > containers;
 
 };
 

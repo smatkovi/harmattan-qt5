@@ -64,7 +64,8 @@ Licences: as each package states (mostly LGPL 2.1).
 | `meego-im-framework` | builds (legacy mode, as Harmattan: `CONFIG+=enable-legacy CONFIG+=enable-contextkit`); meego-im-uiserver shows the plugins for MeeGo Touch applications, mcompositor composites its window over theirs, text goes back; Qt 5 applications reach it through `platforminputcontext` (Qt 5.1's Maliit platform input context, `QT_IM_MODULE=maliit`); the Qt 4 input context, the GTK+ bridge and the QtQuick 1 plugin base are not built |
 | `libmeegoimengine` | builds, with its open dummy engine (the N9's word engine, with correction and prediction, was not released) |
 | `meego-keyboard` | runs: the N9's keyboard in meego-im-uiserver, landscape, with the N9's theme; typing reaches MeeGo Touch applications, which move the editor out of its way; Qt 5 dropped the primary touch point, `common/touchcompat.h` keeps it; `M_VKB_LAYOUTS_DIR` for a staged test; built with `CONFIG+=noreactionmap` until the reaction maps are ported, without the QtQuick 1 keyboard |
-| `libresourceqt`, `meego-im-settings-applet` | not yet |
+| `meego-im-settings-applet` | the "Text input" settings page runs (active and installed input methods, the keyboard's settings) |
+| `libresourceqt` | not yet |
 
 Tried on a PC (Xvfb, Mesa llvmpipe), not yet on a device.
 

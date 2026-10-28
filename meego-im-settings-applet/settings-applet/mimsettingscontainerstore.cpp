@@ -39,7 +39,7 @@ MImSettingsContainerStore::MImSettingsContainerStore()
 
 MImSettingsContainerStore::~MImSettingsContainerStore()
 {
-    foreach (QWeakPointer<MContainer> c, containers) {
+    foreach (QPointer<MContainer> c, containers) {
         delete c.data();
     }
 }
