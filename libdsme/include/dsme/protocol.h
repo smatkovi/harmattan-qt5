@@ -39,6 +39,17 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 
+#ifdef __FreeBSD__
+/* Linux's peer credentials, which FreeBSD gives as struct xucred
+ * (LOCAL_PEERCRED; protocol.c fills this from it) */
+#include <sys/types.h>
+struct ucred {
+  pid_t pid;
+  uid_t uid;
+  gid_t gid;
+};
+#endif
+
 #ifndef EXTERN_C
 #ifdef __cplusplus
 #define EXTERN_C extern "C"

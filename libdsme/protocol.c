@@ -28,6 +28,9 @@
 #endif
 
 #include "dsme/protocol.h"
+#ifdef __FreeBSD__
+#include <sys/ucred.h>
+#endif
 #include "dsme/messages.h"
 
 #include <glib.h>
@@ -126,9 +129,20 @@ void* dsmesock_receive(dsmesock_connection_t* conn)
       goto return_close_reason;
   }
 
+#ifdef __FreeBSD__
+  struct xucred xu;
+  optlen = sizeof(xu);
+  if (getsockopt(conn->fd, SOL_LOCAL, LOCAL_PEERCRED, &xu, &optlen) == 0 &&
+      xu.cr_version == XUCRED_VERSION) {
+      conn->ucred.pid = xu.cr_pid;
+      conn->ucred.uid = xu.cr_uid;
+      conn->ucred.gid = xu.cr_ngroups > 0 ? xu.cr_groups[0] : (gid_t)-1;
+  } else
+#else
   optlen = sizeof(conn->ucred);
   if(getsockopt(conn->fd, SOL_SOCKET, SO_PEERCRED,
                 &conn->ucred, &optlen) == -1)
+#endif
   {
       /* that fails, fill some bogus values */
       conn->ucred.pid = 0;
