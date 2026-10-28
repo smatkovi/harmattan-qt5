@@ -10,7 +10,8 @@ TEMPLATE = subdirs
 
 addSubDirs(src)
 addSubDirs(themes)
-addSubDirs(tests)
+# the unit tests (Qt 4's QBool, gcov) unless NOTESTS, as the other parts
+!NOTESTS:addSubDirs(tests)
 
 QMAKE_CLEAN += \
     build-stamp \
