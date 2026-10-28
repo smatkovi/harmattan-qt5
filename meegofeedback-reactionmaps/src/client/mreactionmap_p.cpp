@@ -19,6 +19,8 @@
 
 #include <mfsettings.h>
 
+#include <sys/stat.h>
+
 #include <QApplication>
 #include <QFileInfo>
 #include <QWidget>

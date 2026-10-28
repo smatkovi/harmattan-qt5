@@ -17,7 +17,9 @@
 #include "mfkernelthread.h"
 
 #include <unistd.h>
+#ifdef __linux__
 #include <asm-generic/errno-base.h>
+#endif
 
 #include <sys/ioctl.h>
 #include <sys/select.h>

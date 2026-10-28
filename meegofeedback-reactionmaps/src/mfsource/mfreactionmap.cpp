@@ -29,6 +29,7 @@
 #include <mfsession.h>
 
 #include <sys/shm.h>
+#include <sys/stat.h>
 #include <sys/time.h>
 #include <fcntl.h>
 
