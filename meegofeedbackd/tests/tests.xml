@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<testdefinition version="1.0">
+  <suite name="libmeegofeedback-tests" domain="Application framework">
+    <description>Unit tests and functional tests for Daemon of Haptic Feedback</description>
+    <set name="unit_tests" description="Unit Tests" feature="Haptic Feedback Daemon" level="Component" type="Functional">
+
+      <case name="ut_mfcmdline" description="ut_mfcmdline" requirement="" timeout="60">
+        <step expected_result="0">/usr/lib/libmeegofeedback-tests/ut_mfcmdline</step>
+      </case>
+      <case name="ut_mfmanager" description="ut_mfmanager" requirement="" timeout="60">
+        <step expected_result="0">/usr/lib/libmeegofeedback-tests/ut_mfmanager</step>
+      </case>
+      <case name="ut_mfsignal" description="ut_mfsignal" requirement="" timeout="60">
+        <step expected_result="0">/usr/lib/libmeegofeedback-tests/ut_mfsignal</step>
+      </case>
+      <case name="ut_mffeedback" description="ut_mffeedback" requirement="" timeout="60">
+        <step expected_result="0">/usr/lib/libmeegofeedback-tests/ut_mffeedback</step>
+      </case>
+
+      <environments>
+        <scratchbox>false</scratchbox>
+        <hardware>true</hardware>
+      </environments>
+
+    </set>
+    <set name="functional_tests" description="Functional Tests" feature="Haptic Feedback Daemon" level="Component" type="Functional">
+
+      <case name="ft_configuration" description="ft_configuration" requirement="" timeout="60">
+        <step expected_result="0">/usr/lib/libmeegofeedback-tests/ft_configuration</step>
+      </case>
+
+      <case name="ft_reconnection" description="ft_reconnection" requirement="" timeout="60">
+        <step expected_result="0">/usr/lib/libmeegofeedback-tests/ft_reconnection</step>
+      </case>
+
+      <case name="ft_theming" description="ft_theming" requirement="" timeout="60">
+        <step expected_result="0">/usr/lib/libmeegofeedback-tests/ft_theming</step>
+      </case>
+
+      <environments>
+        <scratchbox>false</scratchbox>
+        <hardware>true</hardware>
+      </environments>
+
+    </set>
+  </suite>
+</testdefinition>

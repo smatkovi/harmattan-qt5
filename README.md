@@ -23,6 +23,7 @@ the commits after it.
 | `qmsystem2` | qmsystem2 1.4.3+0m7 |
 | `mce-dev` | mce-dev 1.11.0+0m7 (MCE's D-Bus names, headers only) |
 | `libdsme` | libdsme 0.61.6+0m6 |
+| `meegofeedbackd` | meegofeedbackd 0.10.7-5+0m6 |
 | `libresourceqt` | libresourceqt 1.41+0m7 |
 | `libcontentaction` | libcontentaction 0.1.71+0m7 |
 | `duicontrolpanel` | duicontrolpanel 0.14.7.1+0m7 |

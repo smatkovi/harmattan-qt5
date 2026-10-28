@@ -1,0 +1,66 @@
+/*! @page tutorial How to write plugins for the input feedback daemon in MeeGo Touch
+
+@section Section1 Introduction
+
+The input feedbacks of the Meego devices are controlled by a daemon (meegofeedbackd) in the MeeGo Touch Framework. The daemon handles the available actuators via plug-ins called *backends*. The backends have a minimal set of functions what should be implemented and some functional requirements are placed to work with daemon flawlessly.
+
+@section Section2 Technical background
+
+The feedbacks are identified by name. For instance, the user touches a button on the screen, the "press" feedback is played. A feedback is composed of one or more *handles* which is an effect played via an actuator. For example, the "press" feedback will play an audio and a vibra effect   simultaneously. The handles are loaded/unloaded and played with the backends. The daemon does not know anything about the handles, it is only a generic pointer, but the backend contains the logic to understand the data behind. On the other hand, the daemon hides the input feedback interfaces from the backends. The backend purely manages the actuator hardware and the handles and nothing else. Two default, official plug-ins are shipped in the Harmattan program:
+
+- Vibra: Based on the Immersion Player daemon
+- Audio: Based on the PulseAudio daemon
+
+As it is stated above, the official backends do not use the lower level interfaces (e.g. kernel drivers) of the actuators, but an other daemon provides interface for the hardware. A good reason is that other daemons handle e.g. permissions among the programs and users to access the hardware resources. To play effects on an actuator, the connection should be established/initialized for the resource. The backends connect to the hardware resources and a dropped connection needs notification to the meegofeedbackd to reconnect later again.
+
+@section Section3 Plugin interface
+
+The backends must comply with the basic requirements of the Qt managed plug-ins (QPluginLoader) and the declaration in libmeegofeedback:
+
+- It should be inherited from MfBackendBase class.
+- Add the Q_OBJECT macro to the backend.
+- Register the plug-in interface: Q_INTERFACES(MfBackendInterface).
+- Implement the pure virtual methods of MfBackendBase.
+
+In the list above, the MfBackendBase class is inherited from the MfBackendInterface and QObject to provide common functions of the backends (e.g. reconnection logic). A Qt plug-in must be an abstract declaration, therefore, an additional inheritance was needed to implement these.
+
+@section Section4 Abstract methods in a new backend
+
+A backend should have implementation for the following pure virtual and virtual methods:
+
+- Constructor: Initialize the object.
+- Destructor: Clean-up the object.
+- name(): Specify the name of the backend.
+- detectHardware(): Detect (if possible) if the needed hardware resources are actually available.
+- init(): Establish the connection to the actuator interface. Return true if successful, otherwise false. The parameter of the function defines a duration limit for the individual effects played by the backend in milliseconds.
+- loadHandle(): The function allocates a new handle on the heap, loads it from a directory and returns its pointer. The typical case is an effect file in a directory of the theme hierarchy. The loadHandle() does not know about the theming logic, it gets a directory location like a parameter. If there is no effect file for the backend in the directory, it should return false and a NULL pointer. If there is an effect file, but it is logically empty or a zero byte file, it should return true and a NULL pointer. Otherwise, the function returns true and the pointer to the loaded handle.
+- unloadHandle(): The handle is unloaded and released. The unloadHandle() sets the handle pointer to NULL.
+- play(): The given handle must be played as soon as possible and the function should return immediately after the playback is started. There are three different volume levels (low, medium, high) and an off state. Feedback must be played with the given volume value.
+- deviceStateChanged(): This slot is called every time any status changes in the device. Status is presented as key and value pairs. It is up to the backend if the state change has any effects to the backend. Currently supported keys: KEY: "display" POSSIBLE VALUES: "on", "off"
+
+@section Section5 Implementation details
+
+There are dummy plug-ins included in the source package of the meegofeedbackd as examples. Please note that the test plug-in are mainly meant for testing purposes. The daemon calls some wrapper functions in the MfBackendBase to implement some common logic in the functions to avoid code duplications. When the following virtual functions are called from the input feedback daemon, you can be sure, the following pre-requisites are checked and no need to verify in your backend implementation:
+
+- play(): The handle is a valid parameter, the volume level is low, medium or high and the state of the backend is connected.
+- loadHandle(): The backend is in connected state and the handle pointer-to-pointer is not NULL in the parameter list.
+- unloadHandle(): The handle parameter is a valid pointer-to-pointer and points to a valid pointer.
+
+The following notes describe more detailed functional requirements against the backends:
+
+- The backend can be in three states: Disconnected, Connecting and Connected. The backend is disconnected by default and if a connection attempt is successful in the init() method, the current state must be changed to Connected and save the effect duration limit if applicable.
+- The loadHandle() does not do anything if the directory does not contain effect file, the function returns false. If the directory contains an empty effect file e.g zero byte file, the function should return true, but a NULL handle. If the effect file has been loaded successfully, the function returns true and a valid effect handle.
+- The unloadHandle() should unload the handle, free the resources the handle may have reserved earlier and set the handle to NULL.
+- The play() function plays the passed handle using the passed volume level. If a connection is maintained to the interface of the hardware and a failure occurs, the lostConnection() signal must be emitted. The MfBackendBase receives it and will try to connect to the hardware again.
+- Playing the effect may consider the global limitation of the duration of the effects. The limit is passed to the init() function as parameter in milliseconds.
+- The loadHandle() and unloadHandle() functions should not be thread-safe.
+- The play() function should be thread-safe.
+- The destructor of the backend should disconnect the hardware automatically and release other associated resources.
+
+@section Section6 Threaded and non-threaded backends
+
+The backend plug-ins should be installed in the directory /usr/lib/meegofeedbackd and making a symlink into the directory threaded-backends. The form of the symlink is "XX-libmeegofeedback-backendname.so". The intention of this is to have a number instead of XX and the backends will be loaded in increasing order.
+
+The official backends (vibra and audio) are symlinked to the non-threaded directory, which means that if a feedback is played, the audio and the vibra effects are played by calling the play() function of the backends sequentially from the sam thread. It places a requirement for any non-threaded backends: the play function must return back immediately. The recommended use of the 3-rd party plug-ins is to specify them as threaded, which means that their play() function is called in a separate thread to avoid blocking of the play() function calls of the non-threaded backends.
+
+*/

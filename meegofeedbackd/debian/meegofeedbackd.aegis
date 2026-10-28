@@ -1,0 +1,7 @@
+<aegis>
+  <request policy="add">
+    <credential name="UID::user" />
+    <credential name="GID::users" />
+    <for path="/usr/bin/meegofeedbackd" />
+  </request>
+</aegis>

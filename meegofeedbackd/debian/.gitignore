@@ -1,0 +1,5 @@
+files
+*.substvars
+*.debhelper
+libfeedbackmanager-dev
+libfeedbackmanager0

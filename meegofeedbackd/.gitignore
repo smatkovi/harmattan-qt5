@@ -1,0 +1,13 @@
+Makefile
+.*.swp
+*.o
+moc_*.cpp
+moc_*.h
+meegofeedbackd
+*.so
+*.so.*
+*.deb
+build-stamp
+configure-stamp
+.cproject
+.project

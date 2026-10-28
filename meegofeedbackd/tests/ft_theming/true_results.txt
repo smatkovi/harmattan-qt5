@@ -1,0 +1,503 @@
+base,fooapp
+cancel
+./themes/base/meegotouch/feedbacks/cancel
+0 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+1 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+priority1_virtualkey
+./themes/base/meegotouch/feedbacks/priority1_virtualkey
+0 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+1 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+priority2_poweroff
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/base/meegotouch/feedbacks/release Ready
+1 0 ./themes/base/meegotouch/feedbacks/release Ready
+press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/base/meegotouch/feedbacks/press Ready
+1 0 ./themes/base/meegotouch/feedbacks/press Ready
+error
+./themes/base/meegotouch/feedbacks/error
+0 0 ./themes/base/meegotouch/feedbacks/error Ready
+1 0 ./themes/base/meegotouch/feedbacks/error Ready
+base,app_another
+cancel
+./themes/base/meegotouch/feedbacks/cancel
+0 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+1 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+priority1_virtualkey
+./themes/base/meegotouch/feedbacks/priority1_virtualkey
+0 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+1 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+priority2_poweroff
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+release
+./themes/base/meegotouch/app_another/feedbacks/release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/base/meegotouch/app_another/feedbacks/release Ready
+1 0 ./themes/base/meegotouch/feedbacks/release Ready
+press
+./themes/base/meegotouch/app_another/feedbacks/press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/base/meegotouch/app_another/feedbacks/press Ready
+1 0 ./themes/base/meegotouch/app_another/feedbacks/press Ignored
+error
+./themes/base/meegotouch/feedbacks/error
+0 0 ./themes/base/meegotouch/feedbacks/error Ready
+1 0 ./themes/base/meegotouch/feedbacks/error Ready
+base,app_ok
+cancel
+./themes/base/meegotouch/feedbacks/cancel
+0 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+1 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+priority1_virtualkey
+./themes/base/meegotouch/feedbacks/priority1_virtualkey
+0 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+1 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+priority2_poweroff
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+priority2_poweroff-explosion
+./themes/base/meegotouch/app_ok/feedbacks/priority2_poweroff-explosion
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/app_ok/feedbacks/priority2_poweroff-explosion Ready
+release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/base/meegotouch/feedbacks/release Ready
+1 0 ./themes/base/meegotouch/feedbacks/release Ready
+press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/base/meegotouch/feedbacks/press Ready
+1 0 ./themes/base/meegotouch/feedbacks/press Ready
+error
+./themes/base/meegotouch/feedbacks/error
+0 0 ./themes/base/meegotouch/feedbacks/error Ready
+1 0 ./themes/base/meegotouch/feedbacks/error Ready
+press-huge
+./themes/base/meegotouch/app_ok/feedbacks/press-huge
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/press-huge Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/press-huge Ready
+release-huge
+./themes/base/meegotouch/app_ok/feedbacks/release-huge
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/release-huge Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/release-huge Ready
+touch
+./themes/base/meegotouch/app_ok/feedbacks/touch
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/touch Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/touch Ready
+untouch
+./themes/base/meegotouch/app_ok/feedbacks/untouch
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/untouch Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/untouch Ready
+custom1,app_ok
+cancel
+./themes/custom1/meegotouch/feedbacks/cancel
+./themes/base/meegotouch/feedbacks/cancel
+0 0 ./themes/custom1/meegotouch/feedbacks/cancel Ready
+1 0 ./themes/custom1/meegotouch/feedbacks/cancel Ready
+priority1_virtualkey
+./themes/custom1/meegotouch/feedbacks/priority1_virtualkey
+./themes/base/meegotouch/feedbacks/priority1_virtualkey
+0 1 ./themes/custom1/meegotouch/feedbacks/priority1_virtualkey Ignored
+1 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+priority2_poweroff
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+priority2_poweroff-explosion
+./themes/base/meegotouch/app_ok/feedbacks/priority2_poweroff-explosion
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/app_ok/feedbacks/priority2_poweroff-explosion Ready
+release
+./themes/custom1/meegotouch/feedbacks/release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/custom1/meegotouch/feedbacks/release Ready
+1 0 ./themes/custom1/meegotouch/feedbacks/release Ready
+press
+./themes/custom1/meegotouch/feedbacks/press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/custom1/meegotouch/feedbacks/press Ready
+1 0 ./themes/custom1/meegotouch/feedbacks/press Ready
+error
+./themes/custom1/meegotouch/feedbacks/error
+./themes/base/meegotouch/feedbacks/error
+0 0 ./themes/custom1/meegotouch/feedbacks/error Ignored
+1 0 ./themes/custom1/meegotouch/feedbacks/error Ignored
+press-huge
+./themes/custom1/meegotouch/app_ok/feedbacks/press-huge
+./themes/base/meegotouch/app_ok/feedbacks/press-huge
+./themes/custom1/meegotouch/feedbacks/press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/custom1/meegotouch/app_ok/feedbacks/press-huge Ready
+1 0 ./themes/custom1/meegotouch/app_ok/feedbacks/press-huge Ready
+release-huge
+./themes/custom1/meegotouch/app_ok/feedbacks/release-huge
+./themes/base/meegotouch/app_ok/feedbacks/release-huge
+./themes/custom1/meegotouch/feedbacks/release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/release-huge Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/release-huge Ready
+touch
+./themes/custom1/meegotouch/app_ok/feedbacks/touch
+./themes/base/meegotouch/app_ok/feedbacks/touch
+0 0 ./themes/custom1/meegotouch/app_ok/feedbacks/touch Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/touch Ready
+untouch
+./themes/custom1/meegotouch/app_ok/feedbacks/untouch
+./themes/base/meegotouch/app_ok/feedbacks/untouch
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/untouch Ready
+1 0 ./themes/custom1/meegotouch/app_ok/feedbacks/untouch Ready
+custom2,app_ok
+cancel
+./themes/custom2/meegotouch/feedbacks/cancel
+./themes/custom1/meegotouch/feedbacks/cancel
+./themes/base/meegotouch/feedbacks/cancel
+0 0 ./themes/custom2/meegotouch/feedbacks/cancel Ready
+1 0 ./themes/custom2/meegotouch/feedbacks/cancel Ready
+priority1_virtualkey
+./themes/custom1/meegotouch/feedbacks/priority1_virtualkey
+./themes/base/meegotouch/feedbacks/priority1_virtualkey
+0 1 ./themes/custom1/meegotouch/feedbacks/priority1_virtualkey Ignored
+1 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+priority2_poweroff
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+priority2_poweroff-explosion
+./themes/base/meegotouch/app_ok/feedbacks/priority2_poweroff-explosion
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/app_ok/feedbacks/priority2_poweroff-explosion Ready
+release
+./themes/custom2/meegotouch/app_ok/feedbacks/release
+./themes/custom1/meegotouch/feedbacks/release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/custom2/meegotouch/app_ok/feedbacks/release Ready
+1 0 ./themes/custom1/meegotouch/feedbacks/release Ready
+press
+./themes/custom2/meegotouch/app_ok/feedbacks/press
+./themes/custom2/meegotouch/feedbacks/press
+./themes/custom1/meegotouch/feedbacks/press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/custom2/meegotouch/feedbacks/press Ready
+1 0 ./themes/custom2/meegotouch/app_ok/feedbacks/press Ready
+error
+./themes/custom1/meegotouch/feedbacks/error
+./themes/base/meegotouch/feedbacks/error
+0 0 ./themes/custom1/meegotouch/feedbacks/error Ignored
+1 0 ./themes/custom1/meegotouch/feedbacks/error Ignored
+press-huge
+./themes/custom2/meegotouch/app_ok/feedbacks/press-huge
+./themes/custom1/meegotouch/app_ok/feedbacks/press-huge
+./themes/base/meegotouch/app_ok/feedbacks/press-huge
+./themes/custom2/meegotouch/app_ok/feedbacks/press
+./themes/custom2/meegotouch/feedbacks/press
+./themes/custom1/meegotouch/feedbacks/press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/custom1/meegotouch/app_ok/feedbacks/press-huge Ready
+1 0 ./themes/custom1/meegotouch/app_ok/feedbacks/press-huge Ready
+release-huge
+./themes/custom2/meegotouch/app_ok/feedbacks/release-huge
+./themes/custom1/meegotouch/app_ok/feedbacks/release-huge
+./themes/base/meegotouch/app_ok/feedbacks/release-huge
+./themes/custom2/meegotouch/app_ok/feedbacks/release
+./themes/custom1/meegotouch/feedbacks/release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/custom2/meegotouch/app_ok/feedbacks/release-huge Ready
+1 0 ./themes/custom2/meegotouch/app_ok/feedbacks/release-huge Ignored
+touch
+./themes/custom1/meegotouch/app_ok/feedbacks/touch
+./themes/base/meegotouch/app_ok/feedbacks/touch
+0 0 ./themes/custom1/meegotouch/app_ok/feedbacks/touch Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/touch Ready
+untouch
+./themes/custom2/meegotouch/app_ok/feedbacks/untouch
+./themes/custom1/meegotouch/app_ok/feedbacks/untouch
+./themes/base/meegotouch/app_ok/feedbacks/untouch
+0 0 ./themes/custom2/meegotouch/app_ok/feedbacks/untouch Ignored
+1 0 ./themes/custom1/meegotouch/app_ok/feedbacks/untouch Ready
+custom3,app_ok
+cancel
+./themes/custom2/meegotouch/feedbacks/cancel
+./themes/custom1/meegotouch/feedbacks/cancel
+./themes/base/meegotouch/feedbacks/cancel
+0 0 ./themes/custom2/meegotouch/feedbacks/cancel Ready
+1 0 ./themes/custom2/meegotouch/feedbacks/cancel Ready
+priority1_virtualkey
+./themes/custom1/meegotouch/feedbacks/priority1_virtualkey
+./themes/base/meegotouch/feedbacks/priority1_virtualkey
+0 1 ./themes/custom1/meegotouch/feedbacks/priority1_virtualkey Ignored
+1 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+priority2_poweroff
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+priority2_poweroff-explosion
+./themes/base/meegotouch/app_ok/feedbacks/priority2_poweroff-explosion
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/app_ok/feedbacks/priority2_poweroff-explosion Ready
+release
+./themes/custom2/meegotouch/app_ok/feedbacks/release
+./themes/custom1/meegotouch/feedbacks/release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/custom2/meegotouch/app_ok/feedbacks/release Ready
+1 0 ./themes/custom1/meegotouch/feedbacks/release Ready
+press
+./themes/custom2/meegotouch/app_ok/feedbacks/press
+./themes/custom2/meegotouch/feedbacks/press
+./themes/custom1/meegotouch/feedbacks/press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/custom2/meegotouch/feedbacks/press Ready
+1 0 ./themes/custom2/meegotouch/app_ok/feedbacks/press Ready
+error
+./themes/custom1/meegotouch/feedbacks/error
+./themes/base/meegotouch/feedbacks/error
+0 0 ./themes/custom1/meegotouch/feedbacks/error Ignored
+1 0 ./themes/custom1/meegotouch/feedbacks/error Ignored
+press-huge
+./themes/custom2/meegotouch/app_ok/feedbacks/press-huge
+./themes/custom1/meegotouch/app_ok/feedbacks/press-huge
+./themes/base/meegotouch/app_ok/feedbacks/press-huge
+./themes/custom2/meegotouch/app_ok/feedbacks/press
+./themes/custom2/meegotouch/feedbacks/press
+./themes/custom1/meegotouch/feedbacks/press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/custom1/meegotouch/app_ok/feedbacks/press-huge Ready
+1 0 ./themes/custom1/meegotouch/app_ok/feedbacks/press-huge Ready
+release-huge
+./themes/custom2/meegotouch/app_ok/feedbacks/release-huge
+./themes/custom1/meegotouch/app_ok/feedbacks/release-huge
+./themes/base/meegotouch/app_ok/feedbacks/release-huge
+./themes/custom2/meegotouch/app_ok/feedbacks/release
+./themes/custom1/meegotouch/feedbacks/release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/custom2/meegotouch/app_ok/feedbacks/release-huge Ready
+1 0 ./themes/custom2/meegotouch/app_ok/feedbacks/release-huge Ignored
+touch
+./themes/custom1/meegotouch/app_ok/feedbacks/touch
+./themes/base/meegotouch/app_ok/feedbacks/touch
+0 0 ./themes/custom1/meegotouch/app_ok/feedbacks/touch Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/touch Ready
+untouch
+./themes/custom2/meegotouch/app_ok/feedbacks/untouch
+./themes/custom1/meegotouch/app_ok/feedbacks/untouch
+./themes/base/meegotouch/app_ok/feedbacks/untouch
+0 0 ./themes/custom2/meegotouch/app_ok/feedbacks/untouch Ignored
+1 0 ./themes/custom1/meegotouch/app_ok/feedbacks/untouch Ready
+broken,fooapp
+cancel
+./themes/base/meegotouch/feedbacks/cancel
+0 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+1 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+priority1_virtualkey
+./themes/base/meegotouch/feedbacks/priority1_virtualkey
+0 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+1 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+priority2_poweroff
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/base/meegotouch/feedbacks/release Ready
+1 0 ./themes/base/meegotouch/feedbacks/release Ready
+press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/base/meegotouch/feedbacks/press Ready
+1 0 ./themes/base/meegotouch/feedbacks/press Ready
+error
+./themes/base/meegotouch/feedbacks/error
+0 0 ./themes/base/meegotouch/feedbacks/error Ready
+1 0 ./themes/base/meegotouch/feedbacks/error Ready
+broken,app_ok
+cancel
+./themes/base/meegotouch/feedbacks/cancel
+0 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+1 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+priority1_virtualkey
+./themes/base/meegotouch/feedbacks/priority1_virtualkey
+0 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+1 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+priority2_poweroff
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+priority2_poweroff-explosion
+./themes/base/meegotouch/app_ok/feedbacks/priority2_poweroff-explosion
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/app_ok/feedbacks/priority2_poweroff-explosion Ready
+release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/base/meegotouch/feedbacks/release Ready
+1 0 ./themes/base/meegotouch/feedbacks/release Ready
+press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/base/meegotouch/feedbacks/press Ready
+1 0 ./themes/base/meegotouch/feedbacks/press Ready
+error
+./themes/base/meegotouch/feedbacks/error
+0 0 ./themes/base/meegotouch/feedbacks/error Ready
+1 0 ./themes/base/meegotouch/feedbacks/error Ready
+press-huge
+./themes/base/meegotouch/app_ok/feedbacks/press-huge
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/press-huge Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/press-huge Ready
+release-huge
+./themes/base/meegotouch/app_ok/feedbacks/release-huge
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/release-huge Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/release-huge Ready
+touch
+./themes/base/meegotouch/app_ok/feedbacks/touch
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/touch Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/touch Ready
+untouch
+./themes/base/meegotouch/app_ok/feedbacks/untouch
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/untouch Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/untouch Ready
+broken2,app_ok
+cancel
+./themes/base/meegotouch/feedbacks/cancel
+0 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+1 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+priority1_virtualkey
+./themes/base/meegotouch/feedbacks/priority1_virtualkey
+0 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+1 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+priority2_poweroff
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+priority2_poweroff-explosion
+./themes/base/meegotouch/app_ok/feedbacks/priority2_poweroff-explosion
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/app_ok/feedbacks/priority2_poweroff-explosion Ready
+release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/base/meegotouch/feedbacks/release Ready
+1 0 ./themes/base/meegotouch/feedbacks/release Ready
+press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/base/meegotouch/feedbacks/press Ready
+1 0 ./themes/base/meegotouch/feedbacks/press Ready
+error
+./themes/base/meegotouch/feedbacks/error
+0 0 ./themes/base/meegotouch/feedbacks/error Ready
+1 0 ./themes/base/meegotouch/feedbacks/error Ready
+press-huge
+./themes/base/meegotouch/app_ok/feedbacks/press-huge
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/press-huge Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/press-huge Ready
+release-huge
+./themes/base/meegotouch/app_ok/feedbacks/release-huge
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/release-huge Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/release-huge Ready
+touch
+./themes/base/meegotouch/app_ok/feedbacks/touch
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/touch Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/touch Ready
+untouch
+./themes/base/meegotouch/app_ok/feedbacks/untouch
+0 0 ./themes/base/meegotouch/app_ok/feedbacks/untouch Ready
+1 0 ./themes/base/meegotouch/app_ok/feedbacks/untouch Ready
+base,app_broken
+cancel
+./themes/base/meegotouch/feedbacks/cancel
+0 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+1 0 ./themes/base/meegotouch/feedbacks/cancel Ready
+priority1_virtualkey
+./themes/base/meegotouch/feedbacks/priority1_virtualkey
+0 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+1 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+priority2_poweroff
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/base/meegotouch/feedbacks/release Ready
+1 0 ./themes/base/meegotouch/feedbacks/release Ready
+press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/base/meegotouch/feedbacks/press Ready
+1 0 ./themes/base/meegotouch/feedbacks/press Ready
+error
+./themes/base/meegotouch/feedbacks/error
+0 0 ./themes/base/meegotouch/feedbacks/error Ready
+1 0 ./themes/base/meegotouch/feedbacks/error Ready
+nothing
+./themes/base/meegotouch/app_broken/feedbacks/nothing
+0 0 NULL
+1 0 NULL
+onlyvibra
+./themes/base/meegotouch/app_broken/feedbacks/onlyvibra
+0 0 NULL
+1 0 ./themes/base/meegotouch/app_broken/feedbacks/onlyvibra Ready
+onlyaudio
+./themes/base/meegotouch/app_broken/feedbacks/onlyaudio
+0 0 ./themes/base/meegotouch/app_broken/feedbacks/onlyaudio Ready
+1 0 NULL
+custom1,app_broken
+cancel
+./themes/custom1/meegotouch/feedbacks/cancel
+./themes/base/meegotouch/feedbacks/cancel
+0 0 ./themes/custom1/meegotouch/feedbacks/cancel Ready
+1 0 ./themes/custom1/meegotouch/feedbacks/cancel Ready
+priority1_virtualkey
+./themes/custom1/meegotouch/feedbacks/priority1_virtualkey
+./themes/base/meegotouch/feedbacks/priority1_virtualkey
+0 1 ./themes/custom1/meegotouch/feedbacks/priority1_virtualkey Ignored
+1 1 ./themes/base/meegotouch/feedbacks/priority1_virtualkey Ready
+priority2_poweroff
+./themes/base/meegotouch/feedbacks/priority2_poweroff
+0 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+1 2 ./themes/base/meegotouch/feedbacks/priority2_poweroff Ready
+release
+./themes/custom1/meegotouch/feedbacks/release
+./themes/base/meegotouch/feedbacks/release
+0 0 ./themes/custom1/meegotouch/feedbacks/release Ready
+1 0 ./themes/custom1/meegotouch/feedbacks/release Ready
+press
+./themes/custom1/meegotouch/feedbacks/press
+./themes/base/meegotouch/feedbacks/press
+0 0 ./themes/custom1/meegotouch/feedbacks/press Ready
+1 0 ./themes/custom1/meegotouch/feedbacks/press Ready
+error
+./themes/custom1/meegotouch/app_broken/feedbacks/error
+./themes/custom1/meegotouch/feedbacks/error
+./themes/base/meegotouch/feedbacks/error
+0 0 ./themes/custom1/meegotouch/feedbacks/error Ignored
+1 0 ./themes/custom1/meegotouch/app_broken/feedbacks/error Ready
+nothing
+./themes/custom1/meegotouch/app_broken/feedbacks/nothing
+./themes/base/meegotouch/app_broken/feedbacks/nothing
+0 0 ./themes/custom1/meegotouch/app_broken/feedbacks/nothing Ignored
+1 0 ./themes/custom1/meegotouch/app_broken/feedbacks/nothing Ignored
+onlyvibra
+./themes/custom1/meegotouch/app_broken/feedbacks/onlyvibra
+./themes/base/meegotouch/app_broken/feedbacks/onlyvibra
+0 0 NULL
+1 0 ./themes/custom1/meegotouch/app_broken/feedbacks/onlyvibra Ready
+onlyaudio
+./themes/custom1/meegotouch/app_broken/feedbacks/onlyaudio
+./themes/base/meegotouch/app_broken/feedbacks/onlyaudio
+0 0 ./themes/custom1/meegotouch/app_broken/feedbacks/onlyaudio Ready
+1 0 NULL
+end_of_file,end_of_file
+

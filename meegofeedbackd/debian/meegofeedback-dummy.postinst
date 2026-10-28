@@ -1,0 +1,21 @@
+#! /bin/sh
+# postinst script for MeeGo Touch Feedback Framework dummy backend
+
+set -e
+
+case "$1" in
+	configure)
+        mkdir -p /usr/lib/meegofeedbackd/non-threaded-backends
+	if ! [ -e "/usr/lib/meegofeedbackd/non-threaded-backends/02-libmeegofeedback-dummy.so" ]; then
+		ln -s /usr/lib/meegofeedbackd/libmeegofeedback-dummy.so /usr/lib/meegofeedbackd/non-threaded-backends/02-libmeegofeedback-dummy.so
+	fi
+	;;
+	abort-upgrade|abort-remove|abort-deconfigure)
+	;;
+	*)
+	echo "postinst called with unknown argument \`$1'" >&2
+	exit 1
+	;;
+esac
+
+exit 0

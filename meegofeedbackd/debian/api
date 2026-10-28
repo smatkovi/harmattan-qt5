@@ -1,0 +1,7 @@
+interface: libmeegofeedback
+type: library
+scope: Platform
+state: stable
+libs-pkg: libmeegofeedback0
+dev-pkg: libmeegofeedback-dev
+

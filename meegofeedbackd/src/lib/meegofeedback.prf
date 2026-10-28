@@ -1,0 +1,2 @@
+LIBS += -lmeegofeedback
+INCLUDEPATH += /usr/include/meegofeedback

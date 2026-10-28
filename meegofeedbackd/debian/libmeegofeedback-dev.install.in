@@ -1,0 +1,3 @@
+/usr/lib/libmeegofeedback.so
+/usr/include/meegofeedback/*
+QT_INSTALL_DATA/mkspecs/features/meegofeedback.prf

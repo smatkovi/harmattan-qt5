@@ -1,0 +1,7 @@
+/*! @mainpage MeeGo Touch Feedback Framework Documentation
+
+@section general General documentation
+- <a href="tutorial.html">Tutorial for writing plug-ins</a>
+- <a href="configuration.html">Playback volume configuration logic of feedbacks and backends</a>
+
+*/

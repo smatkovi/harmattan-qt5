@@ -1,0 +1,98 @@
+Source: meegofeedbackd
+Section: misc
+Priority: optional
+Maintainer: Csaba Kertesz <csaba.kertesz@vincit.fi>
+Build-Depends: debhelper (>= 4.0.0), libqt4-dev (>= 4.6), libgconf2-dev (>= 2.16.0), libglib2.0-dev (>= 2.22), aegis-builder (>= 1.4), libcontextsubscriber-dev
+Standards-Version: 3.6.1
+
+Package: meegofeedbackd
+Architecture: any
+Section: misc
+Depends: ${shlibs:Depends}, ${misc:Depends}, libmeegofeedback0 (= ${Source-Version}), udev
+Pre-Depends: udev
+Replaces: duifeedbackd
+Conflicts: duifeedbackd
+Description: Manages non-graphical input feedbacks, such as haptics. Daemon
+ meegofeedbackd is a daemon that manages non-graphical feedbacks that are
+ given in response to user actions. Such input feedbacks can be anything such
+ as piezo actuators, vibra motors or sounds.
+
+Package: meegofeedbackd-dbg
+Architecture: any
+Section: devel
+Depends: meegofeedbackd (= ${Source-Version})
+Description: meegofeedbackd debug package
+ meegofeedbackd debug symbols.
+
+Package: libmeegofeedback0
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: libduifeedback0
+Conflicts: libduifeedback0
+Description: Manages non-graphical input feedbacks, such as haptics. Core lib.
+ meegofeedbackd is a daemon that manages non-graphical feedbacks that are
+ given in response to user actions. Such input feedbacks can be anything such
+ as piezo actuators, vibra motors or sounds.
+ .
+ libmeegofeedback contains the core logic of meegofeedbackd daemon. It's
+ also needed by libraries that provide meegofeedbackd backends or sources.
+
+Package: libmeegofeedback-dev
+Architecture: all
+Section: libdevel
+Depends: ${shlibs:Depends}, ${misc:Depends}, libmeegofeedback0 (= ${Source-Version}), libqt4-dev (>= 4.6)
+Replaces: libduifeedback-dev
+Description: Development headers for libmeegofeedback
+ meegofeedbackd is a daemon that manages non-graphical feedbacks that are
+ given in response to user actions. Such input feedbacks can be anything such
+ as piezo actuators, vibra motors or sounds.
+ .
+ libmeegofeedback contains the core logic of meegofeedbackd daemon. It's
+ also needed by libraries that provide meegofeedbackd backends or sources.
+ .
+ This package provides the development header files for libmeegofeedback.
+ This is needed to build meegofeedbackd backends and sources.
+
+Package: libmeegofeedback0-dbg
+Architecture: any
+Section: devel
+Depends: libmeegofeedback0 (= ${Source-Version}), ${shlibs:Depends}
+Replaces: libduifeedback0-dbg
+Description: libmeegofeedback debug package
+ libmeegofeedback debug symbols.
+
+Package: meegofeedback-dummy
+Architecture: any
+Section: devel
+Depends: ${shlibs:Depends}, ${misc:Depends}, libmeegofeedback0 (= ${Source-Version})
+Replaces: duifeedback-dummy
+Description: Dummy backend for meegofeedbackd
+ meegofeedbackd is a daemon that manages non-graphical feedbacks that are
+ given in response to user actions. Such input feedbacks can be anything such
+ as piezo actuators, vibra motors or sounds.
+ .
+ meegofeedback-dummy is a dummy/stub backend for meegofeedbackd. It's useful when
+ developing or testing in an environment where real backends cannot be used.
+
+Package: libmeegofeedback-tests
+Section: extra
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libmeegofeedback0 (= ${Source-Version}), libqtgui4, testrunner-lite, ci-testing
+XB-Maemo-CI-Packages: libmeegofeedback0
+XB-Maemo-CI-Stage: fast, staging, acceptance
+Description: libmeegofeedback unit tests
+ Unit testing binaries and shellscripts for testing libmeegofeedback library
+
+Package: meegofeedbackd-tests
+Section: misc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libmeegofeedback0 (= ${Source-Version}), meegofeedbackd, libqtgui4, testrunner-lite, ci-testing, ruby1.8, rubygems1.8, libnokogiri-ruby1.8, sp-endurance-postproc
+XB-Maemo-CI-Packages: libmeegofeedback0
+XB-Maemo-CI-Stage: staging
+Description: tests of meegofeedback daemon's memory usage
+
+Package: meegofeedbackd-doc
+Section: doc
+Architecture: all
+Description: Tutorial to write backends for the meegofeedbackd

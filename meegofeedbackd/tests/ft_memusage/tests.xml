@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<testdefinition version="1.0">
+  <suite name="meegofeedbackd-tests" domain="Application framework">
+    <set name="functional_tests" description="Functional Tests" feature="Haptic Feedback Daemon" level="Component" type="Functional">
+
+      <case name="ft_memusage" description="ft_memusage" requirement="" timeout="2400">
+          <step expected_result="0">/usr/share/meegofeedbackd-tests/ft_memusage/runtest.sh</step>
+      </case>
+
+      <environments>
+        <scratchbox>false</scratchbox>
+        <hardware>true</hardware>
+      </environments>
+
+    </set>
+  </suite>
+</testdefinition>

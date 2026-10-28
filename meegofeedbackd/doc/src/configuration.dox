@@ -1,0 +1,39 @@
+/*! @page configuration Description of playback volume configuration of feedbacks
+
+@section Section1 Introduction
+
+It is possible to configure the playback volume of feedbacks for each existing backend. The configuration is based in GConf keys. Each key stores a playback volume ("off", "low", "medium" or "high") for a backend. This guide describes the configuration logic of feedback playback volumes.
+
+@section Section2 Feedback volume configuration categories and configuration keys
+
+The feedbacks are divided in three configuration categories:
+- General feedbacks (buttons, switches, list items, etc.)
+- System related feedbacks (power off, etc.)
+- Input related feedbacks (Virtual keyboard, PIN code query, etc.)
+
+Each of these categories have a GConf key path that stores the feedback volumes for each backend. The GConf key paths for the categories described above are:
+- "/meegotouch/input_feedback/volume" (For general feedback)
+- "/meegotouch/input_feedback/volume/priority1" (For system related feedback)
+- "/meegotouch/input_feedback/volume/priority2" (For input related feedback)
+
+Each GConf key path contains a string typed value of the feedback volume for a given backend. The key name is exactly the name reported by the backend's name() function call. The value must be one of the following: "off", "low, "medium" and "high".
+
+The name of the feedback determines the configuration category of the feedback as described below:
+- General feedbacks: Feedback without a prefix, for example: "press".
+- System related feedbacks: Feedback with a prefix "priority1_", for example: "priority1_press".
+- Input related feedbacks: Feedback with a prefix "priority2_", for example: "priority2_press".
+
+
+@section Section3 Example
+
+Let's consider a system that has two feedback backends whose name() method return "audio" and "vibra". In this case there should be following six GConf keys available:
+- "/meegotouch/input_feedback/volume/audio/["off"|"low"|"medium"|"high"]"
+- "/meegotouch/input_feedback/volume/vibra/["off"|"low"|"medium"|"high"]"
+- "/meegotouch/input_feedback/volume/priority1/audio/["off"|"low"|"medium"|"high"]"
+- "/meegotouch/input_feedback/volume/priority1/vibra/["off"|"low"|"medium"|"high"]"
+- "/meegotouch/input_feedback/volume/priority2/audio/["off"|"low"|"medium"|"high"]"
+- "/meegotouch/input_feedback/volume/priority2/vibra/["off"|"low"|"medium"|"high"]"
+
+A feedback with name "press" would be played with the general feedback volume configuration for each backend. Feedback with names "priority1_press" and "priority2_press" would be played with system- and input related feedback volume settings respectively.
+
+*/
