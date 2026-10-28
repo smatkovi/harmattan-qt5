@@ -32,8 +32,8 @@ class LocalRegexTest (unittest.TestCase):
         parts = self.__spec.split (self.__delimiter)
         text = "".join (parts)
         expected = [ parts[i] for i in range (1, len (parts), 2) ]
-        result = map (lambda m: m.group(0), re.finditer (self.__regex, text))
-        self.assertEquals (result, expected)
+        result = [m.group(0) for m in re.finditer (self.__regex, text)]
+        self.assertEqual (result, expected)
 
 
 class SystemRegexTest (unittest.TestCase):
@@ -83,7 +83,7 @@ class SystemRegexTest (unittest.TestCase):
             
             expected_result = expected.pop (0)
 
-            self.assertEquals (result[1:-1], expected_result, 
+            self.assertEqual (result[1:-1], expected_result, 
                                "'%s' is not recognized properly " % (self.__spec)
                                + "(matched '%s' instead of '%s')" % (result,
                                                                      expected_result)
@@ -96,7 +96,7 @@ def static_counter_gen ():
     while True:
         k += 1
         yield k
-static_counter = static_counter_gen ().next
+static_counter = static_counter_gen ().__next__
 
 
 rxt_regex = None
