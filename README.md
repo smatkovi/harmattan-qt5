@@ -7,6 +7,13 @@ Harmattan), ported from Qt 4 to Qt 5, to run on Maemo Leste and FreeBSD
 and the MeeGo Touch framework `libmeegotouch` they are built on, with the
 libraries those need.
 
+Packages: for FreeBSD 15 (arm64) in
+[pro1x-maemo-leste's FreeBSD releases](https://github.com/smatkovi/pro1x-maemo-leste/releases)
+(`harmattan-<directory>`, built by its `freebsd/hildon/harmattan.sh`; not
+run on FreeBSD yet), for Maemo Leste (arm64) from its
+`meego/50-harmattan-qt5-debs.sh`; Arch Linux ARM builds them in its image
+(`arch/30-meego.sh`).
+
 Each directory starts as the source package of Nokia's Harmattan PR1.2
 open source release (the first commit), unchanged; the port follows in
 the commits after it.
