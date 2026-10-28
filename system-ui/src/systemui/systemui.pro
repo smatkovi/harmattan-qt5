@@ -22,6 +22,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets x11extras
 INCLUDEPATH += ../libnotificationsystem
 QMAKE_LIBDIR += ../../lib
 LIBS += -lnotificationsystem
+# x11wrapper's XDamage calls (today's linkers want the library named)
+LIBS += -lXdamage
 
 SYSTEMUI_SOURCE_DIR = .
 DEFINES += NOTIFICATIONS_EVENT_TYPES=\'$$quote(\"$$M_NOTIFICATIONS_EVENT_TYPES_DIR\")\'

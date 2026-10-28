@@ -346,11 +346,15 @@ DisplayBusinessLogic::setColorProfile (
     QList<QVariant> params;
     params.append(QVariant(QString(m_AvailColorProfiles.at(index))));
 
+    // only an mce with colour profiles (Harmattan's; Leste's mce-dev, which
+    // a system with both installs over it, has none)
+#ifdef MCE_COLOR_PROFILE_CHANGE_REQ
     m_MceDBusIf->callWithCallback (
             QString (MCE_COLOR_PROFILE_CHANGE_REQ),
             params, this,
             SLOT (colorProfileIsSet(QDBusMessage)),
             SLOT (DBusMessagingFailure (QDBusError)));
+#endif
 }
 
 /*!
@@ -505,11 +509,13 @@ DisplayBusinessLogic::initiateMceQueries ()
 {
     setupMceDBusIf ();
 
+#ifdef MCE_COLOR_PROFILE_IDS_GET
     m_MceDBusIf->callWithCallback (
             QString (MCE_COLOR_PROFILE_IDS_GET),
             QList<QVariant> (), this,
             SLOT (availableColorProfilesReceivedSlot(QStringList)),
             SLOT (DBusMessagingFailure (QDBusError)));
+#endif
 }
 
 /*!
