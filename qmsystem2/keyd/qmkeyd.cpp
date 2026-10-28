@@ -28,6 +28,7 @@
 #include "qmkeyd.h"
 
 #include <fcntl.h>
+#include <unistd.h>
 #include <syslog.h>
 #include <errno.h>
 

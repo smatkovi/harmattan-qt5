@@ -1,5 +1,7 @@
 TEMPLATE = subdirs
-SUBDIRS  = system keyd tests
+SUBDIRS  = system keyd
+# the tests (they do not all link with Qt 5 yet): not with CONFIG+=NOTESTS
+!NOTESTS: SUBDIRS += tests
 
 include( doc/doc.pri )
 

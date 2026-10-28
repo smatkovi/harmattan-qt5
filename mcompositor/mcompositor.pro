@@ -1,6 +1,7 @@
 TEMPLATE = subdirs
 SUBDIRS  = src mcompositor mdecorator libdecorator translations swipe
-SUBDIRS += tests appinterface_test unittests
+# the tests (they do not all build with Qt 5 yet): not with CONFIG+=NOTESTS
+!NOTESTS: SUBDIRS += tests appinterface_test unittests
 
 NODOCS:{
   message("Not building the documentation for this package")
