@@ -27,6 +27,7 @@
    </p>
  */
 #include "qmheartbeat.h"
+#include <sys/socket.h>
 #include "qmheartbeat_p.h"
 #include <time.h>
 #include <errno.h>
@@ -114,10 +115,23 @@ void QmHeartbeatPrivate::close() {
 
 }
 
+// The wake-ups waiting on the iphbd socket, read and dropped (Harmattan's
+// iphb_discard_wakeups; Maemo Leste's libiphb, which FreeBSD builds
+// on, has no such call): their length, or -1
+static int discardWakeups(iphb_t handle) {
+    int fd = iphb_get_fd(handle);
+    char buf[256];
+    ssize_t n;
+    int total = 0;
+    while ((n = recv(fd, buf, sizeof buf, MSG_DONTWAIT)) > 0)
+        total += n;
+    return (n < 0 && errno != EAGAIN && errno != EWOULDBLOCK) ? -1 : total;
+}
+
 void QmHeartbeatPrivate::socketReady(int sock) {
     Q_UNUSED(sock);
 
-    int st = iphb_discard_wakeups(iphbdHandler);
+    int st = discardWakeups(iphbdHandler);
 
     if (st == -1)
         LOG_ERROR;
