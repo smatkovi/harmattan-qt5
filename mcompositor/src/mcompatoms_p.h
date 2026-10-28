@@ -138,12 +138,13 @@ public:
 
     static Atom atoms[ATOMS_TOTAL];
 
-    // RROutput properties
+    // RROutput properties (the array sized: GCC before 14 takes no
+    // flexible array member in a union)
     static union randr_t {
         struct __attribute__((packed)) {
             Atom ctype, panel, alpha_mode, graphics_alpha, video_alpha;
         };
-        Atom atoms[];
+        Atom atoms[5];
     } randr;
 };
 

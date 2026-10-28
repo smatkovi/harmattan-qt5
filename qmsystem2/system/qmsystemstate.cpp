@@ -104,7 +104,7 @@ void QmSystemState::connectNotify(const char *signal) {
             QDBusConnection::systemBus().connect(dsme_service,
                                                  dsme_sig_path,
                                                  dsme_sig_interface,
-                                                 dsme_battery_empty_ind,
+                                                 qm_battery_empty_ind,
                                                  priv,
                                                  SLOT(emitBatteryShutdown()));
             QDBusConnection::systemBus().connect(dsme_service,
@@ -149,7 +149,7 @@ void QmSystemState::disconnectNotify(const char *signal) {
             QDBusConnection::systemBus().disconnect(dsme_service,
                                                     dsme_sig_path,
                                                     dsme_sig_interface,
-                                                    dsme_battery_empty_ind,
+                                                    qm_battery_empty_ind,
                                                     priv,
                                                     SLOT(emitBatteryShutdown()));
             QDBusConnection::systemBus().disconnect(dsme_service,

@@ -30,6 +30,9 @@
 #include "qmsystemstate.h"
 #include "qmipcinterface_p.h"
 #include "dsme/dsme_dbus_if.h"
+
+/* dsme's signal; libdsme before 0.61 (Maemo Leste's) has no name for it */
+static const char qm_battery_empty_ind[] = "battery_empty_ind";
 #include "msystemdbus_p.h"
 
 #include <QMutex>

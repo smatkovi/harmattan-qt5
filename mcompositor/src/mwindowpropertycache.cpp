@@ -896,15 +896,16 @@ int MWindowPropertyCache::windowState()
             // that MCompositeManagerPrivate::setWindowState() will set it.
             window_state = -1;
             free(error);
-        } else // Ei, vittu!
+        } else { // Ei, vittu!
             // We have an idea about this window's state and Qt is trying
             // to interfere because it doesn't know yet that we are in
             // command.  Don't let this happen.
+            CARD32 state[2] = { (CARD32)window_state, None };
             XChangeProperty(QX11Info::display(), window,
                             ATOM(WM_STATE), ATOM(WM_STATE),
                             32, PropModeReplace,
-                            (unsigned char *)(CARD32[]){window_state, None},
-                            2);
+                            (unsigned char *)state, 2);
+        }
         free(r);
     }
     return window_state;
