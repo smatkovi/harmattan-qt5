@@ -159,6 +159,3 @@ void MfBackendDummyAudio::deviceStateChanged(const QMap<QString, QString> &newSt
     Q_UNUSED(newState);
 }
 
-#if !defined(MF_THEME_TESTING) && !defined(MF_RECONNECTION_TESTING)
-Q_EXPORT_PLUGIN2(meegofeedback-dummy-audio, MfBackendDummyAudio);
-#endif

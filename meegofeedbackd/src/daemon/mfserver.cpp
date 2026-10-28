@@ -62,7 +62,7 @@ bool MfServer::init()
     }
 
     // Enable other users to connect to this socket server
-    if (chmod(socketFilePath.toAscii().constData(),
+    if (chmod(socketFilePath.toLatin1().constData(),
               S_IRUSR | S_IWUSR | S_IROTH | S_IWOTH) == -1) {
         qCritical() << "MfServer: Unable to set socket file permissions";
         return false;

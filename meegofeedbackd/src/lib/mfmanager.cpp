@@ -25,10 +25,10 @@
 #include "mffeedbackhandle.h"
 #include "mflog.h"
 #include "mfsourcebase.h"
+#include "mfutil.h"
 
 // TODO: Take directory from header file made at configuration time?
 namespace {
-    const char* const gLibDirPrefix = "/usr/lib/meegofeedbackd";
     const char* const gThreadedBackendsDir = "/threaded-backends";
     const char* const gNonThreadedBackendsDir = "/non-threaded-backends";
     const char* const gSourcesDir = "/sources";
@@ -91,7 +91,7 @@ bool MfManager::init(const QString &theme,
     currentThemeName = theme;
 
     // Load non-threaded backend plugins
-    pluginPath = gLibDirPrefix;
+    pluginPath = mfLibDir();
     pluginPath.append(gNonThreadedBackendsDir);
     loadBackendPlugins(pluginPath);
 
@@ -99,7 +99,7 @@ bool MfManager::init(const QString &theme,
     nonThreadedBackendCount = backendList.size();
 
     // Load threaded backend plugins
-    pluginPath = gLibDirPrefix;
+    pluginPath = mfLibDir();
     pluginPath.append(gThreadedBackendsDir);
     loadBackendPlugins(pluginPath);
 
@@ -109,7 +109,7 @@ bool MfManager::init(const QString &theme,
     }
 
     // Load source plugins
-    pluginPath = gLibDirPrefix;
+    pluginPath = mfLibDir();
     pluginPath.append(gSourcesDir);
     loadSourcePlugins(pluginPath);
 
@@ -364,7 +364,7 @@ QPointer<MfFeedbackHandle> MfManager::searchFromCache(const QString &feedbackDir
 
     // Construct unique key for the handle
     keyValue = feedbackDir;
-    keyValue.remove(THEME_DIR_PREFIX);
+    keyValue.remove(mfThemeDirPrefix());
     keyValue += '#';
     keyValue += QString::number(backendInterfaceIndex, 16);
 
@@ -378,7 +378,7 @@ void MfManager::addToCache(MfFeedbackHandle* feedbackHandle)
     if (feedbackHandle != NULL) {
         // Construct unique key for the handle
         keyValue = feedbackHandle->path();
-        keyValue.remove(THEME_DIR_PREFIX);
+        keyValue.remove(mfThemeDirPrefix());
         keyValue += '#';
         keyValue += QString::number(backendList.indexOf(feedbackHandle->backend()), 16);
 
@@ -398,7 +398,7 @@ void MfManager::removeFromCache(MfFeedbackHandle* feedbackHandle)
     if (feedbackHandle != NULL) {
         // Construct unique key for the handle
         keyValue = feedbackHandle->path();
-        keyValue.remove(THEME_DIR_PREFIX);
+        keyValue.remove(mfThemeDirPrefix());
         keyValue += '#';
         keyValue += QString::number(backendList.indexOf(feedbackHandle->backend()), 16);
 

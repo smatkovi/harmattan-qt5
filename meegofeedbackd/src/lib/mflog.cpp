@@ -30,7 +30,9 @@ QtMsgType logMsgType = QtDebugMsg;
 namespace {
     QMutex logMutex1;
 
-    void disabledMessageHandler(QtMsgType type, const char *msg) {
+    void disabledMessageHandler(QtMsgType type, const QMessageLogContext &, const QString &message) {
+        const QByteArray text = message.toLocal8Bit();
+        const char *msg = text.constData();
         Q_UNUSED(type)
         Q_UNUSED(msg)
         QMutexLocker lock(&logMutex1);
@@ -40,7 +42,9 @@ namespace {
 namespace {
     QMutex logMutex2;
 
-    void syslogMessageHandler(QtMsgType type, const char *msg) {
+    void syslogMessageHandler(QtMsgType type, const QMessageLogContext &, const QString &message) {
+        const QByteArray text = message.toLocal8Bit();
+        const char *msg = text.constData();
         QMutexLocker lock(&logMutex2);
 
         if (type == QtDebugMsg) {
@@ -65,7 +69,9 @@ namespace {
 namespace {
     QMutex logMutex3;
 
-    void normalMessageHandler(QtMsgType type, const char *msg) {
+    void normalMessageHandler(QtMsgType type, const QMessageLogContext &, const QString &message) {
+        const QByteArray text = message.toLocal8Bit();
+        const char *msg = text.constData();
         QMutexLocker lock(&logMutex3);
 
         if (type == QtDebugMsg) {
@@ -84,14 +90,14 @@ void mfLogInit(bool enable, bool verbose, bool syslog)
     MfLogVerbose = verbose;
     logMsgType = (QtMsgType) MfLogMsg;
     if (!enable) {
-        qInstallMsgHandler(&disabledMessageHandler);
+        qInstallMessageHandler(&disabledMessageHandler);
         return;
     }
     if (syslog) {
-        qInstallMsgHandler(&syslogMessageHandler);
+        qInstallMessageHandler(&syslogMessageHandler);
         openlog("meegofeedbackd", 0, LOG_DAEMON);
     } else {
-        qInstallMsgHandler(&normalMessageHandler);
+        qInstallMessageHandler(&normalMessageHandler);
     }
 }
 

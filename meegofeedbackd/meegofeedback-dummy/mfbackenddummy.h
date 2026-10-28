@@ -24,6 +24,7 @@
 
 class MfBackendDummy : public MfBackendBase {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "meego.MfBackendInterface/1.1")
     Q_INTERFACES(MfBackendInterface)
 
 public:

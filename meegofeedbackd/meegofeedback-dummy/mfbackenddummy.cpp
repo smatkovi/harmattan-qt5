@@ -89,4 +89,3 @@ void MfBackendDummy::deviceStateChanged(const QMap<QString, QString> &newState)
     Q_UNUSED(newState);
 }
 
-Q_EXPORT_PLUGIN2(meegofeedback-dummy, MfBackendDummy);

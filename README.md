@@ -57,6 +57,7 @@ Licences: as each package states (mostly LGPL 2.1).
 | `qmsystem2` | builds; the battery from UPower or the kernel, time without timed, the heartbeat without iphbd |
 | `libconnsettings` | builds (plain C, on Leste's osso-ic headers) |
 | `mcompositor/plugins/swipe` | new: the N9's swipe (minimize from the sides, close from the top, sneak peek) |
+| `meegofeedbackd` | runs; MFeedback sounds (the theme's `feedbacks/*/audio.wav`) through `meegofeedback-pulse`, a PulseAudio backend written anew (Nokia's were not released); the N9's tap sounds of plain controls come from reaction maps (`meegofeedback-reactionmaps`), not yet |
 | `libresourceqt`, `meego-im-framework`, `meego-keyboard`, `meego-im-settings-applet` | not yet |
 
 Tried on a PC (Xvfb, Mesa llvmpipe), not yet on a device.

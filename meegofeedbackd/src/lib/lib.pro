@@ -7,7 +7,9 @@ TARGET = meegofeedback
 
 CONFIG += shared thread
 DEFINES += THEME_DIR_PREFIX=\\\"$$MF_PREFIX/share/themes\\\"
+DEFINES += MF_LIB_DIR=\\\"$$MF_PREFIX/lib/meegofeedbackd\\\"
 QT -= gui
+QT += concurrent
 
 QMAKE_CXXFLAGS_RELEASE += -finline-functions
 QMAKE_LFLAGS += "-Wl,--as-needed"

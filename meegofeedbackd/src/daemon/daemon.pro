@@ -13,7 +13,8 @@ QT -= gui
 
 QMAKE_CXXFLAGS_RELEASE += -finline-functions
 QMAKE_LFLAGS += "-Wl,--as-needed"
-PKGCONFIG += gconf-2.0 contextsubscriber-1.0
+# gobject: g_object_unref is called directly (no longer pulled in by GConf)
+PKGCONFIG += gconf-2.0 gobject-2.0 contextsubscriber-1.0
 
 INCLUDEPATH += ../lib
 LIBS += -lmeegofeedback

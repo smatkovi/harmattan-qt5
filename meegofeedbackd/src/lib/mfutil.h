@@ -49,6 +49,15 @@ QString mfTempDir();
  */
 QVector<QStringList> getFeedbackDirLists(const QString& theme, const QString& appName);
 
+/* The directory of the themes, without a trailing slash: M_THEME_DIR if set
+ * (as libmeegotouch), else the built-in one.
+ */
+QString mfThemeDirPrefix();
+
+/* The directory below which the backends and sources are found.
+ */
+QString mfLibDir();
+
 /* Returns a list of string which contains the names of the feedbacks according
  * to base theme and application name. In other words returns the available feedback
  * names for the given application.

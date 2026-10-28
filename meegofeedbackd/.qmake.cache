@@ -1,1 +1,2 @@
-QMAKE_CXXFLAGS += -Wall -Werror
+# Qt 5 port: no -Werror (today's compilers and GLib's deprecations warn)
+QMAKE_CXXFLAGS += -Wall

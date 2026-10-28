@@ -19,7 +19,9 @@
 #include <QRegExp>
 
 #include <QDebug>
+#include <QDataStream>
 #include <QDir>
+#include <unistd.h>
 #include <QFileInfo>
 #include <QSettings>
 
@@ -34,6 +36,25 @@ static const char gTempDirPath[] = "/tmp/mfeedbackd";
 // Local private functions
 QStringList getFeedbackDirsOfATheme(const QString& themeDir, const QString& appName);
 QStringList getFeedbackDirsFromPath(const QString& path);
+
+QString mfThemeDirPrefix()
+{
+    // the themes libmeegotouch draws with (M_THEME_DIR), else the built-in
+    // directory
+    QString dir = QString::fromLocal8Bit(qgetenv("M_THEME_DIR"));
+    if (dir.isEmpty())
+        dir = QLatin1String(THEME_DIR_PREFIX);
+    while (dir.length() > 1 && dir.endsWith(QLatin1Char('/')))
+        dir.chop(1);
+    return dir;
+}
+
+QString mfLibDir()
+{
+    // the backends and sources (MEEGOFEEDBACKD_LIBDIR for a staged test)
+    QString dir = QString::fromLocal8Bit(qgetenv("MEEGOFEEDBACKD_LIBDIR"));
+    return dir.isEmpty() ? QLatin1String(MF_LIB_DIR) : dir;
+}
 QStringList getThemeInheritanceChain(const QString& themeName);
 void findFeedbackFallbackPaths(const QStringList &finalFeedbacks, QVector<QStringList>& feedbackDirLists);
 
@@ -70,7 +91,7 @@ QStringList getFeedbackNames(const QString& appName)
     QStringList finalFeedbacks;
     QString baseThemeDir;
 
-    baseThemeDir = THEME_DIR_PREFIX;
+    baseThemeDir = mfThemeDirPrefix();
     baseThemeDir += QDir::separator();
     baseThemeDir += MeegoDefaultTheme;
 
@@ -326,7 +347,7 @@ QStringList getThemeInheritanceChain(const QString& themeName)
     QSettings* themeConf;
 
     // Construct the root dir of the theme
-    themeRoot = THEME_DIR_PREFIX;
+    themeRoot = mfThemeDirPrefix();
     themeRoot += QDir::separator();
     themeRoot += themeName;
 

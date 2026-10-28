@@ -4,9 +4,10 @@ CONFIG += ordered
 
 include(prefix.pri)
 
+# Qt 5 port: the daemon and the PulseAudio backend (meegofeedback-pulse,
+# written anew); the tests and the dummy backends stay as released
 SUBDIRS=src \
-    tests \
-    meegofeedback-dummy
+    meegofeedback-pulse
 
 include(conf/conf.pri)
 include(doc/doc.pri)

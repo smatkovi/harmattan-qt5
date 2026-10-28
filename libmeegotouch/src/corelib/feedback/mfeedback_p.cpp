@@ -29,8 +29,11 @@ MFeedbackPrivate::MFeedbackPrivate()
 
 void MFeedbackPrivate::play() const
 {
-    if (feedbackPlayer != 0) {
-        feedbackPlayer->play(name);
+    // The theme makes its styles' feedbacks before MComponentData has its
+    // player (Qt 5 port): look it up when it is needed.
+    MFeedbackPlayer *player = feedbackPlayer ? feedbackPlayer : MApplication::feedbackPlayer();
+    if (player != 0) {
+        player->play(name);
     }
 }
 

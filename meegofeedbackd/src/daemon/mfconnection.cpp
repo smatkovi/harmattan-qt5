@@ -16,6 +16,7 @@
 
 #include "mfconnection.h"
 
+#include <QDataStream>
 #include <QDir>
 #include <QLocalSocket>
 #include <QtDebug>
