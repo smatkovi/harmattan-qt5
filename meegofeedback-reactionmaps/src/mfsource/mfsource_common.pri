@@ -46,6 +46,7 @@ QMAKE_EXTRA_TARGETS += check-xml
 check-xml.depends = $$DESTDIR/lib$${TARGET}.so
 check-xml.commands = $$system(true)
 
-target.path = /usr/lib/meegofeedbackd
+# where meegofeedbackd looks for its sources (MF_LIB_DIR/sources)
+target.path = /usr/lib/meegofeedbackd/sources
 INSTALLS += target
 
