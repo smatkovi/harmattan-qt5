@@ -52,7 +52,7 @@ contains(DEFINES, HAVE_CONTENT_MANAGER) {
 
 QT += dbus
 
-QMAKE_LFLAGS_RPATH = -Wl
+QMAKE_LFLAGS_RPATH =
 QMAKE_CXXFLAGS += -fvisibility=hidden -fvisibility-inlines-hidden -fPIC
 
 MOC_DIR = .moc

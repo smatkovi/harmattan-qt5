@@ -1,4 +1,4 @@
-QMAKE_LFLAGS_RPATH = -Wl
+QMAKE_LFLAGS_RPATH =
 
 # Use this feature only when you need only the soundsettings widgets
 

@@ -8,7 +8,7 @@ OBJECTS_DIR = .objects
 
 QT += dbus
 
-QMAKE_LFLAGS_RPATH = -Wl
+QMAKE_LFLAGS_RPATH =
 QMAKE_CXXFLAGS += -fvisibility=hidden -fvisibility-inlines-hidden -fPIC
 
 CONFIG += plugin \

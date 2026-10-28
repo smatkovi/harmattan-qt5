@@ -1,4 +1,4 @@
-QMAKE_LFLAGS_RPATH += -Wl
+QMAKE_LFLAGS_RPATH =
 QMAKE_LFLAGS += -Wl,--as-needed
 
 MOC_DIR = ../.moc

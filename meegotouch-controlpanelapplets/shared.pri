@@ -1,5 +1,8 @@
 
-QMAKE_LFLAGS_RPATH += -Wl
+# no rpath (Nokia's "-Wl" in its place made one flag of nothing for Qt 4;
+# appended to Qt 5's "-Wl,-rpath," it leaves -rpath without its value,
+# which then takes the next linker option: Qt for FreeBSD has rpath dirs)
+QMAKE_LFLAGS_RPATH =
 QMAKE_LFLAGS += -Wl,--as-needed
 
 defineTest(addSubDirs) {

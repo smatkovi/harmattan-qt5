@@ -18,7 +18,7 @@ QT += gui dbus
 MOC_DIR	      = .moc
 OBJECTS_DIR   = .objects
 
-QMAKE_LFLAGS_RPATH = -Wl
+QMAKE_LFLAGS_RPATH =
 QMAKE_CXXFLAGS += -fvisibility=hidden -fvisibility-inlines-hidden -fPIC
 
 HEADERS +=  \

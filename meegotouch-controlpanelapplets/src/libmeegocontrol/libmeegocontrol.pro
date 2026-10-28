@@ -18,7 +18,7 @@ CONFIG +=          \
     link_pkgconfig \
     duicontrolpanel
 
-QMAKE_LFLAGS_RPATH = -Wl
+QMAKE_LFLAGS_RPATH =
 QMAKE_CXXFLAGS += -fvisibility=hidden -fvisibility-inlines-hidden -fPIC
 
 #

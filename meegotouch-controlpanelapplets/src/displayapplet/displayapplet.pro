@@ -9,7 +9,7 @@ CONFIG += plugin \
           duicontrolpanel \
           qmsystem2
 
-QMAKE_LFLAGS_RPATH = -Wl
+QMAKE_LFLAGS_RPATH =
 QMAKE_CXXFLAGS += -fvisibility=hidden -fvisibility-inlines-hidden -fPIC
 
 QT += dbus gui
