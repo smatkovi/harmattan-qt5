@@ -48,6 +48,8 @@
 class MKeyboardPlugin: public QObject, public MInputMethodPlugin
 {
     Q_OBJECT
+    // Qt 5's plugins say what they are in the class (Q_EXPORT_PLUGIN2 is gone)
+    Q_PLUGIN_METADATA(IID "com.meego.meegoimframework.MInputMethodPlugin/1.1")
     Q_INTERFACES(MInputMethodPlugin)
 
 public:

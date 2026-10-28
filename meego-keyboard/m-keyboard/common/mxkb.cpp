@@ -89,9 +89,9 @@ bool MXkb::setXkbMap(const QString &modelName, const QString &layoutName, const 
     XkbDescPtr xkb = NULL;
     char *locale = setlocale(LC_ALL, NULL);
 
-    QByteArray model = modelName.toAscii();
-    QByteArray layout = layoutName.toAscii();
-    QByteArray variant = variantName.toAscii();
+    QByteArray model = modelName.toLatin1();
+    QByteArray layout = layoutName.toLatin1();
+    QByteArray variant = variantName.toLatin1();
 
     XkbRF_GetNamesProp(display, &rulesName, &defs_rec);
     if (rulesName == NULL) {
@@ -99,7 +99,7 @@ bool MXkb::setXkbMap(const QString &modelName, const QString &layoutName, const 
         goto exit_door;
     }
 
-    buffer = QString(XkbDataDir + "/" + rulesName).toAscii();
+    buffer = QString(XkbDataDir + "/" + rulesName).toLatin1();
 
     defs_rec.model  = model.data();
     defs_rec.layout = layout.data();

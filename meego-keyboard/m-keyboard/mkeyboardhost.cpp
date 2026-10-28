@@ -301,8 +301,21 @@ void MKeyboardHost::init()
     Q_ASSERT(mMainWindow != 0);
 
     if (!MComponentData::instance()) {
+#if QT_VERSION >= 0x050000
+        // Qt 5's QApplication no longer hands out argc and argv
+        static QList<QByteArray> arguments;
+        static QVector<char *> argumentPointers;
+        Q_FOREACH (const QString &argument, QCoreApplication::arguments())
+            arguments << argument.toLocal8Bit();
+        for (int i = 0; i < arguments.size(); ++i)
+            argumentPointers << arguments[i].data();
+        argumentPointers << 0;
+        static int argc = arguments.size();
+        static char **argv = argumentPointers.data();
+#else
         static int argc = qApp->argc();
         static char **argv = qApp->argv();
+#endif
         MComponentData::createInstance(argc, argv, qApp->applicationName());
         gOwnsComponentData = true;
     }
@@ -2621,7 +2634,7 @@ void MKeyboardHost::togglePlusMinus()
     int wordLength = cursorPos - wordBegin;
 
     char sign = (wordLength >= 0)
-                ? text[wordBegin].toAscii() : 0;
+                ? text[wordBegin].toLatin1() : 0;
 
     // Change/add sign
     int replaceCount;

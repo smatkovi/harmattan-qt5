@@ -77,7 +77,9 @@ private:
     typedef QMap<const QObject *, QRegion> RegionMap;
 
     //! Regions of widgets
-    RegionMap regions;
+    // mutable: combineRegions() const keeps each widget's current region
+    // in it (Qt 4 let a const map hand out a writable iterator)
+    mutable RegionMap regions;
 };
 
 

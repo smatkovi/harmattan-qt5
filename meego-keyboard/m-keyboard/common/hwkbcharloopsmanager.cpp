@@ -32,6 +32,7 @@
 
 
 #include "hwkbcharloopsmanager.h"
+#include "layoutspath.h"
 #include "hwkbcharloops.h"
 #include <algorithm>
 #include <QDomDocument>
@@ -43,7 +44,7 @@ namespace
 {
     const QString SystemDisplayLanguage("/meegotouch/i18n/language");
     const QString HardwareKeyboardCharLoopsFile("hwkbcharloops.xml");
-    const QString HwKbCharLoopConfigurationPath = "/usr/share/meegotouch/virtual-keyboard/layouts/";
+    const QString HwKbCharLoopConfigurationPath = vkbLayoutsPath();
     const QString DefaultDisplayLanguage("en_gb");
 
     const QString HWKBTagKeyboard           = QString("keyboard");

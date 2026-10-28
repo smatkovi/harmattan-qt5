@@ -95,7 +95,8 @@ void WordRibbonDialogModel::fillCandidates(int rowWidth)
     } while (consume < listOrginal.count());
     cache.insert(rowWidth, listSeparate);
     currentRowWidth = rowWidth;
-    reset();
+    beginResetModel();
+    endResetModel();
 }
 
 void WordRibbonDialogModel::setCandidates(const QStringList &list, int rowWidth)
@@ -122,7 +123,8 @@ void WordRibbonDialogModel::setCandidates(const QStringList &list, int rowWidth)
         if (cache.contains(rowWidth)) {
             if(currentRowWidth != rowWidth) {
                 currentRowWidth = rowWidth;
-                reset();
+                beginResetModel();
+                endResetModel();
             }
             return;
         }

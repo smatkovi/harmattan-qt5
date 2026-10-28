@@ -29,6 +29,7 @@
 
  */
 #include "flickgesture.h"
+#include "touchcompat.h"
 #include "flickgesturerecognizer.h"
 #include "borderpanrecognizer.h"
 #include "mimabstractkeyarea.h"
@@ -288,6 +289,9 @@ void MImAbstractKeyAreaPrivate::handleTouchEvent(QTouchEvent *event)
     Q_Q(MImAbstractKeyArea);
 
     lastTouchEvent = *event;
+#if QT_VERSION >= 0x050000
+    TouchCompat::noteEvent(event);
+#endif
 
     if (event->type() == QEvent::TouchBegin) {
         ignoreTouchEventsUntilNewBegin = false;
@@ -400,13 +404,13 @@ void MImAbstractKeyAreaPrivate::touchPointPressed(const QTouchEvent::TouchPoint 
             q->updatePopup(rec.key());
         }
         longPressTouchPointId = tp.id();
-        longPressTouchPointIsPrimary = tp.isPrimary();
+        longPressTouchPointIsPrimary = M_TP_IS_PRIMARY(tp);
         longPressTimer.start(q->style()->longPressTimeout());
 
         emit q->keyPressed(rec.key(),
                            KeyContext(hasActiveShiftKeys || isUpperCase(),
                                       finder.deadKey() ? finder.deadKey()->label() : QString(),
-                                      tp.scenePos(), QPoint(), tp.isPrimary(),
+                                      tp.scenePos(), QPoint(), M_TP_IS_PRIMARY(tp),
                                       0, source));
     }
     mTimestamp("MImAbstractKeyArea", "end");
@@ -451,12 +455,12 @@ void MImAbstractKeyAreaPrivate::touchPointMoved(const QTouchEvent::TouchPoint &t
         QMetaObject::invokeMethod(&feedbackSliding, "play", Qt::QueuedConnection);
 
         longPressTouchPointId = tp.id();
-        longPressTouchPointIsPrimary = tp.isPrimary();
+        longPressTouchPointIsPrimary = M_TP_IS_PRIMARY(tp);
         longPressTimer.start(q->style()->longPressTimeout());
         emit q->keyPressed(rec.key(),
                            KeyContext(hasActiveShiftKeys || isUpperCase(),
                                       finder.deadKey() ? finder.deadKey()->label() : QString(),
-                                      tp.scenePos(), QPoint(), tp.isPrimary(),
+                                      tp.scenePos(), QPoint(), M_TP_IS_PRIMARY(tp),
                                       0, source));
     }
 
@@ -577,7 +581,12 @@ MImAbstractKeyAreaPrivate::fromMouseEvent(const QGraphicsSceneMouseEvent *event,
     }
 
     QTouchEvent::TouchPoint tp(0);
+#if QT_VERSION >= 0x050000
+    tp.setState(state);
+    TouchCompat::setPrimary(tp, true);
+#else
     tp.setState(state | Qt::TouchPointPrimary);
+#endif
     tp.setPos(event->pos());
     tp.setScenePos(event->scenePos());
 

@@ -355,4 +355,6 @@ void StubDriver::commitWord(int index, bool ignoreNewWord)
     stubMethodEntered("commitWord", params);
 }
 
+#if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2(stubdriver1_words, StubDriver);
+#endif

@@ -3,8 +3,10 @@ TARGET = meego-im-plugins
 TEMPLATE = subdirs
 SUBDIRS = \
     m-keyboard \
-    meego-keyboard-quick \
     translations \
+
+# the QML keyboard is QtQuick 1 (QtDeclarative), not built with Qt 5
+lessThan(QT_MAJOR_VERSION, 5): SUBDIRS += meego-keyboard-quick
 
 CONFIG(docs) {
     include (doc/doc.pri)

@@ -30,17 +30,28 @@
  */
 
 
+#include <QGraphicsSceneResizeEvent>
 #include "wordribbon.h"
+#include <QGraphicsSceneResizeEvent>
 #include "wordribbonstyle.h"
+#include <QGraphicsSceneResizeEvent>
 #include "wordribbonitem.h"
+#include <QGraphicsSceneResizeEvent>
 #include "wordribbonhost.h"
+#include <QGraphicsSceneResizeEvent>
 #include "mimreactionmap.h"
+#include <QGraphicsSceneResizeEvent>
 #include "mplainwindow.h"
+#include <QGraphicsSceneResizeEvent>
 #include "reactionmapwrapper.h"
 
+#include <QGraphicsSceneResizeEvent>
 #include <QtGui>
+#include <QGraphicsSceneResizeEvent>
 #include <QtCore>
+#include <QGraphicsSceneResizeEvent>
 #include <MButton>
+#include <QGraphicsSceneResizeEvent>
 #include <MSceneManager>
 
 namespace {

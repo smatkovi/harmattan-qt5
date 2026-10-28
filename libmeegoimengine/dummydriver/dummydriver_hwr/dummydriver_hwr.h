@@ -33,6 +33,8 @@ class MImEngineHwr;
 class DummyDriverHwr: public QObject, public MImEngineHwrInterface
 {
     Q_OBJECT
+    // Qt 5's plugins say what they are in the class (Q_EXPORT_PLUGIN2 is gone)
+    Q_PLUGIN_METADATA(IID "com.meego.MImEngineHwrInterface/0.1")
     Q_DISABLE_COPY(DummyDriverHwr)
     Q_INTERFACES(MImEngineHwrInterface)
 

@@ -30,6 +30,7 @@
  */
 
 #include "extendedkeys.h"
+#include "touchcompat.h"
 #include "magnifierhost.h"
 #include "reactionmapwrapper.h"
 
@@ -260,18 +261,23 @@ void ExtendedKeys::handleShowAnimationFinished()
         if (acceptTouchEvents()) {
             QTouchEvent::TouchPoint tp;
             tp.setId(followedTouchPointId);
+#if QT_VERSION >= 0x050000
+            tp.setState(Qt::TouchPointPressed);
+            TouchCompat::setPrimary(tp, isInitialTouchPointPrimary);
+#else
             if (isInitialTouchPointPrimary) {
                 tp.setState(Qt::TouchPointPressed | Qt::TouchPointPrimary);
             } else {
                 tp.setState(Qt::TouchPointPressed);
             }
+#endif
             tp.setPos(extKeysArea->mapFromScene(tappedScenePos));
             tp.setScenePos(tappedScenePos);
             tp.setLastPos(tp.pos());
             tp.setLastScenePos(tp.scenePos());
             QList<QTouchEvent::TouchPoint> tpList;
             tpList.append(tp);
-            QTouchEvent touchEvent(QEvent::TouchBegin, QTouchEvent::TouchScreen, Qt::NoModifier, tp.state(), tpList);
+            QTouchEvent touchEvent(QEvent::TouchBegin, M_TOUCH_DEVICE, Qt::NoModifier, tp.state(), tpList);
             scene()->sendEvent(extKeysArea.get(), &touchEvent);
         }
     
@@ -304,7 +310,7 @@ bool ExtendedKeys::handleTouchEvent(QTouchEvent *event, QGraphicsItem *originalR
     Qt::TouchPointStates receiverState;
 
     foreach (const QTouchEvent::TouchPoint &tp, event->touchPoints()) {
-        switch (tp.state() & Qt::TouchPointStateMask) {
+        switch (M_TP_STATE(tp)) {
         case Qt::TouchPointPressed:
             if (followedTouchPointId < 0) {
                 // Start redirecting the first touch point after initial
@@ -403,7 +409,7 @@ bool ExtendedKeys::handleTouchEvent(QTouchEvent *event, QGraphicsItem *originalR
                 type = QEvent::TouchEnd;
             }
     
-            QTouchEvent tEvent(type, QTouchEvent::TouchScreen, Qt::NoModifier, extKeysAreaTouchPoint[0].state(), extKeysAreaTouchPoint);
+            QTouchEvent tEvent(type, M_TOUCH_DEVICE, Qt::NoModifier, extKeysAreaTouchPoint[0].state(), extKeysAreaTouchPoint);
             scene()->sendEvent(extKeysArea.get(), &tEvent);
         }
         eaten = true;
@@ -413,7 +419,7 @@ bool ExtendedKeys::handleTouchEvent(QTouchEvent *event, QGraphicsItem *originalR
     // to avoid infinite recursion.
     if (originalReceiver && !receiverTouchPoints.isEmpty()
         && receiverTouchPoints.size() != event->touchPoints().size()) {
-        QTouchEvent tEvent(event->type(), QTouchEvent::TouchScreen, Qt::NoModifier, receiverState, receiverTouchPoints);
+        QTouchEvent tEvent(event->type(), M_TOUCH_DEVICE, Qt::NoModifier, receiverState, receiverTouchPoints);
         scene()->sendEvent(originalReceiver, &tEvent);
         eaten = true;
     }
@@ -580,7 +586,7 @@ QVariant ExtendedKeys::itemChange(GraphicsItemChange change, const QVariant &val
             // we consumed TouchEnd event already, so now we have to send fake one
             // to allow mainArea to work properly
             QList<QTouchEvent::TouchPoint> list;
-            QTouchEvent fakeEvent(QEvent::TouchEnd, QTouchEvent::TouchScreen, Qt::NoModifier,
+            QTouchEvent fakeEvent(QEvent::TouchEnd, M_TOUCH_DEVICE, Qt::NoModifier,
                                   Qt::TouchPointReleased,  list);
 
             QCoreApplication::sendEvent(mainArea, &fakeEvent);

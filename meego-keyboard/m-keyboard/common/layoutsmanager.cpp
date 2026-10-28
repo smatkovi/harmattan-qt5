@@ -32,6 +32,7 @@
 
 
 #include "layoutsmanager.h"
+#include "layoutspath.h"
 #include <algorithm>
 #include <QDebug>
 #include <QDir>
@@ -61,7 +62,7 @@ namespace
     const QString SymbolKeyboardFileCommon("hwsymbols_common.xml");
     const QString SymbolKeyboardFileChinese("hwsymbols_chinese.xml");
     const QString FallbackXkbModel("evdev");
-    const QString VKBConfigurationPath("/usr/share/meegotouch/virtual-keyboard/layouts/");
+    const QString VKBConfigurationPath(vkbLayoutsPath());
     const QLatin1String VKBUserLayoutPath(".config/meego-keyboard/layouts/");
     const QString VKBLayoutsFilterRule("*.xml");
     const QString VKBLayoutsIgnoreRules("number|test|customer|default"); // use as regexp to ignore number, test, customer and default layouts

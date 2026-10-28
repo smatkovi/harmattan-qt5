@@ -32,6 +32,7 @@
 
 
 #include "keyboarddata.h"
+#include "layoutspath.h"
 
 #include <QDebug>
 #include <QDir>
@@ -43,7 +44,7 @@
 namespace
 {
     // TODO: Support Windows paths too.
-    const char * const VKBConfigurationPath       = "/usr/share/meegotouch/virtual-keyboard/layouts/";
+    const QString VKBConfigurationPath(vkbLayoutsPath());
     // VKBUserLayoutPath is relative to home dir:
     const char * const VKBUserLayoutPath          = ".config/meego-keyboard/layouts/";
 
@@ -331,7 +332,7 @@ bool KeyboardData::loadNokiaKeyboardImpl(const QString &fileName, ParseParameter
                         &errorColumn)) {
         qWarning() << "Invalid virtual keyboard layout file" << absoluteFileName;
         qWarning("Parse error on line %d column %d: %s", errorLine, errorColumn,
-                 errorStr.toAscii().constData());
+                 errorStr.toLatin1().constData());
         return false;
     }
 

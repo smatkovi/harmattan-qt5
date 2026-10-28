@@ -1,8 +1,13 @@
+#include <QGraphicsSceneMouseEvent>
 #include "wordribbonitem.h"
 
+#include <QGraphicsSceneMouseEvent>
 #include "mscalableimage.h"
+#include <QGraphicsSceneMouseEvent>
 #include <QString>
+#include <QGraphicsSceneMouseEvent>
 #include <QtCore>
+#include <QGraphicsSceneMouseEvent>
 #include <QtGui>
 
 namespace {

@@ -18,6 +18,9 @@
 ****************************************************************************/
 
 #include "minputmethodstate.h"
+#include "mcomponentdata.h"
+#include "mwindow.h"
+#include <QWindow>
 #include "minputmethodstate_p.h"
 
 #include <MDebug>
@@ -90,6 +93,15 @@ MInputMethodState::MInputMethodState()
     ok = connect(Maliit::InputMethod::instance(), SIGNAL(languageChanged(QString)),
                  this, SIGNAL(languageChanged(QString)));
     if (!ok) qFatal("signal connection failed!");
+#elif QT_VERSION >= 0x050000
+    // Qt 5's platform input context tells where the keyboard is (on the
+    // screen: MeeGo Touch sets no input item transform), which moves the
+    // focused editor out of its way
+    if (QGuiApplication::inputMethod())
+        connect(QGuiApplication::inputMethod(), &QInputMethod::keyboardRectangleChanged,
+                this, [this]() {
+                    setInputMethodArea(QGuiApplication::inputMethod()->keyboardRectangle().toRect());
+                });
 #endif
 }
 
@@ -158,6 +170,20 @@ void MInputMethodState::setActiveWindowOrientationAngle(M::OrientationAngle newO
     }
 #ifdef HAVE_MALIIT
     Maliit::InputMethod::instance()->setOrientationAngle(static_cast<Maliit::OrientationAngle>(newOrientationAngle));
+#elif QT_VERSION >= 0x050000
+    // Qt 5's platform input context (Maliit's) learns the angle from the
+    // window's content orientation
+    MWindow *window = MComponentData::activeWindow();
+    if (window && window->windowHandle()) {
+        Qt::ScreenOrientation orientation = Qt::LandscapeOrientation;
+        switch (newOrientationAngle) {
+        case M::Angle0:   orientation = Qt::LandscapeOrientation; break;
+        case M::Angle90:  orientation = Qt::InvertedPortraitOrientation; break;
+        case M::Angle180: orientation = Qt::InvertedLandscapeOrientation; break;
+        case M::Angle270: orientation = Qt::PortraitOrientation; break;
+        }
+        window->windowHandle()->reportContentOrientationChange(orientation);
+    }
 #endif
 }
 

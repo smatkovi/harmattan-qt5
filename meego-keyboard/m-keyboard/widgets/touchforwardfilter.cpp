@@ -28,6 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "touchforwardfilter.h"
+#include "touchcompat.h"
 #include <QGraphicsObject>
 #include <QGraphicsScene>
 
@@ -241,7 +242,12 @@ QTouchEvent::TouchPoint TouchForwardFilter::convertTouchPoint(const QTouchEvent:
     }
 
     if (tp.state() != newState) {
+#if QT_VERSION >= 0x050000
+        // the primary flag stays with the point's flags
+        tp.setState(newState);
+#else
         tp.setState(tp.isPrimary() ? (newState | Qt::TouchPointPrimary) : newState);
+#endif
     }
 
     if (options & DiscardLastPosition) {
@@ -265,7 +271,7 @@ int TouchForwardFilter::uniqueTouchId(const QGraphicsObject &originItem, int id)
     Q_ASSERT(static_cast<unsigned int>(MaxTouchPointId) < sizeof(QGraphicsObject));
 
     if (id <= MaxTouchPointId) {
-        id += reinterpret_cast<int>(&originItem);
+        id += static_cast<int>(reinterpret_cast<quintptr>(&originItem));
     } // else already unique
     return id;
 }

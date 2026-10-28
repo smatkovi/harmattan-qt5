@@ -10,6 +10,8 @@ INSTALL_HEADERS += \
     $$COMMON_DIR/mimfontpool.h \
 
 HEADERS += \
+    $$COMMON_DIR/touchcompat.h \
+    $$COMMON_DIR/layoutspath.h \
     $$INSTALL_HEADERS \
     $$COMMON_DIR/reactionmappainter_p.h \
     $$COMMON_DIR/regiontracker_p.h \

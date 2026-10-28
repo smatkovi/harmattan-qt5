@@ -212,7 +212,7 @@ bool EngineHandlerKorean::handleKeyClick(const KeyEvent &event, bool cycleKeyAct
         } else {
           typedChar = '\b';
         }
-    } else if (typedChar.toAscii() != 0) {
+    } else if (typedChar.toLatin1() != 0) {
         flushOut();
         return false;
     }

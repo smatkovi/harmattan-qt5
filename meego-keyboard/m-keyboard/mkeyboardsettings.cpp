@@ -30,6 +30,7 @@
  */
 
 #include "mkeyboardsettings.h"
+#include "layoutspath.h"
 #include "mkeyboardsettingswidget.h"
 #include "mimlayouttitleparser.h"
 
@@ -43,7 +44,7 @@ namespace {
     const QString SettingsImErrorCorrection("/meegotouch/inputmethods/virtualkeyboard/correctionenabled");
     const QString SettingsImCorrectionSpace("/meegotouch/inputmethods/virtualkeyboard/correctwithspace");
     const QString EnabledSubViewsKey("/meegotouch/inputmethods/onscreen/enabled");
-    const QString VKBConfigurationPath("/usr/share/meegotouch/virtual-keyboard/layouts/");
+    const QString VKBConfigurationPath(vkbLayoutsPath());
     const QString VKBLayoutsFilterRule("*.xml");
     const QString VKBLayoutsIgnoreRules("number|test|customer|default"); // use as regexp to ignore number, test, customer and default layouts
     const QString SettingsFuzzy("/meegotouch/inputmethods/virtualkeyboard/fuzzyselected");

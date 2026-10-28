@@ -42,6 +42,8 @@ class QFile;
 class StubDriver2Hwr: public QObject, public MImEngineHwrInterface, public StubBase
 {
     Q_OBJECT
+    // Qt 5's plugins say what they are in the class (Q_EXPORT_PLUGIN2 is gone)
+    Q_PLUGIN_METADATA(IID "com.meego.MImEngineHwrInterface/0.1")
     Q_DISABLE_COPY(StubDriver2Hwr)
     Q_INTERFACES(MImEngineHwrInterface)
 

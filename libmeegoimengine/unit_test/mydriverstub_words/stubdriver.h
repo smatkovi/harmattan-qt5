@@ -41,6 +41,8 @@ class QFile;
 class StubDriver: public QObject, public MImEngineWordsInterface, public StubBase
 {
     Q_OBJECT
+    // Qt 5's plugins say what they are in the class (Q_EXPORT_PLUGIN2 is gone)
+    Q_PLUGIN_METADATA(IID "com.nokia.Meego.MImEngineWordsInterface/0.1")
     Q_DISABLE_COPY(StubDriver)
     Q_INTERFACES(MImEngineWordsInterface)
 

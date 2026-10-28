@@ -46,7 +46,7 @@ Licences: as each package states (mostly LGPL 2.1).
 | Directory | Qt 5 |
 | --- | --- |
 | `libmlocale` | builds |
-| `libmeegotouch` | builds; applications run with the N9's theme |
+| `libmeegotouch` | builds; applications run with the N9's theme; without libmaliit it tells Qt 5's input context its windows' angle (content orientation) and learns the keyboard's area from it |
 | `contextkit` | builds; providers and subscribers talk over D-Bus |
 | `mcompositor` | builds; manages and composites MeeGo Touch and plain X11 windows, `mdecorator` frames the latter (GLX; the unit tests don't build yet) |
 | `libcontentaction` | builds |
@@ -62,7 +62,9 @@ Licences: as each package states (mostly LGPL 2.1).
 | `statusmenu-plugins` | new: the status indicator menu's rows (the N9's were not released): the volume of PulseAudio's default output, the internet connection from NetworkManager (with the WLAN switch) and Bluetooth from BlueZ, light on black as the N9's; `M_APPLICATION_EXTENSION_DIR` and `M_APPLICATION_EXTENSION_DATA_DIR` let libmeegotouch find them in a stage |
 | `meegofeedbackd` | runs; MFeedback sounds (the theme's `feedbacks/*/audio.wav`) through `meegofeedback-pulse`, a PulseAudio backend written anew (Nokia's were not released); the N9's tap sounds of plain controls come from reaction maps (`meegofeedback-reactionmaps`), not yet |
 | `meego-im-framework` | builds (legacy mode, as Harmattan: `CONFIG+=enable-legacy CONFIG+=enable-contextkit`); meego-im-uiserver shows the plugins for MeeGo Touch applications, mcompositor composites its window over theirs, text goes back; Qt 5 applications reach it through `platforminputcontext` (Qt 5.1's Maliit platform input context, `QT_IM_MODULE=maliit`); the Qt 4 input context, the GTK+ bridge and the QtQuick 1 plugin base are not built |
-| `libresourceqt`, `meego-keyboard`, `meego-im-settings-applet` | not yet |
+| `libmeegoimengine` | builds, with its open dummy engine (the N9's word engine, with correction and prediction, was not released) |
+| `meego-keyboard` | runs: the N9's keyboard in meego-im-uiserver, landscape, with the N9's theme; typing reaches MeeGo Touch applications, which move the editor out of its way; Qt 5 dropped the primary touch point, `common/touchcompat.h` keeps it; `M_VKB_LAYOUTS_DIR` for a staged test; built with `CONFIG+=noreactionmap` until the reaction maps are ported, without the QtQuick 1 keyboard |
+| `libresourceqt`, `meego-im-settings-applet` | not yet |
 
 Tried on a PC (Xvfb, Mesa llvmpipe), not yet on a device.
 
