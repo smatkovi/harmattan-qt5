@@ -181,6 +181,8 @@ void* dsmesock_receive(dsmesock_connection_t* conn)
                                                               msg->line_size_);
               if (newbuf == 0) return 0; /* Try again later */
               conn->buf     = newbuf;
+              /* the header moved along with the buffer */
+              msg           = (dsmemsg_generic_t*)conn->buf;
               conn->bufsize = msg->line_size_;
           }
 
