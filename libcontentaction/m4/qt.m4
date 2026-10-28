@@ -4,10 +4,12 @@ PKG_CHECK_MODULES([$1], [$2])
 AC_SUBST([$1_CFLAGS])
 AC_SUBST([$1_LIBS])])
 
+dnl MOC may be given (a cross build's, the build machine's); test -x, as
+dnl AC_CHECK_FILE refuses to run when cross compiling
 AC_DEFUN([AC_PROG_QT_MOC], [
-MOC=`pkg-config Qt5Core --variable=host_bins`/moc
-AC_CHECK_FILE([$MOC], [],
-   AC_MSG_ERROR([Can't find moc compiler: $MOC]))
+AS_IF([test -z "$MOC"], [MOC=`pkg-config Qt5Core --variable=host_bins`/moc])
+AS_IF([test -x "$MOC"], [],
+   [AC_MSG_ERROR([Can't find moc compiler: $MOC])])
 AC_SUBST([MOC])])
 
 AC_DEFUN([AC_PROG_QT_UIC], [
