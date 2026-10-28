@@ -22,7 +22,7 @@
 #include <X11/Xproto.h>
 
 // Local function prototypes
-static int *xerrorHandler(Display *display, XErrorEvent *errorEvent);
+static int xerrorHandler(Display *display, XErrorEvent *errorEvent);
 
 class MfTouchScreenListenerPriv
 {
@@ -94,7 +94,7 @@ bool MfTouchScreenListener::startListening()
         goto CLEANUP;
     }
 
-    XSetErrorHandler((XErrorHandler) xerrorHandler);
+    XSetErrorHandler(xerrorHandler);
 
     // Synchronize control display
     XSynchronize(d->controlDisplay, true);
@@ -193,12 +193,12 @@ bool MfTouchScreenListener::stopListening()
     return true;
 }
 
-static int *xerrorHandler(Display *display, XErrorEvent *errorEvent)
+static int xerrorHandler(Display *display, XErrorEvent *errorEvent)
 {
     Q_UNUSED(display);
     Q_UNUSED(errorEvent);
     qCritical("MfXRecordThread: Error from X");
-    return NULL;
+    return 0;
 }
 
 bool MfTouchScreenListener::isActive()

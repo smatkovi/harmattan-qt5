@@ -121,4 +121,6 @@ void MfReactorSource::deviceStateChanged(const QMap<QString, QString> &newState)
     }
 }
 
+#if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2(meegofeedback-reactionmaps, MfReactorSource);
+#endif

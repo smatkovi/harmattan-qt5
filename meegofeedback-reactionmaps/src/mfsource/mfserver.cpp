@@ -63,7 +63,7 @@ bool MfServer::init()
     }
 
     // Enable other users to connect to this socket server
-    if (chmod(socketFilePath.toAscii().constData(),
+    if (chmod(socketFilePath.toLatin1().constData(),
               S_IRUSR | S_IWUSR | S_IROTH | S_IWOTH) == -1) {
         qCritical() << "MfServer: Unable to set socket file permissions";
         return false;
@@ -90,7 +90,7 @@ void MfServer::removePreExistingSharedMemory()
 
         fullPath = oldTempFiles.filePath(tempFile);
 
-        key = ftok(fullPath.toAscii().constData(), proc_id);
+        key = ftok(fullPath.toLatin1().constData(), proc_id);
         shm_id = shmget(key, 0, S_IRUSR | S_IWUSR);
 
         if (shm_id == -1) {

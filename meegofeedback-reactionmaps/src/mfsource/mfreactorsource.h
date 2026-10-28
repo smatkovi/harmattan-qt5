@@ -29,6 +29,8 @@ class MfTouchScreenListener;
 class MfReactorSource : public MfSourceBase
 {
     Q_OBJECT
+    // Qt 5's plugins say what they are in the class (Q_EXPORT_PLUGIN2 is gone)
+    Q_PLUGIN_METADATA(IID "meego.MfSourceInterface/1.0")
     Q_INTERFACES(MfSourceInterface)
 public:
     MfReactorSource();

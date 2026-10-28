@@ -1,8 +1,10 @@
 CONFIG += ordered
 TEMPLATE    = subdirs
-SUBDIRS     = src \
-              tests \
-              tools
+SUBDIRS     = src
+# the tests are left out with CONFIG+=notests; the reaction map viewer (a
+# debugging tool) is not ported to Qt 5 yet
+!notests: SUBDIRS += tests
+lessThan(QT_MAJOR_VERSION, 5): SUBDIRS += tools
 
 include (conf/conf.pri)
 include (shared.pri)

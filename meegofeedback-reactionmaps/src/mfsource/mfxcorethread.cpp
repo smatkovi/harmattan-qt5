@@ -17,7 +17,7 @@
 #include "mfxcorethread.h"
 
 // Local function prototypes
-static int *xerrorHandler(Display *display, XErrorEvent *errorEvent);
+static int xerrorHandler(Display *display, XErrorEvent *errorEvent);
 
 MfXCoreThread::MfXCoreThread(QObject *parent)
     : QThread(parent), display(NULL)
@@ -55,7 +55,7 @@ bool MfXCoreThread::setup()
         return false;
     }
 
-    XSetErrorHandler((XErrorHandler) xerrorHandler);
+    XSetErrorHandler(xerrorHandler);
 
     XAllowEvents(display, AsyncBoth, CurrentTime);
 
@@ -100,10 +100,10 @@ bool MfXCoreThread::listen()
     return true;
 }
 
-static int *xerrorHandler(Display *display, XErrorEvent *errorEvent)
+static int xerrorHandler(Display *display, XErrorEvent *errorEvent)
 {
     Q_UNUSED(display);
     Q_UNUSED(errorEvent);
     qCritical("MfXCoreThread: Error from X");
-    return NULL;
+    return 0;
 }

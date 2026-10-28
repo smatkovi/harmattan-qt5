@@ -200,7 +200,7 @@ bool MReactionMapViewer::loadReactionMap(const QString &tempFilePath)
     char proc_id = 'C';
     MfPaletteEntry *palette = 0;
 
-    key = ftok(tempFilePath.toAscii().constData(), proc_id);
+    key = ftok(tempFilePath.toLatin1().constData(), proc_id);
     id = shmget(key, 0, S_IROTH);
 
     if (id == -1) {

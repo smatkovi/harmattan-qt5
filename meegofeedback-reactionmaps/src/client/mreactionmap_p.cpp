@@ -24,6 +24,10 @@
 #include <QWidget>
 #include <QDebug>
 #include <QDesktopWidget>
+#if QT_VERSION >= 0x050000
+#include <QGuiApplication>
+#include <QScreen>
+#endif
 #include <QGraphicsItem>
 #include <QGraphicsView>
 #include <QSharedPointer>
@@ -127,7 +131,7 @@ bool MReactionMapPrivate::buildSharedMemoryImage(const QString& tempFilePath)
     MfPaletteEntry *newPalette;
     void *newSharedMemoryAddress = 0;
 
-    key = ftok(tempFilePath.toAscii().constData(), proc_id);
+    key = ftok(tempFilePath.toLatin1().constData(), proc_id);
     id = shmget(key, 0, S_IROTH | S_IWOTH);
 
     if (id == -1) {
@@ -178,8 +182,12 @@ bool MReactionMapPrivate::buildSharedMemoryImage(const QString& tempFilePath)
 
 void MReactionMapPrivate::buildScreenTransform()
 {
+#if QT_VERSION >= 0x050000
+    QRect screenRect = QGuiApplication::primaryScreen()->geometry();
+#else
     QDesktopWidget *desktop = QApplication::desktop();
     QRect screenRect = desktop->screenGeometry();
+#endif
 
     qreal scaleX = ((qreal)MfSettings::reactionMapWidth()) /
                    ((qreal)screenRect.width());

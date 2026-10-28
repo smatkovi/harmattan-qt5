@@ -17,6 +17,7 @@
 #include "mfconnection.h"
 #include "mfsession.h"
 
+#include <QDataStream>
 #include <mfcommondata.h>
 
 #include <QCoreApplication>

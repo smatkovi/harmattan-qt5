@@ -1,1 +1,3 @@
 QMAKE_CXXFLAGS += -Wall -Werror
+# Qt 5 deprecates much of what Qt 4 code uses: warnings, not errors
+greaterThan(QT_MAJOR_VERSION, 4): QMAKE_CXXFLAGS += -Wno-error=deprecated-declarations -Wno-error=deprecated-copy

@@ -16,6 +16,7 @@
 
 #include "mfkernelthread.h"
 
+#include <unistd.h>
 #include <asm-generic/errno-base.h>
 
 #include <sys/ioctl.h>
@@ -130,7 +131,7 @@ bool MfKernelThread::readHostMessage()
             for (int i = 0; i < touchDevicesVector.size(); ++i) {
                 MfTouchDevice *touchDevice = touchDevicesVector[i];
                 if (touchDevice->fd < 0) {
-                    if ((touchDevice->fd = open(touchScreenDevicePath.toAscii().constData(), O_RDONLY)) < 0) {
+                    if ((touchDevice->fd = open(touchScreenDevicePath.toLatin1().constData(), O_RDONLY)) < 0) {
                         touchDevice->fd = -errno;
                         qWarning("MfKernelThread: open error");
                     }
@@ -190,7 +191,7 @@ bool MfKernelThread::waitForEvent()
 bool MfKernelThread::scanInputDevices()
 {
     int fd;
-    fd = checkInputDevice(touchScreenDevicePath.toAscii().constData());
+    fd = checkInputDevice(touchScreenDevicePath.toLatin1().constData());
     if (fd == -ENOENT)
         return false;
 

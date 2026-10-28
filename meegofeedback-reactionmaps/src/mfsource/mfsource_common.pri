@@ -3,6 +3,7 @@ INCLUDEPATH += . \
     ../common
 CONFIG += link_pkgconfig plugin meegofeedback
 QT += network dbus
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets x11extras
 PKGCONFIG += xcb
 QMAKE_CXXFLAGS += -finline-functions -fno-strict-aliasing
 QMAKE_LFLAGS += "-Wl,--as-needed"

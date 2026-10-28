@@ -8,6 +8,8 @@ INCLUDEPATH += . \
     ../common
 
 QT += network
+# QWidget and QGraphicsItem are QtWidgets in Qt 5, QX11Info QtX11Extras
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets x11extras
 CONFIG += meegofeedback
 QMAKE_CXXFLAGS_RELEASE += -finline-functions
 QMAKE_LFLAGS += "-Wl,--as-needed"

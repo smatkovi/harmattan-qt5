@@ -17,6 +17,7 @@
 #include "mftouchscreenlistener.h"
 #include "mfkernelthread.h"
 
+#include <unistd.h>
 #include <sys/socket.h>
 
 class MfTouchScreenListenerPriv

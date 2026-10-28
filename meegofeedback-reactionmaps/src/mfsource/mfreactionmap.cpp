@@ -16,6 +16,7 @@
 
 #include "mfreactionmap.h"
 #include "mfsettings.h"
+#include <unistd.h>
 #include <mfutil.h>
 
 #include <QDebug>
@@ -239,7 +240,7 @@ bool MfReactionMapPrivate::initMap(const QString& tempFileName)
     memset(palette, 0, 256*sizeof(MfPaletteEntry));
     Q_UNUSED(tempFileName);
 #else
-    QByteArray applicationName = session->applicationName().toAscii();
+    QByteArray applicationName = session->applicationName().toLatin1();
     int result;
     key_t key;
     char proc_id = 'C';
@@ -254,7 +255,7 @@ bool MfReactionMapPrivate::initMap(const QString& tempFileName)
     tempFilePath.append("/");
     tempFilePath.append(tempFileName);
 
-    tempFileFd = creat(tempFilePath.toAscii().constData(),
+    tempFileFd = creat(tempFilePath.toLatin1().constData(),
                S_IRUSR | S_IWUSR | S_IROTH);
     if (tempFileFd == -1) {
         qCritical() << "Unable to create file for reaction map"
@@ -269,7 +270,7 @@ bool MfReactionMapPrivate::initMap(const QString& tempFileName)
         return false;
     }
 
-    key = ftok(tempFilePath.toAscii().constData(), proc_id);
+    key = ftok(tempFilePath.toLatin1().constData(), proc_id);
     sharedMemoryId = shmget(key, size, flags);
 
     if (sharedMemoryId == -1) {
