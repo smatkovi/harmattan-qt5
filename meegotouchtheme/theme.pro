@@ -24,7 +24,11 @@ base.files = ./base
 base.path = $$THEME_DIR
 base.CONFIG += no_check_exist
 
-INSTALLS += base \
+# Pro1X: blanco, dark everywhere (#000000 for the AMOLED panel)
+pro1x.files = ./pro1x
+pro1x.path = $$THEME_DIR
+pro1x.CONFIG += no_check_exist
+INSTALLS += base pro1x \
 
 QMAKE_CLEAN += build-stamp configure-stamp
 QMAKE_DISTCLEAN += build-stamp configure-stamp
