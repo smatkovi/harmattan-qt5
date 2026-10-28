@@ -33,6 +33,9 @@ HEADERS += homeapplication.h \
     switchermodel.h \
     switcherviewbase.h \
     switcherview.h \
+    verticalswitcherview.h \
+    applicationspage.h \
+    eventspage.h \
     switcherbasestyle.h \
     switcherstyle.h \
     switcherbutton.h \
@@ -89,6 +92,9 @@ SOURCES += homeapplication.cpp \
     quicklaunchbarview.cpp \
     switcher.cpp \
     switcherviewbase.cpp \
+    verticalswitcherview.cpp \
+    applicationspage.cpp \
+    eventspage.cpp \
     switcherview.cpp \
     switcherbutton.cpp \
     switcherbuttonview.cpp \

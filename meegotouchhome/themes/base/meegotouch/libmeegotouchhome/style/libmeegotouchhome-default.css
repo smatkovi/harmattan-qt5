@@ -69,6 +69,61 @@ LauncherPageStyle.Landscape {
     padding-bottom: 3.9mm;
 }
 
+/* The N9's home: Events, Applications and Open applications side by side,
+   each page the screen's size; no page dots, as the N9's */
+PagedViewportStyle#HomePagesViewport {
+    background-opacity: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    minimum-size: 100% 100%;
+    maximum-size: 100% 100%;
+}
+
+PagePositionIndicatorStyle#HomePagesIndicator {
+    icon-size: 0 0;
+    spacing: 0;
+}
+
+/* The N9's pages: clear of the status bar, as the launcher's pages */
+#ApplicationsGrid {
+    padding-left: 5.0mm;
+    padding-right: 5.0mm;
+    padding-top: 7.4mm;
+    padding-bottom: 3.9mm;
+}
+
+#ApplicationsGrid.Portrait {
+    padding-left: 5.1mm;
+    padding-right: 5.1mm;
+    padding-top: 11.8mm;
+    padding-bottom: 5.7mm;
+}
+
+#EventsList {
+    padding-left: 4.0mm;
+    padding-right: 4.0mm;
+    padding-top: 6.2mm;
+    padding-bottom: 3.0mm;
+}
+
+SwitcherStyle#VerticalSwitcher {
+    minimum-size: 100% -1;
+    preferred-size: 100% -1;
+    maximum-size: 100% -1;
+    padding-left: 3.0mm;
+    padding-right: 3.0mm;
+    padding-top: 6.2mm;
+    padding-bottom: 3.0mm;
+    button-horizontal-spacing: 3mm;
+    button-vertical-spacing: 3mm;
+    rows-per-page: 2;
+    columns-per-page: 2;
+}
+
 PagedViewportStyle#LauncherPagedViewport {
     background-opacity: 0;
     margin-left: 0;

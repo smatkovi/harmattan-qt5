@@ -29,6 +29,9 @@
 class Desktop;
 class Switcher;
 class QuickLaunchBar;
+class PagedViewport;
+class EventsPage;
+class ApplicationsPage;
 class LauncherDataStore;
 class Launcher;
 class NotificationArea;
@@ -112,6 +115,11 @@ private slots:
      */
     void showLauncherAndFocusToButton(const QString &desktopFileEntry = QString());
 
+    //! Gives the home's pages the screen's size (each fills it)
+    void updatePageSizes();
+    //! Shows the N9's Applications page
+    void showApplicationsPage();
+
 #ifdef BENCHMARKS_ON
 private slots:
     void startBenchmarking();
@@ -136,6 +144,14 @@ private:
      * \return an initialized launcher data store
      */
     LauncherDataStore *createLauncherDataStore();
+
+    /*!
+     * The Nokia N9's home: Events, Applications and Open applications as
+     * pages side by side in a ring, changed by a sideways swipe (in place
+     * of the launcher, its quick launch bar and the switcher's own window;
+     * MEEGOTOUCHHOME_LAYOUT=netbook keeps those)
+     */
+    void setupPages();
 
     //! The switcher widget
     Switcher *switcher;
@@ -172,6 +188,14 @@ private:
 
     //! A list of desktop background extensions
     QList<MDesktopBackgroundExtensionInterface*> backgroundExtensions;
+
+    //! The N9's pages (see setupPages()), or none
+    bool n9Pages;
+    Desktop *desktop;
+    MSceneWindow *pagesWindow;
+    PagedViewport *pages;
+    EventsPage *eventsPage;
+    ApplicationsPage *applicationsPage;
 
 #ifdef UNIT_TEST
     friend class Ut_DesktopView;

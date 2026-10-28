@@ -36,6 +36,9 @@
 #include "homefiledatastore.h"
 #include "applicationpackagemonitor.h"
 #include "homewindowmonitor.h"
+#include "pagedviewport.h"
+#include "applicationspage.h"
+#include "eventspage.h"
 
 #include <MViewCreator>
 #include <MDeviceProfile>
@@ -44,6 +47,7 @@
 #include <MPannableViewport>
 #include <MApplication>
 #include <MOverlay>
+#include <MPositionIndicator>
 #include <MApplicationExtensionArea>
 #include <QGraphicsLinearLayout>
 
@@ -113,7 +117,13 @@ DesktopView::DesktopView(Desktop *desktop) :
     launcherVisible(false),
     quickLaunchBar(new QuickLaunchBar),
     quickLaunchBarWindow(new MOverlay),
-    backgroundExtensionArea(new MApplicationExtensionArea("com.meego.core.MDesktopBackgroundExtensionInterface/1.0"))
+    backgroundExtensionArea(new MApplicationExtensionArea("com.meego.core.MDesktopBackgroundExtensionInterface/1.0")),
+    n9Pages(qgetenv("MEEGOTOUCHHOME_LAYOUT") != "netbook"),
+    desktop(desktop),
+    pagesWindow(0),
+    pages(0),
+    eventsPage(0),
+    applicationsPage(0)
 {
     // Add the switcher into a scene window
     switcher->setObjectName("OverviewSwitcher");
@@ -121,8 +131,10 @@ DesktopView::DesktopView(Desktop *desktop) :
     windowLayout->setContentsMargins(0, 0, 0, 0);
     switcherWindow->setLayout(windowLayout);
     switcherWindow->setObjectName("SwitcherWindow");
-    windowLayout->addItem(switcher);
-    MainWindow::instance()->sceneManager()->appearSceneWindowNow(switcherWindow);
+    if (!n9Pages) {
+        windowLayout->addItem(switcher);
+        MainWindow::instance()->sceneManager()->appearSceneWindowNow(switcherWindow);
+    }
 
     // Create the launcher data store
     launcherDataStore = createLauncherDataStore();
@@ -139,7 +151,8 @@ DesktopView::DesktopView(Desktop *desktop) :
     windowLayout->addItem(quickLaunchBar);
     quickLaunchBarWindow->setLayout(windowLayout);
     quickLaunchBarWindow->setObjectName("QuickLaunchBarOverlay");
-    MainWindow::instance()->sceneManager()->appearSceneWindowNow(quickLaunchBarWindow);
+    if (!n9Pages)
+        MainWindow::instance()->sceneManager()->appearSceneWindowNow(quickLaunchBarWindow);
 
     // Add the launcher into a scene window
     launcher->setLauncherDataStore(launcherDataStore);
@@ -154,8 +167,12 @@ DesktopView::DesktopView(Desktop *desktop) :
     windowLayout->addItem(launcher);
 
     // Register the launcher window into the scene manager to make sure launcher page styling works in both orientations
-    MainWindow::instance()->sceneManager()->appearSceneWindowNow(launcherWindow);
-    MainWindow::instance()->sceneManager()->disappearSceneWindowNow(launcherWindow);
+    if (!n9Pages) {
+        MainWindow::instance()->sceneManager()->appearSceneWindowNow(launcherWindow);
+        MainWindow::instance()->sceneManager()->disappearSceneWindowNow(launcherWindow);
+    } else {
+        setupPages();
+    }
 
 #ifdef BENCHMARKS_ON
     connect(MApplication::instance(), SIGNAL(startBenchmarking()), this, SLOT(startBenchmarking()));
@@ -176,6 +193,7 @@ DesktopView::DesktopView(Desktop *desktop) :
 
 DesktopView::~DesktopView()
 {
+    delete pagesWindow;
     delete switcherWindow;
     delete launcherWindow;
     delete quickLaunchBarWindow;
@@ -215,6 +233,13 @@ void DesktopView::drawBackground(QPainter *painter, const QStyleOptionGraphicsIt
 
 void DesktopView::showLauncherAndFocusToButton(const QString &desktopFileEntry)
 {
+    if (n9Pages) {
+        // the Applications page
+        pages->panToPage(1);
+        MainWindow::instance()->activateWindow();
+        MainWindow::instance()->raise();
+        return;
+    }
     if(launcher->focusToButton(desktopFileEntry) >= 0 || desktopFileEntry.isEmpty()) {
         showLauncher();
         MainWindow::instance()->activateWindow();
@@ -298,6 +323,70 @@ void DesktopView::removeExtension(MApplicationExtensionInterface *extension)
 {
     MDesktopBackgroundExtensionInterface *backgroundExtension = static_cast<MDesktopBackgroundExtensionInterface *>(extension);
     backgroundExtensions.removeOne(backgroundExtension);
+}
+
+void DesktopView::setupPages()
+{
+    // the switcher as the N9's: one grid, panned vertically
+    switcher->setViewType("vertical");
+    eventsPage = new EventsPage;
+    applicationsPage = new ApplicationsPage(launcherDataStore);
+
+    QGraphicsWidget *pagesWidget = new QGraphicsWidget;
+    QGraphicsLinearLayout *pagesLayout = new QGraphicsLinearLayout(Qt::Horizontal, pagesWidget);
+    pagesLayout->setContentsMargins(0, 0, 0, 0);
+    pagesLayout->setSpacing(0);
+    pagesLayout->addItem(eventsPage);
+    pagesLayout->addItem(applicationsPage);
+    pagesLayout->addItem(switcher);
+
+    pages = new PagedViewport;
+    pages->setObjectName("HomePagesViewport");
+    pages->positionIndicator()->setObjectName("HomePagesIndicator");
+    pages->setWidget(pagesWidget);
+    // the range is the pages' (updatePageSizes()), the page width follows it
+    pages->setAutoRange(false);
+    pages->updatePageCount(3);
+    // a ring, as the N9's: past Open applications comes Events again
+    pages->setPageWrapMode(true);
+
+    pagesWindow = new MSceneWindow;
+    pagesWindow->setObjectName("HomePagesWindow");
+    QGraphicsLinearLayout *windowLayout = new QGraphicsLinearLayout;
+    windowLayout->setContentsMargins(0, 0, 0, 0);
+    windowLayout->addItem(pages);
+    pagesWindow->setLayout(windowLayout);
+    MainWindow::instance()->sceneManager()->appearSceneWindowNow(pagesWindow);
+
+    updatePageSizes();
+    connect(MainWindow::instance()->sceneManager(), SIGNAL(orientationChanged(M::Orientation)),
+            SLOT(updatePageSizes()));
+    // the home starts on the Applications page (once the pages are laid
+    // out), and comes back to the one it was left on
+    QTimer::singleShot(0, this, SLOT(showApplicationsPage()));
+}
+
+void DesktopView::showApplicationsPage()
+{
+    // Above the home's own scene window (the desktop's, which shows the
+    // background): a gesture goes to the items under it only up to the
+    // first panel, which a scene window is, while taps pass through
+    if (QGraphicsItem *home = desktop->topLevelItem())
+        pagesWindow->setZValue(home->zValue() + 1);
+    pages->setPage(1);
+}
+
+void DesktopView::updatePageSizes()
+{
+    if (!pages)
+        return;
+    const QSizeF size = MainWindow::instance()->visibleSceneSize();
+    foreach (QGraphicsWidget *page, QList<QGraphicsWidget *>() << eventsPage << applicationsPage << switcher) {
+        page->setMinimumSize(size);
+        page->setPreferredSize(size);
+        page->setMaximumSize(size);
+    }
+    pages->setRange(QRectF(0, 0, 2 * size.width(), 0));
 }
 
 LauncherDataStore *DesktopView::createLauncherDataStore()
