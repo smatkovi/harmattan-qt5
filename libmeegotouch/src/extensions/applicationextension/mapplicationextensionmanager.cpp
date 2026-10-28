@@ -31,6 +31,22 @@
 #include "msubdatastore.h"
 #include "mdebug.h"
 
+namespace {
+// The extensions' directories: M_APPLICATION_EXTENSION_DATA_DIR and
+// M_APPLICATION_EXTENSION_DIR for a staged test (as M_THEME_DIR for the
+// theme), else the ones built in
+inline QString extensionDataDir()
+{
+    QByteArray dir = qgetenv("M_APPLICATION_EXTENSION_DATA_DIR");
+    return dir.isEmpty() ? QString(APPLICATION_EXTENSION_DATA_DIR) : QString::fromLocal8Bit(dir);
+}
+inline QString extensionLibDir()
+{
+    QByteArray dir = qgetenv("M_APPLICATION_EXTENSION_DIR");
+    return dir.isEmpty() ? QString(APPLICATION_EXTENSION_LIBS) : QString::fromLocal8Bit(dir);
+}
+}
+
 MApplicationExtensionManager::MApplicationExtensionManager(const QString &interface) :
         initialized(false),
         interface(interface),
@@ -70,7 +86,7 @@ void MApplicationExtensionManager::setOrder(const QStringList &order)
         extensionOrder = order;
         extensionOrder.removeDuplicates();
         unorderedExtensionsIndex = extensionOrder.indexOf("");
-        extensionOrder.replaceInStrings(QRegExp("^"), QString(APPLICATION_EXTENSION_DATA_DIR) + "/");
+        extensionOrder.replaceInStrings(QRegExp("^"), extensionDataDir() + "/");
     }
 }
 
@@ -87,11 +103,11 @@ bool MApplicationExtensionManager::init()
     }
 
     initialized = true;
-    updateAvailableExtensions(APPLICATION_EXTENSION_DATA_DIR);
+    updateAvailableExtensions(extensionDataDir());
 
     // Start watching the application extensions directory for changes
     connectSignals();
-    desktopDirectoryWatcher.addPath(APPLICATION_EXTENSION_DATA_DIR);
+    desktopDirectoryWatcher.addPath(extensionDataDir());
     return true;
 }
 

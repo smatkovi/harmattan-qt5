@@ -21,6 +21,16 @@
 #include <QDir>
 #include <MDebug>
 
+namespace {
+// The extensions' libraries: M_APPLICATION_EXTENSION_DIR for a staged test
+// (as M_THEME_DIR for the theme), else the directory built in
+inline QString extensionLibDir()
+{
+    QByteArray dir = qgetenv("M_APPLICATION_EXTENSION_DIR");
+    return dir.isEmpty() ? QString(APPLICATION_EXTENSION_LIBS) : QString::fromLocal8Bit(dir);
+}
+}
+
 const QString EXTENSION_BINARY_KEY("X-MeeGoApplicationExtension/Extension");
 const QString IDENTIFIER_KEY("X-MeeGoApplicationExtension/Identifier");
 const QString INTERFACE_KEY("X-MeeGoApplicationExtension/Interface");
@@ -67,7 +77,7 @@ QString MApplicationExtensionMetaData::runnerBinary() const
     // If runner binary is specified, return absolute file path.
     QString s = exec();
     if (s.length() > 0) {
-        QFileInfo runner(QString(APPLICATION_EXTENSION_LIBS), s);
+        QFileInfo runner(extensionLibDir(), s);
         if (runner.exists() && runner.isFile() && runner.isExecutable()) {
             return runner.absoluteFilePath();
         } else {
@@ -80,7 +90,7 @@ QString MApplicationExtensionMetaData::runnerBinary() const
 QString MApplicationExtensionMetaData::extensionBinary() const
 {
     // Fetch the absolute file path and return it.
-    QFileInfo extension(QString(APPLICATION_EXTENSION_LIBS), value(EXTENSION_BINARY_KEY));
+    QFileInfo extension(extensionLibDir(), value(EXTENSION_BINARY_KEY));
     if (extension.exists() && extension.isFile()) {
         return extension.absoluteFilePath();
     } else {

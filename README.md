@@ -51,7 +51,7 @@ Licences: as each package states (mostly LGPL 2.1).
 | `mcompositor` | builds; manages and composites MeeGo Touch and plain X11 windows, `mdecorator` frames the latter (GLX; the unit tests don't build yet) |
 | `libcontentaction` | builds |
 | `meegotouchhome` | builds and starts; it is the generic MeeGo home of the source release (1.2.20, quick launch bar, launcher, switcher), not the N9's three-page home (1.3.2, not released) |
-| `system-ui` | builds without QmSystem2/libresourceqt/libngf; sysuid draws the status bar that the applications show |
+| `system-ui` | builds without QmSystem2/libresourceqt/libngf; sysuid draws the status bar that the applications show and opens the status indicator menu with the plugins of `statusmenu-plugins` |
 | `duicontrolpanel` | the settings application runs with the N9's categories (`DCP_ROOT` for a staging directory) |
 | `meegotouch-controlpanelapplets` | about, reset, warranty, test, display, battery, offline, USB and the sound settings ("Alert Tones": libprofile, as Leste's profiled has it, GStreamer 1.0 for the preview; without QtMobility, timed and QtSparql) |
 | `qmsystem2` | builds; the battery from UPower or the kernel, time without timed, the heartbeat without iphbd |
@@ -59,6 +59,7 @@ Licences: as each package states (mostly LGPL 2.1).
 | `mcompositor/plugins/swipe` | new: the N9's swipe (minimize from the sides, close from the top, sneak peek) |
 | `meegotouchtheme/pro1x` | new: the Pro1X theme, blanco dark everywhere (pages #000000 for the AMOLED panel, light texts; only the palette, blanco's images are inherited) |
 | `ngfd-meego` | the configuration for Nemo's ngfd (built from upstream), which plays the N9's event sounds with the N9's own event definitions; system-ui with `DEFINES+=HAVE_LIBNGF` sends its notifications' sounds there |
+| `statusmenu-plugins` | new: the status indicator menu's rows (the N9's were not released): the volume of PulseAudio's default output, the internet connection from NetworkManager (with the WLAN switch) and Bluetooth from BlueZ, light on black as the N9's; `M_APPLICATION_EXTENSION_DIR` and `M_APPLICATION_EXTENSION_DATA_DIR` let libmeegotouch find them in a stage |
 | `meegofeedbackd` | runs; MFeedback sounds (the theme's `feedbacks/*/audio.wav`) through `meegofeedback-pulse`, a PulseAudio backend written anew (Nokia's were not released); the N9's tap sounds of plain controls come from reaction maps (`meegofeedback-reactionmaps`), not yet |
 | `libresourceqt`, `meego-im-framework`, `meego-keyboard`, `meego-im-settings-applet` | not yet |
 

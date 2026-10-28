@@ -21,7 +21,9 @@
 #include "profileplugin.h"
 #include "profile.h"
 
+#if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2(profile, ProfilePlugin)
+#endif
 
 ProfilePlugin::ProfilePlugin() : statusIndicatorMenu(0), profile(0)
 {

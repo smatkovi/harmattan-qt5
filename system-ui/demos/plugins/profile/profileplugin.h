@@ -29,6 +29,8 @@ class MStatusIndicatorMenuInterface;
 class ProfilePlugin : public QObject, public MStatusIndicatorMenuExtensionInterface
 {
     Q_OBJECT
+    // Qt 5's plugins say what they are in the class (Q_EXPORT_PLUGIN2 is gone)
+    Q_PLUGIN_METADATA(IID "com.meego.core.MStatusIndicatorMenuExtensionInterface/1.0")
     Q_INTERFACES(MStatusIndicatorMenuExtensionInterface MApplicationExtensionInterface)
 
 public:
