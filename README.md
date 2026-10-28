@@ -50,7 +50,7 @@ Licences: as each package states (mostly LGPL 2.1).
 | `contextkit` | builds; providers and subscribers talk over D-Bus |
 | `mcompositor` | builds; manages and composites MeeGo Touch and plain X11 windows, `mdecorator` frames the latter (GLX; the unit tests don't build yet) |
 | `libcontentaction` | builds |
-| `meegotouchhome` | runs, with the N9's three pages written anew (its home, 1.3.2, was not released): Events, Applications (every application in one grid, panned vertically) and Open applications (the switcher's windows in a vertical grid), side by side in a ring and changed by a sideways swipe; `MEEGOTOUCHHOME_LAYOUT=netbook` keeps the release's own layout (quick launch bar, launcher, switcher) |
+| `meegotouchhome` | runs, with the N9's three pages written anew (its home, 1.3.2, was not released): Events (the system UI's notifications, newest first, a tap runs one's action and dismisses it; no feeds), Applications (every application in one grid, panned vertically) and Open applications (the switcher's windows in a vertical grid), side by side in a ring and changed by a sideways swipe; `MEEGOTOUCHHOME_LAYOUT=netbook` keeps the release's own layout (quick launch bar, launcher, switcher) |
 | `system-ui` | builds without QmSystem2/libresourceqt/libngf; sysuid draws the status bar that the applications show and opens the status indicator menu with the plugins of `statusmenu-plugins` |
 | `duicontrolpanel` | the settings application runs with the N9's categories (`DCP_ROOT` for a staging directory) |
 | `meegotouch-controlpanelapplets` | about, reset, warranty, test, display, battery, offline, USB and the sound settings ("Alert Tones": libprofile, as Leste's profiled has it, GStreamer 1.0 for the preview; without QtMobility, timed and QtSparql) |

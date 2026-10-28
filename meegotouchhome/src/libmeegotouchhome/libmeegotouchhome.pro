@@ -13,6 +13,9 @@ CONFIG += meegotouch
 # Qt 5: CONFIG += qt again (base.pri) runs qt.prf before meegotouch.prf,
 # too early for the modules the latter adds
 QT *= widgets x11extras
+# the Events page: a sink of system-ui's notification manager
+QT *= dbus
+LIBS += -lnotificationsystem
 DEFINES *= Q_WS_X11
 INCLUDEPATH += .
 DEPENDPATH += .
