@@ -1,6 +1,9 @@
 LIBS += -lqmsystem2
 DEPENDPATH += /usr/include/qmsystem2
 INCLUDEPATH += /usr/include/qmsystem2
-CONFIG += qt
+# *=, not +=: CONFIG unchanged, so qmake goes on with the project's other
+# features before qt.prf (and Qt 5's moc.prf, which takes the include path
+# as it is then: an applet's duicontrolpanel headers were missing for moc)
+CONFIG *= qt
 # (the N9 built QmTime on timed; elsewhere it may be left out)
 exists($$[QT_INSTALL_DATA]/mkspecs/features/timed.prf): CONFIG += timed
