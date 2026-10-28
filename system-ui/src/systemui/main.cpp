@@ -23,6 +23,10 @@
 #include <dlfcn.h>
 #include <cstdio>
 
+#ifdef __FreeBSD__
+typedef sig_t sighandler_t;  // glibc's name for it
+#endif
+
 sighandler_t originalSigIntHandler = NULL;
 sighandler_t originalSigTermHandler = NULL;
 
