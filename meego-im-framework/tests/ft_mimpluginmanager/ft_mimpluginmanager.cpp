@@ -16,7 +16,7 @@
 #include <mimpluginmanager.h>
 #include <mimpluginmanager_p.h>
 
-using namespace std::tr1;
+using std::shared_ptr;
 
 namespace
 {

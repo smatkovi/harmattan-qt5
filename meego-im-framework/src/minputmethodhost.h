@@ -19,7 +19,7 @@
 
 #include "mabstractinputmethodhost.h"
 
-#include <tr1/memory>
+#include <memory>
 
 class MInputContextConnection;
 class MIMPluginManager;
@@ -28,7 +28,7 @@ class MAbstractInputMethod;
 
 class QRegion;
 
-using namespace std::tr1;
+using std::shared_ptr;
 
 //! \internal
 /*!

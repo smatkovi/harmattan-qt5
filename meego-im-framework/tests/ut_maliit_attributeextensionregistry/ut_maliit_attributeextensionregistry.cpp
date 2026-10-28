@@ -2,12 +2,12 @@
 #include <QtTest/QtTest>
 
 #include <maliit/attributeextensionregistry.h>
-#include <tr1/memory>
+#include <memory>
 
 using Maliit::AttributeExtensionRegistry;
 using Maliit::AttributeExtension;
 
-typedef std::tr1::shared_ptr<Maliit::AttributeExtension> SharedAttributeExtension;
+typedef std::shared_ptr<Maliit::AttributeExtension> SharedAttributeExtension;
 
 namespace {
     SharedAttributeExtension createDefault()

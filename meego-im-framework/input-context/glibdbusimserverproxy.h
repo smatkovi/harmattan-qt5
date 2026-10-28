@@ -23,7 +23,7 @@
 #include <Qt>
 #include <QMap>
 #include <QSet>
-#include <tr1/memory>
+#include <memory>
 
 #include "mimserverconnection.h"
 #include "minputcontext.h"
@@ -32,9 +32,9 @@ namespace Maliit
 {
     namespace DBusGLib
     {
-    // std::tr1::shared_ptr allows to specify a deleter. Hiding it behind a typedef,
+    // std::shared_ptr allows to specify a deleter. Hiding it behind a typedef,
     // as we do not really need all the shared pointer semantics here.
-    typedef std::tr1::shared_ptr<DBusGConnection> ConnectionRef;
+    typedef std::shared_ptr<DBusGConnection> ConnectionRef;
     }
 }
 

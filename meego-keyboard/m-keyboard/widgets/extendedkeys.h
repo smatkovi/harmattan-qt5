@@ -106,7 +106,7 @@ private:
     QPointer<MImAbstractKeyArea> mainArea;
 
     //! The actual widget showing the extended keys.
-    std::auto_ptr<ExtendedKeysArea> extKeysArea;
+    std::unique_ptr<ExtendedKeysArea> extKeysArea;
 
     //! Used for non-multitouch mode
     bool hideOnNextMouseRelease;

@@ -2,10 +2,10 @@
 #include <QtTest/QtTest>
 
 #include <maliit/attributeextension.h>
-#include <tr1/memory>
+#include <memory>
 #include <algorithm>
 
-typedef std::tr1::shared_ptr<Maliit::AttributeExtension> SharedAttributeExtension;
+typedef std::shared_ptr<Maliit::AttributeExtension> SharedAttributeExtension;
 
 typedef std::vector<std::pair<QString, QVariant> > KeyValueContainer;
 

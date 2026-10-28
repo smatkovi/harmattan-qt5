@@ -32,7 +32,7 @@
 
 #include "mattributeextensionmanager.h"
 
-using namespace std::tr1;
+using std::shared_ptr;
 
 typedef QSet<MInputMethod::HandlerState> HandlerStates;
 Q_DECLARE_METATYPE(HandlerStates);

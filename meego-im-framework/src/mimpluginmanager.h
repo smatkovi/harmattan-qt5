@@ -20,7 +20,7 @@
 #include <QObject>
 #include <QMap>
 #include <QList>
-#include <tr1/memory>
+#include <memory>
 
 #include "minputmethodnamespace.h"
 #include "mimplugindescription.h"
@@ -43,7 +43,7 @@ public:
     /*!
      * \Brief Constructs object MIMPluginManager
      */
-    MIMPluginManager(std::tr1::shared_ptr<MInputContextConnection> icConnection, QWidget *proxyWidget);
+    MIMPluginManager(std::shared_ptr<MInputContextConnection> icConnection, QWidget *proxyWidget);
 
     virtual ~MIMPluginManager();
 

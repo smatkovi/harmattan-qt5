@@ -20,7 +20,7 @@
 #include <QInputContext>
 #include <QWidget>
 
-#include <tr1/functional>
+#include <functional>
 #include <vector>
 
 #include <minputmethodhost.h>
@@ -47,7 +47,7 @@ namespace MaliitTestUtils {
     class EventSpyInputContext : public QInputContext, public std::vector<T>
     {
     public:
-        typedef std::tr1::function<T (const QEvent *event)> TransformFunction;
+        typedef std::function<T (const QEvent *event)> TransformFunction;
 
         EventSpyInputContext(TransformFunction newTransform) : transform(newTransform) {}
 
@@ -78,7 +78,7 @@ namespace MaliitTestUtils {
         int sendPreeditCount;
 
         TestInputMethodHost(MIndicatorServiceClient &client)
-            : MInputMethodHost(std::tr1::shared_ptr<MInputContextConnection>(new MInputContextConnection), 0, client, 0)
+            : MInputMethodHost(std::shared_ptr<MInputContextConnection>(new MInputContextConnection), 0, client, 0)
             , sendCommitCount(0)
             , sendPreeditCount(0)
         {}

@@ -39,7 +39,7 @@
 #include <QDebug>
 #include <deque>
 
-using namespace std::tr1;
+using std::shared_ptr;
 
 namespace
 {

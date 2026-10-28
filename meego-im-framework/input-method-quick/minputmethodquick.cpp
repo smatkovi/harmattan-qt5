@@ -62,7 +62,7 @@ class MInputMethodQuickLoader
 private:
     QGraphicsScene *const m_scene;
     QDeclarativeEngine *const m_engine; //!< managed by controller
-    std::auto_ptr<QDeclarativeComponent> m_component;
+    std::unique_ptr<QDeclarativeComponent> m_component;
     QGraphicsObject *m_content; //!< managed by scene
     MInputMethodQuick *const m_controller;
 

@@ -21,9 +21,9 @@
 #include <QDebug>
 
 #include <algorithm>
-#include <tr1/functional>
+#include <functional>
 
-using namespace std::tr1::placeholders;
+using namespace std::placeholders;
 
 namespace
 {
@@ -102,7 +102,7 @@ MImOnScreenPlugins::MImOnScreenPlugins(QObject *parent):
 bool MImOnScreenPlugins::isEnabled(const QString &plugin) const
 {
     return std::find_if(mEnabledSubViews.begin(), mEnabledSubViews.end(),
-                        std::tr1::bind(equalPlugin, _1, plugin)) != mEnabledSubViews.end();
+                        std::bind(equalPlugin, _1, plugin)) != mEnabledSubViews.end();
 }
 
 bool MImOnScreenPlugins::isSubViewEnabled(const SubView &subView) const
@@ -114,7 +114,7 @@ QList<MImOnScreenPlugins::SubView> MImOnScreenPlugins::enabledSubViews(const QSt
 {
     QList<MImOnScreenPlugins::SubView> result;
     std::remove_copy_if(mEnabledSubViews.begin(), mEnabledSubViews.end(),
-                        std::back_inserter(result), std::tr1::bind(notEqualPlugin, _1, plugin));
+                        std::back_inserter(result), std::bind(notEqualPlugin, _1, plugin));
     return result;
 }
 

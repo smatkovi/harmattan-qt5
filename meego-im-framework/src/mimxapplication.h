@@ -12,7 +12,7 @@
 // Xlib's event (Qt 5's headers no longer bring in Xlib; Xlib.h itself
 // would bring its Bool and Status macros into moc's code)
 typedef union _XEvent XEvent;
-#include <tr1/functional>
+#include <functional>
 
 class MImXApplication : public MIMApplication
 {
@@ -21,7 +21,7 @@ public:
     //! Walks over widget hierarchy, if used with
     //! MImXApplication::visitWidgetHierarchy. Return true if children of
     //! current widget shall be visited, too.
-    typedef std::tr1::function<bool (QWidget *)> WidgetVisitor;
+    typedef std::function<bool (QWidget *)> WidgetVisitor;
 
     MImXApplication(int &argc, char** argv);
     virtual ~MImXApplication();
@@ -88,9 +88,9 @@ private:
     bool mBackgroundSuppressed;
     bool mUnconditionalShow;
 
-    std::auto_ptr<MPassThruWindow> mPassThruWindow;
-    std::auto_ptr<QWidget> mPluginsProxyWidget;
-    std::auto_ptr<MImRemoteWindow> mRemoteWindow;
+    std::unique_ptr<MPassThruWindow> mPassThruWindow;
+    std::unique_ptr<QWidget> mPluginsProxyWidget;
+    std::unique_ptr<MImRemoteWindow> mRemoteWindow;
 
     friend class Ut_PassthroughServer;
 };

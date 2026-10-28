@@ -42,8 +42,9 @@
 #include <QPalette>
 #include <QCommonStyle>
 #include <stdlib.h>
+#include <memory>
 
-using namespace std::tr1;
+using std::shared_ptr;
 
 namespace {
     void disableMInputContextPlugin()
@@ -130,9 +131,9 @@ int main(int argc, char **argv)
     // widgets. The MImQPAPlatform is used to show/hide that toplevel window when
     // required.
 
-    std::auto_ptr<QWidget> pluginsProxyWidget(new MImPluginsProxyWidget);
+    std::unique_ptr<QWidget> pluginsProxyWidget(new MImPluginsProxyWidget);
 
-    std::auto_ptr<MImQPAPlatform> platform(new MImQPAPlatform(pluginsProxyWidget.get()));
+    std::unique_ptr<MImQPAPlatform> platform(new MImQPAPlatform(pluginsProxyWidget.get()));
 
     MIMPluginManager *pluginManager = new MIMPluginManager(icConnection,
                                                            pluginsProxyWidget.get());

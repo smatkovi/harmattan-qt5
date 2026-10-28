@@ -27,7 +27,7 @@
 #include "mimhwkeyboardtracker.h"
 
 #include <QtCore>
-#include <tr1/memory>
+#include <memory>
 
 class MInputMethodPlugin;
 class MImAbstractPluginFactory;
@@ -37,7 +37,7 @@ class MImSettings;
 class MAbstractInputMethod;
 class MIMPluginManagerAdaptor;
 
-using namespace std::tr1;
+using std::shared_ptr;
 
 /* Internal class only! Interfaces here change, internal developers only*/
 class MIMPluginManagerPrivate
