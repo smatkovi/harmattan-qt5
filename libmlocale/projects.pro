@@ -23,10 +23,10 @@ isEqual( IN_PWD, $${OUT_PWD} ) {
 # Not src/icu-extradata: Nokia's additions to ICU 4.4's data (collation,
 # locale data) in its old source format, which today's genrb refuses;
 # today's ICU carries its own
-SUBDIRS += \
-    src \
-    benchmarks \
-    tests \
+SUBDIRS += src
+# what configure was told to build (-make/-nomake, mlocaleconfig.pri)
+contains(ML_BUILD_PARTS, benchmarks): SUBDIRS += benchmarks
+contains(ML_BUILD_PARTS, tests): SUBDIRS += tests
 
 # Docs are always explicitly built with "make doc"
 include(doc/doc.pri)
