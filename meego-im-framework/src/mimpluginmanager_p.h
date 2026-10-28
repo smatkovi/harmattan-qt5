@@ -17,6 +17,7 @@
 #ifndef MIMPLUGINMANAGER_P_H
 #define MIMPLUGINMANAGER_P_H
 
+#include <QPointer>
 #include "minputmethodnamespace.h"
 #include "mattributeextensionid.h"
 #include "minputmethodhost.h"
@@ -44,7 +45,8 @@ class MIMPluginManagerPrivate
     Q_DECLARE_PUBLIC(MIMPluginManager)
 public:
     typedef QSet<MInputMethod::HandlerState> PluginState;
-    typedef QWeakPointer<QWidget> WeakWidget;
+    // QPointer: Qt 5's QWeakPointer is no longer made from a plain QObject pointer
+    typedef QPointer<QWidget> WeakWidget;
 
     enum ShowInputMethodRequest {
         DontShowInputMethod,

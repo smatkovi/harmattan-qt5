@@ -18,7 +18,7 @@
 #define MIMSUBVIEWOVERRIDE_H
 
 #include <QObject>
-#include <QWeakPointer>
+#include <QPointer>
 
 class MImOnScreenPlugins;
 
@@ -36,7 +36,7 @@ public:
     virtual ~MImSubViewOverride();
 
 private:
-    const QWeakPointer<MImOnScreenPlugins> mPlugins;
+    const QPointer<MImOnScreenPlugins> mPlugins;
 };
 
 #endif // MIMSUBVIEWOVERRIDE_H

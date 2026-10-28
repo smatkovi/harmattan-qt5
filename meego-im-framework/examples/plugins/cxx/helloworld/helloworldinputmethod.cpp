@@ -20,6 +20,9 @@
 
 #include <QDebug>
 #include <QtGui>
+#if QT_VERSION >= 0x050000
+#include <QtWidgets>
+#endif
 
 namespace {
     const char * const exampleSubViewId("HelloWorldPluginSubview1");
@@ -58,7 +61,11 @@ void HelloWorldInputMethod::show()
     }
 
     // Set size of our container to screen size
+#if QT_VERSION >= 0x050000
+    const QSize screenSize = QGuiApplication::primaryScreen()->size();
+#else
     const QSize screenSize = qApp->desktop()->screenGeometry().size();
+#endif
     mainWidget->parentWidget()->resize(screenSize);
 
     // Set size of the input method

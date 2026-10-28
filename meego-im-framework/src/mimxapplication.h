@@ -8,6 +8,10 @@
 #include "mimxextension.h"
 
 #include <memory>
+
+// Xlib's event (Qt 5's headers no longer bring in Xlib; Xlib.h itself
+// would bring its Bool and Status macros into moc's code)
+typedef union _XEvent XEvent;
 #include <tr1/functional>
 
 class MImXApplication : public MIMApplication

@@ -44,7 +44,15 @@ external-libmaliit {
 }
 
 !only-libmaliit {
-    SUBDIRS += common input-context gtk-input-context input-method-quick examples
+    greaterThan(QT_MAJOR_VERSION, 4) {
+        # Qt 5 applications talk to the server through a platform input
+        # context (platforminputcontext, from Qt 5.1's Maliit one); the Qt 4
+        # input context, the GTK+ bridge and the QtQuick 1 plugin base are
+        # Qt 4 things
+        SUBDIRS += common platforminputcontext examples
+    } else {
+        SUBDIRS += common input-context gtk-input-context input-method-quick examples
+    }
 
     !nodoc {
         SUBDIRS += doc

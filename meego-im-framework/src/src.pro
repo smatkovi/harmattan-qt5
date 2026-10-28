@@ -105,6 +105,10 @@ x11 {
 
 CONFIG += qdbus link_pkgconfig
 QT = core gui xml
+greaterThan(QT_MAJOR_VERSION, 4) {
+    # QWidget and QGraphicsView are QtWidgets now, QX11Info is QtX11Extras
+    QT += widgets x11extras dbus
+}
 
 PKGCONFIG += dbus-glib-1 dbus-1 gconf-2.0
 

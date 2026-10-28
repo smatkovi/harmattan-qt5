@@ -18,6 +18,9 @@
 
 #include <QDebug>
 #include <QX11Info>
+#if QT_VERSION >= 0x050000
+#include <QWindow>
+#endif
 
 #include "mimxapplication.h"
 #include "mimxerrortrap.h"
@@ -33,6 +36,31 @@
 #endif
 
 namespace {
+
+#if QT_VERSION >= 0x050000
+// Qt 5's QPixmap has no X pixmap behind it: a copy of the window's
+// contents instead, read again when they change
+QPixmap copyOfX11Pixmap(Pixmap xpixmap)
+{
+    Display *dpy = QX11Info::display();
+    Window root;
+    int x, y;
+    unsigned int width, height, border, depth;
+    if (!XGetGeometry(dpy, xpixmap, &root, &x, &y, &width, &height, &border, &depth))
+        return QPixmap();
+    XImage *xi = XGetImage(dpy, xpixmap, 0, 0, width, height, AllPlanes, ZPixmap);
+    if (!xi)
+        return QPixmap();
+    QImage image;
+    if (xi->bits_per_pixel == 32)
+        image = QImage(reinterpret_cast<const uchar *>(xi->data), width, height,
+                       xi->bytes_per_line,
+                       depth == 32 ? QImage::Format_ARGB32_Premultiplied
+                                   : QImage::Format_RGB32).copy();
+    XDestroyImage(xi);
+    return QPixmap::fromImage(image);
+}
+#endif
 
 Atom wmStateAtom()
 {
@@ -58,7 +86,9 @@ MImRemoteWindow::MImRemoteWindow(WId window, MImXApplication *application) :
     damage(0),
     pixmap(),
     redirected(false),
-    mApplication(application)
+    mApplication(application),
+    foreignWindow(0),
+    imWidget(0)
 {
 }
 
@@ -66,18 +96,45 @@ MImRemoteWindow::~MImRemoteWindow()
 {
     XSelectInput(QX11Info::display(), wid, 0);
     unredirect();
+#if QT_VERSION >= 0x050000
+    if (imWidget && imWidget->windowHandle()
+        && imWidget->windowHandle()->transientParent() == foreignWindow)
+        imWidget->windowHandle()->setTransientParent(0);
+    delete foreignWindow;
+#endif
 }
 
 void MImRemoteWindow::setIMWidget(const QWidget *widget)
 {
-    XSetTransientForHint(QX11Info::display(),
-                         widget->effectiveWinId(),
-                         wid);
+    // Qt 5 creates the native window only when asked for it (winId()); its
+    // effectiveWinId() is 0 until then
+#if QT_VERSION >= 0x050000
+    const WId imWindow = const_cast<QWidget *>(widget)->winId();
+#else
+    const WId imWindow = widget->effectiveWinId();
+#endif
+    XSetTransientForHint(QX11Info::display(), imWindow, wid);
+#if QT_VERSION >= 0x050000
+    // Qt 5's xcb sets WM_TRANSIENT_FOR itself whenever it maps a window
+    // (from QWindow::transientParent(), and removes one it did not set):
+    // the application's window, as a foreign QWindow, is the transient
+    // parent of the input method's
+    imWidget = const_cast<QWidget *>(widget);
+    if (!foreignWindow)
+        foreignWindow = QWindow::fromWinId(wid);
+    if (imWidget->windowHandle())
+        imWidget->windowHandle()->setTransientParent(foreignWindow);
+#endif
 
     // Using PropertyChangeMask is a work-around for NB#172722 (a WONTFIX):
     XSelectInput(QX11Info::display(),
                  wid,
                  StructureNotifyMask | PropertyChangeMask);
+#if QT_VERSION >= 0x050000
+    // Qt 5 talks to the server through xcb and no longer flushes Xlib's
+    // own request buffer
+    XFlush(QX11Info::display());
+#endif
 }
 
 bool MImRemoteWindow::wasIconified(XEvent *ev) const
@@ -165,6 +222,9 @@ void MImRemoteWindow::redirect()
 
     setupPixmap();
     setupDamage();
+#if QT_VERSION >= 0x050000
+    XFlush(QX11Info::display());    // see setIMWidget()
+#endif
 
     Q_EMIT contentUpdated(QRegion(QRect(QPoint(), pixmap.size())));
 }
@@ -245,9 +305,14 @@ void MImRemoteWindow::handleDamageEvent(XEvent *event)
 
     XFixesDestroyRegion(QX11Info::display(), parts);
 
-    // setup remote pixmap when it failed before
+    // setup remote pixmap when it failed before (with Qt 5 always: the
+    // pixmap is a copy)
+#if QT_VERSION >= 0x050000
+    setupPixmap();
+#else
     if (pixmap.isNull())
         setupPixmap();
+#endif
 
     Q_EMIT contentUpdated(region);
 }
@@ -265,7 +330,11 @@ void MImRemoteWindow::setupPixmap()
     }
 
     if (xpixmap != 0) {
+#if QT_VERSION >= 0x050000
+        pixmap = copyOfX11Pixmap(xpixmap);
+#else
         pixmap = QPixmap::fromX11Pixmap(xpixmap, QPixmap::ExplicitlyShared);
+#endif
     }
 }
 

@@ -158,6 +158,7 @@ public:
     }
 
     void sendStateUpdate(bool focusChanged = false);
+    void activate(QWindow *window);
 
     QDBusConnection connection;
     ComMeegoInputmethodUiserver1Interface *server;
@@ -265,6 +266,12 @@ void QMaliitPlatformInputContext::update(Qt::InputMethodQueries queries)
 
         d->imState["contentType"] = contentTypeFromHints(hints);
     }
+
+    // A QGraphicsView (MeeGo Touch's windows) stays the focus object while the
+    // focus moves between the items of its scene: an editor focused there is
+    // only seen here
+    if (inputMethodAccepted())
+        d->activate(qGuiApp->focusWindow());
 
     d->sendStateUpdate(/*focusChanged*/true);
 }
@@ -498,18 +505,8 @@ void QMaliitPlatformInputContext::setFocusObject(QObject *object)
     }
 
     d->imState["focusState"] = (object != 0);
-    if (inputMethodAccepted()) {
-        if (window)
-            d->imState["winId"] = static_cast<qulonglong>(window->winId());
-
-        if (!d->active) {
-            d->active = true;
-            d->server->activateContext();
-
-            if (window)
-                d->server->appOrientationChanged(orientationAngle(window->contentOrientation()));
-        }
-    }
+    if (inputMethodAccepted())
+        d->activate(window);
     d->sendStateUpdate(/*focusChanged*/true);
     if (inputMethodAccepted() && window && d->visibility == InputPanelShowRequested)
         showInputPanel();
@@ -523,6 +520,11 @@ void QMaliitPlatformInputContext::showInputPanel()
     if (!inputMethodAccepted())
         d->visibility = InputPanelShowRequested;
     else {
+        // the server shows the input method for the active context only
+        if (!d->active) {
+            d->activate(qGuiApp->focusWindow());
+            d->sendStateUpdate(/*focusChanged*/true);
+        }
         d->server->showInputMethod();
         d->visibility = InputPanelShown;
         emitInputPanelVisibleChanged();
@@ -573,6 +575,22 @@ QMaliitPlatformInputContextPrivate::QMaliitPlatformInputContextPrivate(QMaliitPl
     imState["correctionEnabled"] = true;
 
     valid = true;
+}
+
+// The focus object accepts input: the server's active context, with the
+// window it is in (the input method's window becomes its transient)
+void QMaliitPlatformInputContextPrivate::activate(QWindow *window)
+{
+    if (window)
+        imState["winId"] = static_cast<qulonglong>(window->winId());
+
+    if (!active) {
+        active = true;
+        server->activateContext();
+
+        if (window)
+            server->appOrientationChanged(orientationAngle(window->contentOrientation()));
+    }
 }
 
 void QMaliitPlatformInputContextPrivate::sendStateUpdate(bool focusChanged)

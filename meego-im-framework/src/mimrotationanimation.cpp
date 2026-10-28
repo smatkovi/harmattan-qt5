@@ -242,6 +242,10 @@ MImRotationAnimation::showEvent(QShowEvent*) {
     static Atom window_type = XInternAtom(QX11Info::display(), "_NET_WM_WINDOW_TYPE", False);
     XChangeProperty(QX11Info::display(), effectiveWinId(), window_type, XA_ATOM, 32,
                     PropModeReplace, (unsigned char *) &input, 1);
+#if QT_VERSION >= 0x050000
+    // Qt 5 no longer flushes Xlib's own request buffer
+    XFlush(QX11Info::display());
+#endif
 }
 
 void

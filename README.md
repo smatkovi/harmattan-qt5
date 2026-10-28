@@ -61,7 +61,8 @@ Licences: as each package states (mostly LGPL 2.1).
 | `ngfd-meego` | the configuration for Nemo's ngfd (built from upstream), which plays the N9's event sounds with the N9's own event definitions; system-ui with `DEFINES+=HAVE_LIBNGF` sends its notifications' sounds there |
 | `statusmenu-plugins` | new: the status indicator menu's rows (the N9's were not released): the volume of PulseAudio's default output, the internet connection from NetworkManager (with the WLAN switch) and Bluetooth from BlueZ, light on black as the N9's; `M_APPLICATION_EXTENSION_DIR` and `M_APPLICATION_EXTENSION_DATA_DIR` let libmeegotouch find them in a stage |
 | `meegofeedbackd` | runs; MFeedback sounds (the theme's `feedbacks/*/audio.wav`) through `meegofeedback-pulse`, a PulseAudio backend written anew (Nokia's were not released); the N9's tap sounds of plain controls come from reaction maps (`meegofeedback-reactionmaps`), not yet |
-| `libresourceqt`, `meego-im-framework`, `meego-keyboard`, `meego-im-settings-applet` | not yet |
+| `meego-im-framework` | builds (legacy mode, as Harmattan: `CONFIG+=enable-legacy CONFIG+=enable-contextkit`); meego-im-uiserver shows the plugins for MeeGo Touch applications, mcompositor composites its window over theirs, text goes back; Qt 5 applications reach it through `platforminputcontext` (Qt 5.1's Maliit platform input context, `QT_IM_MODULE=maliit`); the Qt 4 input context, the GTK+ bridge and the QtQuick 1 plugin base are not built |
+| `libresourceqt`, `meego-keyboard`, `meego-im-settings-applet` | not yet |
 
 Tried on a PC (Xvfb, Mesa llvmpipe), not yet on a device.
 

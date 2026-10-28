@@ -344,7 +344,7 @@ MInputContextConnection::updateWidgetInformation(
 
     }
 
-    const Qt::InputMethodHints lastHints = static_cast<Qt::InputMethodHints>(stateInfo.value(Maliit::Internal::inputMethodHints).toLongLong());
+    const Qt::InputMethodHints lastHints = static_cast<Qt::InputMethodHints>(stateInfo.value(Maliit::Internal::inputMethodHints).toInt());
 
     widgetState = stateInfo;
     bool focusStateOk(false);

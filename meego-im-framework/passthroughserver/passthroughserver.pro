@@ -10,10 +10,12 @@ LIBS += ../src/lib$${MALIIT_PLUGINS_LIB}.so -lXfixes
 
 SOURCES += \
            main.cpp \
-           mimdummyinputcontext.cpp \
 
-HEADERS += \
-           mimdummyinputcontext.h \
+# the server's own widgets get no input method; Qt 5 has no QInputContext
+lessThan(QT_MAJOR_VERSION, 5) {
+    SOURCES += mimdummyinputcontext.cpp
+    HEADERS += mimdummyinputcontext.h
+}
 
 x11 {
     SOURCES += \
@@ -32,6 +34,10 @@ qpa {
 }
 
 QT += core gui
+greaterThan(QT_MAJOR_VERSION, 4) {
+    # QWidget and QGraphicsView are QtWidgets now, QX11Info is QtX11Extras
+    QT += widgets x11extras dbus
+}
 
 # coverage flags are off per default, but can be turned on via qmake COV_OPTION=on
 for(OPTION,$$list($$lower($$COV_OPTION))){

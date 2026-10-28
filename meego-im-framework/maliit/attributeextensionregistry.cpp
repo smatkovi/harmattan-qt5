@@ -51,7 +51,7 @@ void AttributeExtensionRegistry::addExtension(AttributeExtension *extension)
 {
     Q_D(AttributeExtensionRegistry);
 
-    d->extensions.push_back(QWeakPointer<AttributeExtension>(extension));
+    d->extensions.push_back(QPointer<AttributeExtension>(extension));
     Q_EMIT extensionRegistered(extension->id(), extension->fileName());
 }
 
@@ -59,7 +59,7 @@ void AttributeExtensionRegistry::removeExtension(AttributeExtension *extension)
 {
     Q_D(AttributeExtensionRegistry);
 
-    d->extensions.removeAll(QWeakPointer<AttributeExtension>(extension));
+    d->extensions.removeAll(QPointer<AttributeExtension>(extension));
     Q_EMIT extensionUnregistered(extension->id());
 }
 

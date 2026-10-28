@@ -96,6 +96,9 @@ mac {
 # Use x11 on unix systems without lighthouse (qpa)
 unix:!qpa: {
     CONFIG += x11
+    # Qt 5 defines no Q_WS_X11; the X11 code (passthrough window, remote
+    # window, compositing) is what runs here, on xcb (as libmeegotouch)
+    greaterThan(QT_MAJOR_VERSION, 4): DEFINES += Q_WS_X11
 }
 
 enable-legacy {

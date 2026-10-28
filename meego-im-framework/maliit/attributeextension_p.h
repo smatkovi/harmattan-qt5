@@ -19,6 +19,7 @@
 #ifndef ATTRIBUTEEXTENSION_P_H
 #define ATTRIBUTEEXTENSION_P_H
 
+#include <QPointer>
 #include "attributeextension.h"
 #include "attributeextensionregistry.h"
 
@@ -41,7 +42,7 @@ public:
     AttributeExtension::ExtendedAttributeMap values;
 
     //! weak reference to registry
-    QWeakPointer<AttributeExtensionRegistry> registry;
+    QPointer<AttributeExtensionRegistry> registry;
 };
 
 }

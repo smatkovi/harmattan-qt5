@@ -1001,7 +1001,7 @@ MIMPluginManagerPrivate::availableSubViews(const QString &plugin,
                                            MInputMethod::HandlerState state) const
 {
     QMap<QString, QString> subViews;
-    Plugins::iterator iterator(plugins.begin());
+    Plugins::const_iterator iterator(plugins.begin());
 
     for (; iterator != plugins.end(); ++iterator) {
         if (plugins.value(iterator.key()).pluginId == plugin) {

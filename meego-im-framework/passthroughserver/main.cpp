@@ -17,9 +17,12 @@
 
 // Input method overlay window
 
+#include <QtGlobal>
 #include "mimpluginmanager.h"
 #include "mimapplication.h"
+#if QT_VERSION < 0x050000
 #include "mimdummyinputcontext.h"
+#endif
 #include "minputcontextglibdbusconnection.h"
 #include "mimpluginsproxywidget.h"
 
@@ -73,7 +76,9 @@ int main(int argc, char **argv)
     // Set a dummy input context so that Qt does not create a default input
     // context (qimsw-multi) which is expensive and not required by
     // meego-im-uiserver.
+#if QT_VERSION < 0x050000
     app.setInputContext(new MIMDummyInputContext);
+#endif
 
     qDebug() << (app.selfComposited() ? "Use self composition" : "Use system compositor");
 

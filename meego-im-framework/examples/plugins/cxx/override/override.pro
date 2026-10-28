@@ -5,6 +5,7 @@ OBJECTS_DIR = .obj
 MOC_DIR = .moc
 
 CONFIG += debug plugin
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 HEADERS += \
     overrideplugin.h \

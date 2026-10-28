@@ -20,7 +20,12 @@
 #include <QObject>
 #include <QWidget>
 
+// Xlib's event (Qt 5's headers no longer bring in Xlib; Xlib.h itself
+// would bring its Bool and Status macros into moc's code)
+typedef union _XEvent XEvent;
+
 class MImXApplication;
+class QWindow;
 
 /*! \internal
  *  \brief A helper class to handle remote application windows
@@ -95,13 +100,19 @@ private:
 
     WId wid;
 
-    Qt::HANDLE xpixmap;
-    Qt::HANDLE damage;
+    // XIDs (Qt::HANDLE is a pointer in Qt 5)
+    unsigned long xpixmap;
+    unsigned long damage;
 
     QPixmap pixmap;
     bool redirected;
 
     MImXApplication *mApplication;
+
+    // Qt 5: the application's window as a foreign QWindow, the transient
+    // parent of the input method's window
+    QWindow *foreignWindow;
+    QWidget *imWidget;
 };
 //! \internal_end
 

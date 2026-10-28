@@ -22,14 +22,15 @@
 #include <QList>
 #include <QObject>
 #include <QScopedPointer>
-#include <QWeakPointer>
+#include <QPointer>
 #include "attributeextension.h"
 
 namespace Maliit {
 
 class AttributeExtensionRegistryPrivate;
 
-typedef QList<QWeakPointer<AttributeExtension> > ExtensionList;
+// QPointer: Qt 5's QWeakPointer is no longer made from a plain QObject pointer
+typedef QList<QPointer<AttributeExtension> > ExtensionList;
 
 //! \ingroup libmaliit
 class AttributeExtensionRegistry : public QObject

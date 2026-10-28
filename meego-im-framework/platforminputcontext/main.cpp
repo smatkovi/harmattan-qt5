@@ -48,7 +48,8 @@ QT_BEGIN_NAMESPACE
 class QMaliitPlatformInputContextPlugin : public QPlatformInputContextPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QPlatformInputContextFactoryInterface" FILE "maliit.json")
+    // the interface name of the Qt it is built with (".5.1" since Qt 5.2)
+    Q_PLUGIN_METADATA(IID QPlatformInputContextFactoryInterface_iid FILE "maliit.json")
 
 public:
     QPlatformInputContext *create(const QString&, const QStringList&);

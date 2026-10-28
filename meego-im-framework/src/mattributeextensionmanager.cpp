@@ -65,7 +65,7 @@ QList<MAttributeExtensionId> MAttributeExtensionManager::attributeExtensionIdLis
 
 QSharedPointer<MAttributeExtension> MAttributeExtensionManager::attributeExtension(const MAttributeExtensionId &id) const
 {
-    AttributeExtensionContainer::iterator iterator(attributeExtensions.find(id));
+    AttributeExtensionContainer::const_iterator iterator(attributeExtensions.find(id));
 
     if (iterator != attributeExtensions.end())
         return iterator.value();
@@ -74,7 +74,7 @@ QSharedPointer<MAttributeExtension> MAttributeExtensionManager::attributeExtensi
 
 QSharedPointer<MToolbarData> MAttributeExtensionManager::toolbarData(const MAttributeExtensionId &id) const
 {
-    AttributeExtensionContainer::iterator iterator(attributeExtensions.find(id));
+    AttributeExtensionContainer::const_iterator iterator(attributeExtensions.find(id));
 
     if (iterator != attributeExtensions.end())
         return iterator.value()->toolbarData();

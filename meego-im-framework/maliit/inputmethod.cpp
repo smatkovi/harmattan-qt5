@@ -19,8 +19,13 @@
 #include "inputmethod.h"
 #include "inputmethod_p.h"
 
+#if QT_VERSION >= 0x050000
+#include <QGuiApplication>
+#include <QInputMethod>
+#else
 #include <QApplication>
 #include <QInputContext>
+#endif
 
 namespace Maliit {
 
@@ -129,6 +134,11 @@ const QString &InputMethod::language() const
 
 void requestInputMethodPanel()
 {
+#if QT_VERSION >= 0x050000
+    // Qt 5's platform input context shows the panel (upstream Maliit's
+    // port, with Qt 5's final QInputMethod in place of QInputPanel)
+    QGuiApplication::inputMethod()->show();
+#else
     QInputContext *inputContext = qApp->inputContext();
 
     if (!inputContext) {
@@ -137,10 +147,14 @@ void requestInputMethodPanel()
 
     QEvent request(QEvent::RequestSoftwareInputPanel);
     inputContext->filterEvent(&request);
+#endif
 }
 
 void closeInputMethodPanel()
 {
+#if QT_VERSION >= 0x050000
+    QGuiApplication::inputMethod()->hide();
+#else
     QInputContext *inputContext = qApp->inputContext();
 
     if (!inputContext) {
@@ -150,6 +164,7 @@ void closeInputMethodPanel()
     QEvent close(QEvent::CloseSoftwareInputPanel);
     inputContext->filterEvent(&close);
     inputContext->reset();
+#endif
 }
 
 } // namespace Maliit

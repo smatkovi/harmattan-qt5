@@ -24,7 +24,10 @@
 int main(int argc, char** argv)
 {
     // Set input method to MInputContext
-#ifdef HAVE_LEGACY_NAMES
+#if QT_VERSION >= 0x050000
+    // Qt 5: the platform input context (platforminputcontext)
+    setenv("QT_IM_MODULE", "maliit", 1);
+#elif defined(HAVE_LEGACY_NAMES)
     setenv("QT_IM_MODULE", "MInputContext", 1);
 #else
     setenv("QT_IM_MODULE", "Maliit", 1);
