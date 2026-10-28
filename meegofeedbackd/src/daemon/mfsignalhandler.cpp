@@ -20,6 +20,8 @@
 #include <QString>
 
 #include <errno.h>
+#include <string.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <signal.h>
@@ -32,7 +34,13 @@ namespace {
     inline void reportError(QString prefix)
     {
         char buf[512] = "";
+#if defined(__GLIBC__) && defined(_GNU_SOURCE)
         const char *errorMsg = strerror_r(errno, buf, sizeof(buf) - 1);
+#else
+        // the XSI strerror_r (FreeBSD's): the message goes into buf
+        strerror_r(errno, buf, sizeof(buf) - 1);
+        const char *errorMsg = buf;
+#endif
         qCritical() << prefix << errorMsg << " (errno=" << errno << ")";
     }
 
