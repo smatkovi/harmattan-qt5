@@ -1,0 +1,5 @@
+*.gcno
+*.gcov
+*.gcda
+*.log
+*.log.xml

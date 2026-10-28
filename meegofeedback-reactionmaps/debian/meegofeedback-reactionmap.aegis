@@ -1,0 +1,7 @@
+<aegis>
+  <request>
+    <credential name="GRP::input" />
+    <for path="meegofeedbackd::/usr/bin/meegofeedbackd" />
+  </request>
+</aegis>
+

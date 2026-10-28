@@ -1,0 +1,15 @@
+files
+*.substvars
+*.debhelper
+tmp
+meegofeedback-reactionmap
+meegofeedback-reactionmap-dbg
+meegofeedback-reactionmap-xrecord
+meegofeedback-reactionmap-xrecord-dbg
+meegoreactionmap-viewer
+libmeegoreactionmap0
+libmeegoreactionmap0-dbg
+libmeegoreactionmap-dev
+libmeegoreactionmap-dev.install
+libmeegoreactionmap-doc
+libmeegoreactionmap-tests
