@@ -18,8 +18,11 @@ isEqual(REMOTE_CONTROL,"on") {
 # QtOpenGL, QX11Info in QtX11Extras; Q_WS_X11 is no longer defined
 QT *= widgets opengl x11extras
 DEFINES *= Q_WS_X11
-# no -Werror (today's compilers and Qt 5's deprecations warn)
+# no -Werror (today's compilers and Qt 5's deprecations warn); narrowing
+# in initializer lists (qreal to GLfloat) only warns with gcc, clang
+# refuses it
 QMAKE_CXXFLAGS -= -Werror
+QMAKE_CXXFLAGS += -Wno-narrowing
 # Xlib's Bool macro breaks moc's code, see x11bool.h
 INCLUDEPATH += $$PWD
 # Qt 4's QtGui linked Xlib and its extensions, Qt 5's does not
