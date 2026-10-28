@@ -70,8 +70,8 @@ isEmpty(LUPDATE_OPTIONS) {
 defineReplace(targetPath) {
     return($$replace(1, /, $$QMAKE_DIR_SEP))
 }
-LRELEASE = $$targetPath($$[QT_INSTALL_BINS]/lrelease) $$LRELEASE_OPTIONS
-LUPDATE = $$targetPath($$[QT_INSTALL_BINS]/lupdate) $$LUPDATE_OPTIONS
+LRELEASE = $$targetPath($$[QT_HOST_BINS]/lrelease) $$LRELEASE_OPTIONS
+LUPDATE = $$targetPath($$[QT_HOST_BINS]/lupdate) $$LUPDATE_OPTIONS
 # add “-markuntranslated '!!\ '” if available (needs new Qt 4.6):
 out = $$system($$LRELEASE -help)
 # the second parameter of contains can be a regexp!

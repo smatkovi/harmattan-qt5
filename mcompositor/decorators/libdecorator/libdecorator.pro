@@ -6,7 +6,7 @@ TARGET = decorator
 
 DBUS_ADAPTORS = mdecorator_dbus.xml
 DBUS_INTERFACES = mdecorator_dbus.xml
-QMAKE_QDBUSXML2CPP = $$[QT_INSTALL_BINS]/qdbusxml2cpp -i mabstractappinterface.h \$(if $(filter mdecorator_dbus_interface.%,\$@),-c MDecoratorInterface)
+QMAKE_QDBUSXML2CPP = $$[QT_HOST_BINS]/qdbusxml2cpp -i mabstractappinterface.h \$(if $(filter mdecorator_dbus_interface.%,\$@),-c MDecoratorInterface)
 # Qt 5's qmake prepares qdbusxml2cpp itself and takes its flags from these
 QDBUSXML2CPP_ADAPTOR_HEADER_FLAGS = -i mabstractappinterface.h
 QDBUSXML2CPP_INTERFACE_HEADER_FLAGS = -i mabstractappinterface.h -c MDecoratorInterface
