@@ -179,13 +179,24 @@ void MPassThruWindow::updateInputRegion()
 
     XRectangle * const rects = new XRectangle[size];
 
-    quint32 customRegion[size * 4]; // custom region is pack of x, y, w, h
+    // custom region is pack of x, y, w, h; long: Xlib takes the 32-bit
+    // values of a property as longs (64 bits here, the N9's were 32)
+    long customRegion[size * 4];
     XRectangle *rect = rects;
+#if QT_VERSION >= 0x050000
+    // the X server's pixels: Qt 5 lays the window out in its own units
+    // (QT_SCALE_FACTOR, as the Pro1X's session scales the N9's 854x480)
+    const qreal ratio = devicePixelRatioF();
+#else
+    const qreal ratio = 1;
+#endif
     for (int i = 0; i < size; ++i, ++rect) {
-        rect->x = regionRects.at(i).x();
-        rect->y = regionRects.at(i).y();
-        rect->width = regionRects.at(i).width();
-        rect->height = regionRects.at(i).height();
+        const QRect r(qRound(regionRects.at(i).x() * ratio), qRound(regionRects.at(i).y() * ratio),
+                      qRound(regionRects.at(i).width() * ratio), qRound(regionRects.at(i).height() * ratio));
+        rect->x = r.x();
+        rect->y = r.y();
+        rect->width = r.width();
+        rect->height = r.height();
         customRegion[i * 4 + 0] = rect->x;
         customRegion[i * 4 + 1] = rect->y;
         customRegion[i * 4 + 2] = rect->width;
