@@ -4,6 +4,11 @@
 I18N_SRC_DIR=./i18n
 INCLUDEPATH+=./i18n
 
+# The layout direction files the resource holds, made from their .ts files
+# when qmake runs (they are not in the repository)
+for(ts, $$list(ltr rtl)) {
+    system($$shell_quote($$[QT_INSTALL_BINS]/lrelease) -silent $$PWD/libmeegotouch_$${ts}.ts -qm $$PWD/libmeegotouch_$${ts}.qm)
+}
 RESOURCES += ./i18n/i18n.qrc
 
 PUBLIC_HEADERS += \
