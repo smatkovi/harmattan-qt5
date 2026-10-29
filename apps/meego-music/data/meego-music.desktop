@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Music
+Comment=Songs, artists, albums and playlists, as on the Nokia N9
+Exec=/usr/bin/meego-music
+Icon=icon-l-music
+Categories=AudioVideo;Audio;Player;

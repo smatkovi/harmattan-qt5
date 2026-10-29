@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Music (MeeGo)
+Comment=Songs, artists, albums and playlists, as on the Nokia N9
+Exec=/usr/bin/meego-music
+Icon=general_mediaplayer
+X-Osso-Type=application/x-executable
