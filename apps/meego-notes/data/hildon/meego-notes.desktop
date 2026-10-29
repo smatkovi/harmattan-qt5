@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Notes (MeeGo)
+Comment=Short notes, as on the Nokia N9
+Exec=/usr/bin/meego-notes
+Icon=general_notes
+X-Osso-Type=application/x-executable

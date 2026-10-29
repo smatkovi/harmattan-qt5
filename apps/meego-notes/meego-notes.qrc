@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/NotesPage.qml</file>
+        <file>qml/NoteSheet.qml</file>
+    </qresource>
+</RCC>

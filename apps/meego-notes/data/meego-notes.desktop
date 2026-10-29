@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Notes
+Comment=Short notes, as on the Nokia N9
+Exec=/usr/bin/meego-notes
+Icon=icon-l-notes
+Categories=Office;Utility;

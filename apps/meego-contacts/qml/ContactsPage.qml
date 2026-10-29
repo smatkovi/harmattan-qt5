@@ -8,6 +8,8 @@ Page {
 
     property string filter: ""
     property var list: contacts.contacts(filter)
+    // assigned, not bound: the filter's changes come through its handler
+    onFilterChanged: list = contacts.contacts(filter)
     Connections { target: contacts; onChanged: page.list = contacts.contacts(page.filter) }
 
     tools: ToolBarLayout {
