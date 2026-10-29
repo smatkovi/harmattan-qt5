@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Videos
+Comment=Videos with their pictures, played full screen, as on the Nokia N9
+Exec=/usr/bin/meego-video %f
+Icon=icon-l-videos-tv
+Categories=AudioVideo;Video;Player;
+MimeType=video/mp4;video/webm;video/x-matroska;video/ogg;video/quicktime;video/x-msvideo;

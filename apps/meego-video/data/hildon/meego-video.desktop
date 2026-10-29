@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Videos (MeeGo)
+Comment=Videos with their pictures, played full screen, as on the Nokia N9
+Exec=/usr/bin/meego-video
+Icon=general_video_player
+X-Osso-Type=application/x-executable

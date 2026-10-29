@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/PlayerPage.qml</file>
+        <file>qml/VideosPage.qml</file>
+    </qresource>
+</RCC>

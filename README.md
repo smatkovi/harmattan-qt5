@@ -102,6 +102,7 @@ qt-components built for Qt 5.15.
 | `apps/meego-mail` | runs against a stand-in server (`tests/fake-mailserver.py`, plain IMAP and SMTP): the folder with unread messages, folders, a message (encoded words, quoted-printable, multipart, HTML as text, attachments' names), reply with the quote, reply to all, forward, delete, mark unread, sending, the account sheet with the providers' servers; its own IMAP, SMTP and MIME; TLS untested against a real server |
 | `apps/meego-contacts` | runs: the contacts under their letters with the letter scroller and search, the card (calls, messages and mails through the other apps), the editor sheet, import of vCard 2.1/3.0/4.0 files with photos (twice gives each once); one vCard file per contact |
 | `apps/meego-gallery` | runs: all pictures as the N9's gapless grid, the albums (folders), a picture full screen (swipe, double-tap zoom, details, delete to the trash) |
+| `apps/meego-video` | runs: the videos with their pictures (a frame a tenth in) and lengths, playing full screen with the controls (position, play/pause); playbin through an appsink into Qt Quick (no GL path needed); VP8/WebM, H.264/MP4 and Theora tried |
 
 ## Building on a PC
 
