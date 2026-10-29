@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Mail (MeeGo)
+Comment=E-mail over IMAP and SMTP, as on the Nokia N9
+Exec=/usr/bin/meego-mail
+Icon=general_email
+X-Osso-Type=application/x-executable

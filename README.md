@@ -99,6 +99,7 @@ qt-components built for Qt 5.15.
 | `apps/meego-music` | runs: the covers' mosaic with the song that plays, all songs, artists, albums (as covers), genres, the smart playlists (recently added and played, most played), now playing (cover, position to drag, shuffle, repeat, previous/play/next); GStreamer's playbin and discoverer (tags, embedded covers), cached |
 | `apps/meego-phone` | runs against a stand-in ModemManager (`tests/fake-modemmanager.py`): the dialler with the latest calls, the call history, the call screen (calling, incoming with answer and reject, the call's time, mute, loudspeaker, tones, end); "No modem" without one; untested with a real modem |
 | `apps/meego-messages` | runs against a stand-in ModemManager (`tests/fake-modemmanager.py`): the conversations (one per number, unread counts), a conversation in the N9's bubbles with sending and its state, messages arriving live or stored on the modem before, new message, forward, delete; its own SQLite store; untested with a real modem |
+| `apps/meego-mail` | runs against a stand-in server (`tests/fake-mailserver.py`, plain IMAP and SMTP): the folder with unread messages, folders, a message (encoded words, quoted-printable, multipart, HTML as text, attachments' names), reply with the quote, reply to all, forward, delete, mark unread, sending, the account sheet with the providers' servers; its own IMAP, SMTP and MIME; TLS untested against a real server |
 
 ## Building on a PC
 
