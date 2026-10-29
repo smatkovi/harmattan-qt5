@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Contacts
+Comment=People with their numbers and addresses, as on the Nokia N9
+Exec=/usr/bin/meego-contacts
+Icon=icon-l-contacts
+Categories=Office;ContactManagement;
