@@ -105,6 +105,7 @@ qt-components built for Qt 5.15.
 | `apps/meego-video` | runs: the videos with their pictures (a frame a tenth in) and lengths, playing full screen with the controls (position, play/pause); playbin through an appsink into Qt Quick (no GL path needed); VP8/WebM, H.264/MP4 and Theora tried |
 | `apps/meego-notes` | runs: the notes under the N9's yellow header, the newest first (the first line as title, a little of the rest, the time), search, the editor sheet (save, cancel), delete to the trash; one plain text file per note, changes from outside seen at once |
 | `apps/meego-calculator` | runs: the calculation line in the N9's orange (shrinking as it grows, backspace, copy and paste), the keys with the N9's yellow pressed squares, portrait and landscape layouts, one operation at a time, the hardware keyboard |
+| `apps/meego-camera` | runs with GStreamer's test source (`MEEGO_CAMERA_SOURCE`): the viewfinder, photos (JPEG of the whole frame), videos (H.264 and AAC in MP4, the time while recording), the mode switch, the last picture opening the gallery or the videos, "No camera" without one; libcamera (`libcamerasrc`) and V4L2 cameras found through GStreamer's device monitor, untested with a real camera |
 
 ## Building on a PC
 

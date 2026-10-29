@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Camera (MeeGo)
+Comment=Photos and videos, as on the Nokia N9
+Exec=/usr/bin/meego-camera
+Icon=tasklaunch_camera
+X-Osso-Type=application/x-executable

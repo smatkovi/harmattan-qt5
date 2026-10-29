@@ -5,5 +5,5 @@ Type=Application
 Name=Calculator (MeeGo)
 Comment=Add, subtract, multiply and divide, as on the Nokia N9
 Exec=/usr/bin/meego-calculator
-Icon=general_calculator
+Icon=tasklaunch_calculator
 X-Osso-Type=application/x-executable

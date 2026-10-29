@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Camera
+Comment=Photos and videos, as on the Nokia N9
+Exec=/usr/bin/meego-camera
+Icon=icon-l-camera
+Categories=AudioVideo;Video;Photography;
