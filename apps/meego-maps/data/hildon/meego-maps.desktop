@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Maps (MeeGo)
+Comment=The map, places and one's position, as on the Nokia N9
+Exec=/usr/bin/meego-maps
+Icon=general_map
+X-Osso-Type=application/x-executable

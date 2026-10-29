@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Maps
+Comment=The map, places and one's position, as on the Nokia N9
+Exec=/usr/bin/meego-maps %u
+Icon=icon-l-maps
+Categories=Utility;Maps;
+MimeType=x-scheme-handler/geo;
