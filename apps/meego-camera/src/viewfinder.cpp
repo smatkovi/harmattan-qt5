@@ -320,16 +320,20 @@ void Viewfinder::poll()
     if (wasRecording) {
         m_recording = false;
         emit recordingChanged();
-        if (QFileInfo(m_recordFile).size() > 0) {
+        if (error.isEmpty() && QFileInfo(m_recordFile).size() > 0) {
             m_last = m_recordFile;
             emit lastChanged();
             emit captured(QUrl::fromLocalFile(m_last).toString());
         } else {
             QFile::remove(m_recordFile);
-            emit failed(tr("The video could not be saved"));
+            emit failed(error.isEmpty() ? tr("The video could not be saved")
+                                        : tr("The video could not be made: %1").arg(error));
         }
         setBusy(false);
-        if (m_active && error.isEmpty())
+        // the viewfinder again, whatever broke the video (its sound, its
+        // encoder): the error was said in the banner
+        m_error.clear();
+        if (m_active)
             start();
     } else {
         emit stateChanged();
