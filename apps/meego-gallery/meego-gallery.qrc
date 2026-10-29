@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/AlbumPage.qml</file>
+        <file>qml/GridPage.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/Thumbs.qml</file>
+        <file>qml/ViewerPage.qml</file>
+    </qresource>
+</RCC>

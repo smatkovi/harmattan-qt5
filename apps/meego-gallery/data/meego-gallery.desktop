@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Gallery
+Comment=Photos and pictures, as on the Nokia N9
+Exec=/usr/bin/meego-gallery %f
+Icon=icon-l-gallery
+Categories=Graphics;Viewer;
+MimeType=image/jpeg;image/png;image/gif;image/bmp;image/webp;

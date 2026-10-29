@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Gallery (MeeGo)
+Comment=Photos and pictures, as on the Nokia N9
+Exec=/usr/bin/meego-gallery
+Icon=general_image_viewer
+X-Osso-Type=application/x-executable
