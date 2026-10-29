@@ -84,6 +84,19 @@ for the `x11EventFilter()`s; Xlib's event queue stays empty, so
 behind it any more; Xlib's `Bool` macro breaks moc's code; `mmoc` is
 the moc again.
 
+## Applications in the N9's look
+
+New, not ports: the N9's own applications were closed source. Written in
+QML with the Harmattan Qt Quick components (`com.nokia.meego 2.0`, as
+[meego-clock](https://github.com/smatkovi/meego-clock)), each in
+`apps/<name>` with a README; they draw with the N9's "blanco" theme from
+one's own device (not in this repository). Tried on a PC under Xvfb with
+qt-components built for Qt 5.15.
+
+| Directory | State |
+| --- | --- |
+| `apps/meego-calendar` | runs: the month on the N9's grid (today, the selected day, event dots, swipe to change the month), the day's events beside or below it, the upcoming events, an event's details, the editor sheet with the date and time pickers, repetitions, colours; its own SQLite store; alerts saved, not rung yet |
+
 ## Building on a PC
 
 Each directory installs into a stage (`DESTDIR`), and the next one is

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Calendar
+Comment=Events by month and day, as on the Nokia N9
+Exec=/usr/bin/meego-calendar
+Icon=icon-l-calendar
+Categories=Office;Calendar;

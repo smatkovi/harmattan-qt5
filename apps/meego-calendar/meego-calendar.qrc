@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/MonthPage.qml</file>
+        <file>qml/MonthGrid.qml</file>
+        <file>qml/EventDelegate.qml</file>
+        <file>qml/EventPage.qml</file>
+        <file>qml/EventSheet.qml</file>
+        <file>qml/DateTimeRow.qml</file>
+        <file>qml/ValueRow.qml</file>
+        <file>qml/Detail.qml</file>
+        <file>qml/AgendaPage.qml</file>
+        <file>qml/Util.js</file>
+    </qresource>
+</RCC>
