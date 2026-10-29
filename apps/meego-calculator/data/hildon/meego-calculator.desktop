@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Calculator (MeeGo)
+Comment=Add, subtract, multiply and divide, as on the Nokia N9
+Exec=/usr/bin/meego-calculator
+Icon=general_calculator
+X-Osso-Type=application/x-executable
