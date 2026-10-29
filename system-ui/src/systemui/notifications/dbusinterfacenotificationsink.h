@@ -26,6 +26,7 @@
 
 class DBusInterfaceNotificationSinkProxy;
 class NotificationManagerInterface;
+class QDBusServiceWatcher;
 
 /*!
  * A notification sink that handles communication with external sinks.
@@ -98,7 +99,16 @@ private slots:
      */
     void sendNotificationsToProxy(const QList<Notification> &notifications, const DBusInterface &proxyInterface) const;
 
+    //! The sinks of a service that left the bus are dropped
+    void sinkServiceUnregistered(const QString &service);
+
 private:
+    //! Drops a sink's proxy and the signal connections to it
+    void removeProxy(const ProxyAddress &address);
+
+    //! Watches the services of the registered sinks
+    QDBusServiceWatcher *serviceWatcher;
+
     /*!
      * Proxies for the registered external sinks.
      * Maps a D-Bus service and path pair to a sink proxy

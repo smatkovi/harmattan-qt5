@@ -20,11 +20,18 @@
 #include "dbusinterfacenotificationsinkadaptor.h"
 #include "dbusinterfacenotificationsinkproxy.h"
 #include "notificationmanagerinterface.h"
+#include <QDBusServiceWatcher>
 
 DBusInterfaceNotificationSink::DBusInterfaceNotificationSink(NotificationManagerInterface *interface) :
+        serviceWatcher(new QDBusServiceWatcher(this)),
         notificationManager(interface)
 {
     new DBusInterfaceNotificationSinkAdaptor(this);
+    // A sink whose process goes (the home screen restarting, with a new
+    // unique bus name) never unregisters: its proxies go with its name
+    serviceWatcher->setConnection(QDBusConnection::sessionBus());
+    serviceWatcher->setWatchMode(QDBusServiceWatcher::WatchForUnregistration);
+    connect(serviceWatcher, SIGNAL(serviceUnregistered(QString)), this, SLOT(sinkServiceUnregistered(QString)));
 }
 
 DBusInterfaceNotificationSink::~DBusInterfaceNotificationSink()
@@ -36,6 +43,7 @@ void DBusInterfaceNotificationSink::registerSink(const QString &service, const Q
     ProxyAddress proxy(service, path);
     DBusInterface proxyInterface(new DBusInterfaceNotificationSinkProxy(service, path, QDBusConnection::sessionBus()));
     proxies.insert(proxy, proxyInterface);
+    serviceWatcher->addWatchedService(service);
     QDBusConnection::sessionBus().connect(service, path, DBusInterfaceNotificationSinkProxy::staticInterfaceName(), "notificationRemovalRequested", this, SIGNAL(notificationRemovalRequested(uint)));
     QDBusConnection::sessionBus().connect(service, path, DBusInterfaceNotificationSinkProxy::staticInterfaceName(), "notificationGroupClearingRequested", this, SIGNAL(notificationGroupClearingRequested(uint)));
     sendCurrentNotifications(proxyInterface);
@@ -43,7 +51,32 @@ void DBusInterfaceNotificationSink::registerSink(const QString &service, const Q
 
 void DBusInterfaceNotificationSink::unregisterSink(const QString &service, const QString &path)
 {
-    proxies.remove(ProxyAddress(service, path));
+    removeProxy(ProxyAddress(service, path));
+    foreach (const ProxyAddress &address, proxies.keys()) {
+        if (address.first == service) {
+            return;
+        }
+    }
+    serviceWatcher->removeWatchedService(service);
+}
+
+void DBusInterfaceNotificationSink::removeProxy(const ProxyAddress &address)
+{
+    if (proxies.remove(address) == 0) {
+        return;
+    }
+    QDBusConnection::sessionBus().disconnect(address.first, address.second, DBusInterfaceNotificationSinkProxy::staticInterfaceName(), "notificationRemovalRequested", this, SIGNAL(notificationRemovalRequested(uint)));
+    QDBusConnection::sessionBus().disconnect(address.first, address.second, DBusInterfaceNotificationSinkProxy::staticInterfaceName(), "notificationGroupClearingRequested", this, SIGNAL(notificationGroupClearingRequested(uint)));
+}
+
+void DBusInterfaceNotificationSink::sinkServiceUnregistered(const QString &service)
+{
+    foreach (const ProxyAddress &address, proxies.keys()) {
+        if (address.first == service) {
+            removeProxy(address);
+        }
+    }
+    serviceWatcher->removeWatchedService(service);
 }
 
 void DBusInterfaceNotificationSink::addNotification(const Notification &notification)
