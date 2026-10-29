@@ -46,7 +46,7 @@
 #endif
 
 namespace {
-    const unsigned int FILE_VERSION = 22;
+    const unsigned int FILE_VERSION = 23;
 }
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -1270,8 +1270,8 @@ qint64 MStyleSheetParserPrivate::approximateSize()
         iterator != infoSelectorsEnd;
         ++iterator) {
             size += sizeof(MStyleSheetSelector);
-            // alignement
-            size += 4;
+            // alignement (the selector's, then its attributes')
+            size += 8 + 8;
             size += (*iterator)->attributeCount() * sizeof(MStyleSheetAttribute);
         }
 
@@ -1282,8 +1282,8 @@ qint64 MStyleSheetParserPrivate::approximateSize()
         iterator != infoSelectorsEnd;
         ++iterator) {
             size += sizeof(MStyleSheetSelector);
-            // alignement
-            size += 4;
+            // alignement (the selector's, then its attributes')
+            size += 8 + 8;
             size += (*iterator)->attributeCount() * sizeof(MStyleSheetAttribute);
         }
     }
@@ -1464,7 +1464,10 @@ void MStyleSheetParserPrivate::readAllSelectors(char** buffer)
 
 const MStyleSheetSelector *MStyleSheetParserPrivate::readSelector(char** buffer)
 {
-    fixAlignement(buffer, 4);
+    // a selector at its own alignment (8: it holds a pointer): attributeList()
+    // finds its attributes from "this", and clang takes "this" to be aligned,
+    // so a selector at 4 bytes past it had its attributes read 4 bytes early
+    fixAlignement(buffer, Q_ALIGNOF(MStyleSheetSelector));
     MStyleSheetSelector *selector = reinterpret_cast<MStyleSheetSelector*>(*buffer);
     incrementBuffer(buffer, sizeof(MStyleSheetSelector));
 
@@ -1478,7 +1481,7 @@ const MStyleSheetSelector *MStyleSheetParserPrivate::readSelector(char** buffer)
 
 void MStyleSheetParserPrivate::writeSelector(const MStyleSheetSelector *selector, char** buffer) const
 {
-    fixAlignement(buffer, 4);
+    fixAlignement(buffer, Q_ALIGNOF(MStyleSheetSelector));
     size_t sizeOfSelector = sizeof(MStyleSheetSelector);
     const_cast<MStyleSheetSelector*>(selector)->fromMappedMemory = true;
     memcpy(*buffer, selector, sizeOfSelector);
