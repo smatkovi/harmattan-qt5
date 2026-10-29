@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Phone (MeeGo)
+Comment=The dialler, the call history and the call screen, as on the Nokia N9
+Exec=/usr/bin/meego-phone
+Icon=general_call
+X-Osso-Type=application/x-executable

@@ -97,6 +97,7 @@ qt-components built for Qt 5.15.
 | --- | --- |
 | `apps/meego-calendar` | runs: the month on the N9's grid (today, the selected day, event dots, swipe to change the month), the day's events beside or below it, the upcoming events, an event's details, the editor sheet with the date and time pickers, repetitions, colours; its own SQLite store; alerts saved, not rung yet |
 | `apps/meego-music` | runs: the covers' mosaic with the song that plays, all songs, artists, albums (as covers), genres, the smart playlists (recently added and played, most played), now playing (cover, position to drag, shuffle, repeat, previous/play/next); GStreamer's playbin and discoverer (tags, embedded covers), cached |
+| `apps/meego-phone` | runs against a stand-in ModemManager (`tests/fake-modemmanager.py`): the dialler with the latest calls, the call history, the call screen (calling, incoming with answer and reject, the call's time, mute, loudspeaker, tones, end); "No modem" without one; untested with a real modem |
 
 ## Building on a PC
 

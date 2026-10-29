@@ -12,7 +12,6 @@ Item {
             anchors.centerIn: parent
             width: Math.min(parent.width, parent.height) * 0.6
             height: width
-            sourceSize.width: width
             source: "image://theme/icon-l-music"
             opacity: 0.4
             smooth: true

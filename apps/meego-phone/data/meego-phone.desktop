@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Phone
+Comment=The dialler, the call history and the call screen, as on the Nokia N9
+Exec=/usr/bin/meego-phone
+Icon=icon-l-telephony
+Categories=Network;Telephony;
