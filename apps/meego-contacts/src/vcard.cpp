@@ -66,6 +66,13 @@ static QByteArray qpDecode(const QByteArray &in)
     return out;
 }
 
+// JPEG, PNG, GIF, BMP or WebP by their first bytes
+static bool isImage(const QByteArray &d)
+{
+    return d.startsWith("\xff\xd8") || d.startsWith("\x89PNG") || d.startsWith("GIF8") || d.startsWith("BM")
+           || (d.startsWith("RIFF") && d.mid(8, 4) == "WEBP");
+}
+
 QList<QVariantMap> parse(const QByteArray &data)
 {
     // unfold: a line starting with a space or tab continues the one
@@ -178,10 +185,16 @@ QList<QVariantMap> parse(const QByteArray &data)
         } else if (name == "NOTE") {
             c[QStringLiteral("note")] = unescape(text);
         } else if (name == "PHOTO") {
-            if (b64 || !value.startsWith("data:"))
-                c[QStringLiteral("photo")] = QByteArray::fromBase64(value);
-            else
-                c[QStringLiteral("photo")] = QByteArray::fromBase64(value.mid(value.indexOf(',') + 1));
+            // the picture itself (base64, or a data: URI); a link to one on
+            // the net (as Google's and Apple's exports have) is not fetched
+            const QByteArray v = value.trimmed();
+            QByteArray photo;
+            if (v.startsWith("data:"))
+                photo = QByteArray::fromBase64(v.mid(v.indexOf(',') + 1));
+            else if (b64 || !v.contains(':'))
+                photo = QByteArray::fromBase64(v);
+            if (isImage(photo))
+                c[QStringLiteral("photo")] = photo;
         }
     }
     return cards;
