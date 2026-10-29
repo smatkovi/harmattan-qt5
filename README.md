@@ -106,6 +106,7 @@ qt-components built for Qt 5.15.
 | `apps/meego-notes` | runs: the notes under the N9's yellow header, the newest first (the first line as title, a little of the rest, the time), search, the editor sheet (save, cancel), delete to the trash; one plain text file per note, changes from outside seen at once |
 | `apps/meego-calculator` | runs: the calculation line in the N9's orange (shrinking as it grows, backspace, copy and paste), the keys with the N9's yellow pressed squares, portrait and landscape layouts, one operation at a time, the hardware keyboard |
 | `apps/meego-camera` | runs with GStreamer's test source (`MEEGO_CAMERA_SOURCE`): the viewfinder, photos (JPEG of the whole frame), videos (H.264 and AAC in MP4, the time while recording), the mode switch, the last picture opening the gallery or the videos, "No camera" without one; libcamera (`libcamerasrc`) and V4L2 cameras found through GStreamer's device monitor, untested with a real camera |
+| `apps/meego-browser` | runs with a stand-in web view (`tests/FakeView.qml`): the address field (addresses, files, searches, stop, progress), the start view with bookmarks and recent pages, back and forward, bookmarking; says so without a web engine; the Qt WebEngine and Qt WebKit views are written but untested (neither is packaged for Qt 5 on the PC) |
 
 ## Building on a PC
 

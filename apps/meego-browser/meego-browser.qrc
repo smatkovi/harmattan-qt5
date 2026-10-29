@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/BrowserPage.qml</file>
+        <file>qml/StartView.qml</file>
+        <file>qml/WebEngineBackend.qml</file>
+        <file>qml/WebKitBackend.qml</file>
+    </qresource>
+</RCC>

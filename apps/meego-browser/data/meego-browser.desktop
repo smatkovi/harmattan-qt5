@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Web
+Comment=The web, as on the Nokia N9
+Exec=/usr/bin/meego-browser %u
+Icon=icon-l-browser
+Categories=Network;WebBrowser;
+MimeType=text/html;x-scheme-handler/http;x-scheme-handler/https;
