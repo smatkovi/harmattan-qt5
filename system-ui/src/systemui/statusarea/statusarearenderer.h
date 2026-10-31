@@ -88,7 +88,7 @@ private slots:
 #ifdef HAVE_QMSYSTEM
     /*!
      * \brief A slot for setting if the scene renders to pixmap or not.
-     * \param MeeGo::QmDisplayState::DisplayState. When MeeGo::QmDisplayState::Off / MeeGo::QmDisplayState::Dimmed the scene does not render. When MeeGo::QmDisplayState::On scene renders to pixmap
+     * \param MeeGo::QmDisplayState::DisplayState. When MeeGo::QmDisplayState::Off the scene does not render. When MeeGo::QmDisplayState::On or MeeGo::QmDisplayState::Dimmed (still to be seen) scene renders to pixmap
      */
     void setSceneRender(MeeGo::QmDisplayState::DisplayState state);
 #endif
@@ -120,6 +120,15 @@ private:
      * changes succeeded. false otherwise.
      */
     bool updateStatusBarVisibleProperty();
+
+    /*!
+     * Tells the status area's widgets whether they are on display: while
+     * the display is on and the compositor shows the status bar. Those
+     * off display stop their timers and animations (the clock, the
+     * indicators' animations); on display again, they catch up and the
+     * changes made meanwhile are rendered.
+     */
+    void updateSceneOnDisplay();
 
     //! Creates a window for sharing shared pixmap handle.
     void createStatusAreaPropertyWindow();
@@ -184,6 +193,9 @@ private:
 
     //! Keep track whether scene should render or not
     bool renderScene;
+
+    //! What the widgets were told last (updateSceneOnDisplay())
+    bool sceneOnDisplay;
 
     //! A single shot timer started when the scene changes
     QTimer accumulationTimer;

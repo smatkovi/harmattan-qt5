@@ -52,6 +52,7 @@ StatusAreaRenderer::StatusAreaRenderer(QObject *parent) :
     displayState(new MeeGo::QmDisplayState()),
 #endif
     renderScene(true),
+    sceneOnDisplay(false),
     previousRootWindowEventMask(0)
 {
     scene->setParent(this);
@@ -66,14 +67,9 @@ StatusAreaRenderer::StatusAreaRenderer(QObject *parent) :
     // Switch rendering on and off based on the display state
     connect(displayState, SIGNAL(displayStateChanged(MeeGo::QmDisplayState::DisplayState)), this, SLOT(setSceneRender(MeeGo::QmDisplayState::DisplayState)));
 
-    // The following part is important so that widgets will know from the very beginning whether they are on display or not
-    MeeGo::QmDisplayState::DisplayState state = displayState->get();
-    if (state != MeeGo::QmDisplayState::Off) {
-        // Set rendering state off to make all widgets think they are not on display
-        setSceneRender(MeeGo::QmDisplayState::Off);
-    }
-    // Let the widgets know whether they are actually on display or not
-    setSceneRender(state);
+    // The widgets are told that they are on display once the status bar
+    // is known to be visible too (updateSceneOnDisplay())
+    setSceneRender(displayState->get());
 #endif
 
     // Get the required X atoms
@@ -438,9 +434,9 @@ bool StatusAreaRenderer::updateStatusBarVisibleProperty()
         statusBarVisible = true;
     }
 
-    if (statusBarVisible && !oldStatusBarVisible) {
+    if (statusBarVisible != oldStatusBarVisible) {
         // Render any changes that have accumulated while the status bar was not visible
-        renderAccumulatedRegion();
+        updateSceneOnDisplay();
     }
 
     return success;
@@ -502,6 +498,7 @@ void StatusAreaRenderer::wmWindowUnavailable()
 
     // Assume status bar is visible when WM window is not available
     statusBarVisible = true;
+    updateSceneOnDisplay();
 
     startTrackingRootWindowProperties();
 
@@ -517,33 +514,45 @@ void StatusAreaRenderer::setSceneRender(MeeGo::QmDisplayState::DisplayState stat
     bool oldRenderScene = renderScene;
 
     switch(state) {
-    case MeeGo::QmDisplayState::Dimmed:
     case MeeGo::QmDisplayState::Off:
+        // (also mce's low power mode: a stand-by screen without the status bar)
         renderScene = false;
         break;
+    case MeeGo::QmDisplayState::Dimmed:
+        // dimmed, the status bar is still to be seen: its clock goes on
     case MeeGo::QmDisplayState::On:
         renderScene = true;
         break;
     default:
+        // (no mce, as on FreeBSD: the display counts as on)
         renderScene = true;
     }
 
     if (renderScene != oldRenderScene) {
-        MOnDisplayChangeEvent::State state = renderScene ?
-           MOnDisplayChangeEvent::FullyOnDisplay : MOnDisplayChangeEvent::FullyOffDisplay;
-
-        MOnDisplayChangeEvent event(state, QRectF());
-        foreach(QGraphicsItem *item, scene->items()) {
-            scene->sendEvent(item, &event);
-        }
-
-        if (renderScene) {
-            // Render any changes that have accumulated while the display was off
-            renderAccumulatedRegion();
-        }
+        updateSceneOnDisplay();
     }
 }
 #endif
+
+void StatusAreaRenderer::updateSceneOnDisplay()
+{
+    const bool onDisplay = renderScene && statusBarVisible;
+    if (onDisplay == sceneOnDisplay)
+        return;
+    sceneOnDisplay = onDisplay;
+
+    MOnDisplayChangeEvent event(onDisplay ? MOnDisplayChangeEvent::FullyOnDisplay
+                                          : MOnDisplayChangeEvent::FullyOffDisplay, QRectF());
+    foreach(QGraphicsItem *item, scene->items()) {
+        scene->sendEvent(item, &event);
+    }
+
+    if (onDisplay) {
+        // Render any changes that have accumulated while the display was off
+        // or the status bar not visible
+        renderAccumulatedRegion();
+    }
+}
 
 int StatusAreaRenderer::handleXError(Display* dpy, XErrorEvent *event)
 {

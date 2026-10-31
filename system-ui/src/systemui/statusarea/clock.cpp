@@ -30,8 +30,10 @@ Clock::Clock(QGraphicsItem *parent) :
     qmHeartbeat.open(MeeGo::QmHeartbeat::SignalNeeded);
     connect(&qmHeartbeat, SIGNAL(wakeUp(QTime)), this, SLOT(updateModelAndSetupTimer()));
 #else
-    // Configure the timer
+    // Configure the timer (to the second: a coarse timer may end 5% early,
+    // seconds before the minute it waits for)
     timer.setSingleShot(true);
+    timer.setTimerType(Qt::VeryCoarseTimer);
     connect(&timer, SIGNAL(timeout()), this, SLOT(updateModelAndSetupTimer()));
 #endif
 
