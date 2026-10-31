@@ -21,6 +21,7 @@
  */
 #include "qmtime.h"
 
+#include <QDateTime>
 #include <QElapsedTimer>
 #include <QFile>
 #include <QFileInfo>
@@ -76,6 +77,8 @@ namespace MeeGo
     private:
         void armTimer();
         void notify(QmTime::WhatChanged what);
+        //! What /etc/localtime is now: its link's target, or its file's
+        static QString zoneIdentity();
 
         int timerFd;
         QSocketNotifier *timerNotifier;
@@ -83,6 +86,7 @@ namespace MeeGo
         QElapsedTimer monotonic;
         qint64 offset;      // wall clock - monotonic clock, ms
         QFileSystemWatcher watcher;
+        QString zone;       // zoneIdentity() when last told
     };
 
     QmTimePrivate2::QmTimePrivate2(QObject *parent)
@@ -100,10 +104,13 @@ namespace MeeGo
             monotonic.start();
             offset = QDateTime::currentMSecsSinceEpoch() - monotonic.elapsed();
             connect(&pollTimer, SIGNAL(timeout()), SLOT(compareClocks()));
+            // (to the second is enough for a jump of two)
+            pollTimer.setTimerType(Qt::VeryCoarseTimer);
             pollTimer.start(PollInterval);
         }
 
         // the link itself is replaced, so its directory is watched too
+        zone = zoneIdentity();
         watcher.addPath(QFileInfo(LOCALTIME).absolutePath());
         if (QFile::exists(LOCALTIME))
             watcher.addPath(LOCALTIME);
@@ -148,11 +155,27 @@ namespace MeeGo
         }
     }
 
+    QString QmTimePrivate2::zoneIdentity()
+    {
+        QFileInfo info(LOCALTIME);
+        if (info.isSymLink())
+            return info.symLinkTarget();
+        if (!info.exists())
+            return QString();
+        return QString("%1 %2").arg(info.size()).arg(info.lastModified().toMSecsSinceEpoch());
+    }
+
     void QmTimePrivate2::zoneChanged()
     {
-        tzset();
         if (QFile::exists(LOCALTIME) && !watcher.files().contains(LOCALTIME))
             watcher.addPath(LOCALTIME);
+        // anything in /etc is a change of its directory (resolv.conf with
+        // each network): only the zone's is told
+        const QString now = zoneIdentity();
+        if (now == zone)
+            return;
+        zone = now;
+        tzset();
         // the local time shown changes with it
         notify(QmTime::TimeChanged);
     }

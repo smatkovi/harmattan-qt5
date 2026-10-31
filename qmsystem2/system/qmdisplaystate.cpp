@@ -32,6 +32,7 @@
 #include <QDBusConnection>
 #include <QDBusMessage>
 #include <QDBusReply>
+#include <QMetaMethod>
 
 namespace MeeGo {
 
@@ -95,6 +96,20 @@ void QmDisplayState::disconnectNotify(const char *signal) {
     }
 }
 
+#if QT_VERSION >= 0x050000
+/* Qt 5 no longer calls the const char * overloads above: without these the
+   mce signal was never subscribed to and displayStateChanged() never came */
+void QmDisplayState::connectNotify(const QMetaMethod &signal) {
+    if (signal == QMetaMethod::fromSignal(&QmDisplayState::displayStateChanged))
+        connectNotify(SIGNAL(displayStateChanged(MeeGo::QmDisplayState::DisplayState)));
+}
+
+void QmDisplayState::disconnectNotify(const QMetaMethod &signal) {
+    if (signal == QMetaMethod::fromSignal(&QmDisplayState::displayStateChanged))
+        disconnectNotify(SIGNAL(displayStateChanged(MeeGo::QmDisplayState::DisplayState)));
+}
+#endif
+
 QmDisplayState::DisplayState QmDisplayState::get() const {
     QmDisplayState::DisplayState state = Unknown;
     #if HAVE_MCE
@@ -111,7 +126,7 @@ QmDisplayState::DisplayState QmDisplayState::get() const {
             state = Dimmed;
         } else if (stateStr == MCE_DISPLAY_ON_STRING) {
             state = On;
-        } else if (stateStr == MCE_DISPLAY_OFF_STRING) {
+        } else if (stateStr == MCE_DISPLAY_OFF_STRING || stateStr == QM_DISPLAY_LPM_STRING) {
             state = Off;
         }
     #endif

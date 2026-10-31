@@ -49,6 +49,11 @@
 
 #define SIGNAL_DISPLAY_STATE 0
 
+/* An mce with Harmattan's low power mode (as Maemo Leste's with the Pro1X's
+   patch) says "lpm" while a stand-by screen shows: off to everyone else,
+   as Harmattan's mce said "off" then */
+#define QM_DISPLAY_LPM_STRING "lpm"
+
 namespace MeeGo
 {
     class QmDisplayStatePrivate : public QObject
@@ -79,7 +84,7 @@ namespace MeeGo
 
         void slotDisplayStateChanged(const QString& state) {
             #if HAVE_MCE
-                if (state == MCE_DISPLAY_OFF_STRING)
+                if (state == MCE_DISPLAY_OFF_STRING || state == QM_DISPLAY_LPM_STRING)
                     emit displayStateChanged(QmDisplayState::Off);
                 else if (state == MCE_DISPLAY_DIM_STRING)
                     emit displayStateChanged(QmDisplayState::Dimmed);

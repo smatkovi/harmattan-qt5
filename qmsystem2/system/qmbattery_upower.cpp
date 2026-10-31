@@ -21,10 +21,11 @@
    </p>
  */
 #include "qmbattery.h"
+#include "qmheartbeat.h"
 
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
-#include <QDBusInterface>
+#include <QDBusMessage>
 #include <QDBusObjectPath>
 #include <QDBusReply>
 #include <QDBusVariant>
@@ -47,8 +48,11 @@ static const int MaxBars = 8;
 static const int LowPct = 15;
 static const int CriticalPct = 5;
 static const int EmptyPct = 2;
-// how often the kernel's values are read when there is no UPower to tell
-static const int PollInterval = 30000;
+// when the kernel's values are read, there being no UPower to tell: once a
+// minute, at the minute (between 30 and 90 seconds from the last time),
+// when the status bar's clock wakes up anyway
+static const unsigned short PollMin = 30;
+static const unsigned short PollMax = 90;
 
 namespace MeeGo
 {
@@ -78,18 +82,27 @@ namespace MeeGo
 
     public Q_SLOTS:
         void refresh();
+        void poll();
         void upowerPropertiesChanged(const QString &interface,
                                      const QVariantMap &changed,
                                      const QStringList &invalidated);
 
     private:
         bool readUPower();
+        void fromUPower();
         bool readPowerSupply();
         void emitChanges();
+        void startPolling();
 
         QmBattery *q;
         bool useUPower;
-        QTimer pollTimer;
+        // the display device's properties, as UPower last told them
+        QVariantMap upowerProperties;
+        // UPower tells OnBattery (else: external power while charging)
+        bool onBatteryKnown;
+        QmHeartbeat *heartbeat;
+        // (where iphbd is to be asked but is not there)
+        QTimer *pollTimer;
 
         // what was signalled last
         int lastPercentage;
@@ -98,6 +111,15 @@ namespace MeeGo
         QmBattery::BatteryState lastState;
         QmBattery::Level lastLevel;
     };
+
+    // a D-Bus property of UPower's, invalid if it can't be read
+    static QVariant upowerProperty(const char *path, const char *interface, const char *name)
+    {
+        QDBusMessage call = QDBusMessage::createMethodCall(UPOWER_SERVICE, path, PROPERTIES_IF, "Get");
+        call << QString(interface) << QString(name);
+        QDBusReply<QDBusVariant> r = QDBusConnection::systemBus().call(call);
+        return r.isValid() ? r.value().variant() : QVariant();
+    }
 
     // the first line of a power supply attribute, empty if it is not there
     static QString attribute(const QString &dir, const char *name)
@@ -112,13 +134,18 @@ namespace MeeGo
         : percentage(-1), present(false), charging(false), full(false),
           charger(false), voltage(0), current(0), capacity(0),
           nominalCapacity(0), timeToEmpty(0), timeToFull(0),
-          q(battery), useUPower(false),
+          q(battery), useUPower(false), onBatteryKnown(false), heartbeat(0), pollTimer(0),
           lastPercentage(-2), lastCharging(false), lastCharger(false),
           lastState(QmBattery::StateError), lastLevel(QmBattery::LevelFull)
     {
         QDBusConnection bus = QDBusConnection::systemBus();
         if (bus.isConnected() && bus.interface()
-            && bus.interface()->isServiceRegistered(UPOWER_SERVICE)) {
+            && (bus.interface()->isServiceRegistered(UPOWER_SERVICE)
+#if QT_VERSION >= 0x050e00
+                // (started by the bus on the first call)
+                || bus.interface()->activatableServiceNames().value().contains(UPOWER_SERVICE)
+#endif
+                )) {
             useUPower = true;
             bus.connect(UPOWER_SERVICE, UPOWER_DISPLAY_DEVICE, PROPERTIES_IF,
                         "PropertiesChanged", this,
@@ -127,22 +154,56 @@ namespace MeeGo
             bus.connect(UPOWER_SERVICE, UPOWER_PATH, PROPERTIES_IF,
                         "PropertiesChanged", this,
                         SLOT(upowerPropertiesChanged(QString,QVariantMap,QStringList)));
-        } else {
-            // the kernel does not tell, it is asked from time to time
-            connect(&pollTimer, SIGNAL(timeout()), SLOT(refresh()));
-            pollTimer.start(PollInterval);
         }
         refresh();
+        if (!useUPower)
+            startPolling();
+    }
+
+    void QmBatteryPrivate::startPolling()
+    {
+        // the kernel does not tell, it is asked from time to time; not
+        // at all where it has no power supplies to ask about (FreeBSD)
+        if (heartbeat || !QDir(POWER_SUPPLY_DIR).exists())
+            return;
+        heartbeat = new QmHeartbeat(this);
+        if (heartbeat->open(QmHeartbeat::SignalNeeded)) {
+            connect(heartbeat, SIGNAL(wakeUp(QTime)), SLOT(poll()));
+            heartbeat->wait(PollMin, PollMax, QmHeartbeat::DoNotWaitHeartbeat);
+        } else {
+            pollTimer = new QTimer(this);
+            pollTimer->setTimerType(Qt::VeryCoarseTimer);
+            connect(pollTimer, SIGNAL(timeout()), SLOT(refresh()));
+            pollTimer->start(60000);
+        }
+    }
+
+    void QmBatteryPrivate::poll()
+    {
+        refresh();
+        heartbeat->wait(PollMin, PollMax, QmHeartbeat::DoNotWaitHeartbeat);
     }
 
     bool QmBatteryPrivate::readUPower()
     {
-        QDBusInterface dev(UPOWER_SERVICE, UPOWER_DISPLAY_DEVICE, PROPERTIES_IF,
-                           QDBusConnection::systemBus());
-        QDBusReply<QVariantMap> r = dev.call("GetAll", UPOWER_DEVICE_IF);
+        QDBusMessage call = QDBusMessage::createMethodCall(UPOWER_SERVICE, UPOWER_DISPLAY_DEVICE,
+                                                           PROPERTIES_IF, "GetAll");
+        call << QString(UPOWER_DEVICE_IF);
+        QDBusReply<QVariantMap> r = QDBusConnection::systemBus().call(call);
         if (!r.isValid())
             return false;
-        const QVariantMap p = r.value();
+        upowerProperties = r.value();
+        // external power: UPower's OnBattery, or charging at all
+        const QVariant onBattery = upowerProperty(UPOWER_PATH, UPOWER_SERVICE, "OnBattery");
+        fromUPower();
+        onBatteryKnown = onBattery.isValid();
+        charger = onBatteryKnown ? !onBattery.toBool() : (charging || full);
+        return true;
+    }
+
+    void QmBatteryPrivate::fromUPower()
+    {
+        const QVariantMap &p = upowerProperties;
         present = p.value("IsPresent").toBool();
         percentage = present ? qRound(p.value("Percentage").toDouble()) : -1;
         // 1 charging, 2 discharging, 3 empty, 4 fully charged,
@@ -161,14 +222,6 @@ namespace MeeGo
             const int rate = qRound(p.value("EnergyRate").toDouble() / volts * 1000);
             current = charging ? rate : -rate;
         }
-
-        // external power: UPower's OnBattery, or charging at all
-        QDBusInterface up(UPOWER_SERVICE, UPOWER_PATH, PROPERTIES_IF,
-                          QDBusConnection::systemBus());
-        QDBusReply<QDBusVariant> onBattery = up.call("Get", UPOWER_SERVICE, "OnBattery");
-        charger = onBattery.isValid() ? !onBattery.value().variant().toBool()
-                                      : (charging || full);
-        return true;
     }
 
     bool QmBatteryPrivate::readPowerSupply()
@@ -250,15 +303,50 @@ namespace MeeGo
 
     void QmBatteryPrivate::refresh()
     {
-        if (!(useUPower && readUPower()))
+        if (useUPower && !readUPower()) {
+            // UPower is gone (or never came): the kernel, then
+            useUPower = false;
+            startPolling();
+        }
+        if (!useUPower)
             readPowerSupply();
         emitChanges();
     }
 
-    void QmBatteryPrivate::upowerPropertiesChanged(const QString &, const QVariantMap &,
-                                                   const QStringList &)
+    void QmBatteryPrivate::upowerPropertiesChanged(const QString &interface,
+                                                   const QVariantMap &changed,
+                                                   const QStringList &invalidated)
     {
-        refresh();
+        if (!useUPower)
+            return;
+        // what the signal says, without asking again: UPower tells of each
+        // of its refreshes (UpdateTime), most change nothing shown here
+        static const char *const used[] = { "IsPresent", "Percentage", "State",
+            "TimeToEmpty", "TimeToFull", "Voltage", "Energy", "EnergyFullDesign",
+            "EnergyRate" };
+        if (!invalidated.isEmpty()) {
+            refresh();
+            return;
+        }
+        if (interface == UPOWER_DEVICE_IF) {
+            bool relevant = false;
+            for (QVariantMap::const_iterator i = changed.constBegin(); i != changed.constEnd(); ++i) {
+                upowerProperties.insert(i.key(), i.value());
+                for (unsigned u = 0; u < sizeof used / sizeof *used; ++u)
+                    relevant |= i.key() == QLatin1String(used[u]);
+            }
+            if (!relevant)
+                return;
+            const bool wasCharger = charger;
+            fromUPower();
+            charger = onBatteryKnown ? wasCharger : (charging || full);
+        } else if (interface == UPOWER_SERVICE && changed.contains("OnBattery")) {
+            onBatteryKnown = true;
+            charger = !changed.value("OnBattery").toBool();
+        } else {
+            return;
+        }
+        emitChanges();
     }
 
     void QmBatteryPrivate::emitChanges()

@@ -168,6 +168,11 @@ Q_SIGNALS:
 protected:
     void connectNotify(const char *signal);
     void disconnectNotify(const char *signal);
+#if QT_VERSION >= 0x050000
+    // Qt 5 names the signal with its QMetaMethod and calls these only
+    void connectNotify(const QMetaMethod &signal);
+    void disconnectNotify(const QMetaMethod &signal);
+#endif
 
 private:
     Q_DISABLE_COPY(QmDisplayState)
