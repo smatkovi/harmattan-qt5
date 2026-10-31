@@ -34,6 +34,8 @@ public:
 private slots:
     void volumeChanged(int percent, bool muted);
     void sliderMoved(int value);
+    void shown();
+    void hidden();
 
 private:
     QGraphicsWidget *container;

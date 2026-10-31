@@ -14,6 +14,8 @@
 #include <QObject>
 #include <QVariantMap>
 
+class QDBusObjectPath;
+
 class MBasicListItem;
 class MButton;
 class QGraphicsWidget;
@@ -32,16 +34,24 @@ public:
     virtual QGraphicsWidget *widget();
 
 private slots:
+    void shown();
+    void hidden();
     void update();
     void propertiesChanged(const QString &interface, const QVariantMap &changed, const QStringList &);
     void wlanToggled(bool on);
     void openSettings();
 
 private:
+    //! Shows the WLAN switch, false without NetworkManager
+    bool showWlan(const QVariant &enabled);
+    void showConnection(const QDBusObjectPath &primary);
+
     QGraphicsWidget *container;
     MBasicListItem *item;
     MButton *wlan;
     MStatusIndicatorMenuInterface *menu;
+    //! Shown in the menu: following NetworkManager's changes
+    bool active;
 };
 
 #endif

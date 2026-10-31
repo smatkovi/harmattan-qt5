@@ -12,10 +12,12 @@
 
 #include <MStatusIndicatorMenuExtensionInterface>
 #include <QObject>
+#include <QTimer>
 #include <QVariantMap>
 
 class MBasicListItem;
 class MButton;
+class QDBusPendingCallWatcher;
 class QGraphicsWidget;
 
 class BluetoothPlugin : public QObject, public MStatusIndicatorMenuExtensionInterface
@@ -32,14 +34,28 @@ public:
     virtual QGraphicsWidget *widget();
 
 private slots:
+    void shown();
+    void hidden();
+    void propertiesChanged(const QString &interface, const QVariantMap &changed,
+                           const QStringList &invalidated);
+    //! Something the row shows changed: asked for again shortly
+    void changed();
     void update();
+    void gotObjects(QDBusPendingCallWatcher *watcher);
     void toggled(bool on);
 
 private:
+    void listen(bool on);
+
     QGraphicsWidget *container;
     MBasicListItem *item;
     MButton *power;
     QString adapter;
+    //! Shown in the menu: following BlueZ's changes
+    bool active;
+    QTimer updateTimer;
+    QDBusPendingCallWatcher *pending;
+    bool again;
 };
 
 #endif

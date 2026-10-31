@@ -51,6 +51,9 @@ bool VolumePlugin::initialize(const QString &)
     pulse = new PulseVolume(this);
     connect(pulse, SIGNAL(volumeChanged(int, bool)), SLOT(volumeChanged(int, bool)));
     connect(slider, SIGNAL(valueChanged(int)), SLOT(sliderMoved(int)));
+    // PulseAudio is followed while the menu shows the row only
+    connect(slider, SIGNAL(displayEntered()), SLOT(shown()));
+    connect(slider, SIGNAL(displayExited()), SLOT(hidden()));
     return true;
 }
 
@@ -72,4 +75,14 @@ void VolumePlugin::sliderMoved(int value)
 {
     pulse->setVolume(value);
     icon->setImage(value == 0 ? "icon-m-toolbar-volume-off-white" : "icon-m-toolbar-volume-white");
+}
+
+void VolumePlugin::shown()
+{
+    pulse->setActive(true);
+}
+
+void VolumePlugin::hidden()
+{
+    pulse->setActive(false);
 }

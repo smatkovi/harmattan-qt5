@@ -13,7 +13,7 @@
 #include <MImageWidget>
 #include <mstatusindicatormenuinterface.h>
 #include <QDBusConnection>
-#include <QDBusInterface>
+#include <QDBusMessage>
 #include <QDBusObjectPath>
 #include <QDBusReply>
 #include <QDBusVariant>
@@ -29,14 +29,15 @@ const char *const ActiveInterface = "org.freedesktop.NetworkManager.Connection.A
 
 QVariant nmProperty(const QString &path, const QString &interface, const QString &name)
 {
-    QDBusInterface props(NmService, path, "org.freedesktop.DBus.Properties",
-                         QDBusConnection::systemBus());
-    QDBusReply<QDBusVariant> reply = props.call("Get", interface, name);
+    QDBusMessage call = QDBusMessage::createMethodCall(NmService, path,
+        "org.freedesktop.DBus.Properties", "Get");
+    call << interface << name;
+    QDBusReply<QDBusVariant> reply = QDBusConnection::systemBus().call(call);
     return reply.isValid() ? reply.value().variant() : QVariant();
 }
 }
 
-InternetPlugin::InternetPlugin() : container(0), item(0), wlan(0), menu(0)
+InternetPlugin::InternetPlugin() : container(0), item(0), wlan(0), menu(0), active(false)
 {
 }
 
@@ -67,10 +68,29 @@ bool InternetPlugin::initialize(const QString &)
     layout->setAlignment(wlan, Qt::AlignVCenter);
     connect(wlan, SIGNAL(toggled(bool)), SLOT(wlanToggled(bool)));
 
+    // NetworkManager is followed while the menu shows the row only
+    connect(item, SIGNAL(displayEntered()), SLOT(shown()));
+    connect(item, SIGNAL(displayExited()), SLOT(hidden()));
+    return true;
+}
+
+void InternetPlugin::shown()
+{
+    if (active)
+        return;
+    active = true;
     QDBusConnection::systemBus().connect(NmService, NmPath, "org.freedesktop.DBus.Properties",
         "PropertiesChanged", this, SLOT(propertiesChanged(QString, QVariantMap, QStringList)));
     update();
-    return true;
+}
+
+void InternetPlugin::hidden()
+{
+    if (!active)
+        return;
+    active = false;
+    QDBusConnection::systemBus().disconnect(NmService, NmPath, "org.freedesktop.DBus.Properties",
+        "PropertiesChanged", this, SLOT(propertiesChanged(QString, QVariantMap, QStringList)));
 }
 
 QGraphicsWidget *InternetPlugin::widget()
@@ -81,27 +101,41 @@ QGraphicsWidget *InternetPlugin::widget()
 void InternetPlugin::propertiesChanged(const QString &interface, const QVariantMap &changed,
                                        const QStringList &)
 {
-    if (interface == NmInterface &&
-        (changed.contains("PrimaryConnection") || changed.contains("WirelessEnabled") ||
-         changed.contains("State")))
-        update();
+    if (interface != NmInterface)
+        return;
+    // the switch from the signal itself; the connection's name and type
+    // are asked for when it changes
+    if (changed.contains("WirelessEnabled"))
+        showWlan(changed.value("WirelessEnabled"));
+    if (changed.contains("PrimaryConnection"))
+        showConnection(qvariant_cast<QDBusObjectPath>(changed.value("PrimaryConnection")));
 }
 
 void InternetPlugin::update()
 {
     QVariant enabled = nmProperty(NmPath, NmInterface, "WirelessEnabled");
+    if (!showWlan(enabled))
+        return;
+    showConnection(qvariant_cast<QDBusObjectPath>(
+        nmProperty(NmPath, NmInterface, "PrimaryConnection")));
+}
+
+bool InternetPlugin::showWlan(const QVariant &enabled)
+{
     if (!enabled.isValid()) {
         item->setSubtitle("No connection manager");
         wlan->setVisible(false);
-        return;
+        return false;
     }
     wlan->setVisible(true);
     wlan->blockSignals(true);
     wlan->setChecked(enabled.toBool());
     wlan->blockSignals(false);
+    return true;
+}
 
-    QDBusObjectPath primary = qvariant_cast<QDBusObjectPath>(
-        nmProperty(NmPath, NmInterface, "PrimaryConnection"));
+void InternetPlugin::showConnection(const QDBusObjectPath &primary)
+{
     QString name, type;
     if (!primary.path().isEmpty() && primary.path() != "/") {
         name = nmProperty(primary.path(), ActiveInterface, "Id").toString();
@@ -120,10 +154,10 @@ void InternetPlugin::update()
 
 void InternetPlugin::wlanToggled(bool on)
 {
-    QDBusInterface props(NmService, NmPath, "org.freedesktop.DBus.Properties",
-                         QDBusConnection::systemBus());
-    props.call("Set", QString(NmInterface), QString("WirelessEnabled"),
-               QVariant::fromValue(QDBusVariant(on)));
+    QDBusMessage call = QDBusMessage::createMethodCall(NmService, NmPath,
+        "org.freedesktop.DBus.Properties", "Set");
+    call << QString(NmInterface) << QString("WirelessEnabled") << QVariant::fromValue(QDBusVariant(on));
+    QDBusConnection::systemBus().call(call);
 }
 
 void InternetPlugin::openSettings()

@@ -11,6 +11,7 @@
 
 #include <QObject>
 #include <QByteArray>
+#include <QTimer>
 
 struct pa_context;
 struct pa_glib_mainloop;
@@ -31,6 +32,12 @@ public:
 
 public slots:
     void setVolume(int percent);
+    /*!
+     * Follows PulseAudio's volume only while @active (the menu shows the
+     * row): otherwise it asks PulseAudio to tell nothing, and does not
+     * try to reach it when it is not there
+     */
+    void setActive(bool active);
 
 signals:
     void volumeChanged(int percent, bool muted);
@@ -42,11 +49,19 @@ public:
     void sinkInfo(const pa_sink_info *info);
     void sinkChanged();
 
-private:
+private slots:
     void connectPulse();
+
+private:
+    void dropContext();
+    void subscribe();
 
     pa_glib_mainloop *mainloop;
     pa_context *context;
+    bool active;
+    // another try to reach PulseAudio, later each time
+    QTimer retryTimer;
+    int retryDelay;
     QByteArray sinkName;
     int channels;
     int currentVolume;

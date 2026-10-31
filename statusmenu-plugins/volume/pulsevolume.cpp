@@ -7,7 +7,6 @@
  */
 #include "pulsevolume.h"
 
-#include <QTimer>
 #include <pulse/pulseaudio.h>
 #include <pulse/glib-mainloop.h>
 
@@ -38,30 +37,78 @@ void subscribeCallback(pa_context *, pa_subscription_event_type_t type, uint32_t
 
 }
 
+// the first retry, and the longest wait between two
+static const int FirstRetry = 3000;
+static const int LongestRetry = 60000;
+
 PulseVolume::PulseVolume(QObject *parent) : QObject(parent),
-    mainloop(pa_glib_mainloop_new(NULL)), context(0), channels(2),
-    currentVolume(-1), currentMute(false)
+    mainloop(pa_glib_mainloop_new(NULL)), context(0), active(false),
+    retryDelay(FirstRetry), channels(2), currentVolume(-1), currentMute(false)
 {
-    connectPulse();
+    retryTimer.setSingleShot(true);
+    retryTimer.setTimerType(Qt::VeryCoarseTimer);
+    connect(&retryTimer, SIGNAL(timeout()), SLOT(connectPulse()));
+    // (connected when the menu first shows the row)
 }
 
 PulseVolume::~PulseVolume()
+{
+    dropContext();
+    pa_glib_mainloop_free(mainloop);
+}
+
+void PulseVolume::dropContext()
 {
     if (context) {
         pa_context_set_state_callback(context, NULL, NULL);
         pa_context_set_subscribe_callback(context, NULL, NULL);
         pa_context_disconnect(context);
         pa_context_unref(context);
+        context = 0;
     }
-    pa_glib_mainloop_free(mainloop);
+}
+
+void PulseVolume::setActive(bool on)
+{
+    if (on == active)
+        return;
+    active = on;
+    if (active) {
+        retryDelay = FirstRetry;
+        if (context && pa_context_get_state(context) == PA_CONTEXT_READY)
+            subscribe();
+        else
+            connectPulse();
+        return;
+    }
+    retryTimer.stop();
+    if (context && pa_context_get_state(context) == PA_CONTEXT_READY) {
+        // nothing to tell while the menu is closed
+        pa_operation *op = pa_context_subscribe(context, PA_SUBSCRIPTION_MASK_NULL, NULL, NULL);
+        if (op)
+            pa_operation_unref(op);
+    } else {
+        // not there: no waiting for it either
+        dropContext();
+    }
+}
+
+void PulseVolume::subscribe()
+{
+    pa_operation *op = pa_context_subscribe(context,
+        pa_subscription_mask_t(PA_SUBSCRIPTION_MASK_SINK | PA_SUBSCRIPTION_MASK_SERVER),
+        NULL, NULL);
+    if (op)
+        pa_operation_unref(op);
+    // what changed while the menu was closed
+    sinkChanged();
 }
 
 void PulseVolume::connectPulse()
 {
-    if (context) {
-        pa_context_set_state_callback(context, NULL, NULL);
-        pa_context_unref(context);
-    }
+    dropContext();
+    if (!active)
+        return;
     pa_proplist *props = pa_proplist_new();
     pa_proplist_sets(props, PA_PROP_APPLICATION_NAME, "status indicator menu");
     context = pa_context_new_with_proplist(pa_glib_mainloop_get_api(mainloop),
@@ -75,16 +122,22 @@ void PulseVolume::contextChanged()
 {
     switch (pa_context_get_state(context)) {
     case PA_CONTEXT_READY:
+        retryDelay = FirstRetry;
         pa_context_set_subscribe_callback(context, subscribeCallback, this);
-        pa_operation_unref(pa_context_subscribe(context,
-            pa_subscription_mask_t(PA_SUBSCRIPTION_MASK_SINK | PA_SUBSCRIPTION_MASK_SERVER),
-            NULL, NULL));
-        sinkChanged();
+        if (active)
+            subscribe();
         break;
     case PA_CONTEXT_FAILED:
     case PA_CONTEXT_TERMINATED:
-        // PulseAudio went away (or is not there yet): try again
-        QTimer::singleShot(3000, this, [this]() { connectPulse(); });
+        // PulseAudio went away (or is not there yet): try again while the
+        // menu is open, less often each time; else when it opens again
+        if (active) {
+            retryTimer.start(retryDelay);
+            retryDelay = qMin(retryDelay * 2, LongestRetry);
+        } else {
+            // (dropped outside of its own callback)
+            QTimer::singleShot(0, this, SLOT(connectPulse()));
+        }
         break;
     default:
         break;

@@ -17,6 +17,8 @@
 #include <QDBusMessage>
 #include <QDBusMetaType>
 #include <QDBusObjectPath>
+#include <QDBusPendingCallWatcher>
+#include <QDBusPendingReply>
 #include <QDBusVariant>
 #include <QGraphicsLinearLayout>
 #include <QGraphicsWidget>
@@ -35,10 +37,14 @@ const char *const AdapterInterface = "org.bluez.Adapter1";
 const char *const DeviceInterface = "org.bluez.Device1";
 }
 
-BluetoothPlugin::BluetoothPlugin() : container(0), item(0), power(0)
+BluetoothPlugin::BluetoothPlugin() : container(0), item(0), power(0), active(false), pending(0), again(false)
 {
     qDBusRegisterMetaType<InterfaceMap>();
     qDBusRegisterMetaType<ManagedObjects>();
+    // a burst of changes (devices found while scanning) asks once
+    updateTimer.setSingleShot(true);
+    updateTimer.setInterval(200);
+    connect(&updateTimer, SIGNAL(timeout()), SLOT(update()));
 }
 
 void BluetoothPlugin::setStatusIndicatorMenuInterface(MStatusIndicatorMenuInterface &)
@@ -66,16 +72,66 @@ bool BluetoothPlugin::initialize(const QString &)
     layout->setAlignment(power, Qt::AlignVCenter);
     connect(power, SIGNAL(toggled(bool)), SLOT(toggled(bool)));
 
+    // BlueZ is followed while the menu shows the row only
+    connect(item, SIGNAL(displayEntered()), SLOT(shown()));
+    connect(item, SIGNAL(displayExited()), SLOT(hidden()));
+    return true;
+}
+
+void BluetoothPlugin::listen(bool on)
+{
     // any change of an adapter or a device, and adapters coming and going
     QDBusConnection bus = QDBusConnection::systemBus();
-    bus.connect(BluezService, QString(), "org.freedesktop.DBus.Properties",
-                "PropertiesChanged", this, SLOT(update()));
-    bus.connect(BluezService, "/", "org.freedesktop.DBus.ObjectManager",
-                "InterfacesAdded", this, SLOT(update()));
-    bus.connect(BluezService, "/", "org.freedesktop.DBus.ObjectManager",
-                "InterfacesRemoved", this, SLOT(update()));
+    if (on) {
+        bus.connect(BluezService, QString(), "org.freedesktop.DBus.Properties",
+                    "PropertiesChanged", this, SLOT(propertiesChanged(QString, QVariantMap, QStringList)));
+        bus.connect(BluezService, "/", "org.freedesktop.DBus.ObjectManager",
+                    "InterfacesAdded", this, SLOT(changed()));
+        bus.connect(BluezService, "/", "org.freedesktop.DBus.ObjectManager",
+                    "InterfacesRemoved", this, SLOT(changed()));
+    } else {
+        bus.disconnect(BluezService, QString(), "org.freedesktop.DBus.Properties",
+                       "PropertiesChanged", this, SLOT(propertiesChanged(QString, QVariantMap, QStringList)));
+        bus.disconnect(BluezService, "/", "org.freedesktop.DBus.ObjectManager",
+                       "InterfacesAdded", this, SLOT(changed()));
+        bus.disconnect(BluezService, "/", "org.freedesktop.DBus.ObjectManager",
+                       "InterfacesRemoved", this, SLOT(changed()));
+    }
+}
+
+void BluetoothPlugin::shown()
+{
+    if (active)
+        return;
+    active = true;
+    listen(true);
     update();
-    return true;
+}
+
+void BluetoothPlugin::hidden()
+{
+    if (!active)
+        return;
+    active = false;
+    listen(false);
+    updateTimer.stop();
+}
+
+void BluetoothPlugin::propertiesChanged(const QString &interface, const QVariantMap &changed,
+                                        const QStringList &)
+{
+    // what the row shows: an adapter on or off, the devices connected and
+    // their names (not each device's signal strength while scanning)
+    if ((interface == AdapterInterface && changed.contains("Powered"))
+        || (interface == DeviceInterface
+            && (changed.contains("Connected") || changed.contains("Alias") || changed.contains("Name"))))
+        this->changed();
+}
+
+void BluetoothPlugin::changed()
+{
+    if (active && !updateTimer.isActive())
+        updateTimer.start();
 }
 
 QGraphicsWidget *BluetoothPlugin::widget()
@@ -85,10 +141,29 @@ QGraphicsWidget *BluetoothPlugin::widget()
 
 void BluetoothPlugin::update()
 {
+    // without blocking the menu while BlueZ answers; again after the
+    // answer when something changed meanwhile
+    if (pending) {
+        again = true;
+        return;
+    }
     QDBusMessage call = QDBusMessage::createMethodCall(BluezService, "/",
         "org.freedesktop.DBus.ObjectManager", "GetManagedObjects");
-    QDBusMessage reply = QDBusConnection::systemBus().call(call, QDBus::Block, 2000);
+    pending = new QDBusPendingCallWatcher(QDBusConnection::systemBus().asyncCall(call, 2000), this);
+    connect(pending, SIGNAL(finished(QDBusPendingCallWatcher *)),
+            SLOT(gotObjects(QDBusPendingCallWatcher *)));
+}
+
+void BluetoothPlugin::gotObjects(QDBusPendingCallWatcher *watcher)
+{
+    pending = 0;
+    watcher->deleteLater();
+    if (again) {
+        again = false;
+        changed();
+    }
     ManagedObjects objects;
+    const QDBusMessage reply = watcher->reply();
     if (reply.type() == QDBusMessage::ReplyMessage && !reply.arguments().isEmpty())
         reply.arguments().at(0).value<QDBusArgument>() >> objects;
 
