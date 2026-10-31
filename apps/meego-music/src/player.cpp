@@ -23,7 +23,7 @@ Player::Player(Library *library, QObject *parent) : QObject(parent), m_library(l
     }
     m_timer.setInterval(250);
     connect(&m_timer, &QTimer::timeout, this, &Player::poll);
-    m_timer.start();
+    // (started when a song plays: nothing to look at before)
 }
 
 Player::~Player()
@@ -81,6 +81,10 @@ void Player::setPlaying(bool on)
         m_playing = on;
         emit stateChanged();
     }
+    // looked at while playing; stopped a second after it stopped
+    m_settle = 4;
+    if (on && !m_timer.isActive())
+        m_timer.start();
 }
 
 void Player::toggle()
@@ -194,6 +198,8 @@ void Player::poll()
         gst_message_unref(msg);
     }
     gst_object_unref(bus);
+    if (!m_playing && --m_settle <= 0)
+        m_timer.stop();
     if (m_playing) {
         gint64 pos = 0, dur = 0;
         if (gst_element_query_position(m_bin, GST_FORMAT_TIME, &pos))

@@ -91,9 +91,14 @@ Page {
     }
     Component.onDestruction: keep()
     Timer {
-        // kept now and then too: the application may end without notice
-        interval: 5000; running: true; repeat: true
+        // kept now and then too, while in use: the application may end
+        // without notice (written only when something changed)
+        interval: 5000; running: Qt.application.active; repeat: true
         onTriggered: page.keep()
+    }
+    Connections {
+        target: Qt.application
+        onActiveChanged: if (!Qt.application.active) page.keep()
     }
 
     Binding { target: page.gps; property: "active"; value: page.locating; when: page.gps !== null }

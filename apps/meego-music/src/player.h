@@ -61,7 +61,10 @@ private:
 
     Library *m_library;
     GstElement *m_bin = nullptr;
+    // GStreamer's messages and the position, while playing (and a moment
+    // after, for what pausing brings)
     QTimer m_timer;
+    int m_settle = 0;
     QVariantList m_queue;
     QList<int> m_order;     // the play order (shuffled or not)
     int m_index = -1;       // into m_order

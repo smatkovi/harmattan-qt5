@@ -52,7 +52,11 @@ private:
     void poll();
 
     GstElement *m_bin = nullptr;
+    // GStreamer's messages and the position, while playing and a moment
+    // after a change (the first frame, a seek, pausing)
     QTimer m_timer;
+    int m_settle = 0;
+    void settle();
     QMutex m_lock;
     QImage m_frame;
     QString m_source, m_error;

@@ -7,6 +7,7 @@
 
 #include <QNetworkAccessManager>
 #include <QObject>
+#include <QSettings>
 #include <QQmlNetworkAccessManagerFactory>
 #include <QVariantList>
 #include <functional>
@@ -60,7 +61,11 @@ class State : public QObject
 public:
     using QObject::QObject;
     Q_INVOKABLE QVariant value(const QString &key, const QVariant &fallback) const;
+    //! Written when it changed only, the changes of one go at once
     Q_INVOKABLE void setValue(const QString &key, const QVariant &value);
+
+private:
+    QSettings m_settings;
 };
 
 class TileNetworkFactory : public QQmlNetworkAccessManagerFactory

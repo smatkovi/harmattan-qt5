@@ -210,12 +210,16 @@ void Places::reverse(double lat, double lon)
 
 QVariant State::value(const QString &key, const QVariant &fallback) const
 {
-    return QSettings().value(key, fallback);
+    return m_settings.value(key, fallback);
 }
 
 void State::setValue(const QString &key, const QVariant &value)
 {
-    QSettings().setValue(key, value);
+    // the page keeps its state every few seconds: the file is written
+    // when something changed only (QSettings writes the changes of one go
+    // together, back in the event loop)
+    if (m_settings.value(key) != value)
+        m_settings.setValue(key, value);
 }
 
 // the tiles: as the tile servers ask, who is asking; kept on disk, from

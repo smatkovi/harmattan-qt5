@@ -63,12 +63,9 @@ Modem::Modem(QObject *parent) : QObject(parent), m_bus(busToUse())
         emit modemChanged();
         findModem();
     });
-    // the signal and the network change; ModemManager announces them, but
-    // a look now and then costs nothing
-    auto *timer = new QTimer(this);
-    timer->setInterval(30000);
-    connect(timer, &QTimer::timeout, this, &Modem::readModem);
-    timer->start();
+    // the signal and the network: ModemManager announces their changes
+    // (PropertiesChanged of the modem); no look now and then, which woke
+    // the phone application and ModemManager every 30 s as long as it ran
     findModem();
 }
 

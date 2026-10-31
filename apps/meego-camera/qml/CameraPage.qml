@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Window 2.2 as QtWindow
 import com.nokia.meego 2.0
 import MeeGo.Camera 1.0
 
@@ -46,7 +47,11 @@ Page {
     Viewfinder {
         id: vf
         anchors.fill: parent
+        // (on X11 a window in the switcher is minimized; the application's
+        // state does not become hidden there)
         active: Qt.application.state !== Qt.ApplicationSuspended && Qt.application.state !== Qt.ApplicationHidden
+                && QtWindow.Window.visibility !== QtWindow.Window.Minimized
+                && QtWindow.Window.visibility !== QtWindow.Window.Hidden
         onCaptured: if (!page.video) flash.restart()
         onFailed: { banner.text = message; banner.show() }
     }

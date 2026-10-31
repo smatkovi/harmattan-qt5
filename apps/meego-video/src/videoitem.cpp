@@ -35,7 +35,7 @@ VideoItem::VideoItem(QQuickItem *parent) : QQuickPaintedItem(parent)
     }
     m_timer.setInterval(250);
     connect(&m_timer, &QTimer::timeout, this, &VideoItem::poll);
-    m_timer.start();
+    // (started when there is something to look at: settle())
 }
 
 VideoItem::~VideoItem()
@@ -97,6 +97,7 @@ void VideoItem::setSource(const QString &url)
     m_position = m_duration = 0;
     g_object_set(m_bin, "uri", url.toUtf8().constData(), nullptr);
     gst_element_set_state(m_bin, GST_STATE_PAUSED);     // the first frame
+    settle();
     emit sourceChanged();
     emit errorChanged();
     emit stateChanged();
@@ -113,6 +114,7 @@ void VideoItem::play()
     m_ended = false;
     gst_element_set_state(m_bin, GST_STATE_PLAYING);
     m_playing = true;
+    settle();
     emit stateChanged();
 }
 
@@ -122,6 +124,7 @@ void VideoItem::pause()
         return;
     gst_element_set_state(m_bin, GST_STATE_PAUSED);
     m_playing = false;
+    settle();
     emit stateChanged();
 }
 
@@ -132,7 +135,17 @@ void VideoItem::seek(qint64 ms)
     gst_element_seek_simple(m_bin, GST_FORMAT_TIME, GstSeekFlags(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
                             ms * GST_MSECOND);
     m_position = ms;
+    settle();
     emit positionChanged();
+}
+
+void VideoItem::settle()
+{
+    // two seconds more after the change, for its messages (the length,
+    // an error), all the time while playing
+    m_settle = 8;
+    if (!m_timer.isActive())
+        m_timer.start();
 }
 
 void VideoItem::poll()
@@ -170,4 +183,6 @@ void VideoItem::poll()
     }
     if (changed)
         emit positionChanged();
+    if (!m_playing && --m_settle <= 0)
+        m_timer.stop();
 }
