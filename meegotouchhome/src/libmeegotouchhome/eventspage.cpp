@@ -11,6 +11,7 @@
 ****************************************************************************/
 
 #include "eventspage.h"
+#include "deferredupdate.h"
 
 #include <MBasicListItem>
 #include <MImageWidget>
@@ -54,6 +55,7 @@ public:
 
 EventsPage::EventsPage(QGraphicsItem *parent) :
     MWidget(parent),
+    listUpdate(new DeferredUpdate(this, SLOT(updateList()))),
     sink(new EventsSink(this)),
     viewport(new MPannableViewport),
     list(new MStylableWidget),
@@ -117,25 +119,25 @@ void EventsPage::registerSink()
 void EventsPage::addNotification(const Notification &notification)
 {
     notifications.insert(notification.notificationId(), notification);
-    updateList();
+    listUpdate->request();
 }
 
 void EventsPage::removeNotification(uint notificationId)
 {
     notifications.remove(notificationId);
-    updateList();
+    listUpdate->request();
 }
 
 void EventsPage::addGroup(uint groupId, const NotificationParameters &parameters)
 {
     groups.insert(groupId, parameters);
-    updateList();
+    listUpdate->request();
 }
 
 void EventsPage::removeGroup(uint groupId)
 {
     groups.remove(groupId);
-    updateList();
+    listUpdate->request();
 }
 
 void EventsPage::updateList()

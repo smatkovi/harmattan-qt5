@@ -24,6 +24,7 @@
 #include <notificationsystem/notification.h>
 #include <notificationsystem/notificationparameters.h>
 
+class DeferredUpdate;
 class MBasicListItem;
 class MLabel;
 class MLayout;
@@ -72,10 +73,12 @@ private Q_SLOTS:
     void removeGroup(uint groupId);
     //! An event's item was tapped
     void itemClicked();
-
-private:
     //! The list again: the groups and the notifications without one, newest first
     void updateList();
+
+private:
+    //! Once for a burst of changes, while the home is to be seen
+    DeferredUpdate *listUpdate;
     EventsSink *sink;
     MPannableViewport *viewport;
     MStylableWidget *list;

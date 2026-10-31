@@ -11,6 +11,7 @@
 ****************************************************************************/
 
 #include "applicationspage.h"
+#include "deferredupdate.h"
 #include "launcherbutton.h"
 #include "launcherdatastore.h"
 
@@ -30,6 +31,7 @@ bool byName(const LauncherButton *a, const LauncherButton *b)
 
 ApplicationsPage::ApplicationsPage(LauncherDataStore *dataStore, QGraphicsItem *parent) :
     MWidget(parent),
+    buttonsUpdate(new DeferredUpdate(this, SLOT(updateButtons()))),
     dataStore(dataStore),
     viewport(new MPannableViewport),
     grid(new MStylableWidget),
@@ -51,9 +53,9 @@ ApplicationsPage::ApplicationsPage(LauncherDataStore *dataStore, QGraphicsItem *
     viewport->setPanDirection(Qt::Vertical);
     viewport->setWidget(grid);
 
-    connect(dataStore, SIGNAL(dataStoreChanged()), SLOT(updateButtons()));
-    connect(dataStore, SIGNAL(desktopEntryAdded(QSharedPointer<MDesktopEntry>)), SLOT(updateButtons()));
-    connect(dataStore, SIGNAL(desktopEntryRemoved(QString)), SLOT(updateButtons()));
+    connect(dataStore, SIGNAL(dataStoreChanged()), buttonsUpdate, SLOT(request()));
+    connect(dataStore, SIGNAL(desktopEntryAdded(QSharedPointer<MDesktopEntry>)), buttonsUpdate, SLOT(request()));
+    connect(dataStore, SIGNAL(desktopEntryRemoved(QString)), buttonsUpdate, SLOT(request()));
     connect(dataStore, SIGNAL(desktopEntryChanged(QSharedPointer<MDesktopEntry>)),
             SLOT(updateButton(QSharedPointer<MDesktopEntry>)));
     updateButtons();
@@ -106,5 +108,6 @@ void ApplicationsPage::updateButton(const QSharedPointer<MDesktopEntry> &entry)
     LauncherButton *button = buttons.value(entry->fileName());
     if (button)
         button->updateFromDesktopEntry(entry);
-    updateButtons();
+    // (its name may have changed: the order then)
+    buttonsUpdate->request();
 }

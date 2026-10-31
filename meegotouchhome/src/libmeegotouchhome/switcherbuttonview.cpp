@@ -39,6 +39,8 @@ unsigned char SwitcherButtonView::xErrorCode = Success;
 
 // Time between icon geometry updates in milliseconds
 static const int ICON_GEOMETRY_UPDATE_INTERVAL = 200;
+// The thumbnail of a window that keeps changing is drawn again this often
+static const int DAMAGE_HOLD_OFF_INTERVAL = 500;
 Atom SwitcherButtonView::iconGeometryAtom = 0;
 
 #if QT_VERSION >= 0x050000
@@ -78,6 +80,7 @@ SwitcherButtonView::SwitcherButtonView(SwitcherButton *button) :
     qWindowPixmapOutdated(false),
 #endif
     onDisplay(false),
+    damagePending(false),
     xEventListener(new SwitcherButtonViewXEventListener(*this))
 {
     QGraphicsLinearLayout *titleBarLayout = new QGraphicsLinearLayout(Qt::Horizontal, controller);
@@ -98,6 +101,10 @@ SwitcherButtonView::SwitcherButtonView(SwitcherButton *button) :
     updateXWindowIconGeometryTimer.setSingleShot(true);
     updateXWindowIconGeometryTimer.setInterval(ICON_GEOMETRY_UPDATE_INTERVAL);
     connect(&updateXWindowIconGeometryTimer, SIGNAL(timeout()), this, SLOT(updateXWindowIconGeometry()));
+
+    damageHoldOffTimer.setSingleShot(true);
+    damageHoldOffTimer.setInterval(DAMAGE_HOLD_OFF_INTERVAL);
+    connect(&damageHoldOffTimer, SIGNAL(timeout()), this, SLOT(damageHoldOver()));
 }
 
 SwitcherButtonView::~SwitcherButtonView()
@@ -357,14 +364,37 @@ void SwitcherButtonView::damageEvent(Qt::HANDLE &damage, short &x, short &y, uns
 #else
     // Qt 5's Qt::HANDLE is a pointer, X's Damage an XID
     if (xWindowPixmapDamage == static_cast<Damage>(reinterpret_cast<quintptr>(damage))) {
-        qWindowPixmapOutdated = true;
 #endif
-        X11Wrapper::XDamageSubtract(QX11Info::display(), xWindowPixmapDamage, None, None);
-        update();
+        if (damageHoldOffTimer.isActive())
+            // drawn a moment ago: when the timer ends
+            damagePending = true;
+        else
+            takeDamage();
     }
 #else
     Q_UNUSED(damage);
 #endif
+}
+
+void SwitcherButtonView::takeDamage()
+{
+#ifdef Q_WS_X11
+    damagePending = false;
+    if (xWindowPixmapDamage == 0)
+        return;
+#if QT_VERSION >= 0x050000
+    qWindowPixmapOutdated = true;
+#endif
+    X11Wrapper::XDamageSubtract(QX11Info::display(), xWindowPixmapDamage, None, None);
+    update();
+    damageHoldOffTimer.start();
+#endif
+}
+
+void SwitcherButtonView::damageHoldOver()
+{
+    if (damagePending && onDisplay)
+        takeDamage();
 }
 
 void SwitcherButtonView::setOnDisplay()
@@ -381,6 +411,8 @@ void SwitcherButtonView::unsetOnDisplay()
 {
     onDisplay = false;
     destroyDamage();
+    damageHoldOffTimer.stop();
+    damagePending = false;
 
     // Disconnect the damage signal so that off-screen buttons aren't signaled by damage notifications of other buttons
     disconnect(qApp, SIGNAL(damageEvent(Qt::HANDLE &, short &, short &, unsigned short &, unsigned short &)), this, SLOT(damageEvent(Qt::HANDLE &, short &, short &, unsigned short &, unsigned short &)));

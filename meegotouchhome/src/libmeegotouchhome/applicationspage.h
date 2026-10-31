@@ -21,6 +21,7 @@
 #include <QMap>
 #include <QSharedPointer>
 
+class DeferredUpdate;
 class LauncherButton;
 class LauncherDataStore;
 class MDesktopEntry;
@@ -51,6 +52,8 @@ private Q_SLOTS:
     void updateButton(const QSharedPointer<MDesktopEntry> &entry);
 
 private:
+    //! Once for a burst of changes, while the home is to be seen
+    DeferredUpdate *buttonsUpdate;
     LauncherDataStore *dataStore;
     MPannableViewport *viewport;
     // styled (ApplicationsGrid): the margins clear of the status bar

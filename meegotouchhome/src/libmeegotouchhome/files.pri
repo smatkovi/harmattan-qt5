@@ -36,6 +36,7 @@ HEADERS += homeapplication.h \
     verticalswitcherview.h \
     applicationspage.h \
     eventspage.h \
+    deferredupdate.h \
     switcherbasestyle.h \
     switcherstyle.h \
     switcherbutton.h \
@@ -95,6 +96,7 @@ SOURCES += homeapplication.cpp \
     verticalswitcherview.cpp \
     applicationspage.cpp \
     eventspage.cpp \
+    deferredupdate.cpp \
     switcherview.cpp \
     switcherbutton.cpp \
     switcherbuttonview.cpp \

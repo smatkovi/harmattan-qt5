@@ -97,6 +97,16 @@ private slots:
      */
     void updateXWindowPixmap();
 
+    /*!
+     * \brief Takes the window's damage: the thumbnail is drawn again
+     */
+    void takeDamage();
+
+    /*!
+     * \brief The thumbnail may be drawn again: now if the window was damaged meanwhile
+     */
+    void damageHoldOver();
+
 protected:
     /*!
      * Creates an X damage structure based on the current X window pixmap.
@@ -159,6 +169,17 @@ protected:
 
     //! Timer for updating the icon's position in scene coordination
     mutable QTimer updateXWindowIconGeometryTimer;
+
+    /*!
+     * After the thumbnail was drawn again for the window's damage, it is
+     * not drawn again before this timer ends: an application that draws
+     * all the time makes the home copy and draw its window twice a second,
+     * not with each frame. Its damage is left in the X server meanwhile,
+     * which tells no more of it until it is taken (XDamageReportNonEmpty).
+     */
+    QTimer damageHoldOffTimer;
+    //! The window was damaged while damageHoldOffTimer ran
+    bool damagePending;
 
     //! The icon's current geometry in scene coordinates
     QRectF updatedXWindowIconGeometry;
