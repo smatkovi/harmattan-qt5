@@ -17,21 +17,41 @@
 **
 ****************************************************************************/
 
-#ifdef GLES2_VERSION
+// MCE's display state and touch screen lock, whatever the GL (Nokia's
+// GLES2 builds were the device builds; the Qt 5 port's is GLX everywhere,
+// where the display going off was never heard of: the windows were never
+// told they were obscured, damage tracked and pinging went on)
 #include <QtDBus>
+#if defined(__has_include)
+#if __has_include(<mce/dbus-names.h>)
 #include <mce/dbus-names.h>
 #include <mce/mode-names.h>
+#endif
+#endif
+#ifndef MCE_SERVICE
+// (mce-dev's names, where its headers are not installed)
+#define MCE_SERVICE                "com.nokia.mce"
+#define MCE_REQUEST_PATH           "/com/nokia/mce/request"
+#define MCE_REQUEST_IF             "com.nokia.mce.request"
+#define MCE_SIGNAL_PATH            "/com/nokia/mce/signal"
+#define MCE_SIGNAL_IF              "com.nokia.mce.signal"
+#define MCE_DISPLAY_SIG            "display_status_ind"
+#define MCE_DISPLAY_STATUS_GET     "get_display_status"
+#define MCE_TKLOCK_MODE_SIG        "tklock_mode_ind"
+#define MCE_TKLOCK_MODE_GET        "get_tklock_mode"
+#define MCE_DISPLAY_OFF_STRING     "off"
+#define MCE_TK_UNLOCKED            "unlocked"
 #endif
 
 #include "mdevicestate.h"
 
-#ifdef GLES2_VERSION
 void MDeviceState::mceDisplayStatusIndSignal(QString mode)
 {
     if (mode == MCE_DISPLAY_OFF_STRING) {
         display_off = true;
         emit displayStateChange(true);
-    } else {  // "on" or "dimmed"
+    } else {  // "on" or "dimmed", or "lpm": an mce with a low power mode
+              // shows a stand-by screen then, whose client draws on X
         if (display_off) {
             display_off = false;
             emit displayStateChange(false);
@@ -77,7 +97,6 @@ away:
     delete tsmode_call;
     tsmode_call = 0;
 }
-#endif
 
 void MDeviceState::callPropChanged()
 {
@@ -125,7 +144,6 @@ MDeviceState::MDeviceState(QObject* parent)
     connect(flat_prop, SIGNAL(valueChanged()), this, SLOT(flatPropChanged()));
     flatPropChanged();
 
-#ifdef GLES2_VERSION
     touchScreenLockMode = MCE_TK_UNLOCKED;
     systembus_conn = new QDBusConnection(QDBusConnection::systemBus());
     if (!systembus_conn->isConnected())
@@ -157,7 +175,6 @@ MDeviceState::MDeviceState(QObject* parent)
                                            MCE_DISPLAY_STATUS_GET)), this);
     connect(display_call, SIGNAL(finished(QDBusPendingCallWatcher*)),
             this, SLOT(gotDisplayStatus(QDBusPendingCallWatcher*)));
-#endif
 }
 
 MDeviceState::~MDeviceState()
